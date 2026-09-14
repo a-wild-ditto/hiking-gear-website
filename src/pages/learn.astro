@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GuideCard from '../components/GuideCard.astro';
+import { Image } from 'astro:assets';
+import { guides } from '../data/guides';
+import tasmaniaImage from '../assets/images/tasmania-boardwalk.png';
+---
+
+<BaseLayout
+  title="Beginner hiking guides | Trailwise"
+  description="Clear Australian beginner guides for choosing shelter, sleeping gear and a first overnight setup."
+>
+  <header class="page-hero">
+    <div class="container page-hero-grid">
+      <div>
+        <span class="eyebrow">Learn</span><h1>Know enough to choose well.</h1>
+      </div><p class="lead">
+        Plain-English guides for the few gear decisions that shape comfort,
+        warmth and carried weight on a first overnight.
+      </p>
+    </div>
+  </header>
+  <div class="container page-image">
+    <Image
+      src={tasmaniaImage}
+      alt="Two overnight hikers following a boardwalk through Tasmanian button-grass moorland towards dolerite mountains"
+      widths={[640, 960, 1440]}
+      sizes="(max-width: 850px) 100vw, 1160px"
+      format="webp"
+    />
+  </div>
+  <section class="section section-soft">
+    <div class="container">
+      <div class="guide-grid">
+        {guides.map((guide) => <GuideCard guide={guide} />)}
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container value-grid">
+      <div>
+        <span class="eyebrow">Suggested path</span><h2>
+          New to overnight hiking?
+        </h2>
+      </div><ol class="prose">
+        <li>
+          Start with <a href="/guides/first-overnight-hike"
+            >what you actually need</a
+          >.
+        </li><li>
+          Understand your <a href="/guides/sleeping-bag-temperature-guide"
+            >sleeping bag</a
+          > and <a href="/guides/sleeping-mat-r-value-guide">mat</a> together.
+        </li><li>
+          Choose a <a href="/guides/choosing-your-first-hiking-tent"
+            >first tent</a
+          > for real conditions.
+        </li><li>
+          Use the <a href="/build-my-kit">kit builder</a> to see a sample setup.
+        </li>
+      </ol>
+    </div>
+  </section>
+</BaseLayout>

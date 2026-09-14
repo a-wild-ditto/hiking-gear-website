@@ -1,0 +1,231 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import KitCard from '../components/KitCard.astro';
+import GuideCard from '../components/GuideCard.astro';
+import { Image } from 'astro:assets';
+import { kits } from '../data/kits';
+import { categories } from '../data/catalog';
+import { guides } from '../data/guides';
+import heroImage from '../assets/images/blue-mountains-hero.png';
+import campImage from '../assets/images/high-country-camp.png';
+import trailImage from '../assets/images/eucalyptus-trail.png';
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Beginner hiking gear, made simpler</span><h1>
+          Your first overnight hike, <em>sorted.</em>
+        </h1><p class="hero-copy">
+          Build a proper lightweight setup without spending $2,000—or learning a
+          new language of gear jargon first.
+        </p><div class="hero-actions">
+          <a class="button" href="/build-my-kit">Build My Kit →</a><a
+            class="button button-secondary"
+            href="/starter-kits">See Starter Kits</a
+          >
+        </div><div class="trust-row">
+          <span>Australian conditions</span><span>Beginner friendly</span><span
+            >Sensible prices</span
+          >
+        </div>
+      </div>
+      <div class="landscape">
+        <Image
+          src={heroImage}
+          alt="A small hiking tent and hiker overlooking eucalyptus-covered sandstone valleys in the Blue Mountains at sunrise"
+          widths={[640, 960, 1280]}
+          sizes="(max-width: 850px) 100vw, 45vw"
+          format="webp"
+          loading="eager"
+          fetchpriority="high"
+        /><div class="hero-stamp">
+          Good gear<br />without the<br />guesswork
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="image-break container">
+    <figure>
+      <Image
+        src={campImage}
+        alt="Two hikers preparing tea beside a tent among snow gums in the Victorian High Country"
+        widths={[640, 960, 1280]}
+        sizes="(max-width: 850px) 100vw, 58vw"
+        format="webp"
+      />
+      <figcaption>
+        Start with a setup that makes the first night feel manageable.
+      </figcaption>
+    </figure>
+    <figure>
+      <Image
+        src={trailImage}
+        alt="A hiker walking along a gentle eucalyptus bush track after rain"
+        widths={[480, 720, 960]}
+        sizes="(max-width: 850px) 100vw, 36vw"
+        format="webp"
+      />
+      <figcaption>Choose for the trips you will actually take.</figcaption>
+    </figure>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Three sensible starting points</span><h2>
+            Spend where it counts. Skip what doesn’t.
+          </h2>
+        </div><p>
+          Sample setups for validation. Every item and price is editable local
+          demo data.
+        </p>
+      </div><div class="kit-grid">
+        {
+          kits.map((kit) => (
+            <KitCard kit={kit} featured={kit.id === 'lightweight'} />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">How it works</span><h2>
+            A compatible setup in three clear steps.
+          </h2>
+        </div><a class="button button-light" href="/build-my-kit"
+          >Start the 2-minute builder</a
+        >
+      </div><div class="steps">
+        <article class="step">
+          <span class="step-number">01</span><h3>
+            Tell us where you’re going
+          </h3><p>
+            Location and season shape the weather margin your sleep and shelter
+            system needs.
+          </p>
+        </article><article class="step">
+          <span class="step-number">02</span><h3>
+            Set your budget and priorities
+          </h3><p>
+            Choose where to trade cost, comfort and carried weight—without
+            chasing grams for its own sake.
+          </p>
+        </article><article class="step">
+          <span class="step-number">03</span><h3>Get a compatible setup</h3><p>
+            See a transparent sample kit, its estimated total and why it suits
+            your answers.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Build the core system</span><h2>
+            Four categories. Far fewer decisions.
+          </h2>
+        </div><p>
+          Start with the things that keep you sheltered, warm and moving. Add
+          the extras later.
+        </p>
+      </div><div class="category-grid">
+        {
+          categories.map((category, index) => (
+            <a class="category-card" href={`/gear#${category.id}`}>
+              <>
+                <span class="category-index">0{index + 1}</span>
+                <div>
+                  <>
+                    <span class="eyebrow">{category.kicker}</span>
+                    <h3>{category.name}</h3>
+                    <p>{category.copy}</p>
+                  </>
+                </div>
+                <span class="category-arrow">→</span>
+              </>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <section class="section section-soft">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Trail school</span><h2>
+            Understand your gear before you buy it.
+          </h2>
+        </div><a class="text-link" href="/learn"
+          >Browse all guides <span>→</span></a
+        >
+      </div><div class="guide-grid">
+        {guides.slice(0, 4).map((guide) => <GuideCard guide={guide} />)}
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container value-grid">
+      <div>
+        <span class="eyebrow">The Trailwise approach</span><h2>
+          Lightweight enough. Practical always.
+        </h2><p class="lead">
+          We focus on the decisions that make a first overnight safer, warmer
+          and more enjoyable—not an endless wall of almost-identical products.
+        </p>
+      </div><div class="value-list">
+        <div class="value-item">
+          <h3>Beginner first</h3><p>
+            Clear reasons, plain English and no assumption that you already know
+            the jargon.
+          </p>
+        </div><div class="value-item">
+          <h3>Australian context</h3><p>
+            Guidance framed around variable local conditions and familiar hiking
+            regions.
+          </p>
+        </div><div class="value-item">
+          <h3>Value over cheapness</h3><p>
+            Spend more only when it meaningfully improves warmth, weight or
+            durability.
+          </p>
+        </div><div class="value-item">
+          <h3>Curated choices</h3><p>
+            A short, compatible path through the options instead of another huge
+            catalogue.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container newsletter">
+      <div>
+        <span class="eyebrow">Free checklist</span><h2>
+          Pack for your first overnight with confidence.
+        </h2><p>
+          Join the future mailing list and get the beginner overnight checklist
+          when email capture goes live.
+        </p>
+      </div><form class="signup-form" onsubmit="return false">
+        <label class="sr-only" for="email">Email address</label><input
+          id="email"
+          type="email"
+          placeholder="you@example.com"
+          disabled
+        /><button class="button" disabled>Coming soon</button><p
+          class="form-note"
+        >
+          Demo form only. No personal information is collected.
+        </p>
+      </form>
+    </div>
+  </section>
+</BaseLayout>

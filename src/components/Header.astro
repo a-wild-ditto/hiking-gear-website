@@ -1,0 +1,58 @@
+---
+import { primaryNav, site } from '../config/site';
+const path = Astro.url.pathname;
+const isActive = (href: string) => path === href || path.startsWith(`${href}/`);
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label={`${site.brandName} home`}>
+      <svg viewBox="0 0 48 48" aria-hidden="true"
+        ><path
+          d="M5 35 18.5 12 25 23l5-8 13 20H5Z"
+          fill="currentColor"
+          opacity=".22"></path><path
+          d="m7 35 11.5-19L25 27l5-8 11 16M15 35h18"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path></svg
+      >
+      <span>{site.brandName}</span>
+    </a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      {
+        primaryNav.map((item) => (
+          <a
+            class:list={{ active: isActive(item.href) }}
+            aria-current={isActive(item.href) ? 'page' : undefined}
+            href={item.href}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    <a class="button button-small desktop-cta" href="/build-my-kit"
+      >Start my setup</a
+    >
+    <details class="mobile-nav">
+      <summary aria-label="Open navigation">Menu</summary>
+      <nav aria-label="Mobile navigation">
+        {
+          primaryNav.map((item) => (
+            <a
+              class:list={{ active: isActive(item.href) }}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+              href={item.href}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+        <a href="/about">About</a><a href="/contact">Contact</a>
+      </nav>
+    </details>
+  </div>
+</header>

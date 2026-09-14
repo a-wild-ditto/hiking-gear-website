@@ -1,0 +1,38 @@
+---
+import { site } from '../config/site';
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="/"
+        ><span class="footer-symbol">△</span><span>{site.brandName}</span></a
+      >
+      <p>
+        Practical guidance for buying your first proper hiking setup without
+        turning it into a second mortgage.
+      </p>
+      <span class="working-badge">{site.brandStatus}</span>
+    </div>
+    <div>
+      <h2>Get started</h2><a href="/build-my-kit">Build My Kit</a><a
+        href="/starter-kits">Starter Kits</a
+      ><a href="/gear">Gear</a><a href="/learn">Learn</a>
+    </div>
+    <div>
+      <h2>Company</h2><a href="/about">About</a><a href="/contact">Contact</a><a
+        href="/faq">FAQ</a
+      >
+    </div>
+    <div>
+      <h2>Legal</h2><a href="/privacy">Privacy</a><a
+        href="/affiliate-disclosure">Affiliate disclosure</a
+      ><a href="/terms">Terms</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span
+      >© {new Date().getFullYear()}{' '}{site.brandName}. Validation prototype.</span
+    ><span>Sample products and prices are demonstration data only.</span>
+  </div>
+</footer>

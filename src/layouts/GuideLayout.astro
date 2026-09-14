@@ -1,0 +1,34 @@
+---
+import BaseLayout from './BaseLayout.astro';
+const {
+  title,
+  description,
+  eyebrow = 'Guide',
+  readTime = '6 min read',
+} = Astro.props;
+---
+
+<BaseLayout title={`${title} | Trailwise`} description={description}>
+  <article class="guide-shell">
+    <header class="guide-hero container narrow">
+      <a class="back-link" href="/learn">← Back to Learn</a><span
+        class="eyebrow">{eyebrow}</span
+      ><h1>{title}</h1><p class="lead">{description}</p><div
+        class="guide-byline"
+      >
+        <span>{readTime}</span><span>Beginner guide</span><span
+          >Australian context</span
+        >
+      </div>
+    </header>
+    <div class="guide-content container narrow prose">
+      <slot /><aside class="guide-note">
+        <strong>Check before you go</strong><p>
+          Conditions, trip grading and individual needs vary. Check current
+          forecasts, park alerts and manufacturer specifications before heading
+          out.
+        </p>
+      </aside>
+    </div>
+  </article>
+</BaseLayout>

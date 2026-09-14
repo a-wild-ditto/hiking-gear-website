@@ -1,0 +1,285 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { kits, getKitWeight } from '../data/kits';
+import { productById } from '../data/catalog';
+const resultData = Object.fromEntries(
+  kits.map((k) => [
+    k.id,
+    {
+      ...k,
+      weight: getKitWeight(k),
+      products: k.productIds.map((id) => productById[id]),
+    },
+  ]),
+);
+const questions = [
+  {
+    key: 'location',
+    title: 'Where are you hiking?',
+    options: [
+      ['nsw', 'NSW / Blue Mountains'],
+      ['vic', 'Victorian High Country'],
+      ['tasmania', 'Tasmania'],
+      ['queensland', 'Queensland'],
+      ['other', 'Other / not sure'],
+    ],
+  },
+  {
+    key: 'season',
+    title: 'When are you going?',
+    options: [
+      ['summer', 'Summer'],
+      ['three-season', 'Three season'],
+      ['winter', 'Winter'],
+    ],
+  },
+  {
+    key: 'people',
+    title: 'How many people will share the shelter?',
+    options: [
+      ['solo', 'Solo'],
+      ['two', 'Two people'],
+    ],
+  },
+  {
+    key: 'budget',
+    title: 'What is your core gear budget?',
+    options: [
+      ['under-600', 'Under $600'],
+      ['600-900', '$600–$900'],
+      ['900-1300', '$900–$1,300'],
+      ['1300+', '$1,300+'],
+    ],
+  },
+  {
+    key: 'priority',
+    title: 'What matters most?',
+    options: [
+      ['lowest-cost', 'Lowest cost'],
+      ['comfort', 'Comfort'],
+      ['lightweight', 'Lower weight'],
+    ],
+  },
+  {
+    key: 'experience',
+    title: 'How much overnight experience do you have?',
+    options: [
+      ['first', 'This is my first overnight'],
+      ['few', 'A few hikes'],
+      ['experienced', 'Experienced'],
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Build My Kit | Trailwise"
+  description="Answer six questions and get a transparent sample hiking kit recommendation."
+  noindex
+>
+  <div class="demo-banner">
+    Demo tool only — recommendations are illustrative and are not product or
+    safety advice.
+  </div>
+  <section class="builder-wrap">
+    <div class="container builder">
+      <div class="builder-intro">
+        <span class="eyebrow">Build My Kit</span><h1>
+          Six questions. One sensible starting point.
+        </h1><p class="lead">
+          We’ll match your trip, budget and priorities to one of three editable
+          sample kits. The rules are simple and run entirely in your browser.
+        </p><p>
+          <strong>No email required.</strong> Your answers are not stored or sent
+          anywhere.
+        </p><p id="kit-context" hidden></p>
+      </div>
+      <div class="builder-panel">
+        <form id="kit-builder">
+          <div class="progress" aria-hidden="true"><span></span></div>
+          <p id="step-label" class="eyebrow">Question 1 of 6</p>
+          {
+            questions.map((q, index) => (
+              <fieldset
+                class:list={['question', { active: index === 0 }]}
+                data-step={index}
+                data-key={q.key}
+              >
+                <>
+                  <legend>{q.title}</legend>
+                  <div class="options">
+                    {q.options.map(([value, label]) => (
+                      <label class="option">
+                        <input type="radio" name={q.key} value={value} />
+                        <span>{label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </>
+              </fieldset>
+            ))
+          }
+          <div class="builder-actions">
+            <button
+              class="button button-secondary"
+              id="back"
+              type="button"
+              hidden>Back</button
+            ><button class="button" id="next" type="button" disabled
+              >Continue</button
+            >
+          </div>
+        </form>
+        <div id="result" class="result" aria-live="polite" tabindex="-1"></div>
+      </div>
+    </div>
+  </section>
+  <script is:inline define:vars={{ resultData }}>
+    const form = document.querySelector('#kit-builder');
+    const result = document.querySelector('#result');
+    const questions = [...document.querySelectorAll('.question')];
+    const next = document.querySelector('#next');
+    const back = document.querySelector('#back');
+    const progress = document.querySelector('.progress span');
+    const label = document.querySelector('#step-label');
+    const context = document.querySelector('#kit-context');
+    const requestedKitId = new URLSearchParams(window.location.search).get(
+      'kit',
+    );
+    const requestedKit = resultData[requestedKitId];
+    if (requestedKit) {
+      context.hidden = false;
+      context.textContent = `You’re checking whether the ${requestedKit.name} kit suits you. We’ll compare it with your answers.`;
+    }
+    let step = 0;
+    const currentInput = () => questions[step].querySelector('input:checked');
+    function update() {
+      questions.forEach((q, i) => q.classList.toggle('active', i === step));
+      back.hidden = step === 0;
+      next.textContent =
+        step === questions.length - 1 ? 'Show my kit' : 'Continue';
+      next.disabled = !currentInput();
+      progress.style.width = `${((step + 1) / questions.length) * 100}%`;
+      label.textContent = `Question ${step + 1} of ${questions.length}`;
+    }
+    form.addEventListener('change', () => {
+      next.disabled = false;
+    });
+    back.addEventListener('click', () => {
+      step--;
+      update();
+    });
+    next.addEventListener('click', () => {
+      if (!currentInput()) return;
+      if (step < questions.length - 1) {
+        step++;
+        update();
+        questions[step].querySelector('input').focus();
+        return;
+      }
+      showResult();
+    });
+    function showResult() {
+      const answers = Object.fromEntries(new FormData(form));
+      const scores = { starter: 0, lightweight: 0, performance: 0 };
+      const add = (kitId, points) => (scores[kitId] += points);
+      const budgetRules = {
+        'under-600': ['starter', 5],
+        '600-900': ['lightweight', 5],
+        '900-1300': ['performance', 4],
+        '1300+': ['performance', 5],
+      };
+      add(...budgetRules[answers.budget]);
+      const weightedRules = [
+        {
+          'lowest-cost': { starter: 3, lightweight: 1 },
+          comfort: { lightweight: 3, performance: 2 },
+          lightweight: { lightweight: 2, performance: 3 },
+        }[answers.priority],
+        {
+          nsw: { starter: 2, lightweight: 1 },
+          vic: { lightweight: 2, performance: 1 },
+          tasmania: { performance: 3, lightweight: 1 },
+          queensland: { starter: 2, lightweight: 1 },
+          other: { lightweight: 2 },
+        }[answers.location],
+        {
+          summer: { starter: 3, lightweight: 1 },
+          'three-season': { lightweight: 3, performance: 1 },
+          winter: { performance: 10 },
+        }[answers.season],
+      ];
+      weightedRules.forEach((rule) =>
+        Object.entries(rule).forEach(([kitId, points]) => add(kitId, points)),
+      );
+      add(answers.people === 'solo' ? 'lightweight' : 'starter', 1);
+      add(
+        answers.experience === 'first'
+          ? 'starter'
+          : answers.experience === 'few'
+            ? 'lightweight'
+            : 'performance',
+        2,
+      );
+      let id = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+      if (answers.season === 'winter') id = 'performance';
+      const locationReasons = {
+        nsw: 'NSW’s varied but often moderate established routes support a versatile first setup.',
+        vic: 'Victorian alpine weather favours a little more shelter and sleep-system margin.',
+        tasmania:
+          'Tasmania’s exposed, changeable conditions favour the strongest weather margin in the sample range.',
+        queensland:
+          'Queensland’s warmer conditions keep the recommendation focused on ventilation and value.',
+        other:
+          'With the location undecided, the recommendation favours a versatile three-season setup.',
+      };
+      const priorityReasons = {
+        'lowest-cost':
+          'Your lowest-cost priority keeps spending focused on the core overnight system.',
+        comfort:
+          'Your comfort priority directs more budget to sleep warmth, space and a forgiving setup.',
+        lightweight:
+          'Your lower-weight priority directs more budget to the shelter, sleep system and pack.',
+      };
+      const experienceReasons = {
+        first:
+          'For a first overnight, the scoring favours straightforward, forgiving gear.',
+        few: 'With a few hikes completed, the scoring balances value with lower bulk and weight.',
+        experienced:
+          'Your experience supports the more specialised, weight-conscious option.',
+      };
+      const reasons = [
+        locationReasons[answers.location],
+        answers.season === 'winter'
+          ? 'Winter forces the warmest sample system, even when it exceeds the selected budget.'
+          : answers.season === 'summer'
+            ? 'Summer use reduces the need to pay for the warmest sleep system.'
+            : 'Three-season use rewards a balanced weather and warmth margin.',
+        priorityReasons[answers.priority],
+        answers.people === 'two'
+          ? 'Two hikers can share the shelter load and interior space.'
+          : 'For solo use, lower carried weight receives a small scoring advantage.',
+        experienceReasons[answers.experience],
+      ];
+      if (requestedKit)
+        reasons.unshift(
+          requestedKit.id === id
+            ? `Your answers support the ${requestedKit.name} kit you were viewing.`
+            : `Your answers point to ${resultData[id].name} rather than the ${requestedKit.name} kit you were viewing.`,
+        );
+      const kit = resultData[id];
+      result.innerHTML = `<div class="result-header"><span class="eyebrow">Your sample match</span><h2>${kit.name}</h2><p>${kit.summary}</p></div><div class="result-metrics"><div class="metric"><small>Estimated demo price</small><strong>$${kit.price.toLocaleString('en-AU')}</strong></div><div class="metric"><small>Estimated base weight</small><strong>${(kit.weight / 1000).toFixed(1)} kg</strong></div></div><div class="result-products">${kit.products.map((p) => `<div class="result-product"><span><strong>${p.name}</strong><br><small>${p.category} · ${p.weight >= 1000 ? (p.weight / 1000).toFixed(2) + ' kg' : p.weight + ' g'}</small></span><strong>$${p.price}</strong></div>`).join('')}</div><div class="reasons"><strong>Why this result</strong><ul>${reasons.map((r) => `<li>${r}</li>`).join('')}</ul></div><div class="result-actions"><a class="button" href="/starter-kits#${id}">Explore this kit</a><button class="button button-secondary" id="restart" type="button">Start again</button></div><p class="demo-note">All products, ratings, weights and prices shown here are editable demonstration data.</p>`;
+      form.hidden = true;
+      result.classList.add('active');
+      result.focus();
+      result.querySelector('#restart').addEventListener('click', () => {
+        form.reset();
+        step = 0;
+        form.hidden = false;
+        result.classList.remove('active');
+        update();
+        questions[0].querySelector('input').focus();
+      });
+    }
+  </script>
+</BaseLayout>

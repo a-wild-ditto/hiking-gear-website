@@ -1,0 +1,12 @@
+---
+const { guide } = Astro.props;
+---
+
+<article class="guide-card">
+  <span class="eyebrow">{guide.eyebrow}</span>
+  <h3><a href={guide.href}>{guide.title}</a></h3>
+  <p>{guide.description}</p>
+  <div class="guide-meta">
+    <span>{guide.readTime}</span><span aria-hidden="true">↗</span>
+  </div>
+</article>

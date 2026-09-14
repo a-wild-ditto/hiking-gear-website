@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { products, categories } from '../data/catalog';
+const groups = [
+  {
+    title: 'Shelter',
+    id: 'shelter',
+    items: products.filter((p) => p.category === 'Shelter'),
+  },
+  {
+    title: 'Sleep',
+    id: 'sleep',
+    items: products.filter((p) => p.category === 'Sleep'),
+  },
+  {
+    title: 'Packs',
+    id: 'packs',
+    items: products.filter((p) => p.category === 'Packs'),
+  },
+  {
+    title: 'Cooking & accessories',
+    id: 'cooking-accessories',
+    items: products.filter((p) =>
+      ['Cooking', 'Accessories'].includes(p.category),
+    ),
+  },
+];
+---
+
+<BaseLayout
+  title="Beginner hiking gear | Trailwise"
+  description="Browse a small demo catalogue organised around the core needs of a first overnight hike."
+>
+  <div class="demo-banner">
+    Sample catalogue for validation — no products are currently for sale.
+  </div>
+  <header class="page-hero">
+    <div class="container page-hero-grid">
+      <div>
+        <span class="eyebrow">Gear, with context</span><h1>
+          Start with what the trip needs.
+        </h1>
+      </div><p class="lead">
+        A deliberately small demo catalogue. Every item explains the role it
+        plays before asking you to compare specifications.
+      </p>
+    </div>
+  </header>
+  <div class="container">
+    {
+      groups.map((group) => (
+        <section class="catalog-section" id={group.id}>
+          <>
+            <div class="section-heading">
+              <>
+                <h2>{group.title}</h2>
+                <p>{categories.find((c) => c.id === group.id)?.copy}</p>
+              </>
+            </div>
+            <div class="catalog-grid">
+              {group.items.map((p) => (
+                <article class="product-card">
+                  <span class="eyebrow">{p.category}</span>
+                  <h3>{p.name}</h3>
+                  <p>{p.summary}</p>
+                  {p.note && <p class="demo-note">{p.note}</p>}
+                  <div class="specs">
+                    <span>${p.price} demo price</span>
+                    <span>
+                      {p.weight >= 1000
+                        ? `${(p.weight / 1000).toFixed(2)} kg`
+                        : `${p.weight} g`}
+                    </span>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </>
+        </section>
+      ))
+    }
+  </div>
+</BaseLayout>

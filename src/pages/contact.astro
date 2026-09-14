@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../config/site';
+---
+
+<BaseLayout
+  title="Contact | Trailwise"
+  description="Contact the Trailwise validation project."
+  ><article class="content-page">
+    <div class="container narrow prose">
+      <span class="eyebrow">Contact</span><h1>
+        Questions, feedback or a trail story?
+      </h1><p class="lead">
+        This is a validation prototype, so there is no live support desk or
+        order service yet. Useful feedback on the guides, starter kits and
+        builder is welcome.
+      </p><div class="info-card">
+        <h2>Email</h2><p>
+          <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
+        </p><p class="demo-note">
+          Placeholder address. Replace it in <code>src/config/site.ts</code> before
+          launch.
+        </p>
+      </div>
+    </div>
+  </article></BaseLayout
+>

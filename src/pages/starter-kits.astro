@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import { kits, getKitWeight } from '../data/kits';
+import { productById } from '../data/catalog';
+import campImage from '../assets/images/high-country-camp.png';
+---
+
+<BaseLayout
+  title="Starter hiking kits | Trailwise"
+  description="Compare three editable sample hiking kits for a first overnight trip."
+>
+  <div class="demo-banner">
+    Validation prototype — products, prices, weights and ratings are sample data
+    only.
+  </div>
+  <header class="page-hero">
+    <div class="container page-hero-grid">
+      <div>
+        <span class="eyebrow">Starter kits</span><h1>
+          A complete starting point, minus the overwhelm.
+        </h1>
+      </div><p class="lead">
+        These three sample kits show how budget changes weight and condition
+        range. They are not currently for sale.
+      </p>
+    </div>
+  </header>
+  <div class="container page-image">
+    <Image
+      src={campImage}
+      alt="Two hikers beside a compact tent at sunset in the Victorian High Country"
+      widths={[640, 960, 1440]}
+      sizes="(max-width: 850px) 100vw, 1160px"
+      format="webp"
+    />
+  </div>
+  <section class="section">
+    <div class="container">
+      {
+        kits.map((kit) => (
+          <article class="kit-detail" id={kit.id}>
+            <>
+              <div>
+                <>
+                  <span class="eyebrow">{kit.label}</span>
+                  <h2>{kit.name}</h2>
+                  <p class="price">≈ ${kit.price.toLocaleString('en-AU')}</p>
+                  <p>{kit.summary}</p>
+                  <p>
+                    <strong>Estimated base weight:</strong>{' '}
+                    {(getKitWeight(kit) / 1000).toFixed(1)} kg
+                  </p>
+                  <a class="button" href={`/build-my-kit?kit=${kit.id}`}>
+                    See if it suits me
+                  </a>
+                </>
+              </div>
+              <div class="product-list">
+                {kit.productIds.map((id) => {
+                  const p = productById[id];
+                  return (
+                    <div class="product-row">
+                      <div>
+                        <strong>{p.name}</strong>
+                        <small>{p.summary}</small>
+                      </div>
+                      <span class="product-category">{p.category}</span>
+                      <span class="product-price">${p.price}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

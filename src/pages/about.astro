@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import trailImage from '../assets/images/eucalyptus-trail.png';
+---
+
+<BaseLayout
+  title="About Trailwise"
+  description="Why this working hiking brand is simplifying a first overnight setup."
+  ><article class="content-page">
+    <div class="container narrow prose">
+      <span class="eyebrow">About the concept</span><h1>
+        Your first setup should feel possible.
+      </h1><p class="lead">
+        Trailwise is a temporary working brand for an Australian hiking business
+        in validation. The idea is simple: help beginners buy a compatible
+        overnight setup without premium-brand prices or a wall of technical
+        jargon.
+      </p><Image
+        class="prose-image"
+        src={trailImage}
+        alt="A beginner hiker following a eucalyptus bush track in New South Wales"
+        widths={[560, 760, 1000]}
+        sizes="(max-width: 850px) 100vw, 760px"
+        format="webp"
+      /><h2>What we are testing</h2><p>
+        We are starting with useful guidance, transparent sample kits and a
+        decision tool. Over time, that could develop into curated third-party
+        kits, affiliate recommendations and eventually thoughtfully specified
+        own-brand products.
+      </p><h2>How we think about gear</h2><p>
+        Lightweight matters because carrying less can make a trip more
+        enjoyable. It is one priority among warmth, reliability, comfort and
+        cost. We aim to explain those trade-offs clearly, then help people spend
+        where it makes a meaningful difference.
+      </p><h2>A working brand</h2><p>
+        The Trailwise name and visual identity are placeholders. They are
+        centralised in the site configuration so the business can rename and
+        restyle the site once customer research gives the brand a firmer
+        direction.
+      </p>
+    </div>
+  </article></BaseLayout
+>

@@ -1,0 +1,5 @@
+{
+  "name": "trailwise-validation-site",
+  "compatibility_date": "2026-09-14",
+  "assets": { "directory": "./dist" },
+}
