@@ -11,6 +11,7 @@ const {
   title = site.title,
   description = site.description,
   noindex = false,
+  schema: extraSchema,
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, site.url).toString();
 const socialImageUrl = new URL(socialImage.src, site.url).toString();
@@ -68,6 +69,15 @@ const schema = {
       type="application/ld+json"
       set:html={JSON.stringify(schema)}
     />
+    {
+      extraSchema && (
+        <script
+          is:inline
+          type="application/ld+json"
+          set:html={JSON.stringify(extraSchema)}
+        />
+      )
+    }
     <style is:inline set:html={themeCss}></style>
     <meta name="theme-color" content="#1c3328" />
     <title>{title}</title>

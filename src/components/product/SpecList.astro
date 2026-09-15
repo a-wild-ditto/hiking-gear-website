@@ -1,0 +1,50 @@
+---
+import type { SpecEntry, Source } from '../../data/product-pages/types';
+import EvidenceBadge from './EvidenceBadge.astro';
+const {
+  specs,
+  sources = [],
+  sourceNumbers = {},
+} = Astro.props as {
+  specs: SpecEntry[];
+  sources?: Source[];
+  sourceNumbers?: Record<string, number>;
+};
+---
+
+<div class="spec-list">
+  <dl>
+    {
+      specs.map((spec) => (
+        <div class="spec-row">
+          <>
+            <dt>{spec.label}</dt>
+            <dd>
+              <span class={`spec-value spec-value-${spec.status}`}>
+                {spec.value}
+              </span>
+              <EvidenceBadge value={spec.status} />
+              {spec.note && <small>{spec.note}</small>}
+              {spec.sourceIds && spec.sourceIds.length > 0 && (
+                <span class="source-links">
+                  {spec.sourceIds.map((id) => (
+                    <a
+                      href={`#source-${id}`}
+                      aria-label={`Source ${sourceNumbers[id] ?? id}: ${sources.find((source) => source.id === id)?.publisher ?? id}`}
+                    >
+                      [{sourceNumbers[id] ?? id}]
+                    </a>
+                  ))}
+                </span>
+              )}
+            </dd>
+          </>
+        </div>
+      ))
+    }
+  </dl>
+  <p class="spec-legend">
+    Badges show how much weight we give each figure. Measured figures lead;
+    seller claims and unverified figures are deliberately provisional.
+  </p>
+</div>

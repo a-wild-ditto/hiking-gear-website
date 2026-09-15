@@ -1,0 +1,316 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Photo from '../../components/Photo.astro';
+import EvidenceBadge from '../../components/product/EvidenceBadge.astro';
+import SpecList from '../../components/product/SpecList.astro';
+import SourceCard from '../../components/product/SourceCard.astro';
+import ReviewStatus from '../../components/product/ReviewStatus.astro';
+import { productPages, productPath } from '../../data/product-pages';
+import { offersFor } from '../../data/offers';
+import { site } from '../../config/site';
+import type { ProductPage } from '../../data/product-pages/types';
+export function getStaticPaths() {
+  return productPages.map((product) => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+const { product } = Astro.props as { product: ProductPage };
+const p = product;
+const categoryAnchor =
+  p.category === 'Cooking' || p.category === 'Accessories'
+    ? 'cooking-accessories'
+    : p.category.toLowerCase();
+const title = p.name + ' | Bush Gums';
+const measured = p.specs.some((spec) => spec.status === 'measured');
+const provisional = p.specs.filter(
+  (spec) => spec.status === 'seller-claim' || spec.status === 'to-verify',
+).length;
+const sourceNumbers = Object.fromEntries(
+  p.sources.map((source, index) => [source.id, index + 1]),
+) as Record<string, number>;
+const coverageLabel = p.coverage[0].toUpperCase() + p.coverage.slice(1);
+const statusLabel =
+  p.review.state === 'ordered'
+    ? 'Ordered for testing'
+    : p.review.state === 'testing'
+      ? 'Testing'
+      : 'Reviewed';
+const date = new Date(p.researchedOn + 'T00:00:00').toLocaleDateString(
+  'en-AU',
+  { day: 'numeric', month: 'long', year: 'numeric' },
+);
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Gear',
+      item: new URL('/gear/', site.url).toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: p.category,
+      item: new URL('/gear/#' + categoryAnchor, site.url).toString(),
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: p.name,
+      item: new URL(productPath(p.slug), site.url).toString(),
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={title}
+  description={p.metaDescription}
+  schema={breadcrumbSchema}
+>
+  <article class="product-page">
+    <div class="container">
+      <nav class="product-breadcrumbs" aria-label="Breadcrumb">
+        <a href="/gear/">Gear</a><span aria-hidden="true">/</span><a
+          href={'/gear/#' + categoryAnchor}
+          >{
+            p.category === 'Cooking' || p.category === 'Accessories'
+              ? 'Cooking & accessories'
+              : p.category
+          }</a
+        ><span aria-hidden="true">/</span><span aria-current="page"
+          >{p.name}</span
+        >
+      </nav>
+      <section class="product-hero" aria-labelledby="product-title">
+        <div class="product-hero-media">
+          <Photo
+            productId={p.imageId}
+            alt={p.name}
+            sizes="(max-width: 767px) 100vw, 50vw"
+            widths={[480, 800, 1200]}
+            label={p.name}
+            eager
+          />
+        </div><div class="product-hero-copy">
+          <div class="tag-list">
+            {p.tags.map((tag) => <span>{tag}</span>)}
+          </div><h1 id="product-title">{p.name}</h1><p class="lead">
+            {p.summary}
+          </p>{
+            p.identityNote && <p class="identity-note">{p.identityNote}</p>
+          }<p class="price-paid">
+            Price we paid: A${p.pricePaidAud.toFixed(2)}
+          </p><p class="small-print">
+            This is what we paid, not a live price.
+          </p><dl class="status-block">
+            <div><dt>Status</dt><dd>{statusLabel}</dd></div><div>
+              <dt>Specs</dt><dd>
+                {
+                  measured
+                    ? 'Measured by Bush Gums'
+                    : `Not yet measured — ${provisional} of ${p.specs.length} are seller claims or unverified`
+                }
+              </dd>
+            </div><div>
+              <dt>Independent coverage</dt><dd>{coverageLabel}</dd>
+            </div><div>
+              <dt>Bush Gums field review</dt><dd>
+                {
+                  p.review.state === 'published'
+                    ? 'Published'
+                    : 'Coming after testing'
+                }
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+      <div class="product-content">
+        <section class="product-section why-section">
+          <p class="eyebrow">The short version</p><h2>Why we chose it</h2><p
+            class="question-line"
+          >
+            {p.question}
+          </p><div class="prose">
+            {p.whyWeChoseIt.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
+        </section>
+        <section class="product-section">
+          <p class="eyebrow">Evidence at a glance</p><h2>
+            At a glance
+          </h2><SpecList
+            specs={p.specs}
+            sources={p.sources}
+            sourceNumbers={sourceNumbers}
+          />
+        </section>
+        <section class="product-section">
+          <div class="section-intro">
+            <p class="eyebrow">Coverage: {coverageLabel}</p><h2>
+              What owners and reviewers say
+            </h2><p>{p.coverageNote}</p>
+          </div><div class="finding-grid">
+            <div>
+              <h3>What’s working for owners</h3>
+              {
+                p.positives.length ? (
+                  <ul class="finding-list">
+                    {p.positives.map((finding) => (
+                      <li>
+                        {finding.text}{' '}
+                        {finding.sourceIds.map((id) => (
+                          <a
+                            href={'#source-' + id}
+                            aria-label={`Source ${sourceNumbers[id] ?? id}: ${p.sources.find((source) => source.id === id)?.publisher ?? id}`}
+                          >
+                            [{sourceNumbers[id] ?? id}]
+                          </a>
+                        ))}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p class="muted-line">
+                    We didn’t find credible owner reports on this yet.
+                  </p>
+                )
+              }
+            </div><div>
+              <h3>Recurring complaints</h3>
+              {
+                p.negatives.length ? (
+                  <ul class="finding-list">
+                    {p.negatives.map((finding) => (
+                      <li>
+                        {finding.text}{' '}
+                        {finding.sourceIds.map((id) => (
+                          <a
+                            href={'#source-' + id}
+                            aria-label={`Source ${sourceNumbers[id] ?? id}: ${p.sources.find((source) => source.id === id)?.publisher ?? id}`}
+                          >
+                            [{sourceNumbers[id] ?? id}]
+                          </a>
+                        ))}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p class="muted-line">
+                    We didn’t find credible owner reports on this yet.
+                  </p>
+                )
+              }
+            </div>
+          </div>
+        </section>
+        <section class="product-section">
+          <p class="eyebrow">Research notes</p><h2>Sources</h2><div
+            class="source-grid"
+          >
+            {
+              p.sources
+                .filter((source) => source.kind !== 'video')
+                .map((source) => (
+                  <SourceCard
+                    source={source}
+                    number={sourceNumbers[source.id]}
+                  />
+                ))
+            }
+          </div>{
+            p.sources.some((source) => source.kind === 'video') && (
+              <>
+                <>
+                  <h3 class="subsection-title">Video reviews</h3>
+                  <div class="video-links">
+                    {p.sources
+                      .filter((source) => source.kind === 'video')
+                      .map((source) => (
+                        <article class="video-link" id={'source-' + source.id}>
+                          <div class="source-card-head">
+                            <span class="source-number">
+                              [{sourceNumbers[source.id]}]
+                            </span>
+                            <EvidenceBadge
+                              value={source.relation}
+                              kind="relation"
+                            />
+                          </div>
+                          <a href={source.url} lang={source.lang}>
+                            <span>{source.title}</span>
+                          </a>
+                          <small>
+                            {source.publisher} · Video · Opens YouTube
+                          </small>
+                          <p>{source.summary}</p>
+                        </article>
+                      ))}
+                  </div>
+                </>
+              </>
+            )
+          }
+        </section>
+        <section class="product-section split-lists">
+          <div>
+            <p class="eyebrow">Open questions</p><h2>What we’re watching</h2><ul
+            >
+              {p.watching.map((item) => <li>{item}</li>)}
+            </ul>
+          </div><div>
+            <p class="eyebrow">Our method</p><h2>What we’ll test</h2><ol>
+              {p.testPlan.map((item) => <li>{item}</li>)}
+            </ol>
+          </div>
+        </section>
+        <section class="product-section">
+          <p class="eyebrow">Bush Gums field review</p><h2>
+            {
+              p.review.state === 'published'
+                ? 'Our field review'
+                : 'Our own test comes next'
+            }
+          </h2><ReviewStatus review={p.review} />
+        </section>
+        <section class="product-section where-to-buy">
+          <p class="eyebrow">Merchant links</p><h2>Where to buy</h2>{
+            offersFor(p.slug).length === 0 ? (
+              <p>
+                We haven’t added a buying link yet. We’d rather finish checking
+                it first.
+              </p>
+            ) : (
+              <ul>
+                {offersFor(p.slug).map((offer) => (
+                  <li>
+                    <a
+                      href={offer.url}
+                      rel={
+                        offer.affiliate
+                          ? 'sponsored noopener noreferrer'
+                          : undefined
+                      }
+                    >
+                      {offer.merchant}
+                    </a>
+                    {offer.priceNote && <span>{offer.priceNote}</span>}
+                    {offer.affiliate && (
+                      <small>
+                        Affiliate link.{' '}
+                        <a href="/affiliate-disclosure/">Disclosure</a>
+                      </small>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )
+          }
+        </section>
+      </div><p class="research-date">Research last checked {date}</p>
+    </div>
+  </article>
+</BaseLayout>

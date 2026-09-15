@@ -1,0 +1,107 @@
+/*
+ * Product detail pages: evidence-led records for real products Bush Gums has
+ * bought or reviewed. Product identity lives here; where to buy lives in
+ * ../offers.ts so a product can move merchant (marketplace → retailer →
+ * Bush Gums stock) without its page being rewritten.
+ */
+import type { Category } from '../catalog';
+
+/** How a source relates to the unit we actually bought. */
+export type EvidenceRelation =
+  | 'exact-product'
+  | 'exact-model'
+  | 'same-design'
+  | 'similar-design'
+  | 'seller-claim';
+
+/** Where a specification figure comes from, weakest last. */
+export type SpecStatus =
+  | 'measured' // measured by Bush Gums on our unit
+  | 'manufacturer'
+  | 'retailer'
+  | 'corroborated' // several independent sources agree
+  | 'same-design' // from an apparently identical design, not our unit
+  | 'seller-claim'
+  | 'to-verify'; // no reliable figure yet
+
+export type SpecEntry = {
+  label: string;
+  value: string;
+  status: SpecStatus;
+  note?: string;
+  sourceIds?: string[];
+};
+
+export type SourceKind =
+  | 'written-review'
+  | 'forum'
+  | 'video'
+  | 'blog'
+  | 'listing'
+  | 'retailer'
+  | 'manufacturer';
+
+export type Source = {
+  id: string;
+  title: string;
+  publisher: string;
+  url: string;
+  kind: SourceKind;
+  relation: EvidenceRelation;
+  /** What the source actually says, in our words. */
+  summary: string;
+  /** Short verbatim quote, only when genuinely informative. */
+  quote?: string;
+  /** English translation of the quote, when supplied. */
+  quoteTranslation?: string;
+  /** BCP 47 language tag for the original quote or title. */
+  lang?: string;
+  language?: string;
+};
+
+export type Finding = { text: string; sourceIds: string[] };
+
+export type Coverage = 'strong' | 'moderate' | 'limited';
+
+export type ReviewStatus =
+  | { state: 'ordered'; orderedOn?: string }
+  | { state: 'testing'; startedOn?: string }
+  | {
+      state: 'published';
+      publishedOn: string;
+      verdict: string;
+      bestFor: string;
+      notFor: string;
+      conditions: string;
+      notes: string[];
+    };
+
+export type ProductPage = {
+  slug: string;
+  /** Matches product-<imageId> in src/assets/images when a photo exists. */
+  imageId: string;
+  name: string;
+  /** Short, honest identity caveat, e.g. unbranded marketplace listing. */
+  identityNote?: string;
+  category: Category;
+  /** Flexible role labels, e.g. "Value shelter candidate". Not kit tiers. */
+  tags: string[];
+  pricePaidAud: number;
+  /** One-line positioning for hero, cards and meta description. */
+  summary: string;
+  metaDescription: string;
+  /** Key question the page and our testing are built around. */
+  question: string;
+  whyWeChoseIt: string[];
+  specs: SpecEntry[];
+  coverage: Coverage;
+  coverageNote: string;
+  sources: Source[];
+  positives: Finding[];
+  negatives: Finding[];
+  watching: string[];
+  testPlan: string[];
+  review: ReviewStatus;
+  /** ISO date the research was last checked. */
+  researchedOn: string;
+};

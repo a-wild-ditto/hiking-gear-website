@@ -1,9 +1,10 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Photo from '../components/Photo.astro';
-import ProductCard from '../components/ProductCard.astro';
-import { products, categories } from '../data/catalog';
-import type { SlotName } from '../data/images';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Photo from '../../components/Photo.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { products, categories } from '../../data/catalog';
+import { productPages, productPath } from '../../data/product-pages';
+import type { SlotName } from '../../data/images';
 const groups: {
   title: string;
   id: string;
@@ -54,15 +55,52 @@ const groups: {
         trip needs.
       </p>
       <nav class="jump-links" aria-label="Gear categories">
+        <a href="#ordered-for-testing">Bought for testing</a>
         {groups.map((g) => <a href={`#${g.id}`}>{g.title}</a>)}
       </nav>
       <p class="demo-note">
-        Prototype catalogue: products, prices and ratings are demonstration
-        data.
+        Products under “Bought for testing” are real items we’ve purchased. The
+        rest of the catalogue is still demonstration data.
       </p>
     </div>
   </header>
   <div class="container">
+    <section
+      class="catalog-section ordered-section"
+      id="ordered-for-testing"
+      aria-labelledby="ordered-title"
+    >
+      <div class="catalog-head ordered-head">
+        <div>
+          <p class="eyebrow">Evidence-led product pages</p><h2
+            id="ordered-title"
+          >
+            Bought for testing
+          </h2><p>
+            We bought these with our own money. Their pages show what we know
+            before testing, with no field results yet.
+          </p>
+        </div>
+      </div>
+      <div class="catalog-grid">
+        {
+          productPages.map((productPage) => (
+            <ProductCard
+              productPage={productPage}
+              href={productPath(productPage.slug)}
+              priceLabel="Price we paid"
+            />
+          ))
+        }
+      </div>
+    </section>
+    <div class="catalog-demo-heading">
+      <p class="eyebrow">Prototype catalogue</p><h2>
+        Demonstration catalogue
+      </h2><p>
+        These remaining products, prices and ratings are demonstration data.
+      </p>
+    </div>
     {
       groups.map((group) => (
         <section

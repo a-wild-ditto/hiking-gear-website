@@ -2,25 +2,58 @@
 import type { Product } from '../data/catalog';
 import { formatWeight } from '../data/catalog';
 import Photo from './Photo.astro';
-const { product: p } = Astro.props as { product: Product };
+import type { ProductPage } from '../data/product-pages/types';
+const {
+  product: p,
+  productPage,
+  href,
+  priceLabel = 'Approx. price',
+} = Astro.props as {
+  product?: Product;
+  productPage?: ProductPage;
+  href?: string;
+  priceLabel?: string;
+};
+const name = productPage?.name ?? p?.name ?? '';
+const summary = productPage?.summary ?? p?.summary ?? '';
+const imageId = productPage?.imageId ?? p?.id;
+const price = productPage
+  ? `A$${productPage.pricePaidAud.toFixed(2)}`
+  : `$${p?.price}`;
+const weight = productPage ? 'To be verified' : formatWeight(p!.weight);
 ---
 
 <article class="product-card">
   <div class="product-thumb">
-    <Photo
-      productId={p.id}
-      alt={`Placeholder photo of the ${p.name}`}
-      sizes="(max-width: 767px) 96px, 300px"
-      widths={[200, 400, 640]}
-      label={p.name}
-    />
+    {
+      href ? (
+        <a href={href} tabindex="-1" aria-hidden="true">
+          <Photo
+            productId={imageId}
+            alt={productPage ? name : `Placeholder photo of the ${name}`}
+            sizes="(max-width: 767px) 96px, 300px"
+            widths={[200, 400, 640]}
+            label={name}
+          />
+        </a>
+      ) : (
+        <Photo
+          productId={imageId}
+          alt={productPage ? name : `Placeholder photo of the ${name}`}
+          sizes="(max-width: 767px) 96px, 300px"
+          widths={[200, 400, 640]}
+          label={name}
+        />
+      )
+    }
   </div>
   <div class="product-body">
-    <h3>{p.name}</h3>
-    {p.goodFor && <p class="product-for">Good for: {p.goodFor}</p>}
-    <p>{p.summary}</p>
+    <h3>{href ? <a href={href}>{name}</a> : name}</h3>
+    {p?.goodFor && <p class="product-for">Good for: {p.goodFor}</p>}
+    {productPage && <p class="product-for">{productPage.tags[0]}</p>}
+    <p>{summary}</p>
     {
-      p.keyFact && (
+      p?.keyFact && (
         <p class="product-fact">
           <strong>{p.keyFact.label}</strong>
           <span>{p.keyFact.meaning}</span>
@@ -29,12 +62,13 @@ const { product: p } = Astro.props as { product: Product };
     }
     <dl class="figures">
       <div>
-        <dt>Approx. price</dt><dd>${p.price}</dd>
+        <dt>{priceLabel}</dt><dd>{price}</dd>
       </div>
       <div>
-        <dt>Weight</dt><dd>{formatWeight(p.weight)}</dd>
+        <dt>Weight</dt><dd>{weight}</dd>
       </div>
     </dl>
-    {p.note && <p class="demo-note">{p.note}</p>}
+    {p?.note && <p class="demo-note">{p.note}</p>}
+    {productPage && <p class="demo-note">Ordered for testing</p>}
   </div>
 </article>

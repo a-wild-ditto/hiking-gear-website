@@ -1,0 +1,48 @@
+---
+import type { ReviewStatus as ProductReviewStatus } from '../../data/product-pages/types';
+const { review } = Astro.props as { review: ProductReviewStatus };
+---
+
+{
+  review.state === 'published' ? (
+    <div class="review-panel review-published">
+      <dl class="review-facts">
+        <>
+          <div>
+            <>
+              <dt>Best for</dt>
+              <dd>{review.bestFor}</dd>
+            </>
+          </div>
+          <div>
+            <>
+              <dt>Not for</dt>
+              <dd>{review.notFor}</dd>
+            </>
+          </div>
+          <div>
+            <>
+              <dt>Conditions</dt>
+              <dd>{review.conditions}</dd>
+            </>
+          </div>
+        </>
+      </dl>
+      {review.notes.map((note) => (
+        <p>{note}</p>
+      ))}
+    </div>
+  ) : (
+    <div class="review-panel">
+      <>
+        <p class="eyebrow">Testing soon</p>
+        <h3>We bought it with our own money.</h3>
+        <p>
+          It has not been field-tested yet. We will update this page with
+          measured specs, original photos, field notes, test conditions,
+          weaknesses, and who it suits.
+        </p>
+      </>
+    </div>
+  )
+}
