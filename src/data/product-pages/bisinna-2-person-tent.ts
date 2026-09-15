@@ -5,7 +5,7 @@ const page: ProductPage = {
   imageId: 'bisinna-2-person-tent',
   name: 'BISINNA 2-Person Backpacking Tent',
   identityNote:
-    'We ordered the green two-person double-layer tent from the BISINNA Global Store on AliExpress. BISINNA sells more than one 2-person tent under near-identical names, including a polyester version and a 20D nylon version, and the listing we bought from doesn’t settle which fabric ours uses. We will check the label when it arrives.',
+    'We ordered the green/camel two-person tent from the BISINNA Global Store on AliExpress. BISINNA sells several 2-person tents under near-identical names; the listing we bought from specifies a 190T polyester fly rather than the 20D nylon version, which matches the tent OutdoorGearLab tested. The listing’s own instruction video is branded BENYUE, a sign this is a factory design sold under more than one name. We will confirm the fabric and weight on arrival.',
   category: 'Shelter',
   tags: ['Value shelter candidate'],
   pricePaidAud: 99.8,
@@ -17,7 +17,7 @@ const page: ProductPage = {
     'Can a roughly $100 conventional double-wall tent be a usable first backpacking shelter?',
   whyWeChoseIt: [
     'A first overnight hike usually means buying a tent, and tents are where beginners either overspend or buy something that fails on the first wet night. A lot of cheap marketplace tents are single-wall or oddly shaped. The BISINNA is a conventional design: freestanding, two crossing poles, an inner tent with a separate fly, two doors and two vestibules. If it works, it is easy to pitch and easy to understand.',
-    'It also has something most budget tents don’t: a hands-on review by OutdoorGearLab, who bought it themselves. They rated it a reasonable buy under US$100 but found the polyester fly eventually wets out in heavy rain. That mixed result is exactly the kind of thing worth checking ourselves, especially because the version sold to us may use different fabric.',
+    'It also has something most budget tents don’t: a hands-on review by OutdoorGearLab, who bought it themselves. They rated it a reasonable buy under US$100 but found the polyester fly eventually wets out in heavy rain. Our listing specifies the same 190T polyester fly, so that is the single most important thing for us to test — though our listing claims a higher waterproof rating than the tent they tested.',
   ],
   specs: [
     {
@@ -29,32 +29,28 @@ const page: ProductPage = {
     },
     {
       label: 'Pitched size',
-      value:
-        '(60 + 140 + 60) × 210 × 110 cm — vestibules plus inner width, length, height',
+      value: '210 × 140 × 110 cm, plus a vestibule on each side',
       status: 'corroborated',
-      note: 'Same figure on the polyester and nylon listings, and consistent with OutdoorGearLab’s measurements.',
+      note: 'Our listing gives the body size. Other listings quote 60 + 140 + 60 cm across including both vestibules, and OutdoorGearLab’s measurements agree.',
       sourceIds: ['ogl', 'amazon-nylon'],
     },
     {
       label: 'Fly fabric',
-      value: 'Either 190T polyester or 20D silicone-coated nylon',
-      status: 'to-verify',
-      note: 'Depends on the variant. OutdoorGearLab tested the polyester version. We will check our fly label on arrival.',
-      sourceIds: ['ogl', 'amazon-nylon'],
+      value: '190T polyester',
+      status: 'seller-claim',
+      note: 'Specified by the listing we bought from, and the same fly fabric as the tent OutdoorGearLab tested. We will check the label on arrival.',
     },
     {
       label: 'Waterproof rating',
-      value: 'PU 2000 mm (polyester) or PU 3000 mm (nylon) claimed',
+      value: 'PU 3000 mm claimed for both fly and floor',
       status: 'seller-claim',
-      note: 'No test evidence behind either figure.',
-      sourceIds: ['amazon-nylon'],
+      note: 'From our listing, with no test evidence behind it. Other polyester listings of this tent claim only PU 2000 mm, and the tent OutdoorGearLab tested still wet out in heavy rain.',
     },
     {
       label: 'Weight',
-      value: 'Just under 2.3 kg (polyester version, per OutdoorGearLab)',
-      status: 'same-design',
-      note: 'Nylon listings claim about 1.95 kg (4.3 lb). Neither is confirmed for our unit.',
-      sourceIds: ['ogl', 'amazon-nylon'],
+      value: 'About 2.16 kg claimed',
+      status: 'seller-claim',
+      note: 'From our listing. OutdoorGearLab weighed the polyester version at just under 2.3 kg, so expect something in that range rather than an ultralight figure.',
     },
     {
       label: 'Packed size',
@@ -63,10 +59,20 @@ const page: ProductPage = {
       sourceIds: ['ogl'],
     },
     {
-      label: 'Poles',
-      value: 'Aluminium; listings claim 7001 alloy',
+      label: 'Floor',
+      value: '210D oxford, PU 3000 mm claimed',
       status: 'seller-claim',
-      sourceIds: ['ogl', 'amazon-nylon'],
+    },
+    {
+      label: 'Poles',
+      value: '8.5 mm aluminium',
+      status: 'seller-claim',
+      note: 'Our listing does not state an alloy grade; others claim 7001.',
+    },
+    {
+      label: 'Included',
+      value: '2 guy ropes and 10 aluminium stakes claimed',
+      status: 'seller-claim',
     },
     {
       label: 'Ventilation',
@@ -77,7 +83,7 @@ const page: ProductPage = {
   ],
   coverage: 'limited',
   coverageNote:
-    'One credible self-funded hands-on review, of the polyester version. We found no Reddit or forum owner reports, and nothing independent on the nylon version.',
+    'One credible self-funded hands-on review, of a tent with the same fly fabric our listing specifies. We found no Reddit or forum owner reports, and no independent testing of this exact listing.',
   sources: [
     {
       id: 'ogl',
@@ -87,7 +93,7 @@ const page: ProductPage = {
       kind: 'written-review',
       relation: 'same-design',
       summary:
-        'Hands-on test of the 190T polyester version (May 2023). Found it light for its price class, with a useful roof vent, but the fly wets out in heavy rain, seam stitching leaves pinholes and the pole-sleeve mesh is loose. OutdoorGearLab says it buys the products it tests.',
+        'Hands-on test of the 190T polyester version (May 2023) — the same fly fabric our listing specifies, though their tent claimed a lower PU 2000 mm rating. Found it light for its price class, with a useful roof vent, but the fly wets out in heavy rain, seam stitching leaves pinholes and the pole-sleeve mesh is loose. OutdoorGearLab says it buys the products it tests.',
       quote: 'The fly will eventually wet out in heavy rain.',
     },
     {
@@ -138,7 +144,7 @@ const page: ProductPage = {
   ],
   negatives: [
     {
-      text: 'The polyester fly eventually wets out in heavy rain, and seam stitching creates pinholes where water can seep through.',
+      text: 'On the tent they tested, the polyester fly eventually wet out in heavy rain and the seam stitching created pinholes where water seeped through.',
       sourceIds: ['ogl'],
     },
     {
@@ -151,13 +157,13 @@ const page: ProductPage = {
     },
   ],
   watching: [
-    'Which fabric our tent actually uses. The main rain finding comes from the polyester version and may not apply to nylon.',
+    'Rain is the main question. Our listing claims a PU 3000 mm rating against the PU 2000 mm of the tent that wet out in testing, and we don’t know whether that makes a real difference.',
     'Seams. A tent that leaks through stitching may be fixable with seam sealer, but a beginner shouldn’t have to discover that on the trail.',
-    'The waterproof ratings are unverified listing claims.',
+    'The waterproof figures are unverified listing claims, and our listing’s 2.16 kg is lighter than the 2.3 kg measured on the tested version.',
     'No owner evidence yet on wind stability or zip durability.',
   ],
   testPlan: [
-    'Weigh the complete tent and each part (fly, inner, poles, pegs, bags).',
+    'Weigh the complete tent and each part (fly, inner, poles, stakes, bags), and check the guy rope and stake count against the listing.',
     'Measure packed size and pitched floor dimensions.',
     'Check how much usable room there is for one and for two people with packs.',
     'Time a solo pitch from bag to taut fly.',
