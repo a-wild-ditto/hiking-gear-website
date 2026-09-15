@@ -147,47 +147,47 @@ const resultData = Object.fromEntries(
     });
     function showResult() {
       const answers = Object.fromEntries(new FormData(form));
-      const scores = { starter: 0, lightweight: 0, performance: 0 };
+      const scores = { starter: 0, value: 0, premium: 0 };
       const add = (kitId, points) => (scores[kitId] += points);
       const budgetRules = {
         'under-600': ['starter', 5],
-        '600-900': ['lightweight', 5],
-        '900-1300': ['performance', 4],
-        '1300+': ['performance', 5],
+        '600-900': ['value', 5],
+        '900-1300': ['premium', 4],
+        '1300+': ['premium', 5],
       };
       add(...budgetRules[answers.budget]);
       const weightedRules = [
         {
-          'lowest-cost': { starter: 3, lightweight: 1 },
-          comfort: { lightweight: 3, performance: 2 },
-          lightweight: { lightweight: 2, performance: 3 },
+          'lowest-cost': { starter: 3, value: 1 },
+          comfort: { value: 3, premium: 2 },
+          lightweight: { value: 2, premium: 3 },
         }[answers.priority],
         {
-          nsw: { starter: 2, lightweight: 1 },
-          vic: { lightweight: 2, performance: 1 },
-          tasmania: { performance: 3, lightweight: 1 },
-          queensland: { starter: 2, lightweight: 1 },
-          other: { lightweight: 2 },
+          nsw: { starter: 2, value: 1 },
+          vic: { value: 2, premium: 1 },
+          tasmania: { premium: 3, value: 1 },
+          queensland: { starter: 2, value: 1 },
+          other: { value: 2 },
         }[answers.location],
         {
-          'three-season': { lightweight: 3, performance: 1 },
-          winter: { performance: 10 },
+          'three-season': { value: 3, premium: 1 },
+          winter: { premium: 10 },
         }[answers.season],
       ];
       weightedRules.forEach((rule) =>
         Object.entries(rule).forEach(([kitId, points]) => add(kitId, points)),
       );
-      add(answers.people === 'solo' ? 'lightweight' : 'starter', 1);
+      add(answers.people === 'solo' ? 'value' : 'starter', 1);
       add(
         answers.experience === 'first'
           ? 'starter'
           : answers.experience === 'few'
-            ? 'lightweight'
-            : 'performance',
+            ? 'value'
+            : 'premium',
         2,
       );
       let id = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
-      if (answers.season === 'winter') id = 'performance';
+      if (answers.season === 'winter') id = 'premium';
       const locationReasons = {
         nsw: 'NSW’s varied but often moderate established routes support a versatile first setup.',
         vic: 'Victorian alpine weather favours a little more shelter and sleep-system margin.',

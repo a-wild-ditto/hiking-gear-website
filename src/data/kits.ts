@@ -1,5 +1,5 @@
 import { productById } from './catalog';
-export type KitId = 'starter' | 'lightweight' | 'performance';
+export type KitId = 'starter' | 'value' | 'premium';
 export type Kit = {
   id: KitId;
   name: string;
@@ -32,8 +32,8 @@ const kitData: Omit<Kit, 'price'>[] = [
     ],
   },
   {
-    id: 'lightweight',
-    name: 'Lightweight',
+    id: 'value',
+    name: 'Value',
     label: 'Our balanced starting point',
     summary:
       'Spend where it meaningfully reduces bulk and weight while keeping the kit forgiving.',
@@ -50,8 +50,8 @@ const kitData: Omit<Kit, 'price'>[] = [
     ],
   },
   {
-    id: 'performance',
-    name: 'Performance',
+    id: 'premium',
+    name: 'Premium',
     label: 'Lower weight, wider conditions',
     summary:
       'More budget directed into the core shelter, sleep system and pack.',

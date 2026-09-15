@@ -5,10 +5,10 @@ const page: ProductPage = {
   imageId: '400g-down-envelope-sleeping-bag',
   name: '400 g Down Envelope Sleeping Bag',
   identityNote:
-    'Unbranded marketplace listing (AliExpress item 1005010759344924, green, 400 g option). The same specification sheet appears under several store names, so the manufacturer is unknown.',
+    'Unbranded AliExpress listing (item 1005010759344924), ordered in green with the 400 g fill option and shipping from mainland China. The seller trades under a numbered store name, and the same specification sheet appears under several other store names, so the manufacturer is unknown.',
   category: 'Sleep',
   tags: ['Value sleep-system experiment'],
-  pricePaidAud: 86.08,
+  pricePaidAud: 85.61,
   summary:
     'A down bag for under $90 with a seller-claimed 400 g of fill. If the claims are close, it’s remarkable value. That’s a big if.',
   metaDescription:

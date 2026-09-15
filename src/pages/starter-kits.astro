@@ -64,14 +64,9 @@ const factors: { label: string; value: (k: Kit) => string; mono?: boolean }[] =
               <td></td>
               {
                 kits.map((k) => (
-                  <th
-                    scope="col"
-                    class:list={{ featured: k.id === 'lightweight' }}
-                  >
+                  <th scope="col" class:list={{ featured: k.id === 'value' }}>
                     {k.name}
-                    {k.id === 'lightweight' && (
-                      <small>Where most people start</small>
-                    )}
+                    {k.id === 'value' && <small>Where most people start</small>}
                   </th>
                 ))
               }
@@ -86,7 +81,7 @@ const factors: { label: string; value: (k: Kit) => string; mono?: boolean }[] =
                     <td
                       class:list={{
                         mono: f.mono,
-                        featured: k.id === 'lightweight',
+                        featured: k.id === 'value',
                       }}
                     >
                       {f.value(k)}
@@ -102,14 +97,11 @@ const factors: { label: string; value: (k: Kit) => string; mono?: boolean }[] =
         {
           kits.map((k) => (
             <section
-              class:list={[
-                'compare-card',
-                { featured: k.id === 'lightweight' },
-              ]}
+              class:list={['compare-card', { featured: k.id === 'value' }]}
               aria-label={`${k.name} kit summary`}
             >
               <h3>{k.name}</h3>
-              {k.id === 'lightweight' && (
+              {k.id === 'value' && (
                 <p class="compare-card-note">Where most people start</p>
               )}
               <dl>

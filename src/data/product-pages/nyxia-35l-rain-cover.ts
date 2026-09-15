@@ -5,10 +5,10 @@ const page: ProductPage = {
   imageId: 'nyxia-35l-rain-cover',
   name: 'NYXIA 35L Backpack Rain Cover',
   identityNote:
-    'Sold under the NYXIA name on a marketplace with almost no listed specifications. Ours is orange.',
+    'Ordered in orange from the NYXIA Plus Store on AliExpress. The listing calls it a universal 35 L rain and dust cover and describes it as waterproof, but gives no material, coating or tested rating.',
   category: 'Accessories',
   tags: ['Starter accessory'],
-  pricePaidAud: 3.46,
+  pricePaidAud: 3.42,
   summary:
     'A pack cover for a few dollars. A simple accessory where spending more may not buy much — provided the cheap one stays on and keeps rain off.',
   metaDescription:

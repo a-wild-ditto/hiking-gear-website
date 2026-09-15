@@ -5,10 +5,10 @@ const page: ProductPage = {
   imageId: 'naturehike-rock-60-5',
   name: 'Naturehike Rock 60+5L Backpack',
   identityNote:
-    'Model NH19BP095. Naturehike currently lists a Standard and an Upgraded 60+5L version with different fabrics and weights. We will confirm which one we received.',
+    'We ordered the black 60 L version from the Naturehike Outdoor Gear Store on AliExpress. That listing quotes about 1.16 kg, which matches the Standard version rather than the heavier Upgraded one, but we will confirm from the label and the scales.',
   category: 'Packs',
   tags: ['Value backpack candidate'],
-  pricePaidAud: 69.69,
+  pricePaidAud: 68.73,
   summary:
     'A framed 60+5L pack from an established brand at around $70. The question is how much of that capacity and comfort is real.',
   metaDescription:
@@ -35,9 +35,9 @@ const page: ProductPage = {
     },
     {
       label: 'Weight',
-      value: 'About 1.16 kg (Standard) or 1.31 kg (Upgraded)',
-      status: 'manufacturer',
-      note: 'Snowys lists 1.20 kg.',
+      value: 'About 1.16 kg',
+      status: 'seller-claim',
+      note: 'Quoted by the listing we ordered from, matching Naturehike’s Standard version. Snowys lists 1.20 kg and the Upgraded version is about 1.31 kg.',
       sourceIds: ['naturehike', 'snowys'],
     },
     {
@@ -73,8 +73,9 @@ const page: ProductPage = {
     },
     {
       label: 'Suggested maximum load',
-      value: 'Not stated by Naturehike; Snowys suggests staying under 18–20 kg',
+      value: 'Snowys suggests staying under 18–20 kg',
       status: 'retailer',
+      note: 'Naturehike publishes no official figure. The AliExpress listing we bought from quotes about 14 kg, but that listing isn’t a public spec sheet we can link to, so treat it as a seller claim rather than a tested limit.',
       sourceIds: ['snowys'],
     },
   ],

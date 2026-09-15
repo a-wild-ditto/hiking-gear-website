@@ -5,10 +5,10 @@ const page: ProductPage = {
   imageId: 'memory-foam-camping-pillow',
   name: 'Memory-Foam Camping Pillow',
   identityNote:
-    'Unbranded marketplace pillow. It appears to be the same design sold as HIKEMAN, but we haven’t confirmed that, so reviews below are of the HIKEMAN version.',
+    'Unbranded AliExpress pillow, ordered in green. It appears to be the same design sold as HIKEMAN, but we haven’t confirmed that, so the reviews below are of the HIKEMAN version.',
   category: 'Accessories',
   tags: ['Comfort accessory'],
-  pricePaidAud: 19.99,
+  pricePaidAud: 18.73,
   summary:
     'A slow-rebound foam pillow that is heavier than an inflatable. We want to know if better sleep is worth the extra weight.',
   metaDescription:

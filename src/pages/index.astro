@@ -7,7 +7,7 @@ import { kitById, getKitWeight } from '../data/kits';
 import { guides } from '../data/guides';
 import { questions } from '../data/questions';
 
-const featured = kitById.lightweight;
+const featured = kitById.value;
 const leadGuide = guides[0];
 const sideGuides = [
   {
@@ -137,7 +137,7 @@ const system = [
             >
           </div>
         </article>
-        <KitCard kit={kitById.performance} />
+        <KitCard kit={kitById.premium} />
       </div>
     </div>
   </section>

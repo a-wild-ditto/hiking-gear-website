@@ -5,10 +5,10 @@ const page: ProductPage = {
   imageId: 'foil-egg-crate-foam-pad',
   name: 'Foil-Faced Egg-Crate Foam Sleeping Pad',
   identityNote:
-    'Unbranded marketplace pad, ordered in 186 × 56 × 2 cm. Many factories make this folding design, so reviews of other pads can only be a rough guide.',
+    'Unbranded AliExpress pad, ordered in green and black at 186 × 56 × 2 cm. Many factories make this folding design, so reviews of other pads can only be a rough guide.',
   category: 'Sleep',
   tags: ['Starter sleep-pad candidate'],
-  pricePaidAud: 17.48,
+  pricePaidAud: 17.35,
   summary:
     'A folding closed-cell foam pad for under $20. Nothing to inflate, nothing to puncture. The trade-offs are likely bulk, comfort and warmth.',
   metaDescription:

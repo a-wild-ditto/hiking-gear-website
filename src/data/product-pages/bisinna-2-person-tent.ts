@@ -5,10 +5,10 @@ const page: ProductPage = {
   imageId: 'bisinna-2-person-tent',
   name: 'BISINNA 2-Person Backpacking Tent',
   identityNote:
-    'BISINNA sells more than one 2-person tent under near-identical names, including a polyester version and a 20D nylon version. We will confirm which one we received when it arrives.',
+    'We ordered the green two-person double-layer tent from the BISINNA Global Store on AliExpress. BISINNA sells more than one 2-person tent under near-identical names, including a polyester version and a 20D nylon version, and the listing we bought from doesn’t settle which fabric ours uses. We will check the label when it arrives.',
   category: 'Shelter',
   tags: ['Value shelter candidate'],
-  pricePaidAud: 100.7,
+  pricePaidAud: 99.8,
   summary:
     'A freestanding double-wall tent for about $100. We want to know if it can be a genuinely usable first shelter.',
   metaDescription:

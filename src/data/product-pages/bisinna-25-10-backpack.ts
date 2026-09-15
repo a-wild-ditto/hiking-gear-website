@@ -5,7 +5,7 @@ const page: ProductPage = {
   imageId: 'bisinna-25-10-backpack',
   name: 'BISINNA 25+10L Ultralight Backpack',
   identityNote:
-    'Owner reviews describe the same BISINNA 25+10L roll-top model. We couldn’t confirm that our marketplace listing is identical, including whether it comes with the removable foam back pad.',
+    'We ordered the grey version from the BISINNA Global Store on AliExpress. Owner reviews describe the same 25+10L roll-top model, but we couldn’t confirm our listing is identical, including whether it comes with the removable foam back pad.',
   category: 'Packs',
   tags: ['Starter lightweight pack candidate'],
   pricePaidAud: 47.99,

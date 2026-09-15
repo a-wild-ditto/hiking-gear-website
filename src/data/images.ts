@@ -22,7 +22,7 @@ export const slots = {
   heroPortrait: { file: 'hero-portrait' },
   kitFeatured: { file: 'kit-setup', fallback: 'high-country-camp' },
   kitStarter: { file: 'kit-starter' },
-  kitPerformance: { file: 'kit-performance' },
+  kitPremium: { file: 'kit-performance' },
   kitsPage: { file: 'high-country-camp' },
   recommender: { file: 'tasmania-boardwalk' },
   shelter: { file: 'shelter', fallback: 'high-country-camp' },
