@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import { getPhoto, getProductPhoto, type SlotName } from '../data/images';
+
+interface Props {
+  slot?: SlotName;
+  productId?: string;
+  alt: string;
+  sizes: string;
+  widths?: number[];
+  position?: string;
+  eager?: boolean;
+  class?: string;
+  label?: string;
+}
+const {
+  slot,
+  productId,
+  alt,
+  sizes,
+  widths = [480, 800, 1200],
+  position = 'center',
+  eager = false,
+  class: className,
+  label,
+} = Astro.props;
+const src = productId
+  ? getProductPhoto(productId)
+  : slot
+    ? getPhoto(slot)
+    : undefined;
+---
+
+{
+  src ? (
+    <Image
+      class:list={['photo', className]}
+      src={src}
+      alt={alt}
+      widths={widths}
+      sizes={sizes}
+      format="webp"
+      quality={72}
+      loading={eager ? 'eager' : 'lazy'}
+      fetchpriority={eager ? 'high' : undefined}
+      style={`object-position:${position}`}
+    />
+  ) : (
+    <div
+      class:list={['photo photo-placeholder', className]}
+      role="img"
+      aria-label={`Photo placeholder: ${alt}`}
+    >
+      <span>Photo to come{label ? `: ${label}` : ''}</span>
+    </div>
+  )
+}

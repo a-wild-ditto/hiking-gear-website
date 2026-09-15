@@ -1,81 +1,96 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Photo from '../components/Photo.astro';
+import ProductCard from '../components/ProductCard.astro';
 import { products, categories } from '../data/catalog';
-const groups = [
+import type { SlotName } from '../data/images';
+const groups: {
+  title: string;
+  id: string;
+  slot: SlotName;
+  alt: string;
+  cats: string[];
+}[] = [
   {
     title: 'Shelter',
     id: 'shelter',
-    items: products.filter((p) => p.category === 'Shelter'),
+    slot: 'shelter',
+    alt: 'A dome tent pitched among snow gums',
+    cats: ['Shelter'],
   },
   {
     title: 'Sleep',
     id: 'sleep',
-    items: products.filter((p) => p.category === 'Sleep'),
+    slot: 'sleep',
+    alt: 'A sleeping bag and mat inside an open tent',
+    cats: ['Sleep'],
   },
   {
     title: 'Packs',
     id: 'packs',
-    items: products.filter((p) => p.category === 'Packs'),
+    slot: 'packs',
+    alt: 'A hiker carrying an overnight pack on an alpine track',
+    cats: ['Packs'],
   },
   {
     title: 'Cooking & accessories',
     id: 'cooking-accessories',
-    items: products.filter((p) =>
-      ['Cooking', 'Accessories'].includes(p.category),
-    ),
+    slot: 'cooking',
+    alt: 'A small stove boiling water on a rock at a campsite',
+    cats: ['Cooking', 'Accessories'],
   },
 ];
 ---
 
 <BaseLayout
-  title="Beginner hiking gear | Trailwise"
-  description="Browse a small demo catalogue organised around the core needs of a first overnight hike."
+  title="Beginner hiking gear | Bush Gums"
+  description="A short, curated list of beginner overnight hiking gear, organised by the job each item does."
 >
-  <div class="demo-banner">
-    Sample catalogue for validation — no products are currently for sale.
-  </div>
   <header class="page-hero">
-    <div class="container page-hero-grid">
-      <div>
-        <span class="eyebrow">Gear, with context</span><h1>
-          Start with what the trip needs.
-        </h1>
-      </div><p class="lead">
-        A deliberately small demo catalogue. Every item explains the role it
-        plays before asking you to compare specifications.
+    <div class="container narrow-left">
+      <h1>Gear</h1>
+      <p class="lead">
+        A short list, organised by the job each item does. Start with what the
+        trip needs.
+      </p>
+      <nav class="jump-links" aria-label="Gear categories">
+        {groups.map((g) => <a href={`#${g.id}`}>{g.title}</a>)}
+      </nav>
+      <p class="demo-note">
+        Prototype catalogue: products, prices and ratings are demonstration
+        data.
       </p>
     </div>
   </header>
   <div class="container">
     {
       groups.map((group) => (
-        <section class="catalog-section" id={group.id}>
-          <>
-            <div class="section-heading">
-              <>
-                <h2>{group.title}</h2>
-                <p>{categories.find((c) => c.id === group.id)?.copy}</p>
-              </>
+        <section
+          class="catalog-section"
+          id={group.id}
+          aria-labelledby={`${group.id}-title`}
+        >
+          <div class="catalog-head">
+            <div class="catalog-head-media">
+              <Photo
+                slot={group.slot}
+                alt={group.alt}
+                sizes="(max-width: 767px) 100vw, 30vw"
+                label={group.title}
+              />
             </div>
-            <div class="catalog-grid">
-              {group.items.map((p) => (
-                <article class="product-card">
-                  <span class="eyebrow">{p.category}</span>
-                  <h3>{p.name}</h3>
-                  <p>{p.summary}</p>
-                  {p.note && <p class="demo-note">{p.note}</p>}
-                  <div class="specs">
-                    <span>${p.price} demo price</span>
-                    <span>
-                      {p.weight >= 1000
-                        ? `${(p.weight / 1000).toFixed(2)} kg`
-                        : `${p.weight} g`}
-                    </span>
-                  </div>
-                </article>
+            <div>
+              <h2 id={`${group.id}-title`}>{group.title}</h2>
+              <p>{categories.find((c) => c.id === group.id)?.copy}</p>
+            </div>
+          </div>
+          <div class="catalog-grid">
+            {products
+              .filter((p) => group.cats.includes(p.category))
+              .map((p) => (
+                <ProductCard product={p} />
               ))}
-            </div>
-          </>
+          </div>
         </section>
       ))
     }

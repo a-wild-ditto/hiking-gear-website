@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { kits, getKitWeight } from '../data/kits';
 import { productById } from '../data/catalog';
+import { questions } from '../data/questions';
+import QuestionStep from '../components/QuestionStep.astro';
 const resultData = Object.fromEntries(
   kits.map((k) => [
     k.id,
@@ -12,111 +14,44 @@ const resultData = Object.fromEntries(
     },
   ]),
 );
-const questions = [
-  {
-    key: 'location',
-    title: 'Where are you hiking?',
-    options: [
-      ['nsw', 'NSW / Blue Mountains'],
-      ['vic', 'Victorian High Country'],
-      ['tasmania', 'Tasmania'],
-      ['queensland', 'Queensland'],
-      ['other', 'Other / not sure'],
-    ],
-  },
-  {
-    key: 'season',
-    title: 'When are you going?',
-    options: [
-      ['summer', 'Summer'],
-      ['three-season', 'Three season'],
-      ['winter', 'Winter'],
-    ],
-  },
-  {
-    key: 'people',
-    title: 'How many people will share the shelter?',
-    options: [
-      ['solo', 'Solo'],
-      ['two', 'Two people'],
-    ],
-  },
-  {
-    key: 'budget',
-    title: 'What is your core gear budget?',
-    options: [
-      ['under-600', 'Under $600'],
-      ['600-900', '$600–$900'],
-      ['900-1300', '$900–$1,300'],
-      ['1300+', '$1,300+'],
-    ],
-  },
-  {
-    key: 'priority',
-    title: 'What matters most?',
-    options: [
-      ['lowest-cost', 'Lowest cost'],
-      ['comfort', 'Comfort'],
-      ['lightweight', 'Lower weight'],
-    ],
-  },
-  {
-    key: 'experience',
-    title: 'How much overnight experience do you have?',
-    options: [
-      ['first', 'This is my first overnight'],
-      ['few', 'A few hikes'],
-      ['experienced', 'Experienced'],
-    ],
-  },
-];
 ---
 
 <BaseLayout
-  title="Build My Kit | Trailwise"
-  description="Answer six questions and get a transparent sample hiking kit recommendation."
+  title="Build My Kit | Bush Gums"
+  description="Answer six quick questions and get a starter hiking kit matched to your trip, budget and priorities."
   noindex
 >
-  <div class="demo-banner">
-    Demo tool only — recommendations are illustrative and are not product or
-    safety advice.
-  </div>
   <section class="builder-wrap">
     <div class="container builder">
       <div class="builder-intro">
-        <span class="eyebrow">Build My Kit</span><h1>
-          Six questions. One sensible starting point.
-        </h1><p class="lead">
-          We’ll match your trip, budget and priorities to one of three editable
-          sample kits. The rules are simple and run entirely in your browser.
-        </p><p>
-          <strong>No email required.</strong> Your answers are not stored or sent
-          anywhere.
-        </p><p id="kit-context" hidden></p>
+        <h1>Build My Kit</h1>
+        <p class="lead">
+          Six quick questions. We match your trip, budget and priorities to one
+          of three starter kits.
+        </p>
+        <p class="small-print">
+          No email needed. Your answers stay in your browser.
+        </p>
+        <p id="kit-context" class="kit-context" hidden></p>
+        <p class="demo-note">
+          Prototype: recommendations are illustrative, not product or safety
+          advice.
+        </p>
       </div>
       <div class="builder-panel">
         <form id="kit-builder">
           <div class="progress" aria-hidden="true"><span></span></div>
-          <p id="step-label" class="eyebrow">Question 1 of 6</p>
+          <p id="step-label" class="sr-only" aria-live="polite">
+            Question 1 of {questions.length}
+          </p>
           {
             questions.map((q, index) => (
-              <fieldset
-                class:list={['question', { active: index === 0 }]}
-                data-step={index}
-                data-key={q.key}
-              >
-                <>
-                  <legend>{q.title}</legend>
-                  <div class="options">
-                    {q.options.map(([value, label]) => (
-                      <label class="option">
-                        <input type="radio" name={q.key} value={value} />
-                        <span>{label}</span>
-                      </label>
-                    ))}
-                  </div>
-                </>
-              </fieldset>
+              <QuestionStep
+                question={q}
+                index={index}
+                total={questions.length}
+                active={index === 0}
+              />
             ))
           }
           <div class="builder-actions">
@@ -152,6 +87,17 @@ const questions = [
       context.textContent = `You’re checking whether the ${requestedKit.name} kit suits you. We’ll compare it with your answers.`;
     }
     let step = 0;
+    const params = new URLSearchParams(window.location.search);
+    questions.forEach((q, i) => {
+      const value = params.get(q.dataset.key);
+      const input =
+        value && q.querySelector(`input[value="${CSS.escape(value)}"]`);
+      if (input) {
+        input.checked = true;
+        if (step === i) step = i + 1;
+      }
+    });
+    if (step >= questions.length) step = questions.length - 1;
     const currentInput = () => questions[step].querySelector('input:checked');
     function update() {
       questions.forEach((q, i) => q.classList.toggle('active', i === step));
@@ -162,19 +108,39 @@ const questions = [
       progress.style.width = `${((step + 1) / questions.length) * 100}%`;
       label.textContent = `Question ${step + 1} of ${questions.length}`;
     }
+    update();
+    // Auto-advance after a pointer or tap selection. Keyboard users keep
+    // arrow-key browsing inside a question and confirm with Continue.
+    let pointerPick = false;
+    let advanceTimer;
+    form.addEventListener('pointerdown', () => (pointerPick = true));
+    form.addEventListener('keydown', () => (pointerPick = false));
     form.addEventListener('change', () => {
       next.disabled = false;
+      if (!pointerPick) return;
+      pointerPick = false;
+      clearTimeout(advanceTimer);
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      advanceTimer = setTimeout(() => next.click(), reduce ? 0 : 280);
     });
     back.addEventListener('click', () => {
+      clearTimeout(advanceTimer);
       step--;
       update();
+      (
+        questions[step].querySelector('input:checked') ||
+        questions[step].querySelector('input')
+      ).focus();
     });
     next.addEventListener('click', () => {
       if (!currentInput()) return;
       if (step < questions.length - 1) {
         step++;
         update();
-        questions[step].querySelector('input').focus();
+        (
+          questions[step].querySelector('input:checked') ||
+          questions[step].querySelector('input')
+        ).focus();
         return;
       }
       showResult();
@@ -204,7 +170,6 @@ const questions = [
           other: { lightweight: 2 },
         }[answers.location],
         {
-          summer: { starter: 3, lightweight: 1 },
           'three-season': { lightweight: 3, performance: 1 },
           winter: { performance: 10 },
         }[answers.season],
@@ -252,9 +217,7 @@ const questions = [
         locationReasons[answers.location],
         answers.season === 'winter'
           ? 'Winter forces the warmest sample system, even when it exceeds the selected budget.'
-          : answers.season === 'summer'
-            ? 'Summer use reduces the need to pay for the warmest sleep system.'
-            : 'Three-season use rewards a balanced weather and warmth margin.',
+          : 'Three-season use rewards a balanced weather and warmth margin.',
         priorityReasons[answers.priority],
         answers.people === 'two'
           ? 'Two hikers can share the shelter load and interior space.'
@@ -268,12 +231,15 @@ const questions = [
             : `Your answers point to ${resultData[id].name} rather than the ${requestedKit.name} kit you were viewing.`,
         );
       const kit = resultData[id];
-      result.innerHTML = `<div class="result-header"><span class="eyebrow">Your sample match</span><h2>${kit.name}</h2><p>${kit.summary}</p></div><div class="result-metrics"><div class="metric"><small>Estimated demo price</small><strong>$${kit.price.toLocaleString('en-AU')}</strong></div><div class="metric"><small>Estimated base weight</small><strong>${(kit.weight / 1000).toFixed(1)} kg</strong></div></div><div class="result-products">${kit.products.map((p) => `<div class="result-product"><span><strong>${p.name}</strong><br><small>${p.category} · ${p.weight >= 1000 ? (p.weight / 1000).toFixed(2) + ' kg' : p.weight + ' g'}</small></span><strong>$${p.price}</strong></div>`).join('')}</div><div class="reasons"><strong>Why this result</strong><ul>${reasons.map((r) => `<li>${r}</li>`).join('')}</ul></div><div class="result-actions"><a class="button" href="/starter-kits#${id}">Explore this kit</a><button class="button button-secondary" id="restart" type="button">Start again</button></div><p class="demo-note">All products, ratings, weights and prices shown here are editable demonstration data.</p>`;
+      const fmtW = (g) =>
+        g >= 1000 ? (g / 1000).toFixed(2) + ' kg' : g + ' g';
+      result.innerHTML = `<div class="result-header"><p class="result-kicker">Your match</p><h2>The ${kit.name} kit</h2><p>${kit.summary}</p></div><dl class="figures figures-lg"><div><dt>Est. total</dt><dd>$${kit.price.toLocaleString('en-AU')}</dd></div><div><dt>Approx. weight</dt><dd>${(kit.weight / 1000).toFixed(1)} kg</dd></div><div class="figures-wide"><dt>Suits</dt><dd class="dd-text">${kit.bestFor}</dd></div></dl><div class="reasons"><h3>Why this kit</h3><ul>${reasons.map((r) => `<li>${r}</li>`).join('')}</ul></div><details class="result-products"><summary>What's in the kit (${kit.products.length} items)</summary><ul>${kit.products.map((p) => `<li><span><strong>${p.name}</strong><small>${p.category}, ${fmtW(p.weight)}</small></span><span class="mono">$${p.price}</span></li>`).join('')}</ul></details><div class="actions"><a class="button" href="/starter-kits#${id}">View the ${kit.name} kit</a><button class="button button-secondary" id="restart" type="button">Start again</button></div><p class="demo-note">Products, weights and prices are demonstration data.</p>`;
       form.hidden = true;
       result.classList.add('active');
       result.focus();
       result.querySelector('#restart').addEventListener('click', () => {
         form.reset();
+        history.replaceState(null, '', location.pathname);
         step = 0;
         form.hidden = false;
         result.classList.remove('active');

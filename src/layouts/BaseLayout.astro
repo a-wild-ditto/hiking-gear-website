@@ -1,7 +1,10 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { site } from '../config/site';
+import { site, themeCss } from '../config/site';
+import '@fontsource-variable/geist';
+import '@fontsource-variable/geist-mono';
+import '@fontsource-variable/outfit/wght.css';
 import socialImage from '../assets/images/blue-mountains-hero.png';
 import '../styles/global.css';
 const {
@@ -22,14 +25,11 @@ const schema = {
 ---
 
 <!doctype html>
-<html
-  lang="en-AU"
-  style={`--ink:${site.theme.ink};--forest:${site.theme.forest};--moss:${site.theme.moss};--sand:${site.theme.sand};--clay:${site.theme.clay};--paper:${site.theme.paper};--white:${site.theme.white}`}
->
+<html lang="en-AU">
   <head>
     <meta charset="UTF-8" /><meta
       name="viewport"
-      content="width=device-width"
+      content="width=device-width, initial-scale=1"
     />
     <meta name="description" content={description} />{
       noindex && <meta name="robots" content="noindex, nofollow" />
@@ -68,6 +68,8 @@ const schema = {
       type="application/ld+json"
       set:html={JSON.stringify(schema)}
     />
+    <style is:inline set:html={themeCss}></style>
+    <meta name="theme-color" content="#1c3328" />
     <title>{title}</title>
   </head>
   <body
@@ -75,6 +77,8 @@ const schema = {
       id="main"
     >
       <slot />
-    </main><Footer /></body
+    </main><Footer /><script>
+      import '../scripts/reveal.ts';
+    </script></body
   >
 </html>

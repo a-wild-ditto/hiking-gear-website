@@ -1,0 +1,40 @@
+---
+import type { Product } from '../data/catalog';
+import { formatWeight } from '../data/catalog';
+import Photo from './Photo.astro';
+const { product: p } = Astro.props as { product: Product };
+---
+
+<article class="product-card">
+  <div class="product-thumb">
+    <Photo
+      productId={p.id}
+      alt={`Placeholder photo of the ${p.name}`}
+      sizes="(max-width: 767px) 96px, 300px"
+      widths={[200, 400, 640]}
+      label={p.name}
+    />
+  </div>
+  <div class="product-body">
+    <h3>{p.name}</h3>
+    {p.goodFor && <p class="product-for">Good for: {p.goodFor}</p>}
+    <p>{p.summary}</p>
+    {
+      p.keyFact && (
+        <p class="product-fact">
+          <strong>{p.keyFact.label}</strong>
+          <span>{p.keyFact.meaning}</span>
+        </p>
+      )
+    }
+    <dl class="figures">
+      <div>
+        <dt>Approx. price</dt><dd>${p.price}</dd>
+      </div>
+      <div>
+        <dt>Weight</dt><dd>{formatWeight(p.weight)}</dd>
+      </div>
+    </dl>
+    {p.note && <p class="demo-note">{p.note}</p>}
+  </div>
+</article>

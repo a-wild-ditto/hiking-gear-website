@@ -1,29 +1,20 @@
 ---
 import { primaryNav, site } from '../config/site';
+import Wordmark from './Wordmark.astro';
 const path = Astro.url.pathname;
 const isActive = (href: string) => path === href || path.startsWith(`${href}/`);
+// Build My Kit is the header CTA, so the inline desktop links skip it.
+const desktopLinks = primaryNav.filter((i) => i.href !== '/build-my-kit');
 ---
 
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="/" aria-label={`${site.brandName} home`}>
-      <svg viewBox="0 0 48 48" aria-hidden="true"
-        ><path
-          d="M5 35 18.5 12 25 23l5-8 13 20H5Z"
-          fill="currentColor"
-          opacity=".22"></path><path
-          d="m7 35 11.5-19L25 27l5-8 11 16M15 35h18"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.4"
-          stroke-linecap="round"
-          stroke-linejoin="round"></path></svg
-      >
-      <span>{site.brandName}</span>
-    </a>
-    <nav class="desktop-nav" aria-label="Primary navigation">
+    <a class="brand" href="/" aria-label={`${site.brandName} home`}
+      ><Wordmark /></a
+    >
+    <nav class="desktop-nav" aria-label="Primary">
       {
-        primaryNav.map((item) => (
+        desktopLinks.map((item) => (
           <a
             class:list={{ active: isActive(item.href) }}
             aria-current={isActive(item.href) ? 'page' : undefined}
@@ -35,11 +26,16 @@ const isActive = (href: string) => path === href || path.startsWith(`${href}/`);
       }
     </nav>
     <a class="button button-small desktop-cta" href="/build-my-kit"
-      >Start my setup</a
+      >Build My Kit</a
     >
     <details class="mobile-nav">
-      <summary aria-label="Open navigation">Menu</summary>
-      <nav aria-label="Mobile navigation">
+      <summary
+        ><span class="sr-only">Open navigation</span><span
+          class="burger"
+          aria-hidden="true"><span></span><span></span></span
+        ><span aria-hidden="true">Menu</span></summary
+      >
+      <nav aria-label="Mobile" class="mobile-panel">
         {
           primaryNav.map((item) => (
             <a
@@ -51,7 +47,7 @@ const isActive = (href: string) => path === href || path.startsWith(`${href}/`);
             </a>
           ))
         }
-        <a href="/about">About</a><a href="/contact">Contact</a>
+        <a href="/about">About</a><a href="/faq">FAQ</a>
       </nav>
     </details>
   </div>

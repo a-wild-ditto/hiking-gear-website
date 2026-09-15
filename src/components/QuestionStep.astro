@@ -1,0 +1,38 @@
+---
+import type { Question } from '../data/questions';
+interface Props {
+  question: Question;
+  index: number;
+  total: number;
+  active?: boolean;
+}
+const { question: q, index, total, active = false } = Astro.props;
+const hintId = `hint-${q.key}`;
+---
+
+<fieldset
+  class:list={['question', { active }]}
+  data-step={index}
+  data-key={q.key}
+  aria-describedby={hintId}
+>
+  <legend
+    ><span class="question-count">Question {index + 1} of {total}</span>{
+      q.title
+    }</legend
+  >
+  <p class="question-hint" id={hintId}>{q.hint}</p>
+  <div class:list={['options', { 'options-wide': q.options.length > 3 }]}>
+    {
+      q.options.map(([value, label, detail]) => (
+        <label class="option">
+          <input type="radio" name={q.key} value={value} />
+          <span class="option-body">
+            <span class="option-label">{label}</span>
+            {detail && <span class="option-detail">{detail}</span>}
+          </span>
+        </label>
+      ))
+    }
+  </div>
+</fieldset>

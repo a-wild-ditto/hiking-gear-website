@@ -1,0 +1,12 @@
+---
+import { site } from '../config/site';
+import mark from '../assets/brand/mark.svg?raw';
+// Brand lockup: traced gumnut mark + wordmark set in Outfit SemiBold.
+// public/logo.svg is the outlined standalone version (scripts/build-logo.mjs).
+---
+
+<span class="wordmark"
+  ><span class="wordmark-mark" aria-hidden="true" set:html={mark} /><span
+    class="wordmark-text">{site.brandName}</span
+  ></span
+>

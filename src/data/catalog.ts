@@ -8,6 +8,10 @@ export type Product = {
   weight: number;
   summary: string;
   note?: string;
+  /** Who it suits, in plain language. */
+  goodFor?: string;
+  /** One translated technical figure, e.g. R-value plus what it means. */
+  keyFact?: { label: string; meaning: string };
 };
 
 export const products: Product[] = [
@@ -143,46 +147,76 @@ export const products: Product[] = [
     summary: 'A compact demo setup for a more weight-conscious kit.',
   },
   {
-    id: 'headlamp',
-    name: 'Trail Headlamp',
+    id: 'essentials-basic',
+    name: 'Essentials Pack Basic',
     category: 'Accessories',
-    price: 29,
-    weight: 90,
-    summary: 'A basic lighting allowance for a practical first kit.',
+    price: 39,
+    weight: 250,
+    summary: 'Headlamp, basic first-aid kit and repair tape.',
   },
   {
-    id: 'dry-bags',
-    name: 'Dry Bag Set',
+    id: 'essentials-light',
+    name: 'Essentials Pack Light',
     category: 'Accessories',
-    price: 35,
-    weight: 120,
-    summary: 'Organisation and another layer of weather protection.',
+    price: 79,
+    weight: 360,
+    summary: 'Brighter headlamp, first aid, repair kit and dry bags.',
   },
   {
-    id: 'rain-shell',
-    name: 'Rain Shell Allowance',
+    id: 'essentials-plus',
+    name: 'Essentials Pack Plus',
     category: 'Accessories',
-    price: 49,
-    weight: 320,
-    summary: 'A budget placeholder for a basic hiking rain shell.',
-  },
-  {
-    id: 'water-kit',
-    name: 'Water Carry Kit',
-    category: 'Accessories',
-    price: 59,
-    weight: 180,
-    summary: 'A bottle and treatment allowance for the performance kit.',
-  },
-  {
-    id: 'essentials',
-    name: 'Small Essentials Allowance',
-    category: 'Accessories',
-    price: 57,
-    weight: 260,
-    summary: 'A demo allowance for repair, hygiene and basic first-aid items.',
+    price: 139,
+    weight: 520,
+    summary: 'Everything in Light, plus a squeeze water filter and trowel.',
   },
 ];
+
+const details: Record<string, Pick<Product, 'goodFor' | 'keyFact'>> = {
+  'ridge-2p': { goodFor: 'First trips and budget-conscious hikers' },
+  'valley-2p': { goodFor: 'Regular weekends with a friend' },
+  'range-2p': { goodFor: 'Hikers ready to carry less' },
+  'trail-5': {
+    goodFor: 'Summer and mild nights',
+    keyFact: { label: 'Comfort 5°C', meaning: 'Warm-weather trips' },
+  },
+  'summit-2': {
+    goodFor: 'Most three-season trips',
+    keyFact: { label: 'Comfort 2°C', meaning: 'Cool spring and autumn nights' },
+  },
+  'alpine-5': {
+    goodFor: 'Alpine and colder trips',
+    keyFact: { label: 'Comfort -5°C', meaning: 'Frosty alpine nights' },
+  },
+  'mat-r3': {
+    goodFor: 'Mild first overnights',
+    keyFact: { label: 'R-value 3.0', meaning: 'Suitable for mild conditions' },
+  },
+  'mat-r4': {
+    goodFor: 'Cool three-season trips',
+    keyFact: {
+      label: 'R-value 4.2',
+      meaning: 'Suitable for cool three-season trips',
+    },
+  },
+  'mat-r55': {
+    goodFor: 'Cold ground and shoulder seasons',
+    keyFact: { label: 'R-value 5.5', meaning: 'Suitable for cold nights' },
+  },
+  'trek-55': { goodFor: 'Bulkier budget gear' },
+  'path-50': { goodFor: 'Most first overnight kits' },
+  'line-45': { goodFor: 'Compact, lighter kits' },
+  'cook-basic': { goodFor: 'Hot dinners and a morning coffee' },
+  'cook-light': { goodFor: 'Saving bulk in a lighter kit' },
+  'cook-compact': { goodFor: 'Weight-conscious packers' },
+  'essentials-basic': { goodFor: 'Every first overnight kit' },
+  'essentials-light': { goodFor: 'Wet weather and regular weekends' },
+  'essentials-plus': { goodFor: 'Remote trips with creek water' },
+};
+for (const p of products) Object.assign(p, details[p.id]);
+
+export const formatWeight = (g: number) =>
+  g >= 1000 ? `${(g / 1000).toFixed(2)} kg` : `${g} g`;
 
 export const productById = Object.fromEntries(
   products.map((p) => [p.id, p]),

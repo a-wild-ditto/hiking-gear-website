@@ -1,231 +1,392 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Photo from '../components/Photo.astro';
 import KitCard from '../components/KitCard.astro';
-import GuideCard from '../components/GuideCard.astro';
-import { Image } from 'astro:assets';
-import { kits } from '../data/kits';
-import { categories } from '../data/catalog';
+import QuestionStep from '../components/QuestionStep.astro';
+import { kitById, getKitWeight } from '../data/kits';
 import { guides } from '../data/guides';
-import heroImage from '../assets/images/blue-mountains-hero.png';
-import campImage from '../assets/images/high-country-camp.png';
-import trailImage from '../assets/images/eucalyptus-trail.png';
+import { questions } from '../data/questions';
+
+const featured = kitById.lightweight;
+const leadGuide = guides[0];
+const sideGuides = [
+  {
+    guide: guides[1],
+    slot: 'guideSleepingBag' as const,
+    alt: 'A hiker sitting up in a sleeping bag at a tent door on a frosty morning',
+  },
+  {
+    guide: guides[2],
+    slot: 'guideMat' as const,
+    alt: 'A hiker unrolling a sleeping mat on a tent floor',
+  },
+];
+const system = [
+  {
+    name: 'Shelter',
+    job: 'Keeps wind, rain and bugs off you overnight.',
+    tip: 'A freestanding two-person tent is the most forgiving first choice.',
+  },
+  {
+    name: 'Sleep',
+    job: 'A bag and a mat work together to keep you warm.',
+    tip: 'The mat matters as much as the bag. Cold comes up from the ground.',
+  },
+  {
+    name: 'Carry',
+    job: 'A pack that fits your back and holds everything above.',
+    tip: 'Around 50 litres suits most first overnight kits.',
+  },
+  {
+    name: 'Cook',
+    job: 'A small stove, a pot and a way to treat water.',
+    tip: 'Keep it simple. Boiling water covers most trail meals.',
+  },
+];
 ---
 
 <BaseLayout>
+  <!-- 1. Hero: asymmetric split -->
   <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <span class="eyebrow">Beginner hiking gear, made simpler</span><h1>
-          Your first overnight hike, <em>sorted.</em>
-        </h1><p class="hero-copy">
-          Build a proper lightweight setup without spending $2,000—or learning a
-          new language of gear jargon first.
-        </p><div class="hero-actions">
-          <a class="button" href="/build-my-kit">Build My Kit →</a><a
-            class="button button-secondary"
-            href="/starter-kits">See Starter Kits</a
-          >
-        </div><div class="trust-row">
-          <span>Australian conditions</span><span>Beginner friendly</span><span
-            >Sensible prices</span
-          >
-        </div>
-      </div>
-      <div class="landscape">
-        <Image
-          src={heroImage}
-          alt="A small hiking tent and hiker overlooking eucalyptus-covered sandstone valleys in the Blue Mountains at sunrise"
-          widths={[640, 960, 1280]}
-          sizes="(max-width: 850px) 100vw, 45vw"
-          format="webp"
-          loading="eager"
-          fetchpriority="high"
-        /><div class="hero-stamp">
-          Good gear<br />without the<br />guesswork
-        </div>
-      </div>
+    <div class="hero-media">
+      <Photo
+        slot="hero"
+        alt="A hiker standing beside a small tent on a sandstone ledge above a misty Blue Mountains valley at sunrise"
+        sizes="100vw"
+        widths={[768, 1280, 1942]}
+        position="72% 55%"
+        eager
+      />
     </div>
-  </section>
-  <section class="image-break container">
-    <figure>
-      <Image
-        src={campImage}
-        alt="Two hikers preparing tea beside a tent among snow gums in the Victorian High Country"
-        widths={[640, 960, 1280]}
-        sizes="(max-width: 850px) 100vw, 58vw"
-        format="webp"
-      />
-      <figcaption>
-        Start with a setup that makes the first night feel manageable.
-      </figcaption>
-    </figure>
-    <figure>
-      <Image
-        src={trailImage}
-        alt="A hiker walking along a gentle eucalyptus bush track after rain"
-        widths={[480, 720, 960]}
-        sizes="(max-width: 850px) 100vw, 36vw"
-        format="webp"
-      />
-      <figcaption>Choose for the trips you will actually take.</figcaption>
-    </figure>
-  </section>
-  <section class="section">
-    <div class="container">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">Three sensible starting points</span><h2>
-            Spend where it counts. Skip what doesn’t.
-          </h2>
-        </div><p>
-          Sample setups for validation. Every item and price is editable local
-          demo data.
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <h1>Your first overnight hike, sorted.</h1>
+        <p class="hero-sub">
+          Curated gear for your bush adventures without spending thousands.
         </p>
-      </div><div class="kit-grid">
-        {
-          kits.map((kit) => (
-            <KitCard kit={kit} featured={kit.id === 'lightweight'} />
-          ))
-        }
+        <div class="actions">
+          <a class="button" href="/build-my-kit">Build My Kit</a>
+          <a class="button button-ghost" href="/starter-kits"
+            >See Starter Kits</a
+          >
+        </div>
       </div>
     </div>
   </section>
-  <section class="section section-dark">
+
+  <!-- 2. Value proposition: bordered editorial band -->
+  <section class="value-band" aria-labelledby="value-title">
+    <div class="container value-band-inner" data-reveal>
+      <h2 id="value-title">A reliable setup without the premium price tag.</h2>
+      <ul class="value-points">
+        <li>
+          <h3>Made simple for beginners</h3>
+          <p>Every item comes with a plain-English reason.</p>
+        </li>
+        <li>
+          <h3>Sensible price-to-performance</h3>
+          <p>Spend where it changes warmth, weight or comfort.</p>
+        </li>
+        <li>
+          <h3>Built around Australian trips</h3>
+          <p>From Blue Mountains weekends to Tasmanian highlands.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3. Starter kits: featured centre with compact sides -->
+  <section class="section" aria-labelledby="kits-title">
     <div class="container">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">How it works</span><h2>
-            A compatible setup in three clear steps.
-          </h2>
-        </div><a class="button button-light" href="/build-my-kit"
-          >Start the 2-minute builder</a
-        >
-      </div><div class="steps">
-        <article class="step">
-          <span class="step-number">01</span><h3>
-            Tell us where you’re going
-          </h3><p>
-            Location and season shape the weather margin your sleep and shelter
-            system needs.
-          </p>
-        </article><article class="step">
-          <span class="step-number">02</span><h3>
-            Set your budget and priorities
-          </h3><p>
-            Choose where to trade cost, comfort and carried weight—without
-            chasing grams for its own sake.
-          </p>
-        </article><article class="step">
-          <span class="step-number">03</span><h3>Get a compatible setup</h3><p>
-            See a transparent sample kit, its estimated total and why it suits
-            your answers.
-          </p>
+      <div class="heading-row">
+        <h2 id="kits-title">Three starter kits. Pick your trade-off.</h2>
+        <a class="text-link" href="/starter-kits">See Starter Kits</a>
+      </div>
+      <div class="kit-trio" data-reveal>
+        <KitCard kit={kitById.starter} />
+        <article class="kit-feature">
+          <div class="kit-feature-media">
+            <Photo
+              slot="kitFeatured"
+              alt="Two hikers setting up a tent together on a grassy campsite"
+              sizes="(max-width: 767px) 100vw, 44vw"
+              position="40% 55%"
+            />
+          </div>
+          <div class="kit-feature-body">
+            <p class="kit-note">Where most people should start</p>
+            <h3>{featured.name}</h3>
+            <p>{featured.summary}</p>
+            <dl class="figures figures-lg">
+              <div>
+                <dt>Est. total</dt><dd>
+                  ${featured.price.toLocaleString('en-AU')}
+                </dd>
+              </div>
+              <div>
+                <dt>Approx. weight</dt><dd>
+                  {(getKitWeight(featured) / 1000).toFixed(1)} kg
+                </dd>
+              </div>
+              <div class="figures-wide">
+                <dt>Suits</dt><dd class="dd-text">{featured.bestFor}</dd>
+              </div>
+            </dl>
+            <a class="text-link" href={`/starter-kits#${featured.id}`}
+              >View the {featured.name} kit</a
+            >
+          </div>
         </article>
+        <KitCard kit={kitById.performance} />
       </div>
     </div>
   </section>
-  <section class="section">
-    <div class="container">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">Build the core system</span><h2>
-            Four categories. Far fewer decisions.
-          </h2>
-        </div><p>
-          Start with the things that keep you sheltered, warm and moving. Add
-          the extras later.
+
+  <!-- 4. Build My Kit: deep colour block with the live first question -->
+  <section class="recommender-band" aria-labelledby="builder-title">
+    <div class="container recommender-grid">
+      <div class="recommender-copy">
+        <p class="eyebrow">Build My Kit</p>
+        <h2 id="builder-title">
+          Tell us where you're going. We'll help with the gear.
+        </h2>
+        <p>Six quick questions, about two minutes. We ask about:</p>
+        <ul class="topic-list">
+          <li>Trip location</li>
+          <li>Season</li>
+          <li>Budget</li>
+          <li>Comfort vs weight</li>
+        </ul>
+        <p class="small-print">
+          No email needed. Answers stay in your browser.
         </p>
-      </div><div class="category-grid">
-        {
-          categories.map((category, index) => (
-            <a class="category-card" href={`/gear#${category.id}`}>
-              <>
-                <span class="category-index">0{index + 1}</span>
-                <div>
-                  <>
-                    <span class="eyebrow">{category.kicker}</span>
-                    <h3>{category.name}</h3>
-                    <p>{category.copy}</p>
-                  </>
-                </div>
-                <span class="category-arrow">→</span>
-              </>
-            </a>
-          ))
-        }
       </div>
-    </div>
-  </section>
-  <section class="section section-soft">
-    <div class="container">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">Trail school</span><h2>
-            Understand your gear before you buy it.
-          </h2>
-        </div><a class="text-link" href="/learn"
-          >Browse all guides <span>→</span></a
-        >
-      </div><div class="guide-grid">
-        {guides.slice(0, 4).map((guide) => <GuideCard guide={guide} />)}
-      </div>
-    </div>
-  </section>
-  <section class="section">
-    <div class="container value-grid">
-      <div>
-        <span class="eyebrow">The Trailwise approach</span><h2>
-          Lightweight enough. Practical always.
-        </h2><p class="lead">
-          We focus on the decisions that make a first overnight safer, warmer
-          and more enjoyable—not an endless wall of almost-identical products.
-        </p>
-      </div><div class="value-list">
-        <div class="value-item">
-          <h3>Beginner first</h3><p>
-            Clear reasons, plain English and no assumption that you already know
-            the jargon.
-          </p>
-        </div><div class="value-item">
-          <h3>Australian context</h3><p>
-            Guidance framed around variable local conditions and familiar hiking
-            regions.
-          </p>
-        </div><div class="value-item">
-          <h3>Value over cheapness</h3><p>
-            Spend more only when it meaningfully improves warmth, weight or
-            durability.
-          </p>
-        </div><div class="value-item">
-          <h3>Curated choices</h3><p>
-            A short, compatible path through the options instead of another huge
-            catalogue.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="section">
-    <div class="container newsletter">
-      <div>
-        <span class="eyebrow">Free checklist</span><h2>
-          Pack for your first overnight with confidence.
-        </h2><p>
-          Join the future mailing list and get the beginner overnight checklist
-          when email capture goes live.
-        </p>
-      </div><form class="signup-form" onsubmit="return false">
-        <label class="sr-only" for="email">Email address</label><input
-          id="email"
-          type="email"
-          placeholder="you@example.com"
-          disabled
-        /><button class="button" disabled>Coming soon</button><p
-          class="form-note"
-        >
-          Demo form only. No personal information is collected.
-        </p>
+      <form
+        class="builder-preview"
+        action="/build-my-kit"
+        method="get"
+        data-reveal
+      >
+        <QuestionStep
+          question={questions[0]}
+          index={0}
+          total={questions.length}
+          active
+        />
+        <button class="button" type="submit">Build My Kit</button>
       </form>
     </div>
   </section>
+
+  <!-- 5. Categories: asymmetric bento -->
+  <section class="section" aria-labelledby="cat-title">
+    <div class="container">
+      <h2 id="cat-title" class="section-title">
+        Four categories. Far fewer decisions.
+      </h2>
+      <div class="cat-bento" data-reveal>
+        <a class="cat-tile cat-shelter" href="/gear#shelter">
+          <Photo
+            slot="shelter"
+            alt="A green-grey dome tent pitched among snow gums"
+            sizes="(max-width: 767px) 100vw, 50vw"
+            position="30% 60%"
+          />
+          <span class="cat-caption"
+            ><span class="cat-name">Shelter</span><span
+              >Tents by space, weight and weather.</span
+            ></span
+          >
+        </a>
+        <a class="cat-tile cat-sleep" href="/gear#sleep">
+          <Photo
+            slot="sleep"
+            alt="A sleeping mat and sleeping bag laid out inside an open tent"
+            sizes="(max-width: 767px) 100vw, 25vw"
+          />
+          <span class="cat-caption"
+            ><span class="cat-name">Sleep</span><span
+              >Bags and mats, ratings explained.</span
+            ></span
+          >
+        </a>
+        <a class="cat-tile cat-packs" href="/gear#packs">
+          <Photo
+            slot="packs"
+            alt="A hiker carrying an overnight pack along a rocky alpine track"
+            sizes="(max-width: 767px) 100vw, 25vw"
+            position="60% 50%"
+          />
+          <span class="cat-caption"
+            ><span class="cat-name">Packs</span><span
+              >Enough room, no extra bulk.</span
+            ></span
+          >
+        </a>
+        <a class="cat-tile cat-cooking" href="/gear#cooking-accessories">
+          <Photo
+            slot="cooking"
+            alt="A small stove boiling water on a rock at a campsite"
+            sizes="(max-width: 767px) 100vw, 25vw"
+          />
+          <span class="cat-caption"
+            ><span class="cat-name">Cooking & accessories</span><span
+              >Cook sets and essentials packs.</span
+            ></span
+          >
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. What do I actually need: vertical system sequence -->
+  <section class="section section-tint" aria-labelledby="need-title">
+    <div class="container need-grid">
+      <div class="need-intro">
+        <h2 id="need-title">What do I actually need?</h2>
+        <p>
+          An overnight kit does four jobs. Get these right and everything else
+          is a nice extra.
+        </p>
+        <a class="text-link" href={leadGuide.href}>Read the full checklist</a>
+      </div>
+      <ol class="system-steps">
+        {
+          system.map((s) => (
+            <li data-reveal>
+              <h3>{s.name}</h3>
+              <p>{s.job}</p>
+              <p class="system-tip">{s.tip}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- 7. Guides: editorial lead story plus side list -->
+  <section class="section" aria-labelledby="guides-title">
+    <div class="container">
+      <div class="heading-row">
+        <h2 id="guides-title">Know enough to choose well.</h2>
+        <a class="text-link" href="/learn">All guides</a>
+      </div>
+      <div class="guides-editorial">
+        <article class="guide-lead" data-reveal>
+          <a href={leadGuide.href} class="guide-lead-media" tabindex="-1">
+            <Photo
+              slot="guideFirstOvernight"
+              alt="A hiker walking a eucalyptus bush track after rain"
+              sizes="(max-width: 767px) 100vw, 58vw"
+              position="60% 55%"
+            />
+          </a>
+          <p class="guide-topic">{leadGuide.eyebrow}</p>
+          <h3><a href={leadGuide.href}>{leadGuide.title}</a></h3>
+          <p>{leadGuide.description}</p>
+        </article>
+        <div class="guide-side">
+          {
+            sideGuides.map(({ guide, slot, alt }) => (
+              <article class="guide-item" data-reveal>
+                <div class="guide-item-media">
+                  <Photo
+                    slot={slot}
+                    alt={alt}
+                    sizes="(max-width: 767px) 40vw, 16vw"
+                    widths={[320, 560]}
+                  />
+                </div>
+                <div>
+                  <p class="guide-topic">{guide.eyebrow}</p>
+                  <h3>
+                    <a href={guide.href}>{guide.title}</a>
+                  </h3>
+                  <p class="guide-meta">{guide.readTime}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Method: understated statement -->
+  <section class="method" aria-labelledby="method-title">
+    <div class="container method-inner" data-reveal>
+      <h2 id="method-title">How we pick gear</h2>
+      <p class="method-statement">
+        We recommend gear on suitability, value and real specifications, not
+        simply the highest commission.
+      </p>
+      <p>
+        When we earn from a link, we say so. <a href="/affiliate-disclosure"
+          >Read our affiliate disclosure</a
+        >.
+      </p>
+    </div>
+  </section>
+
+  <!-- 9. Email capture: quiet inline form -->
+  <section class="checklist" aria-labelledby="checklist-title">
+    <div class="container checklist-inner">
+      <div>
+        <h2 id="checklist-title">The First Overnight Checklist</h2>
+        <p>A printable one-page list of what to pack, and what to skip.</p>
+      </div>
+      <form class="checklist-form" id="checklist-form" novalidate>
+        <div class="field">
+          <label for="checklist-email">Email address</label>
+          <div class="field-row">
+            <input
+              id="checklist-email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              aria-describedby="checklist-status"
+            />
+            <button class="button" type="submit">Send me the checklist</button>
+          </div>
+          <p id="checklist-status" class="field-help" aria-live="polite">
+            Prototype: emails are not sent or stored yet.
+          </p>
+        </div>
+      </form>
+    </div>
+  </section>
+  <script>
+    // Picking a location on the homepage preview jumps straight into Build My
+    // Kit at question 2. Keyboard users confirm with the button.
+    const preview = document.querySelector<HTMLFormElement>('.builder-preview');
+    let previewPointer = false;
+    preview?.addEventListener('pointerdown', () => (previewPointer = true));
+    preview?.addEventListener('keydown', () => (previewPointer = false));
+    preview?.addEventListener('change', () => {
+      if (!previewPointer) return;
+      setTimeout(() => preview.requestSubmit(), 220);
+    });
+
+    const form = document.querySelector<HTMLFormElement>('#checklist-form');
+    const input = form?.querySelector<HTMLInputElement>('input');
+    const status = document.querySelector<HTMLElement>('#checklist-status');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!input || !status) return;
+      if (!input.checkValidity()) {
+        input.setAttribute('aria-invalid', 'true');
+        status.dataset.state = 'error';
+        status.textContent = input.value
+          ? 'That email address doesn’t look right. Check it and try again.'
+          : 'Enter your email address to get the checklist.';
+        input.focus();
+        return;
+      }
+      input.removeAttribute('aria-invalid');
+      status.dataset.state = 'ok';
+      status.textContent =
+        'Thanks. Checklist emails are not live yet, so nothing was sent or stored.';
+    });
+  </script>
 </BaseLayout>
