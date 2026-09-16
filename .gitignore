@@ -3,3 +3,18 @@ dist/
 .astro/
 .wrangler/
 *.log
+
+# Local environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Local sourcing research: raw marketplace scrapes and generated reports.
+# Kept out of the repository because the data is bulky, licensed by the
+# provider and goes stale quickly. Findings that matter are written into
+# src/data/product-pages instead.
+/aliexpress_*.csv
+/aliexpress_sourcing_raw.json
+/brightdata_*.json
+/external_owner_evidence.csv
+/bush_gums_aliexpress_sourcing_report.md
