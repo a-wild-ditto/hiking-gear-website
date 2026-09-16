@@ -23,15 +23,15 @@ const optionalAddons = optionalAddonIds.map((id) => productById[id]);
 const imageIdFor = (id: string) =>
   ({
     'bisinna-2p': 'bisinna-2-person-tent-australian',
-    'bisinna-bag-18': 'bisinna-1-8kg-sleeping-bag-australian',
+    'bisinna-bag-18': 'bisinna-1-6kg-sleeping-bag-australian',
     'foil-foam-pad': 'foil-egg-crate-foam-pad-australian',
     'bisinna-pack-35': 'bisinna-25-10-backpack-australian',
-    'cloud-up-1p': 'naturehike-cloud-up-australian',
-    'cloud-up-2p': 'naturehike-cloud-up-australian',
+    'cloud-up-1p': 'naturehike-cloud-up-pro-australian',
+    'cloud-up-2p': 'naturehike-cloud-up-pro-australian',
     'down-bag-400': '400g-down-envelope-sleeping-bag-australian',
-    'tuye-r35': 'naturehike-tuye-r3-5-australian',
+    'tuye-r35': 'naturehike-r3-5-v2-australian',
     'rock-60-5': 'naturehike-rock-60-5-australian',
-    'cookware-aluminium': 'aluminium-cookware-set-australian',
+    'cookware-aluminium': 'widesea-cookware-australian',
     'memory-foam-pillow': 'memory-foam-camping-pillow-australian',
   })[id] ?? productById[id].reviewSlug;
 const offerFor = (slug?: string) => (slug ? offersFor(slug)[0] : undefined);
@@ -279,16 +279,27 @@ const offerFor = (slug?: string) => (slug ? offersFor(slug)[0] : undefined);
                 ))}
               </ul>
               {offerFor(p.reviewSlug) ? (
-                <a
-                  class="button"
-                  href={offerFor(p.reviewSlug)?.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {offerFor(p.reviewSlug)?.url.includes('/item/')
-                    ? 'Buy now on AliExpress'
-                    : 'Find on AliExpress'}
-                </a>
+                <>
+                  <a
+                    class="button"
+                    href={offerFor(p.reviewSlug)?.url}
+                    target="_blank"
+                    rel={
+                      offerFor(p.reviewSlug)?.affiliate
+                        ? 'sponsored noopener noreferrer'
+                        : 'noopener noreferrer'
+                    }
+                  >
+                    {!offerFor(p.reviewSlug)?.url.includes('/w/wholesale-')
+                      ? 'Buy now on AliExpress'
+                      : 'Find on AliExpress'}
+                  </a>
+                  {offerFor(p.reviewSlug)?.affiliate && (
+                    <p class="small-print">
+                      Affiliate link — we may earn a commission if you buy.
+                    </p>
+                  )}
+                </>
               ) : (
                 <p class="small-print">
                   Detailed research page coming after we confirm the exact

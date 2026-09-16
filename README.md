@@ -86,7 +86,7 @@ This gives the business a usable decision-engine prototype without hosting appli
 
 ## Future extension points
 
-- Add outbound-link attributes and a first-party event endpoint when real affiliate links are introduced.
+- Affiliate destinations are marked as sponsored and disclosed. Add a first-party event endpoint only if outbound-click measurement is later approved.
 - Add a hosted email form only after provider selection and privacy-copy review.
 - Introduce checkout through hosted payment links before building a full cart.
 - Add D1 or another store only when dynamic inventory, saved kits or first-party analytics require it.

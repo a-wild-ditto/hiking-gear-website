@@ -2,34 +2,34 @@ import type { ProductPage } from './types';
 
 const page: ProductPage = {
   slug: 'bisinna-1-8kg-sleeping-bag',
-  imageId: 'bisinna-1-8kg-sleeping-bag-australian',
-  name: 'BISINNA 1.8 kg Synthetic Sleeping Bag',
+  imageId: 'bisinna-1-6kg-sleeping-bag-australian',
+  name: 'BISINNA 1.6 kg Synthetic Sleeping Bag',
   listingRating: {
     stars: 4.8,
-    reviews: 88,
-    sold: 408,
+    reviews: 196,
+    sold: 1000,
     merchant: 'AliExpress',
     checkedOn: '2026-09-16',
   },
   identityNote:
-    'The purchased listing option is labelled “Standard 1.8kg LBR”. The listing diagram shows approximately 1.8 kg and 5°C, while the closest BISINNA SL010/XINLIAN documentation gives 1.9 kg, 10°C comfort and 5°C limit. Confirm the delivered label and exact variant before treating these as the same bag.',
+    'The selected listing option is the orange 1.6 kg model. Its screenshot claims a 13°C comfortable temperature, 190 × 85 cm dimensions and a 40 × 25 cm packed size. No EN or ISO 23537 result is shown, so 13°C remains an unverified seller claim.',
   category: 'Sleep',
   tags: ['Value synthetic sleeping-bag candidate'],
-  pricePaidAud: 59.83,
+  pricePaidAud: 53.12,
   summary:
-    'A roomy synthetic bag whose listing places 5°C beside a roughly 1.8 kg weight. We need to establish what that temperature figure actually means.',
+    'A roomy 1.6 kg synthetic bag whose listing claims a 13°C comfortable temperature. That figure needs field testing before it can guide trip planning.',
   metaDescription:
-    'What we know about the BISINNA 1.8 kg synthetic sleeping bag: listing claims, related manufacturer specifications, independent observations and our test plan.',
+    'What we know about the BISINNA 1.6 kg synthetic sleeping bag: listing claims, related manufacturer specifications, independent observations and our test plan.',
   question:
-    'Is this a practical cool-weather beginner sleeping bag, and does the listing’s 5°C figure represent a credible limit rather than a safe comfort temperature?',
+    'Is this a practical mild-weather beginner sleeping bag, and is the listing’s 13°C comfort claim credible?',
   whyWeChoseIt: [
     'Synthetic insulation is inexpensive, comparatively tolerant of damp conditions and straightforward for a beginner to care for. The roomy rectangular cut also suits campers who value space over low packed weight.',
-    'At roughly 1.8 kg it is a heavy backpacking sleep system, and the prominent 5°C figure is not a verified comfort rating. The related BISINNA manual calls 10°C comfort and 5°C limit.',
+    'At roughly 1.6 kg it remains a heavy backpacking sleep system, and the prominent 13°C figure is not a verified comfort rating.',
   ],
   specs: [
     {
       label: 'Listing variant',
-      value: '“Standard 1.8kg LBR”',
+      value: 'Orange 1.6 kg',
       status: 'seller-claim',
       note: 'Confirm the delivered model label, colour and zip side.',
     },
@@ -41,24 +41,21 @@ const page: ProductPage = {
     },
     {
       label: 'Weight',
-      value: 'Approximately 1.8 kg on the purchased listing',
+      value: 'Approximately 1.6 kg on the selected listing',
       status: 'seller-claim',
-      note: 'El País measured a similar BISINNA bag at 1.8 kg; the closest manual specifies 1.9 kg.',
+      note: 'Measure the delivered bag and packed sack; related BISINNA models have different fill weights.',
       sourceIds: ['elpais', 'bisinna-manual'],
     },
     {
       label: 'Temperature guidance',
-      value:
-        '5°C shown on the listing; 10°C comfort / 5°C limit for related SL010',
+      value: '13°C comfortable temperature shown on the listing',
       status: 'seller-claim',
-      note: 'No EN or ISO 23537 test was found. Do not present 5°C as a comfort rating.',
-      sourceIds: ['bisinna-manual'],
+      note: 'No EN or ISO 23537 test was found. Treat this only as a seller claim.',
     },
     {
       label: 'Dimensions',
-      value: 'Approximately 220–230 × 80 cm including hood',
-      status: 'corroborated',
-      sourceIds: ['bisinna-manual', 'elpais'],
+      value: 'Approximately 190 × 85 cm; packed size 40 × 25 cm',
+      status: 'seller-claim',
     },
     {
       label: 'Shell and insulation',
@@ -75,7 +72,7 @@ const page: ProductPage = {
   ],
   coverage: 'limited',
   coverageNote:
-    'A BISINNA manual covers a closely related 1.9 kg SL010, and El País reports hands-on observations of what appears to be the same design. No standardised temperature test or strong long-term trail review was found for the exact 1.8 kg option.',
+    'A BISINNA manual covers a related 1.9 kg SL010, and El País reports hands-on observations of a heavier version of this general design. Neither establishes the performance of the selected orange 1.6 kg model, and no standardised temperature test was found.',
   sources: [
     {
       id: 'bisinna-manual',
@@ -85,7 +82,7 @@ const page: ProductPage = {
       kind: 'manufacturer',
       relation: 'same-design',
       summary:
-        'Instructions for model SL010/XINLIAN. They specify a rectangular polyester bag weighing 1.9 kg, with 10°C comfort and 5°C limit claims. The documented weight does not exactly match the purchased 1.8 kg option.',
+        'Instructions for model SL010/XINLIAN. They specify a rectangular polyester bag weighing 1.9 kg, with 10°C comfort and 5°C limit claims. This is context for a related heavier variant, not evidence for the selected 1.6 kg bag.',
       quote:
         '1.9KG version: Comfort Temp 10°C/50°F, Temperature Limit 5°C/41°F',
     },
@@ -113,11 +110,11 @@ const page: ProductPage = {
   ],
   negatives: [
     {
-      text: 'Approximately 1.8 kg is heavy for backpacking before packed volume is considered.',
+      text: 'Approximately 1.6 kg is still heavy for backpacking before packed volume is considered.',
       sourceIds: ['elpais', 'bisinna-manual'],
     },
     {
-      text: 'The listing’s 5°C figure is not a verified comfort rating.',
+      text: 'The listing’s 13°C comfort figure is not independently verified.',
       sourceIds: ['bisinna-manual'],
     },
   ],
@@ -125,7 +122,7 @@ const page: ProductPage = {
     'Exact model label, actual bag-only weight and packed volume.',
     'Whether the supplied compression sack can be used without unreasonable effort.',
     'Loft distribution, cold spots, zip function and foot vent closure.',
-    'No standardised temperature test has been found; begin field use well above 5°C with backup insulation.',
+    'No standardised temperature test has been found; begin field use conservatively in mild conditions with backup insulation.',
   ],
   testPlan: [
     'Photograph labels and record the exact model, materials and printed temperature guidance.',

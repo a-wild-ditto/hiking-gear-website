@@ -51,31 +51,31 @@ export const products: Product[] = [
   },
   {
     id: 'bisinna-bag-18',
-    name: 'BISINNA 1.8 kg Sleeping Bag',
+    name: 'BISINNA 1.6 kg Sleeping Bag',
     category: 'Sleep',
-    price: 60,
-    weight: 1800,
+    price: 53,
+    weight: 1600,
     summary:
-      'A roomy synthetic bag for mild trips, with an unverified 5°C listing figure.',
+      'A roomy synthetic bag for mild trips, with an unverified 13°C comfort claim.',
     goodFor: 'Mild nights where price matters most',
     reviewSlug: 'bisinna-1-8kg-sleeping-bag',
     keyFact: {
-      label: '5°C listing claim',
-      meaning: 'Not a verified comfort rating',
+      label: '13°C comfort claim',
+      meaning: 'Seller claim; not independently tested',
     },
     kitDetail: {
       headline: 'A simple sleep option for mild nights',
       paragraphs: [
-        'At a listed 1.8 kg, this is the heavier, straightforward sleeping-bag choice in the kit.',
+        'At a listed 1.6 kg, this is the heavier, straightforward sleeping-bag choice in the kit.',
         'It makes most sense for mild-weather trips where low cost matters more than compact packing.',
       ],
       specs: [
-        'Listed weight: 1.8 kg',
+        'Listed weight: 1.6 kg',
         'Synthetic insulation',
         'Roomy rectangular shape',
       ],
       caveat:
-        'No EN or ISO temperature test has been identified. Treat 5°C as an unverified limit, not a comfort promise.',
+        'No EN or ISO temperature test has been identified. Treat 13°C as an unverified seller claim, not a comfort promise.',
     },
   },
   {
@@ -128,10 +128,10 @@ export const products: Product[] = [
   },
   {
     id: 'cloud-up-1p',
-    name: 'Naturehike Cloud Up 1P',
+    name: 'Naturehike Cloud Up Pro 1P',
     category: 'Shelter',
-    price: 163,
-    weight: 1490,
+    price: 205,
+    weight: 1230,
     summary: 'The solo option from a well-documented budget tent family.',
     goodFor: 'Solo hikers prioritising lower carried weight',
     reviewSlug: 'naturehike-cloud-up-tent',
@@ -139,12 +139,12 @@ export const products: Product[] = [
       headline: 'The lower-weight Cloud Up for solo trips',
       paragraphs: [
         'The 1P gives one hiker a conventional double-wall shelter without paying for unused floor space.',
-        'Its listing weight is 1.49 kg, although Naturehike publishes different figures for current variants.',
+        'The listing claims 1.23 kg excluding accessories, so the complete carried weight will be higher.',
       ],
       specs: [
         'One-person capacity',
         'Double-wall design',
-        '1.49 kg listing claim',
+        '1.23 kg excluding accessories',
       ],
       caveat:
         'Cloud Up generations differ in fabric and included weight. Check the detailed review before comparing variants.',
@@ -203,8 +203,8 @@ export const products: Product[] = [
     id: 'tuye-r35',
     name: 'Naturehike TuYe R3.5 Mat',
     category: 'Sleep',
-    price: 95,
-    weight: 490,
+    price: 86,
+    weight: 440,
     summary: 'A compact insulated inflatable mat for broader three-season use.',
     goodFor: 'Cooler trips and compact packing',
     reviewSlug: 'naturehike-tuye-r3-5',
@@ -215,10 +215,10 @@ export const products: Product[] = [
     kitDetail: {
       headline: 'More ground insulation for cooler trips',
       paragraphs: [
-        'The mummy version is listed at R3.5, 183 × 58 × 7 cm and about 490 g.',
+        'The mummy version is listed at R3.5, 183 × 58 cm and about 440 g.',
         'It offers a much smaller packed size than foam while adding claimed ground insulation for cooler nights.',
       ],
-      specs: ['R3.5 claimed', '183 × 58 × 7 cm', 'About 490 g claimed'],
+      specs: ['R3.5 claimed', '183 × 58 cm', 'About 440 g claimed'],
       caveat:
         'Naturehike does not identify an ASTM test on the product page, and owner measurements vary.',
     },
@@ -246,22 +246,23 @@ export const products: Product[] = [
   },
   {
     id: 'cookware-aluminium',
-    name: 'Aluminium Cookware Set',
+    name: 'Widesea Aluminium Cookware Set',
     category: 'Cooking',
-    price: 37,
+    price: 56,
     weight: 0,
-    summary: 'A generic nested pot set for simple camp meals and hot drinks.',
+    summary:
+      'A nested eight-piece pot set for simple camp meals and hot drinks.',
     goodFor: 'Optional cooking setup',
     reviewSlug: 'aluminium-cookware-set',
     kitDetail: {
       headline: 'Straightforward cookware for camp meals',
       paragraphs: [
-        'This aluminium set covers the basic cooking role without tying the kit to a specialised system.',
+        'This Widesea set covers the basic cooking role with a 1.3 L pot, 440 ml cup/pot, burner bracket and utensils.',
         'It is an optional add-on for hikers who want hot meals or morning coffee.',
       ],
       specs: [
         'Aluminium construction',
-        'Nested multi-piece set',
+        'WSCS-1051 eight-piece set',
         'For basic camp meals',
       ],
       caveat:

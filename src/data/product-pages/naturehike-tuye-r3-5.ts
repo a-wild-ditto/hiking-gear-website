@@ -2,28 +2,28 @@ import type { ProductPage } from './types';
 
 const page: ProductPage = {
   slug: 'naturehike-tuye-r3-5',
-  imageId: 'naturehike-tuye-r3-5-australian',
+  imageId: 'naturehike-r3-5-v2-australian',
   name: 'Naturehike TuYe R3.5 Inflatable Sleeping Mat',
   listingRating: {
-    stars: 4,
-    reviews: 4,
-    sold: 27,
+    stars: 4.9,
+    reviews: 130,
+    sold: 800,
     merchant: 'AliExpress',
     checkedOn: '2026-09-16',
   },
   identityNote:
-    'The supplied listing screenshot shows the mummy-shaped 183 × 58 × 7 cm variant at approximately 490 g, packed to about 10 × 18 cm. Naturehike’s current global page calls the range TuYe R3.5 and matches the 490 g figure. Size names and weights vary between regional pages and older listings, so confirm the delivered SKU.',
+    'The updated listing screenshot shows the olive mummy-shaped 183 × 58 cm variant at approximately 440 g, packed to about 10 × 18 cm. Naturehike pages and older listings quote different weights, so confirm the delivered SKU and weigh the complete mat.',
   category: 'Sleep',
   tags: ['Value insulated-mat candidate'],
-  pricePaidAud: 95.21,
+  pricePaidAud: 85.99,
   summary:
-    'A compact insulated mat claiming R 3.5 at about 490 g. The key questions are whether its dimensions, insulation and overnight air retention match the listing.',
+    'A compact insulated mat claiming R 3.5 at about 440 g. The key questions are whether its dimensions, insulation and overnight air retention match the listing.',
   metaDescription:
     'Research on the Naturehike TuYe R3.5 sleeping mat: manufacturer specifications, owner measurements, air-retention concerns and our test plan.',
   question:
     'Does the Naturehike R3.5 provide dependable three-season insulation and comfort without losing air or measuring materially smaller than advertised?',
   whyWeChoseIt: [
-    'A sleeping mat is part of the insulation system, and an insulated mat around 490 g could give beginners a useful balance of price, packed size and three-season warmth.',
+    'A sleeping mat is part of the insulation system, and an insulated mat listed around 440 g could give beginners a useful balance of price, packed size and three-season warmth.',
     'Naturehike does not identify an ASTM F3340 test or publish a laboratory report on the product page. Owner reports also vary on dimensions, weight and long-term valve performance.',
   ],
   specs: [
@@ -50,10 +50,9 @@ const page: ProductPage = {
     },
     {
       label: 'Dimensions and weight',
-      value: 'Approximately 183 × 58 × 7 cm and 490 g claimed',
-      status: 'manufacturer',
-      note: 'One owner measured about 175 × 54 × 6.5 cm inflated. Accessory weight is additional.',
-      sourceIds: ['naturehike-global', 'naturehike-japan', 'rl-forum'],
+      value: 'Approximately 183 × 58 cm and 440 g claimed',
+      status: 'seller-claim',
+      note: 'The updated listing supplies the 440 g figure. Manufacturer pages show approximately 490 g, while one owner measured smaller inflated dimensions. Accessory weight is additional.',
     },
     {
       label: 'Packed size',
@@ -81,6 +80,15 @@ const page: ProductPage = {
   coverageNote:
     'Official dimensions and materials are available, with useful owner measurements and overnight reports. Evidence is mostly observational, and no ASTM R-value report was found.',
   sources: [
+    {
+      id: 'updated-listing-screenshot',
+      title: 'Naturehike R3.5 AliExpress listing screenshot',
+      publisher: 'AliExpress',
+      kind: 'listing',
+      relation: 'seller-claim',
+      summary:
+        'User-supplied screenshot showing the olive mummy mat at 183 × 58 cm, approximately 440 g, R 3.5, A$85.99, 4.9 stars from 130 reviews and 800+ sold.',
+    },
     {
       id: 'naturehike-global',
       title: 'TuYe R3.5 Ultralight Inflatable Pad',
@@ -126,8 +134,8 @@ const page: ProductPage = {
   ],
   positives: [
     {
-      text: 'The claimed 490 g weight and small packed size are attractive for an insulated three-season mat.',
-      sourceIds: ['naturehike-global', 'naturehike-japan'],
+      text: 'The updated listing’s claimed 440 g weight and small packed size are attractive for an insulated three-season mat.',
+      sourceIds: ['updated-listing-screenshot'],
     },
     {
       text: 'Owners generally describe it as comfortable, including for side sleeping.',

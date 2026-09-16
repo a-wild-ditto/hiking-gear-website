@@ -2,24 +2,24 @@ import type { ProductPage } from './types';
 
 const page: ProductPage = {
   slug: 'aluminium-cookware-set',
-  imageId: 'aluminium-cookware-set-australian',
-  name: 'Generic Aluminium Cookware Set',
+  imageId: 'widesea-cookware-australian',
+  name: 'Widesea Aluminium Cookware Set',
   identityNote:
-    'Generic marketplace cookware listing. The selected option is G-1set, shown as nested aluminium cookware with folding green handles. Exact contents and construction need to be checked against the delivered set.',
+    'The selected Widesea WSCS-1051 option is shown as an eight-piece dark-grey aluminium cooking set with orange folding handles, a 1.3 L pot, 440 ml cup/pot, burner bracket and utensils. The listing explicitly says the gas tank is not included.',
   category: 'Accessories',
   tags: ['Optional cooking add-on', 'Generic aluminium cookware'],
-  pricePaidAud: 36.99,
+  pricePaidAud: 56.39,
   listingRating: {
-    stars: 4.6,
-    reviews: 59,
-    sold: 327,
+    stars: 4.9,
+    reviews: 40,
+    sold: 222,
     merchant: 'Marketplace listing',
     checkedOn: '2026-09-16',
   },
   summary:
     'A compact-looking aluminium pot-and-pan set for simple camp meals, included as an optional add-on rather than part of a starter kit.',
   metaDescription:
-    'Research notes for a generic G-1set aluminium camping cookware kit, including the listing claims and what we still need to verify.',
+    'Research notes for the Widesea WSCS-1051 aluminium camping cookware kit, including listing claims and what we still need to verify.',
   question:
     'Is this nested cookware set a practical, durable and appropriately sized option for beginner camp meals?',
   whyWeChoseIt: [
@@ -29,7 +29,7 @@ const page: ProductPage = {
   specs: [
     {
       label: 'Selected option',
-      value: 'G-1set',
+      value: 'WSCS-1051',
       status: 'seller-claim',
       note: 'Confirm the delivered variant and every included piece.',
     },
@@ -41,13 +41,13 @@ const page: ProductPage = {
     },
     {
       label: 'Visible design',
-      value: 'Nested pot and pan with folding green handles',
+      value: 'Nested dark-grey pots with folding orange handles',
       status: 'seller-claim',
       note: 'The supplied listing image is the identity reference; inspect the delivered set for differences.',
     },
     {
       label: 'Price shown',
-      value: 'A$36.99',
+      value: 'A$56.39',
       status: 'seller-claim',
       note: 'Marketplace price shown in the supplied screenshot; price and availability can change.',
     },
@@ -60,16 +60,16 @@ const page: ProductPage = {
   ],
   coverage: 'limited',
   coverageNote:
-    'The current record is based on the supplied marketplace screenshot only. No manufacturer identity, technical specification or independent review has been established.',
+    'The current record is based on the supplied Widesea marketplace screenshot. Capacities and visible contents are listed, but weight, materials detail and independent durability evidence remain unverified.',
   sources: [
     {
       id: 'listing-screenshot',
-      title: 'Generic G-1set cookware marketplace listing screenshot',
+      title: 'Widesea WSCS-1051 cookware marketplace listing screenshot',
       publisher: 'User-supplied screenshot',
       kind: 'listing',
       relation: 'seller-claim',
       summary:
-        'Screenshot showing the generic cookware listing title, selected G-1set option, A$36.99 price, 4.6-star rating from 59 reviews, 327 sold, and nested aluminium pot and pan with folding green handles. No public URL was supplied.',
+        'Screenshot showing the Widesea WSCS-1051 option at A$56.39, a 4.9-star rating from 40 reviews and 222 sold. It describes an eight-piece set with a 1.3 L pot, 440 ml cup/pot, orange folding handles, burner bracket and utensils; gas tank not included.',
     },
   ],
   positives: [
@@ -84,17 +84,17 @@ const page: ProductPage = {
   ],
   negatives: [
     {
-      text: 'The listing does not establish the set’s actual weight, capacities, coating or included pieces.',
+      text: 'The listing does not establish the set’s actual weight, aluminium alloy, coating or long-term durability.',
       sourceIds: ['listing-screenshot'],
     },
     {
-      text: 'The generic identity makes durability, food-contact finish and replacement support difficult to assess before inspection.',
+      text: 'Food-contact finish, burner compatibility and replacement support remain difficult to assess before inspection.',
       sourceIds: ['listing-screenshot'],
     },
   ],
   watching: [
-    'Exact piece count and whether any cup, cutlery, bag or burner is included.',
-    'Pot and pan capacities and usable cooking area.',
+    'Whether all eight pictured pieces, the storage bag and burner bracket are included.',
+    'Whether the claimed 1.3 L and 440 ml capacities are usable capacities.',
     'Complete carried weight, packed dimensions and handle security.',
     'Aluminium alloy, surface finish or coating, including any flaking or odour when heated.',
     'Ease of cleaning and whether soot or food residue is difficult to remove.',
@@ -102,7 +102,7 @@ const page: ProductPage = {
   ],
   testPlan: [
     'Photograph the delivered set, packaging and any model or material markings.',
-    'Inventory every piece and compare it with the G-1set listing images.',
+    'Inventory every piece and compare it with the WSCS-1051 listing images.',
     'Weigh each piece and the complete packed set; measure packed dimensions.',
     'Measure usable pot and pan capacities with water rather than relying on seller descriptions.',
     'Inspect the interior and exterior finish for coating, burrs, sharp edges or manufacturing defects.',
