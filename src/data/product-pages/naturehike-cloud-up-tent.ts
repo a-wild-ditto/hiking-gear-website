@@ -2,7 +2,7 @@ import type { ProductPage } from './types';
 
 const page: ProductPage = {
   slug: 'naturehike-cloud-up-tent',
-  imageId: 'naturehike-cloud-up',
+  imageId: 'naturehike-cloud-up-australian',
   name: 'Naturehike Cloud Up Tent',
   listingRating: {
     stars: 4.7,

@@ -2,7 +2,7 @@ import type { ProductPage } from './types';
 
 const page: ProductPage = {
   slug: 'naturehike-rock-60-5',
-  imageId: 'naturehike-rock-60-5',
+  imageId: 'naturehike-rock-60-5-australian',
   name: 'Naturehike Rock 60+5L Backpack',
   identityNote:
     'We ordered the black 60 L version from the Naturehike Outdoor Gear Store on AliExpress. That listing quotes about 1.16 kg, which matches the Standard version rather than the heavier Upgraded one, but we will confirm from the label and the scales.',

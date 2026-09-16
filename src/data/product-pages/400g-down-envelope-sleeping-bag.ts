@@ -2,7 +2,7 @@ import type { ProductPage } from './types';
 
 const page: ProductPage = {
   slug: '400g-down-envelope-sleeping-bag',
-  imageId: '400g-down-envelope-sleeping-bag',
+  imageId: '400g-down-envelope-sleeping-bag-australian',
   name: '400 g Down Envelope Sleeping Bag',
   listingRating: {
     stars: 4.9,

@@ -2,7 +2,7 @@ import type { ProductPage } from './types';
 
 const page: ProductPage = {
   slug: 'bisinna-25-10-backpack',
-  imageId: 'bisinna-25-10-backpack',
+  imageId: 'bisinna-25-10-backpack-australian',
   name: 'BISINNA 25+10L Ultralight Backpack',
   identityNote:
     'We ordered the grey version from the BISINNA Global Store on AliExpress. Owner reviews describe the same 25+10L roll-top model, but we couldn’t confirm our listing is identical, including whether it comes with the removable foam back pad.',

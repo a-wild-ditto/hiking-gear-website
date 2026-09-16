@@ -2,7 +2,7 @@ import type { ProductPage } from './types';
 
 const page: ProductPage = {
   slug: 'naturehike-tuye-r3-5',
-  imageId: 'naturehike-tuye-r3-5-mummy',
+  imageId: 'naturehike-tuye-r3-5-australian',
   name: 'Naturehike TuYe R3.5 Inflatable Sleeping Mat',
   listingRating: {
     stars: 4,

@@ -2,7 +2,7 @@ import type { ProductPage } from './types';
 
 const page: ProductPage = {
   slug: 'foil-egg-crate-foam-pad',
-  imageId: 'foil-egg-crate-foam-pad',
+  imageId: 'foil-egg-crate-foam-pad-australian',
   name: 'Foil-Faced Egg-Crate Foam Sleeping Pad',
   identityNote:
     'Unbranded AliExpress pad, ordered in green and black at 186 × 56 × 2 cm. Many factories make this folding design, so reviews of other pads can only be a rough guide.',

@@ -9,7 +9,6 @@ export type Kit = {
   summary: string;
   bestFor: string;
   advantage: string;
-  compromise: string;
   productIds: string[];
 };
 const kitData: Omit<Kit, 'price'>[] = [
@@ -20,8 +19,7 @@ const kitData: Omit<Kit, 'price'>[] = [
     summary:
       'A straightforward first setup that prioritises essentials and accepts a little extra weight.',
     bestFor: 'Mild first overnight hikes',
-    advantage: 'Lowest outlay for a complete, reliable setup',
-    compromise: 'Heavier and bulkier to carry',
+    advantage: 'Lowest outlay for a complete setup that works.',
     productIds: [
       'bisinna-2p',
       'bisinna-bag-18',
@@ -34,21 +32,20 @@ const kitData: Omit<Kit, 'price'>[] = [
     name: 'Value',
     label: 'Our balanced starting point',
     summary:
-      'Spend where it meaningfully reduces bulk and weight while keeping the kit forgiving.',
+      'Insane performance per dollar, curated for the Australian outdoors.',
     bestFor: 'Regular three-season weekends',
-    advantage: 'Noticeably lighter without a big price jump',
-    compromise: 'Not built for cold alpine nights',
+    advantage:
+      'Casual hikers get 80% of the performance of premium equipment for a fraction of the price.',
     productIds: ['cloud-up-1p', 'down-bag-400', 'tuye-r35', 'rock-60-5'],
   },
   {
     id: 'premium',
     name: 'Premium',
     label: 'Lower weight, wider conditions',
-    summary:
-      'More budget directed into the core shelter, sleep system and pack.',
+    summary: 'Seriously good gear for serious hikers.',
     bestFor: 'Frequent hiking and colder trips',
-    advantage: 'Warmest sleep system and lightest carry',
-    compromise: 'Costs the most up front',
+    advantage:
+      'For serious hikers looking for the lightest carry for all terrains and seasons.',
     productIds: ['range-2p', 'alpine-5', 'mat-r55', 'line-45'],
   },
 ];

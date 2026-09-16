@@ -2,7 +2,7 @@ import type { ProductPage } from './types';
 
 const page: ProductPage = {
   slug: 'memory-foam-camping-pillow',
-  imageId: 'memory-foam-camping-pillow',
+  imageId: 'memory-foam-camping-pillow-australian',
   name: 'NIOFEEL Memory-Foam Camping Pillow',
   identityNote:
     'The supplied listing images identify this green pillow as NIOFEEL. It appears to share a design with the HIKEMAN pillow reviewed below, but we have not confirmed identical foam, cover or weight.',

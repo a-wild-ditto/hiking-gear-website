@@ -2,7 +2,7 @@ import type { ProductPage } from './types';
 
 const page: ProductPage = {
   slug: 'bisinna-2-person-tent',
-  imageId: 'bisinna-2-person-tent',
+  imageId: 'bisinna-2-person-tent-australian',
   name: 'BISINNA 2-Person Backpacking Tent',
   identityNote:
     'We ordered the green/camel two-person tent from the BISINNA Global Store on AliExpress. BISINNA sells several 2-person tents under near-identical names; the listing we bought from specifies a 190T polyester fly rather than the 20D nylon version, which matches the tent OutdoorGearLab tested. The listing’s own instruction video is branded BENYUE, a sign this is a factory design sold under more than one name. We will confirm the fabric and weight on arrival.',

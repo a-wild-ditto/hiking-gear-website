@@ -95,7 +95,7 @@ This gives the business a usable decision-engine prototype without hosting appli
 
 ## Deliberately unbuilt
 
-Commerce, inventory, user accounts, saved recommendations, analytics, email capture, customer reviews, real product links and a CMS are outside this validation version.
+Commerce, inventory, user accounts, saved recommendations, analytics, email capture, customer reviews and a CMS are outside this validation version. The site can link to third-party merchant offers or searches, but it has no checkout and does not sell products directly.
 
 ## Placeholder launch checklist
 

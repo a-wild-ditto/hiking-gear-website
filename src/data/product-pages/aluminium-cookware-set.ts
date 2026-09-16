@@ -2,7 +2,7 @@ import type { ProductPage } from './types';
 
 const page: ProductPage = {
   slug: 'aluminium-cookware-set',
-  imageId: 'aluminium-cookware-set-clean',
+  imageId: 'aluminium-cookware-set-australian',
   name: 'Generic Aluminium Cookware Set',
   identityNote:
     'Generic marketplace cookware listing. The selected option is G-1set, shown as nested aluminium cookware with folding green handles. Exact contents and construction need to be checked against the delivered set.',

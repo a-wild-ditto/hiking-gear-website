@@ -2,7 +2,7 @@ import type { ProductPage } from './types';
 
 const page: ProductPage = {
   slug: 'bisinna-1-8kg-sleeping-bag',
-  imageId: 'bisinna-1-8kg-sleeping-bag',
+  imageId: 'bisinna-1-8kg-sleeping-bag-australian',
   name: 'BISINNA 1.8 kg Synthetic Sleeping Bag',
   listingRating: {
     stars: 4.8,
