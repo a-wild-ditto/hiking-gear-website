@@ -18,7 +18,7 @@ const byName = (name: string) =>
   )?.[1].default;
 
 export const slots = {
-  hero: { file: 'blue-mountains-hero' },
+  hero: { file: 'blue-mountains-hero-2x' },
   heroPortrait: { file: 'hero-portrait' },
   kitFeatured: { file: 'kit-value-v4', fallback: 'high-country-camp' },
   kitStarter: { file: 'kit-starter-v4' },
