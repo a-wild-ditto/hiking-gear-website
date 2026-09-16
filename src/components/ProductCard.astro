@@ -69,6 +69,26 @@ const weight = productPage ? 'To be verified' : formatWeight(p!.weight);
       </div>
     </dl>
     {p?.note && <p class="demo-note">{p.note}</p>}
+    {
+      productPage?.listingRating && (
+        <p class="rating-line">
+          <span aria-hidden="true">
+            {productPage.listingRating.stars}★ (
+            {productPage.listingRating.reviews}) on{' '}
+            {productPage.listingRating.merchant}
+            {productPage.listingRating.sold !== undefined &&
+              ` · ${productPage.listingRating.sold} sold`}
+          </span>
+          <span class="sr-only">
+            {productPage.listingRating.stars} out of 5 stars from{' '}
+            {productPage.listingRating.reviews} reviews on{' '}
+            {productPage.listingRating.merchant}
+            {productPage.listingRating.sold !== undefined &&
+              `, ${productPage.listingRating.sold} sold`}
+          </span>
+        </p>
+      )
+    }
     {productPage && <p class="demo-note">Ordered for testing</p>}
   </div>
 </article>

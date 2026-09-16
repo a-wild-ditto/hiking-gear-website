@@ -48,9 +48,9 @@ const page: ProductPage = {
     },
     {
       label: 'Fabric',
-      value: '420D nylon, or polyester (Standard) / polyester + TPU (Upgraded)',
-      status: 'to-verify',
-      note: 'Snowys says 420D nylon; Naturehike’s current page says polyester. We’ll check the label.',
+      value: 'Polyester (polyester + TPU on the Upgraded version)',
+      status: 'manufacturer',
+      note: 'Naturehike’s own page says polyester, so we follow the manufacturer. Snowys lists 420D nylon, and we’ll check the label on arrival.',
       sourceIds: ['snowys', 'naturehike'],
     },
     {
@@ -73,15 +73,15 @@ const page: ProductPage = {
     },
     {
       label: 'Suggested maximum load',
-      value: 'Snowys suggests staying under 18–20 kg',
-      status: 'retailer',
-      note: 'Naturehike publishes no official figure. The AliExpress listing we bought from quotes about 14 kg, but that listing isn’t a public spec sheet we can link to, so treat it as a seller claim rather than a tested limit.',
-      sourceIds: ['snowys'],
+      value: 'About 14 kg stated on the listing we bought from',
+      status: 'seller-claim',
+      note: 'Naturehike publishes no official figure, and Snowys suggests staying under 18–20 kg. Neither is a tested limit. One buyer echoes the 14 kg figure in their review.',
+      sourceIds: ['ali-reviews', 'snowys'],
     },
   ],
   coverage: 'moderate',
   coverageNote:
-    'Specifications are well documented by the brand and an Australian retailer. Independent testing is thin: one self-funded test of what appears to be this design, plus a few blog and video reviews.',
+    'Specifications are well documented by the brand and an Australian retailer. Independent testing is thin: one self-funded test of what appears to be this design, plus a few blog and video reviews. There are also plenty of marketplace reviews, which are useful for spotting patterns but are not independent testing.',
   sources: [
     {
       id: 'stoker',
@@ -94,6 +94,17 @@ const page: ProductPage = {
         'Self-funded, multi-tester review of a Naturehike 60+5L pack. It doesn’t name the Rock or the model code, but the design matches. Measured less volume than claimed, found the shoulder straps uncomfortable quickly and the torso long and fixed, while the fabric did well in abrasion and tear tests.',
       quote:
         'we tested it at 46 Liters in the main compartment and an additional 10 Liters in the large mesh and side pockets',
+    },
+    {
+      id: 'ali-reviews',
+      title: 'Buyer reviews on the AliExpress listing we bought from',
+      publisher: 'AliExpress (Naturehike Outdoor Gear Store)',
+      kind: 'listing',
+      relation: 'exact-product',
+      summary:
+        'Reviews of the black 60 L version we ordered. The overall tone is very positive on value, low weight, capacity and the included rain cover, and several buyers praise the stitching and back padding. Treat them with the usual caution: marketplace reviews skew positive, many say little beyond “great value”, and almost none describe long-term use. The most useful are a buyer who replaced one after the frame broke, a 184 cm buyer on fit, and one repeating the 14 kg limit.',
+      quote:
+        'The frame of the same product I was using previously broke. I repurchased it.',
     },
     {
       id: 'snowys',
@@ -172,6 +183,10 @@ const page: ProductPage = {
       text: 'Rain cover included.',
       sourceIds: ['snowys', 'stoker'],
     },
+    {
+      text: 'Buyers of our exact listing repeatedly call it good value, light for its size and roomy enough for backpacking, and several praise the stitching and back padding.',
+      sourceIds: ['ali-reviews'],
+    },
   ],
   negatives: [
     {
@@ -190,12 +205,17 @@ const page: ProductPage = {
       text: 'Small hip-belt pockets.',
       sourceIds: ['stoker'],
     },
+    {
+      text: 'One buyer replaced their pack after the frame broke, and wished the frame could be bought separately. A single report, but worth watching.',
+      sourceIds: ['ali-reviews'],
+    },
   ],
   watching: [
-    'Real capacity. We’ll measure it rather than repeat the label.',
+    'Real capacity. We’ll measure it rather than repeat the label. Buyers of our listing describe it as roomy, which sits awkwardly against the one independent test that measured about 56 L.',
     'Fit for average and shorter torsos, since the back length can’t be adjusted.',
     'Shoulder comfort after an hour or more with an overnight load.',
     'Which version we received: fabric and weight differ between them.',
+    'Frame durability, after one buyer reported a broken frame on the same pack.',
   ],
   testPlan: [
     'Weigh the pack and rain cover separately.',
@@ -208,6 +228,7 @@ const page: ProductPage = {
     'Assess back ventilation on a warm day.',
     'Test the rain cover in sustained rain.',
     'Inspect mesh pockets and stitching after use.',
+    'Check the frame and its housing for flex or damage after loaded carries.',
   ],
   review: { state: 'ordered' },
   researchedOn: '2026-09-16',

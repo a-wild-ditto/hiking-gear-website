@@ -126,6 +126,28 @@ const breadcrumbSchema = {
                 }
               </dd>
             </div>
+            {
+              p.listingRating && (
+                <div class="listing-rating">
+                  <dt>Listing rating</dt>
+                  <dd>
+                    <span aria-hidden="true">
+                      {p.listingRating.stars}★ from {p.listingRating.reviews}{' '}
+                      reviews ({p.listingRating.merchant})
+                      {p.listingRating.sold !== undefined &&
+                        ` · ${p.listingRating.sold} sold`}
+                    </span>
+                    <span class="sr-only">
+                      {p.listingRating.stars} out of 5 stars from{' '}
+                      {p.listingRating.reviews} reviews on{' '}
+                      {p.listingRating.merchant}
+                      {p.listingRating.sold !== undefined &&
+                        `, ${p.listingRating.sold} sold`}
+                    </span>
+                  </dd>
+                </div>
+              )
+            }
           </dl>
         </div>
       </section>
@@ -147,6 +169,15 @@ const breadcrumbSchema = {
             sources={p.sources}
             sourceNumbers={sourceNumbers}
           />
+          {
+            p.listingRating && (
+              <p class="listing-caveat">
+                Marketplace ratings count buyers who received the item, not
+                testing. Small review counts, incentivised reviews and mixed
+                variants all limit what a star rating tells you.
+              </p>
+            )
+          }
         </section>
         <section class="product-section">
           <div class="section-intro">

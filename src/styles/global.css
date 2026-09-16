@@ -648,6 +648,20 @@ p {
   font-weight: 600;
   overflow-wrap: anywhere;
 }
+.listing-rating dd,
+.rating-line {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.listing-caveat {
+  margin-top: 14px;
+  color: var(--ink-muted);
+  font-size: 0.86rem;
+}
+.rating-line {
+  color: var(--ink-muted);
+  font-size: 0.82rem;
+}
 .product-content {
   max-width: 72ch;
 }

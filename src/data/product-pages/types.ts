@@ -45,7 +45,8 @@ export type Source = {
   id: string;
   title: string;
   publisher: string;
-  url: string;
+  /** Public URL, when one exists. Marketplace listings often have none we can link. */
+  url?: string;
   kind: SourceKind;
   relation: EvidenceRelation;
   /** What the source actually says, in our words. */
@@ -87,6 +88,14 @@ export type ProductPage = {
   /** Flexible role labels, e.g. "Value shelter candidate". Not kit tiers. */
   tags: string[];
   pricePaidAud: number;
+  /** Rating on the marketplace listing we bought from. Context, not evidence. */
+  listingRating?: {
+    stars: number;
+    reviews: number;
+    sold?: number;
+    merchant: string;
+    checkedOn: string;
+  };
   /** One-line positioning for hero, cards and meta description. */
   summary: string;
   metaDescription: string;
