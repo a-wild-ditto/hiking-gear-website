@@ -100,12 +100,6 @@ const breadcrumbSchema = {
             {p.tags.map((tag) => <span>{tag}</span>)}
           </div><h1 id="product-title">{p.name}</h1><p class="lead">
             {p.summary}
-          </p>{
-            p.identityNote && <p class="identity-note">{p.identityNote}</p>
-          }<p class="price-paid">
-            Price we paid: A${p.pricePaidAud.toFixed(2)}
-          </p><p class="small-print">
-            This is what we paid, not a live price.
           </p><dl class="status-block">
             <div><dt>Status</dt><dd>{statusLabel}</dd></div><div>
               <dt>Specs</dt><dd>
@@ -126,28 +120,6 @@ const breadcrumbSchema = {
                 }
               </dd>
             </div>
-            {
-              p.listingRating && (
-                <div class="listing-rating">
-                  <dt>Listing rating</dt>
-                  <dd>
-                    <span aria-hidden="true">
-                      {p.listingRating.stars}★ from {p.listingRating.reviews}{' '}
-                      reviews ({p.listingRating.merchant})
-                      {p.listingRating.sold !== undefined &&
-                        ` · ${p.listingRating.sold} sold`}
-                    </span>
-                    <span class="sr-only">
-                      {p.listingRating.stars} out of 5 stars from{' '}
-                      {p.listingRating.reviews} reviews on{' '}
-                      {p.listingRating.merchant}
-                      {p.listingRating.sold !== undefined &&
-                        `, ${p.listingRating.sold} sold`}
-                    </span>
-                  </dd>
-                </div>
-              )
-            }
           </dl>
         </div>
       </section>
@@ -240,8 +212,27 @@ const breadcrumbSchema = {
         </section>
         <section class="product-section">
           <p class="eyebrow">Research notes</p><h2>Sources</h2><div
-            class="source-grid"
+            class="purchase-record"
           >
+            <h3>Product identity and purchase record</h3>
+            {p.identityNote && <p>{p.identityNote}</p>}
+            <p>
+              We paid A${p.pricePaidAud.toFixed(2)}. This is a historical
+              purchase price, not a live offer.
+            </p>
+            {
+              p.listingRating && (
+                <p>
+                  The marketplace listing showed {p.listingRating.stars} out of
+                  5 from {p.listingRating.reviews} reviews
+                  {p.listingRating.sold !== undefined &&
+                    ` and ${p.listingRating.sold} sold`}{' '}
+                  when checked on {p.listingRating.checkedOn}. Marketplace
+                  ratings are context, not product testing.
+                </p>
+              )
+            }
+          </div><div class="source-grid">
             {
               p.sources
                 .filter((source) => source.kind !== 'video')

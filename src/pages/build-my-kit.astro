@@ -14,6 +14,7 @@ const resultData = Object.fromEntries(
     },
   ]),
 );
+const valueDuoTent = productById['cloud-up-2p'];
 ---
 
 <BaseLayout
@@ -69,7 +70,7 @@ const resultData = Object.fromEntries(
       </div>
     </div>
   </section>
-  <script is:inline define:vars={{ resultData }}>
+  <script is:inline define:vars={{ resultData, valueDuoTent }}>
     const form = document.querySelector('#kit-builder');
     const result = document.querySelector('#result');
     const questions = [...document.querySelectorAll('.question')];
@@ -231,9 +232,23 @@ const resultData = Object.fromEntries(
             : `Your answers point to ${resultData[id].name} rather than the ${requestedKit.name} kit you were viewing.`,
         );
       const kit = resultData[id];
+      const shownProducts =
+        kit.id === 'value' && answers.people === 'two'
+          ? kit.products.map((product) =>
+              product.id === 'cloud-up-1p' ? valueDuoTent : product,
+            )
+          : kit.products;
+      const shownPrice = shownProducts.reduce(
+        (sum, product) => sum + product.price,
+        0,
+      );
+      const shownWeight = shownProducts.reduce(
+        (sum, product) => sum + product.weight,
+        0,
+      );
       const fmtW = (g) =>
         g >= 1000 ? (g / 1000).toFixed(2) + ' kg' : g + ' g';
-      result.innerHTML = `<div class="result-header"><p class="result-kicker">Your match</p><h2>The ${kit.name} kit</h2><p>${kit.summary}</p></div><dl class="figures figures-lg"><div><dt>Est. total</dt><dd>$${kit.price.toLocaleString('en-AU')}</dd></div><div><dt>Approx. weight</dt><dd>${(kit.weight / 1000).toFixed(1)} kg</dd></div><div class="figures-wide"><dt>Suits</dt><dd class="dd-text">${kit.bestFor}</dd></div></dl><div class="reasons"><h3>Why this kit</h3><ul>${reasons.map((r) => `<li>${r}</li>`).join('')}</ul></div><details class="result-products"><summary>What's in the kit (${kit.products.length} items)</summary><ul>${kit.products.map((p) => `<li><span><strong>${p.name}</strong><small>${p.category}, ${fmtW(p.weight)}</small></span><span class="mono">$${p.price}</span></li>`).join('')}</ul></details><div class="actions"><a class="button" href="/starter-kits#${id}">View the ${kit.name} kit</a><button class="button button-secondary" id="restart" type="button">Start again</button></div><p class="demo-note">Products, weights and prices are demonstration data.</p>`;
+      result.innerHTML = `<div class="result-header"><p class="result-kicker">Your match</p><h2>The ${kit.name} kit</h2><p>${kit.summary}</p></div><dl class="figures figures-lg"><div><dt>Est. total</dt><dd>$${shownPrice.toLocaleString('en-AU')}</dd></div><div><dt>Approx. weight</dt><dd>${(shownWeight / 1000).toFixed(1)} kg</dd></div><div class="figures-wide"><dt>Suits</dt><dd class="dd-text">${kit.bestFor}</dd></div></dl><div class="reasons"><h3>Why this kit</h3><ul>${reasons.map((r) => `<li>${r}</li>`).join('')}</ul></div><details class="result-products"><summary>What's in the core kit (${shownProducts.length} items)</summary><ul>${shownProducts.map((p) => `<li><span><strong>${p.name}</strong><small>${p.category}, ${fmtW(p.weight)}</small></span><span class="mono">$${p.price}</span></li>`).join('')}</ul></details><div class="actions"><a class="button" href="/starter-kits#${id}">View the ${kit.name} kit</a><button class="button button-secondary" id="restart" type="button">Start again</button></div><p class="demo-note">Prices are what we paid or saw, not live offers. Cookware and accessories are optional add-ons.</p>`;
       form.hidden = true;
       result.classList.add('active');
       result.focus();

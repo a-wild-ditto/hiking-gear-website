@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Photo from '../components/Photo.astro';
-import { kits, getKitWeight, type Kit } from '../data/kits';
+import { kits, getKitWeight, optionalAddonIds, type Kit } from '../data/kits';
 import { productById, formatWeight } from '../data/catalog';
 const factors: { label: string; value: (k: Kit) => string; mono?: boolean }[] =
   [
@@ -19,6 +19,15 @@ const factors: { label: string; value: (k: Kit) => string; mono?: boolean }[] =
     { label: 'Main advantage', value: (k) => k.advantage },
     { label: 'Main compromise', value: (k) => k.compromise },
   ];
+const optionalAddons = optionalAddonIds.map((id) => productById[id]);
+const imageIdFor = (id: string) =>
+  ({
+    'bisinna-2p': 'bisinna-2-person-tent',
+    'bisinna-bag-18': 'bisinna-1-8kg-sleeping-bag',
+    'cloud-up-1p': 'naturehike-cloud-up',
+    'cloud-up-2p': 'naturehike-cloud-up',
+    'tuye-r35': 'naturehike-tuye-r3-5-mummy',
+  })[id] ?? productById[id].reviewSlug;
 ---
 
 <BaseLayout
@@ -30,15 +39,15 @@ const factors: { label: string; value: (k: Kit) => string; mono?: boolean }[] =
       <div>
         <h1>Starter Kits</h1>
         <p class="lead">
-          Three complete setups for a first overnight. Each trades cost, weight
-          and warmth a little differently.
+          Three core setups for a first overnight. Cooking gear and comfort
+          accessories are optional, so you only carry what your trip needs.
         </p>
         <div class="actions">
           <a class="button" href="/build-my-kit">Build My Kit</a>
         </div>
         <p class="demo-note">
-          Prototype: products, prices and weights are demonstration data. Kits
-          are not for sale.
+          Research prototype: prices are what we paid or saw, not live offers.
+          Kits are recommendations, not products for sale.
         </p>
       </div>
       <div class="page-hero-media">
@@ -150,13 +159,32 @@ const factors: { label: string; value: (k: Kit) => string; mono?: boolean }[] =
                 const p = productById[id];
                 return (
                   <li>
-                    <div class="kit-item-name">
-                      <strong>{p.name}</strong>
-                      <small>{p.goodFor ?? p.summary}</small>
-                    </div>
-                    <span class="kit-item-cat">{p.category}</span>
-                    <span class="mono">{formatWeight(p.weight)}</span>
-                    <span class="mono">${p.price}</span>
+                    {p.kitDetail && p.reviewSlug ? (
+                      <button
+                        class="kit-item-trigger"
+                        type="button"
+                        data-dialog={`kit-product-${p.id}`}
+                        aria-haspopup="dialog"
+                      >
+                        <div class="kit-item-name">
+                          <strong>{p.name}</strong>
+                          <small>{p.goodFor ?? p.summary}</small>
+                        </div>
+                        <span class="kit-item-cat">{p.category}</span>
+                        <span class="mono">{formatWeight(p.weight)}</span>
+                        <span class="mono">${p.price}</span>
+                      </button>
+                    ) : (
+                      <div class="kit-item-static">
+                        <div class="kit-item-name">
+                          <strong>{p.name}</strong>
+                          <small>{p.goodFor ?? p.summary} · Demo product</small>
+                        </div>
+                        <span class="kit-item-cat">{p.category}</span>
+                        <span class="mono">{formatWeight(p.weight)}</span>
+                        <span class="mono">${p.price}</span>
+                      </div>
+                    )}
                   </li>
                 );
               })}
@@ -166,4 +194,111 @@ const factors: { label: string; value: (k: Kit) => string; mono?: boolean }[] =
       }
     </div>
   </section>
+
+  <section class="section optional-addons" aria-labelledby="addons-title">
+    <div class="container">
+      <div class="section-intro">
+        <p class="eyebrow">Add only if useful</p>
+        <h2 id="addons-title">Optional cookware and comfort</h2>
+        <p>
+          These sit outside every kit total. Add them when your meal plan or
+          sleep preferences justify the extra weight.
+        </p>
+      </div>
+      <div class="addon-grid">
+        {
+          optionalAddons.map((p) => (
+            <button
+              class="addon-card"
+              type="button"
+              data-dialog={`kit-product-${p.id}`}
+              aria-haspopup="dialog"
+            >
+              <span class="kit-item-cat">{p.category}</span>
+              <strong>{p.name}</strong>
+              <span>{p.summary}</span>
+              <span class="text-link">See why we recommend it</span>
+            </button>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {
+    [
+      ...new Map(
+        [...kits.flatMap((kit) => kit.productIds), ...optionalAddonIds].map(
+          (id) => [id, productById[id]],
+        ),
+      ).entries(),
+    ]
+      .filter(([, p]) => p.kitDetail && p.reviewSlug)
+      .map(([id, p]) => (
+        <dialog class="kit-product-dialog" id={`kit-product-${id}`}>
+          <button class="dialog-close" type="button" aria-label="Close details">
+            Close
+          </button>
+          <div class="dialog-layout">
+            <div class="dialog-media">
+              <Photo
+                productId={imageIdFor(id)}
+                alt={p.name}
+                sizes="(max-width: 767px) 100vw, 36vw"
+                widths={[480, 800]}
+                label={p.name}
+              />
+            </div>
+            <div class="dialog-copy">
+              <p class="eyebrow">{p.category}</p>
+              <h2>{p.name}</h2>
+              <h3>{p.kitDetail?.headline}</h3>
+              {p.kitDetail?.paragraphs.map((paragraph) => (
+                <p>{paragraph}</p>
+              ))}
+              <ul>
+                {p.kitDetail?.specs.map((spec) => (
+                  <li>{spec}</li>
+                ))}
+              </ul>
+              <p class="dialog-caveat">
+                <strong>Worth knowing:</strong> {p.kitDetail?.caveat}
+              </p>
+              {p.reviewSlug ? (
+                <a class="button" href={`/gear/${p.reviewSlug}/`}>
+                  Read the detailed review
+                </a>
+              ) : (
+                <p class="small-print">
+                  Detailed research page coming after we confirm the exact
+                  listing.
+                </p>
+              )}
+            </div>
+          </div>
+        </dialog>
+      ))
+  }
+
+  <script>
+    const triggers = document.querySelectorAll('[data-dialog]');
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        if (!(trigger instanceof HTMLElement)) return;
+        const dialogId = trigger.dataset.dialog;
+        if (!dialogId) return;
+        const dialog = document.getElementById(dialogId);
+        if (dialog instanceof HTMLDialogElement) dialog.showModal();
+      });
+    });
+    document.querySelectorAll('.kit-product-dialog').forEach((dialog) => {
+      if (!(dialog instanceof HTMLDialogElement)) return;
+      dialog
+        .querySelector('.dialog-close')
+        ?.addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', (event) => {
+        if (event.target === dialog) dialog.close();
+      });
+    });
+  </script>
 </BaseLayout>

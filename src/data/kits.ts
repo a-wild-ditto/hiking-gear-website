@@ -23,12 +23,10 @@ const kitData: Omit<Kit, 'price'>[] = [
     advantage: 'Lowest outlay for a complete, reliable setup',
     compromise: 'Heavier and bulkier to carry',
     productIds: [
-      'ridge-2p',
-      'trail-5',
-      'mat-r3',
-      'trek-55',
-      'cook-basic',
-      'essentials-basic',
+      'bisinna-2p',
+      'bisinna-bag-18',
+      'foil-foam-pad',
+      'bisinna-pack-35',
     ],
   },
   {
@@ -40,14 +38,7 @@ const kitData: Omit<Kit, 'price'>[] = [
     bestFor: 'Regular three-season weekends',
     advantage: 'Noticeably lighter without a big price jump',
     compromise: 'Not built for cold alpine nights',
-    productIds: [
-      'valley-2p',
-      'summit-2',
-      'mat-r4',
-      'path-50',
-      'cook-light',
-      'essentials-light',
-    ],
+    productIds: ['cloud-up-1p', 'down-bag-400', 'tuye-r35', 'rock-60-5'],
   },
   {
     id: 'premium',
@@ -58,14 +49,7 @@ const kitData: Omit<Kit, 'price'>[] = [
     bestFor: 'Frequent hiking and colder trips',
     advantage: 'Warmest sleep system and lightest carry',
     compromise: 'Costs the most up front',
-    productIds: [
-      'range-2p',
-      'alpine-5',
-      'mat-r55',
-      'line-45',
-      'cook-compact',
-      'essentials-plus',
-    ],
+    productIds: ['range-2p', 'alpine-5', 'mat-r55', 'line-45'],
   },
 ];
 export const kits: Kit[] = kitData.map((k) => ({
@@ -78,3 +62,5 @@ export const kitById = Object.fromEntries(kits.map((k) => [k.id, k])) as Record<
 >;
 export const getKitWeight = (kit: Kit) =>
   kit.productIds.reduce((sum, id) => sum + productById[id].weight, 0);
+
+export const optionalAddonIds = ['cookware-aluminium', 'memory-foam-pillow'];

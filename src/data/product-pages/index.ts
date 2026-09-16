@@ -6,6 +6,10 @@ import downBag from './400g-down-envelope-sleeping-bag';
 import nyxiaCover from './nyxia-35l-rain-cover';
 import foamPad from './foil-egg-crate-foam-pad';
 import foamPillow from './memory-foam-camping-pillow';
+import bisinnaSleepingBag from './bisinna-1-8kg-sleeping-bag';
+import cloudUpTent from './naturehike-cloud-up-tent';
+import tuyeMat from './naturehike-tuye-r3-5';
+import aluminiumCookwareSet from './aluminium-cookware-set';
 
 /** Real products with detail pages, in catalogue display order. */
 export const productPages: ProductPage[] = [
@@ -16,6 +20,10 @@ export const productPages: ProductPage[] = [
   bisinnaPack,
   nyxiaCover,
   foamPillow,
+  bisinnaSleepingBag,
+  cloudUpTent,
+  tuyeMat,
+  aluminiumCookwareSet,
 ];
 
 export const productPageBySlug = Object.fromEntries(

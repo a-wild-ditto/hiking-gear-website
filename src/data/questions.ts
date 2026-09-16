@@ -43,7 +43,7 @@ export const questions: Question[] = [
   {
     key: 'budget',
     title: 'What is your budget for the core gear?',
-    hint: 'Core gear is shelter, sleep system, pack and cooking. Clothing is separate.',
+    hint: 'Core gear is shelter, sleep system and pack. Cooking and comfort add-ons are separate.',
     options: [
       ['under-600', 'Under $600'],
       ['600-900', '$600 to $900'],

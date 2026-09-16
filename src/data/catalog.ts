@@ -12,9 +12,287 @@ export type Product = {
   goodFor?: string;
   /** One translated technical figure, e.g. R-value plus what it means. */
   keyFact?: { label: string; meaning: string };
+  /** Detailed research page for real products. */
+  reviewSlug?: string;
+  /** Short, evidence-aware copy used in starter-kit detail dialogs. */
+  kitDetail?: {
+    headline: string;
+    paragraphs: string[];
+    specs: string[];
+    caveat: string;
+  };
 };
 
 export const products: Product[] = [
+  {
+    id: 'bisinna-2p',
+    name: 'BISINNA 2-Person Tent',
+    category: 'Shelter',
+    price: 100,
+    weight: 2160,
+    summary:
+      'A conventional freestanding double-wall tent at a low entry price.',
+    goodFor: 'Budget-focused first overnights',
+    reviewSlug: 'bisinna-2-person-tent',
+    kitDetail: {
+      headline: 'A familiar tent layout for a first overnight',
+      paragraphs: [
+        'This freestanding, double-wall tent uses two crossing poles, two doors and two vestibules. The claimed packed weight is about 2.16 kg.',
+        'That conventional design should be easier for a beginner to understand and pitch than many low-cost alternatives.',
+      ],
+      specs: [
+        'Two-person dome',
+        'Two doors and vestibules',
+        'About 2.16 kg claimed',
+      ],
+      caveat:
+        'The waterproof rating is a seller claim, and a similar polyester version struggled in sustained heavy rain.',
+    },
+  },
+  {
+    id: 'bisinna-bag-18',
+    name: 'BISINNA 1.8 kg Sleeping Bag',
+    category: 'Sleep',
+    price: 60,
+    weight: 1800,
+    summary:
+      'A roomy synthetic bag for mild trips, with an unverified 5°C listing figure.',
+    goodFor: 'Mild nights where price matters most',
+    reviewSlug: 'bisinna-1-8kg-sleeping-bag',
+    keyFact: {
+      label: '5°C listing claim',
+      meaning: 'Not a verified comfort rating',
+    },
+    kitDetail: {
+      headline: 'A simple sleep option for mild nights',
+      paragraphs: [
+        'At a listed 1.8 kg, this is the heavier, straightforward sleeping-bag choice in the kit.',
+        'It makes most sense for mild-weather trips where low cost matters more than compact packing.',
+      ],
+      specs: [
+        'Listed weight: 1.8 kg',
+        'Synthetic insulation',
+        'Roomy rectangular shape',
+      ],
+      caveat:
+        'No EN or ISO temperature test has been identified. Treat 5°C as an unverified limit, not a comfort promise.',
+    },
+  },
+  {
+    id: 'foil-foam-pad',
+    name: 'Foil Egg-Crate Foam Mat',
+    category: 'Sleep',
+    price: 17,
+    weight: 330,
+    summary: 'A simple folding mat that cannot puncture or deflate.',
+    goodFor: 'Reliable, low-cost first trips',
+    reviewSlug: 'foil-egg-crate-foam-pad',
+    kitDetail: {
+      headline: 'Simple, puncture-proof insulation',
+      paragraphs: [
+        'This folding foam mat is listed at 186 × 56 × 2 cm and about 330 g.',
+        'It needs no pump, cannot deflate overnight and trades compact packing for dependable simplicity.',
+      ],
+      specs: [
+        '186 × 56 × 2 cm listed',
+        'About 330 g claimed',
+        'Claimed R-value 2.5',
+      ],
+      caveat:
+        'The R-value is not backed by an ASTM test, and the folded mat is bulky outside a pack.',
+    },
+  },
+  {
+    id: 'bisinna-pack-35',
+    name: 'BISINNA 25+10L Pack',
+    category: 'Packs',
+    price: 48,
+    weight: 580,
+    summary: 'A very light frameless roll-top for an already compact kit.',
+    goodFor: 'Carefully packed lighter loads',
+    reviewSlug: 'bisinna-25-10-backpack',
+    kitDetail: {
+      headline: 'A very light pack for a genuinely light kit',
+      paragraphs: [
+        'This frameless roll-top combines a 25 L body with a claimed 10 L extension and weighs about 580 g.',
+        'It suits a compact kit where every major item is already small and light.',
+      ],
+      specs: [
+        '25 L + 10 L extension',
+        'About 580 g claimed',
+        'Frameless roll-top',
+      ],
+      caveat:
+        'Owner reports suggest comfort falls away around 8–10 kg; that is not a tested load limit.',
+    },
+  },
+  {
+    id: 'cloud-up-1p',
+    name: 'Naturehike Cloud Up 1P',
+    category: 'Shelter',
+    price: 163,
+    weight: 1490,
+    summary: 'The solo option from a well-documented budget tent family.',
+    goodFor: 'Solo hikers prioritising lower carried weight',
+    reviewSlug: 'naturehike-cloud-up-tent',
+    kitDetail: {
+      headline: 'The lower-weight Cloud Up for solo trips',
+      paragraphs: [
+        'The 1P gives one hiker a conventional double-wall shelter without paying for unused floor space.',
+        'Its listing weight is 1.49 kg, although Naturehike publishes different figures for current variants.',
+      ],
+      specs: [
+        'One-person capacity',
+        'Double-wall design',
+        '1.49 kg listing claim',
+      ],
+      caveat:
+        'Cloud Up generations differ in fabric and included weight. Check the detailed review before comparing variants.',
+    },
+  },
+  {
+    id: 'cloud-up-2p',
+    name: 'Naturehike Cloud Up Pro 2P',
+    category: 'Shelter',
+    price: 217,
+    weight: 1750,
+    summary: 'A two-person Cloud Up option for hikers sharing shelter duties.',
+    goodFor: 'Duo trips or solo hikers wanting more room',
+    reviewSlug: 'naturehike-cloud-up-tent',
+    kitDetail: {
+      headline: 'Shared shelter space for two hikers',
+      paragraphs: [
+        'The 2P is the practical Cloud Up choice for two hikers sharing shelter duties.',
+        'It also gives a solo hiker more room, with a higher price and carried weight than the 1P.',
+      ],
+      specs: [
+        'Two-person capacity',
+        'Double-wall design',
+        '1.75 kg listing claim',
+      ],
+      caveat:
+        'Independent reports describe the two-person interior as tight, and current official weights conflict with the listing.',
+    },
+  },
+  {
+    id: 'down-bag-400',
+    name: '400 g Down Envelope Bag',
+    category: 'Sleep',
+    price: 86,
+    weight: 725,
+    summary:
+      'A light down bag candidate with unresolved fill and temperature claims.',
+    goodFor: 'Weight-conscious mild-weather experiments',
+    reviewSlug: '400g-down-envelope-sleeping-bag',
+    kitDetail: {
+      headline: 'Low claimed weight, with important questions attached',
+      paragraphs: [
+        'This rectangular bag is listed with 400 g of goose down fill and a total bag weight around 725 g.',
+        'If those figures prove accurate, it could reduce sleep-system bulk without the usual premium price.',
+      ],
+      specs: [
+        '400 g fill claimed',
+        'About 725 g bag weight',
+        'About 200 × 73 cm',
+      ],
+      caveat:
+        'Fill content and temperature claims conflict across listings. We are not assigning it a temperature rating.',
+    },
+  },
+  {
+    id: 'tuye-r35',
+    name: 'Naturehike TuYe R3.5 Mat',
+    category: 'Sleep',
+    price: 95,
+    weight: 490,
+    summary: 'A compact insulated inflatable mat for broader three-season use.',
+    goodFor: 'Cooler trips and compact packing',
+    reviewSlug: 'naturehike-tuye-r3-5',
+    keyFact: {
+      label: 'R-value 3.5 claimed',
+      meaning: 'Manufacturer rating, test standard unstated',
+    },
+    kitDetail: {
+      headline: 'More ground insulation for cooler trips',
+      paragraphs: [
+        'The mummy version is listed at R3.5, 183 × 58 × 7 cm and about 490 g.',
+        'It offers a much smaller packed size than foam while adding claimed ground insulation for cooler nights.',
+      ],
+      specs: ['R3.5 claimed', '183 × 58 × 7 cm', 'About 490 g claimed'],
+      caveat:
+        'Naturehike does not identify an ASTM test on the product page, and owner measurements vary.',
+    },
+  },
+  {
+    id: 'rock-60-5',
+    name: 'Naturehike Rock 60+5L Pack',
+    category: 'Packs',
+    price: 69,
+    weight: 1160,
+    summary:
+      'A framed, high-volume pack with room for a forgiving first setup.',
+    goodFor: 'Beginners still learning how compactly they pack',
+    reviewSlug: 'naturehike-rock-60-5',
+    kitDetail: {
+      headline: 'Plenty of room without a heavyweight pack',
+      paragraphs: [
+        'The Rock combines a claimed 60+5 L capacity with an aluminium frame and included rain cover.',
+        'Its forgiving volume suits beginners carrying a full overnight setup.',
+      ],
+      specs: ['60+5 L claimed', 'About 1.16 kg listed', 'Frame and rain cover'],
+      caveat:
+        'The back length is fixed and fairly long, and one test measured less usable volume than the label suggests.',
+    },
+  },
+  {
+    id: 'cookware-aluminium',
+    name: 'Aluminium Cookware Set',
+    category: 'Cooking',
+    price: 37,
+    weight: 0,
+    summary: 'A generic nested pot set for simple camp meals and hot drinks.',
+    goodFor: 'Optional cooking setup',
+    reviewSlug: 'aluminium-cookware-set',
+    kitDetail: {
+      headline: 'Straightforward cookware for camp meals',
+      paragraphs: [
+        'This aluminium set covers the basic cooking role without tying the kit to a specialised system.',
+        'It is an optional add-on for hikers who want hot meals or morning coffee.',
+      ],
+      specs: [
+        'Aluminium construction',
+        'Nested multi-piece set',
+        'For basic camp meals',
+      ],
+      caveat:
+        'Weight, capacities, coating and included pieces still need to be confirmed from the exact listing.',
+    },
+  },
+  {
+    id: 'memory-foam-pillow',
+    name: 'Memory-Foam Camping Pillow',
+    category: 'Accessories',
+    price: 19,
+    weight: 500,
+    summary:
+      'A compressible foam pillow for hikers prioritising sleep comfort.',
+    goodFor: 'Optional comfort add-on',
+    reviewSlug: 'memory-foam-camping-pillow',
+    kitDetail: {
+      headline: 'Extra comfort when sleep matters more than grams',
+      paragraphs: [
+        'This compressible pillow uses slow-rebound memory foam with a removable cover.',
+        'It suits beginners who dislike the firmness or movement of inflatable pillows.',
+      ],
+      specs: [
+        'About 38 × 25 × 10 cm',
+        'Slow-rebound memory foam',
+        'Removable cover',
+      ],
+      caveat:
+        'A same-design review puts it near 500 g, and the unbranded unit has not yet been confirmed as identical.',
+    },
+  },
   {
     id: 'ridge-2p',
     name: 'Ridge 2P Shelter',

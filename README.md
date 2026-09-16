@@ -1,6 +1,6 @@
 # Trailwise validation website
 
-Trailwise is a static-first validation website for an Australian beginner hiking gear concept. It combines practical learning content, editable sample starter kits and a transparent rules-based “Build My Kit” questionnaire.
+Trailwise is a static-first validation website for an Australian beginner hiking gear concept. It combines practical learning content, researched starter-kit candidates and a transparent rules-based “Build My Kit” questionnaire.
 
 The brand name and demonstration catalogue are placeholders. The “Bought for testing” product pages describe items purchased with Bush Gums money; they have not been field-tested yet, and their specs carry provenance statuses. No products are offered for sale and no personal information is collected.
 
@@ -61,8 +61,8 @@ colour tokens. Public URL and contact email come from the environment through
 
 - `src/data/product-pages/*.ts` contains one purchased product per file for the “Bought for testing” pages. These products are not yet tested; their specs carry provenance statuses. Offers remain separate in `src/data/offers.ts`.
 - `src/pages/gear/[slug].astro` renders these pages. Product images use the `product-<imageId>` convention in `src/assets/images` when available.
-- `src/data/catalog.ts` contains the unchanged demonstration catalogue, with sample products, categories, prices and weights.
-- `src/data/kits.ts` defines the unchanged demonstration starter kits by product ID.
+- `src/data/catalog.ts` contains both the retained demonstration range and the real product records used by the Starter and Value kits. Prices are historical purchase/listing context, not live offers.
+- `src/data/kits.ts` defines the kits by product ID. Cooking and comfort accessories are separate optional add-ons rather than part of kit totals.
 - `src/pages/build-my-kit.astro` contains the visible questions and deterministic matching rules.
 
 Product claims marked as demo data must be replaced with verified manufacturer information before launch.
