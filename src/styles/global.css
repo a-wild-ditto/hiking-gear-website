@@ -1053,10 +1053,10 @@ p {
   }
 }
 
-/* 3. Kit pair: compact Starter beside featured Value */
-.kit-pair {
+/* 3. Active kits and Premium preview */
+.kit-trio {
   display: grid;
-  grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
+  grid-template-columns: minmax(0, 3fr) minmax(0, 5fr) minmax(0, 3fr);
   gap: clamp(20px, 3vw, 44px);
   align-items: center;
 }
@@ -1113,8 +1113,30 @@ p {
   background: var(--accent);
   border-radius: 2px;
 }
+.premium-coming-soon {
+  display: grid;
+  gap: 16px;
+  align-content: center;
+  padding: clamp(24px, 3vw, 40px);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.premium-coming-soon.compact {
+  align-self: stretch;
+  background: var(--surface-2);
+}
+.premium-coming-soon h3 {
+  font-size: clamp(1.75rem, 1.4rem + 1vw, 2.25rem);
+}
+.premium-coming-soon p {
+  color: var(--ink-muted);
+}
+.premium-coming-soon .text-link {
+  justify-self: start;
+}
 @media (max-width: 1023px) and (min-width: 768px) {
-  .kit-pair {
+  .kit-trio {
     grid-template-columns: 1fr 1fr;
   }
   .kit-feature {
@@ -1123,7 +1145,7 @@ p {
   }
 }
 @media (max-width: 767px) {
-  .kit-pair {
+  .kit-trio {
     grid-template-columns: 1fr;
   }
   .kit-feature {
@@ -1743,8 +1765,20 @@ p {
 .compare {
   width: 100%;
   min-width: 640px;
+  table-layout: fixed;
   border-collapse: collapse;
   text-align: left;
+}
+.compare-label-col {
+  width: 20%;
+}
+.compare-kit-col {
+  width: 40%;
+}
+.compare-drawing {
+  width: min(100%, 360px);
+  height: auto;
+  margin: 0 0 12px;
 }
 .compare th,
 .compare td {
@@ -1771,7 +1805,6 @@ p {
   color: var(--ink-muted);
 }
 .compare tbody th {
-  width: 20%;
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--ink-muted);

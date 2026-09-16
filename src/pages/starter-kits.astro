@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Photo from '../components/Photo.astro';
+import PremiumComingSoon from '../components/PremiumComingSoon.astro';
 import { kits, getKitWeight, optionalAddonIds, type Kit } from '../data/kits';
 import { productById, formatWeight } from '../data/catalog';
 import { offersFor } from '../data/offers';
@@ -35,19 +36,25 @@ const imageIdFor = (id: string) =>
     'memory-foam-pillow': 'memory-foam-camping-pillow-australian',
   })[id] ?? productById[id].reviewSlug;
 const offerFor = (slug?: string) => (slug ? offersFor(slug)[0] : undefined);
+const kitDrawing = (id: string) => `/illustrations/kit-${id}-line.svg`;
+const kitDrawingAlt = (id: string) =>
+  id === 'starter'
+    ? 'Young gum tree with a tent, folded foam mat, sleeping bag and small pack around its base'
+    : 'Mature gum tree with a tent, packed down sleeping bag, inflatable mat and large pack around its base';
 ---
 
 <BaseLayout
   title="Starter hiking kits | Bush Gums"
-  description="Compare two starter hiking kits for a first overnight trip by price, weight and who they suit."
+  description="Compare the Starter and Value three-season hiking kits. Premium is coming soon."
 >
   <header class="page-hero">
     <div class="container page-hero-split">
       <div>
         <h1>Starter Kits</h1>
         <p class="lead">
-          Two core setups for a first overnight. Cooking gear and comfort
-          accessories are optional, so you only carry what your trip needs.
+          Compare two three-season setups for a first overnight. Premium is
+          coming soon; neither current kit is recommended for winter hiking.
+          Cooking gear and comfort accessories remain optional.
         </p>
         <div class="actions">
           <a class="button" href="/build-my-kit">Build My Kit</a>
@@ -75,12 +82,24 @@ const offerFor = (slug?: string) => (slug ? offersFor(slug)[0] : undefined);
       <div class="compare-scroll">
         <table class="compare">
           <caption class="sr-only">Starter kit comparison</caption>
+          <colgroup>
+            <col class="compare-label-col" />
+            <col span="2" class="compare-kit-col" />
+          </colgroup>
           <thead>
             <tr>
               <td></td>
               {
                 kits.map((k) => (
                   <th scope="col" class:list={{ featured: k.id === 'value' }}>
+                    <img
+                      class="compare-drawing"
+                      src={kitDrawing(k.id)}
+                      alt={kitDrawingAlt(k.id)}
+                      width="400"
+                      height="200"
+                      loading="lazy"
+                    />
                     {k.name}
                     {k.id === 'value' && <small>Where most people start</small>}
                   </th>
@@ -116,6 +135,14 @@ const offerFor = (slug?: string) => (slug ? offersFor(slug)[0] : undefined);
               class:list={['compare-card', { featured: k.id === 'value' }]}
               aria-label={`${k.name} kit summary`}
             >
+              <img
+                class="compare-drawing"
+                src={kitDrawing(k.id)}
+                alt={kitDrawingAlt(k.id)}
+                width="400"
+                height="200"
+                loading="lazy"
+              />
               <h3>{k.name}</h3>
               {k.id === 'value' && (
                 <p class="compare-card-note">Where most people start</p>
@@ -199,6 +226,7 @@ const offerFor = (slug?: string) => (slug ? offersFor(slug)[0] : undefined);
           </article>
         ))
       }
+      <PremiumComingSoon />
     </div>
   </section>
 

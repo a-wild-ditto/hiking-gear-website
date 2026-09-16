@@ -19,7 +19,7 @@ const valueDuoTent = productById['cloud-up-2p'];
 
 <BaseLayout
   title="Build My Kit | Bush Gums"
-  description="Answer six quick questions and get a starter hiking kit matched to your trip, budget and priorities."
+  description="Answer six quick questions to find a three-season starter kit, or learn why a winter kit needs more research."
   noindex
 >
   <section class="builder-wrap">
@@ -27,8 +27,8 @@ const valueDuoTent = productById['cloud-up-2p'];
       <div class="builder-intro">
         <h1>Build My Kit</h1>
         <p class="lead">
-          Six quick questions. We match your trip, budget and priorities to one
-          of two starter kits.
+          Six quick questions. We’ll match three-season trips to Starter or
+          Value. Premium is coming soon; neither current kit is for winter.
         </p>
         <p class="small-print">
           No email needed. Your answers stay in your browser.
@@ -86,6 +86,10 @@ const valueDuoTent = productById['cloud-up-2p'];
     if (requestedKit) {
       context.hidden = false;
       context.textContent = `You’re checking whether the ${requestedKit.name} kit suits you. We’ll compare it with your answers.`;
+    } else if (requestedKitId === 'premium') {
+      context.hidden = false;
+      context.textContent =
+        'Premium is coming soon. We’ll check whether one of the current three-season kits fits your trip.';
     }
     let step = 0;
     const params = new URLSearchParams(window.location.search);
@@ -148,6 +152,11 @@ const valueDuoTent = productById['cloud-up-2p'];
     });
     function showResult() {
       const answers = Object.fromEntries(new FormData(form));
+      if (answers.season === 'winter') {
+        result.innerHTML = `<div class="result-header"><p class="result-kicker">No suitable kit yet</p><h2>Premium is coming soon</h2><p>Starter and Value are three-season kits. We’re not recommending either for a winter hike.</p></div><div class="reasons"><h3>Why we’re holding off</h3><p>Winter conditions need trip-specific decisions about shelter, sleeping-bag comfort, ground insulation and weather margins. We haven’t curated or verified a winter-ready kit yet.</p></div><div class="actions"><a class="button" href="/starter-kits#premium">See the Premium update</a><button class="button button-secondary" id="restart" type="button">Start again</button></div>`;
+        finishResult();
+        return;
+      }
       const scores = { starter: 0, value: 0 };
       const add = (kitId, points) => (scores[kitId] += points);
       const budgetRules = {
@@ -172,7 +181,6 @@ const valueDuoTent = productById['cloud-up-2p'];
         }[answers.location],
         {
           'three-season': { value: 3 },
-          winter: { value: 5 },
         }[answers.season],
       ];
       weightedRules.forEach((rule) =>
@@ -187,7 +195,7 @@ const valueDuoTent = productById['cloud-up-2p'];
             : 'value',
         2,
       );
-      let id = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+      const id = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
       const locationReasons = {
         nsw: 'NSW’s varied but often moderate established routes support a versatile first setup.',
         vic: 'Victorian alpine weather favours a little more shelter and sleep-system margin.',
@@ -215,9 +223,7 @@ const valueDuoTent = productById['cloud-up-2p'];
       };
       const reasons = [
         locationReasons[answers.location],
-        answers.season === 'winter'
-          ? 'Neither current kit is a winter system. This result is only a starting point; choose trip-specific shelter, sleep insulation and safety margins before heading out.'
-          : 'Three-season use rewards a balanced weather and warmth margin.',
+        'Three-season use rewards a balanced weather and warmth margin.',
         priorityReasons[answers.priority],
         answers.people === 'two'
           ? 'Two hikers can share the shelter load and interior space.'
@@ -248,6 +254,9 @@ const valueDuoTent = productById['cloud-up-2p'];
       const fmtW = (g) =>
         g >= 1000 ? (g / 1000).toFixed(2) + ' kg' : g + ' g';
       result.innerHTML = `<div class="result-header"><p class="result-kicker">Your match</p><h2>The ${kit.name} kit</h2><p>${kit.summary}</p></div><dl class="figures figures-lg"><div><dt>Est. total</dt><dd>$${shownPrice.toLocaleString('en-AU')}</dd></div><div><dt>Approx. weight</dt><dd>${(shownWeight / 1000).toFixed(1)} kg</dd></div><div class="figures-wide"><dt>Suits</dt><dd class="dd-text">${kit.bestFor}</dd></div></dl><div class="reasons"><h3>Why this kit</h3><ul>${reasons.map((r) => `<li>${r}</li>`).join('')}</ul></div><details class="result-products"><summary>What's in the core kit (${shownProducts.length} items)</summary><ul>${shownProducts.map((p) => `<li><span><strong>${p.name}</strong><small>${p.category}, ${fmtW(p.weight)}</small></span><span class="mono">$${p.price}</span></li>`).join('')}</ul></details><div class="actions"><a class="button" href="/starter-kits#${id}">View the ${kit.name} kit</a><button class="button button-secondary" id="restart" type="button">Start again</button></div><p class="demo-note">Prices are what we paid or saw, not live offers. Cookware and accessories are optional add-ons.</p>`;
+      finishResult();
+    }
+    function finishResult() {
       form.hidden = true;
       result.classList.add('active');
       result.focus();

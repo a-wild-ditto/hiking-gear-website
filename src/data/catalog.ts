@@ -313,15 +313,6 @@ export const products: Product[] = [
       'A lighter shelter option that keeps setup simple and gives useful headroom.',
   },
   {
-    id: 'range-2p',
-    name: 'Range 2P Shelter',
-    category: 'Shelter',
-    price: 329,
-    weight: 1280,
-    summary:
-      'A lower-weight demo shelter for hikers putting more budget into pack weight.',
-  },
-  {
     id: 'trail-5',
     name: 'Trail 5° Sleeping Bag',
     category: 'Sleep',
@@ -337,16 +328,6 @@ export const products: Product[] = [
     price: 179,
     weight: 970,
     summary: 'A lighter three-season demo option with more warmth allowance.',
-    note: 'Temperature figures are demo data, not tested ratings.',
-  },
-  {
-    id: 'alpine-5',
-    name: 'Alpine -5° Sleeping Bag',
-    category: 'Sleep',
-    price: 259,
-    weight: 1120,
-    summary:
-      'A winter-oriented placeholder showing how colder trips change a budget.',
     note: 'Temperature figures are demo data, not tested ratings.',
   },
   {
@@ -368,15 +349,6 @@ export const products: Product[] = [
     note: 'R-value is demo data, not a tested rating.',
   },
   {
-    id: 'mat-r55',
-    name: 'AlpineMat R5.5',
-    category: 'Sleep',
-    price: 149,
-    weight: 510,
-    summary: 'A higher-insulation demo mat for colder-weather kit choices.',
-    note: 'R-value is demo data, not a tested rating.',
-  },
-  {
     id: 'trek-55',
     name: 'Trek 55 Pack',
     category: 'Packs',
@@ -392,14 +364,6 @@ export const products: Product[] = [
     price: 219,
     weight: 1190,
     summary: 'A lighter all-round pack with sensible room for first-trip gear.',
-  },
-  {
-    id: 'line-45',
-    name: 'Line 45 Pack',
-    category: 'Packs',
-    price: 299,
-    weight: 920,
-    summary: 'A lower-weight placeholder for more deliberate packers.',
   },
   {
     id: 'cook-basic',
@@ -454,7 +418,6 @@ export const products: Product[] = [
 const details: Record<string, Pick<Product, 'goodFor' | 'keyFact'>> = {
   'ridge-2p': { goodFor: 'First trips and budget-conscious hikers' },
   'valley-2p': { goodFor: 'Regular weekends with a friend' },
-  'range-2p': { goodFor: 'Hikers ready to carry less' },
   'trail-5': {
     goodFor: 'Summer and mild nights',
     keyFact: { label: 'Comfort 5°C', meaning: 'Warm-weather trips' },
@@ -462,10 +425,6 @@ const details: Record<string, Pick<Product, 'goodFor' | 'keyFact'>> = {
   'summit-2': {
     goodFor: 'Most three-season trips',
     keyFact: { label: 'Comfort 2°C', meaning: 'Cool spring and autumn nights' },
-  },
-  'alpine-5': {
-    goodFor: 'Alpine and colder trips',
-    keyFact: { label: 'Comfort -5°C', meaning: 'Frosty alpine nights' },
   },
   'mat-r3': {
     goodFor: 'Mild first overnights',
@@ -478,13 +437,8 @@ const details: Record<string, Pick<Product, 'goodFor' | 'keyFact'>> = {
       meaning: 'Suitable for cool three-season trips',
     },
   },
-  'mat-r55': {
-    goodFor: 'Cold ground and shoulder seasons',
-    keyFact: { label: 'R-value 5.5', meaning: 'Suitable for cold nights' },
-  },
   'trek-55': { goodFor: 'Bulkier budget gear' },
   'path-50': { goodFor: 'Most first overnight kits' },
-  'line-45': { goodFor: 'Compact, lighter kits' },
   'cook-basic': { goodFor: 'Hot dinners and a morning coffee' },
   'cook-light': { goodFor: 'Saving bulk in a lighter kit' },
   'cook-compact': { goodFor: 'Weight-conscious packers' },

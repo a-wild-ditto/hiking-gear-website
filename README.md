@@ -78,7 +78,7 @@ Astro renders the entire catalogue and content layer at build time. The only mea
 - Budget provides the strongest initial weighting between Starter and Value.
 - Cost, comfort and lower-weight priorities each add distinct weights.
 - Every location adds a documented condition-based weighting.
-- Winter answers retain the two-tier match but add a clear warning that neither current kit is a winter system.
+- Winter answers stop before kit scoring and show Premium as coming soon; neither Starter nor Value is recommended for winter hiking.
 - Experience and group size influence both scoring and the explanation.
 - A kit-link query is retained and compared with the questionnaire result.
 
