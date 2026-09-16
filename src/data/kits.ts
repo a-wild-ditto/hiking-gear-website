@@ -18,7 +18,7 @@ const kitData: Omit<Kit, 'price'>[] = [
     label: 'Keep the spend sensible',
     summary:
       'A straightforward first setup that prioritises essentials and accepts a little extra weight.',
-    bestFor: 'Mild first overnight hikes',
+    bestFor: "Exploring the bush shouldn't break the bank.",
     advantage: 'Lowest outlay for a complete setup that works.',
     productIds: [
       'bisinna-2p',
@@ -31,8 +31,7 @@ const kitData: Omit<Kit, 'price'>[] = [
     id: 'value',
     name: 'Value',
     label: 'Our balanced starting point',
-    summary:
-      'Insane performance per dollar, curated for the Australian outdoors.',
+    summary: 'The best value gear curated to suit the Australian outdoors',
     bestFor: 'Regular three-season weekends',
     advantage:
       'Casual hikers get 80% of the performance of premium equipment for a fraction of the price.',
