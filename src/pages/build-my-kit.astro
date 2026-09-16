@@ -28,7 +28,7 @@ const valueDuoTent = productById['cloud-up-2p'];
         <h1>Build My Kit</h1>
         <p class="lead">
           Six quick questions. We match your trip, budget and priorities to one
-          of three starter kits.
+          of two starter kits.
         </p>
         <p class="small-print">
           No email needed. Your answers stay in your browser.
@@ -148,31 +148,31 @@ const valueDuoTent = productById['cloud-up-2p'];
     });
     function showResult() {
       const answers = Object.fromEntries(new FormData(form));
-      const scores = { starter: 0, value: 0, premium: 0 };
+      const scores = { starter: 0, value: 0 };
       const add = (kitId, points) => (scores[kitId] += points);
       const budgetRules = {
         'under-600': ['starter', 5],
         '600-900': ['value', 5],
-        '900-1300': ['premium', 4],
-        '1300+': ['premium', 5],
+        '900-1300': ['value', 4],
+        '1300+': ['value', 5],
       };
       add(...budgetRules[answers.budget]);
       const weightedRules = [
         {
           'lowest-cost': { starter: 3, value: 1 },
-          comfort: { value: 3, premium: 2 },
-          lightweight: { value: 2, premium: 3 },
+          comfort: { value: 4 },
+          lightweight: { value: 5 },
         }[answers.priority],
         {
           nsw: { starter: 2, value: 1 },
-          vic: { value: 2, premium: 1 },
-          tasmania: { premium: 3, value: 1 },
+          vic: { value: 3 },
+          tasmania: { value: 3 },
           queensland: { starter: 2, value: 1 },
           other: { value: 2 },
         }[answers.location],
         {
-          'three-season': { value: 3, premium: 1 },
-          winter: { premium: 10 },
+          'three-season': { value: 3 },
+          winter: { value: 5 },
         }[answers.season],
       ];
       weightedRules.forEach((rule) =>
@@ -184,16 +184,15 @@ const valueDuoTent = productById['cloud-up-2p'];
           ? 'starter'
           : answers.experience === 'few'
             ? 'value'
-            : 'premium',
+            : 'value',
         2,
       );
       let id = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
-      if (answers.season === 'winter') id = 'premium';
       const locationReasons = {
         nsw: 'NSW’s varied but often moderate established routes support a versatile first setup.',
         vic: 'Victorian alpine weather favours a little more shelter and sleep-system margin.',
         tasmania:
-          'Tasmania’s exposed, changeable conditions favour the strongest weather margin in the sample range.',
+          'Tasmania’s exposed, changeable conditions favour the greater margin of the two current kits.',
         queensland:
           'Queensland’s warmer conditions keep the recommendation focused on ventilation and value.',
         other:
@@ -212,12 +211,12 @@ const valueDuoTent = productById['cloud-up-2p'];
           'For a first overnight, the scoring favours straightforward, forgiving gear.',
         few: 'With a few hikes completed, the scoring balances value with lower bulk and weight.',
         experienced:
-          'Your experience supports the more specialised, weight-conscious option.',
+          'Your experience supports the lighter, more performance-focused Value option.',
       };
       const reasons = [
         locationReasons[answers.location],
         answers.season === 'winter'
-          ? 'Winter forces the warmest sample system, even when it exceeds the selected budget.'
+          ? 'Neither current kit is a winter system. This result is only a starting point; choose trip-specific shelter, sleep insulation and safety margins before heading out.'
           : 'Three-season use rewards a balanced weather and warmth margin.',
         priorityReasons[answers.priority],
         answers.people === 'two'

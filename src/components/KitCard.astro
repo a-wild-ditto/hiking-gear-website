@@ -8,10 +8,8 @@ const { kit } = Astro.props as { kit: Kit };
 <article class="kit-row">
   <div class="kit-row-media">
     <Photo
-      slot={kit.id === 'starter' ? 'kitStarter' : 'kitPremium'}
-      alt={kit.id === 'starter'
-        ? 'BISINNA two-person tent with the Starter kit arranged at a Blue Mountains campsite'
-        : 'A compact tent on an alpine plateau among snow gums'}
+      slot="kitStarter"
+      alt="BISINNA two-person tent with the Starter kit arranged at a Blue Mountains campsite"
       sizes="(max-width: 767px) 100vw, 24vw"
       widths={[400, 700]}
       label={`${kit.name} kit`}

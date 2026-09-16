@@ -75,10 +75,10 @@ Guide cards are listed in `src/data/guides.ts`. The four guide pages live in `sr
 
 Astro renders the entire catalogue and content layer at build time. The only meaningful client JavaScript is the recommender. Its answers stay in the browser and the matching rules are intentionally readable:
 
-- Budget provides the strongest initial tier weighting.
+- Budget provides the strongest initial weighting between Starter and Value.
 - Cost, comfort and lower-weight priorities each add distinct weights.
 - Every location adds a documented condition-based weighting.
-- Winter always selects the warmest demo tier and explains the budget conflict.
+- Winter answers retain the two-tier match but add a clear warning that neither current kit is a winter system.
 - Experience and group size influence both scoring and the explanation.
 - A kit-link query is retained and compared with the questionnaire result.
 

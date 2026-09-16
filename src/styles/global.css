@@ -1053,10 +1053,10 @@ p {
   }
 }
 
-/* 3. Kit trio: compact sides, featured centre */
-.kit-trio {
+/* 3. Kit pair: compact Starter beside featured Value */
+.kit-pair {
   display: grid;
-  grid-template-columns: minmax(0, 3fr) minmax(0, 5fr) minmax(0, 3fr);
+  grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
   gap: clamp(20px, 3vw, 44px);
   align-items: center;
 }
@@ -1114,7 +1114,7 @@ p {
   border-radius: 2px;
 }
 @media (max-width: 1023px) and (min-width: 768px) {
-  .kit-trio {
+  .kit-pair {
     grid-template-columns: 1fr 1fr;
   }
   .kit-feature {
@@ -1123,7 +1123,7 @@ p {
   }
 }
 @media (max-width: 767px) {
-  .kit-trio {
+  .kit-pair {
     grid-template-columns: 1fr;
   }
   .kit-feature {

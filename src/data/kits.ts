@@ -1,5 +1,5 @@
 import { productById } from './catalog';
-export type KitId = 'starter' | 'value' | 'premium';
+export type KitId = 'starter' | 'value';
 export type Kit = {
   id: KitId;
   name: string;
@@ -37,16 +37,6 @@ const kitData: Omit<Kit, 'price'>[] = [
     advantage:
       'Casual hikers get 80% of the performance of premium equipment for a fraction of the price.',
     productIds: ['cloud-up-1p', 'down-bag-400', 'tuye-r35', 'rock-60-5'],
-  },
-  {
-    id: 'premium',
-    name: 'Premium',
-    label: 'Lower weight, wider conditions',
-    summary: 'Seriously good gear for serious hikers.',
-    bestFor: 'Frequent hiking and colder trips',
-    advantage:
-      'For serious hikers looking for the lightest carry for all terrains and seasons.',
-    productIds: ['range-2p', 'alpine-5', 'mat-r55', 'line-45'],
   },
 ];
 export const kits: Kit[] = kitData.map((k) => ({
