@@ -64,7 +64,7 @@ const page: ProductPage = {
     },
     {
       id: 'banggood',
-      title: 'HIKEMAN Soft Slow Rebound Memory Foam Pillow — reviews',
+      title: 'HIKEMAN Soft Slow Rebound Memory Foam Pillow, reviews',
       publisher: 'Banggood marketplace',
       url: 'https://usa.banggood.com/HIKEMAN-Soft-Slow-Rebound-Memory-Foam-Pillow-Outdoor-Camping-Travel-Cervical-Pillow-Portable-NoonBreak-Pillow-Neck-Support-Pillow-Comfortable-Sleeping-Pillow-reviews-p2026535.html',
       kind: 'listing',
@@ -92,7 +92,7 @@ const page: ProductPage = {
       sourceIds: ['adventurekit', 'banggood'],
     },
     {
-      text: 'No inflating — ready to use once it expands.',
+      text: 'No inflating, ready to use once it expands.',
       sourceIds: ['adventurekit'],
     },
     {

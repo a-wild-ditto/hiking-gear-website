@@ -7,7 +7,7 @@ const {
   product: p,
   productPage,
   href,
-  priceLabel = 'Approx. price',
+  priceLabel = 'What we paid',
 } = Astro.props as {
   product?: Product;
   productPage?: ProductPage;
@@ -19,8 +19,17 @@ const summary = productPage?.summary ?? p?.summary ?? '';
 const imageId = productPage?.imageId ?? p?.id;
 const price = productPage
   ? `A$${productPage.pricePaidAud.toFixed(2)}`
-  : `$${p?.price}`;
-const weight = productPage ? 'To be verified' : formatWeight(p!.weight);
+  : `A$${p?.price}`;
+const weight = formatWeight(p?.carriedWeightGrams);
+const evidence = productPage
+  ? productPage.review.state === 'published'
+    ? 'Field review published'
+    : 'Field test pending'
+  : p?.weightStatus === 'seller-claim'
+    ? 'Seller claim'
+    : p?.weightStatus === 'unknown'
+      ? 'Weight to verify'
+      : 'Listed weight';
 ---
 
 <article class="product-card">
@@ -30,65 +39,58 @@ const weight = productPage ? 'To be verified' : formatWeight(p!.weight);
         <a href={href} tabindex="-1" aria-hidden="true">
           <Photo
             productId={imageId}
-            alt={productPage ? name : `Placeholder photo of the ${name}`}
+            alt={name}
             sizes="(max-width: 767px) 96px, 300px"
             widths={[200, 400, 640]}
-            label={name}
           />
         </a>
       ) : (
         <Photo
           productId={imageId}
-          alt={productPage ? name : `Placeholder photo of the ${name}`}
+          alt={name}
           sizes="(max-width: 767px) 96px, 300px"
           widths={[200, 400, 640]}
-          label={name}
         />
       )
     }
   </div>
   <div class="product-body">
+    <p class="product-status">{productPage?.tags[0] ?? p?.category}</p>
     <h3>{href ? <a href={href}>{name}</a> : name}</h3>
-    {p?.goodFor && <p class="product-for">Good for: {p.goodFor}</p>}
-    {productPage && <p class="product-for">{productPage.tags[0]}</p>}
     <p>{summary}</p>
+    {p?.goodFor && <p class="product-for">Good for: {p.goodFor}</p>}
     {
       p?.keyFact && (
         <p class="product-fact">
-          <strong>{p.keyFact.label}</strong>
-          <span>{p.keyFact.meaning}</span>
+          <>
+            <strong>{p.keyFact.label}</strong>
+            <span>{p.keyFact.meaning}</span>
+          </>
         </p>
       )
     }
     <dl class="figures">
-      <div>
-        <dt>{priceLabel}</dt><dd>{price}</dd>
-      </div>
-      <div>
-        <dt>Weight</dt><dd>{weight}</dd>
-      </div>
+      <div><dt>{priceLabel}</dt><dd>{price}</dd></div>
+      {
+        !productPage && (
+          <div>
+            <>
+              <dt>Carried weight</dt>
+              <dd>{weight}</dd>
+            </>
+          </div>
+        )
+      }
     </dl>
-    {p?.note && <p class="demo-note">{p.note}</p>}
+    <p class="small-print">
+      {evidence}{productPage && `, researched ${productPage.researchedOn}`}
+    </p>
     {
-      productPage?.listingRating && (
-        <p class="rating-line">
-          <span aria-hidden="true">
-            {productPage.listingRating.stars}★ (
-            {productPage.listingRating.reviews}) on{' '}
-            {productPage.listingRating.merchant}
-            {productPage.listingRating.sold !== undefined &&
-              ` · ${productPage.listingRating.sold} sold`}
-          </span>
-          <span class="sr-only">
-            {productPage.listingRating.stars} out of 5 stars from{' '}
-            {productPage.listingRating.reviews} reviews on{' '}
-            {productPage.listingRating.merchant}
-            {productPage.listingRating.sold !== undefined &&
-              `, ${productPage.listingRating.sold} sold`}
-          </span>
-        </p>
+      href && (
+        <a class="text-link" href={href}>
+          See our research
+        </a>
       )
     }
-    {productPage && <p class="demo-note">Ordered for testing</p>}
   </div>
 </article>

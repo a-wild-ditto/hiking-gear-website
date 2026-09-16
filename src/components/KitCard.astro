@@ -1,33 +1,42 @@
 ---
 import { getKitWeight, type Kit } from '../data/kits';
 import Photo from './Photo.astro';
-// Compact kit row, used beside the featured kit on the homepage.
-const { kit } = Astro.props as { kit: Kit };
+
+const { kit, featured = false } = Astro.props as {
+  kit: Kit;
+  featured?: boolean;
+};
 ---
 
-<article class="kit-row">
-  <div class="kit-row-media">
+<article class:list={['kit-card', { featured }]} id={kit.id}>
+  <div class="kit-card-media">
     <Photo
-      slot="kitStarter"
-      alt="BISINNA two-person tent with the Starter kit arranged at a Blue Mountains campsite"
-      sizes="(max-width: 767px) 100vw, 24vw"
-      widths={[400, 700]}
-      label={`${kit.name} kit`}
+      slot={kit.id === 'value' ? 'kitFeatured' : 'kitStarter'}
+      alt={`${kit.name} core overnight kit at an Australian campsite`}
+      sizes="(max-width: 767px) 100vw, 42vw"
+      widths={[480, 800]}
     />
   </div>
-  <div class="kit-row-head">
+  <div class="kit-card-body">
+    <p class="eyebrow">{kit.label}</p>
     <h3>{kit.name}</h3>
-    <p>{kit.bestFor}</p>
+    <p>{kit.summary}</p>
+    <dl class="figures figures-lg">
+      <div>
+        <dt>Recorded core-kit total</dt><dd>
+          A${kit.price.toLocaleString('en-AU')}
+        </dd>
+      </div><div>
+        <dt>Estimated carried weight</dt><dd>
+          {(getKitWeight(kit) / 1000).toFixed(2)} kg
+        </dd>
+      </div>
+    </dl>
+    <a class="button" href={`/starter-kits#${kit.id}`}
+      >View the {kit.name} kit</a
+    >
+    <p class="small-print">
+      Prices are recorded context, not live offers. Mild-weather shortlist only.
+    </p>
   </div>
-  <dl class="figures">
-    <div>
-      <dt>Est. total</dt><dd>${kit.price.toLocaleString('en-AU')}</dd>
-    </div>
-    <div>
-      <dt>Approx. weight</dt><dd>{(getKitWeight(kit) / 1000).toFixed(1)} kg</dd>
-    </div>
-  </dl>
-  <a class="text-link" href={`/starter-kits#${kit.id}`}
-    >View the {kit.name} kit<span class="sr-only"> contents</span></a
-  >
 </article>

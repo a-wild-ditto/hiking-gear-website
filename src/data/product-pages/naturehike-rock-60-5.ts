@@ -16,7 +16,7 @@ const page: ProductPage = {
   question:
     'Does a ~$70 framed pack from an established brand carry an overnight load well, and is the capacity as big as the label says?',
   whyWeChoseIt: [
-    'Beginners often buy a pack last and cheaply, then find it is the thing that hurts on the trail. Naturehike is an established Chinese outdoor brand with a real catalogue and Australian stockists, so this isn’t an anonymous product. The Rock has an aluminium internal frame, a padded hip belt and an included rain cover, and it is listed at roughly 1.2 kg — all at a price well below most framed packs.',
+    'Beginners often buy a pack last and cheaply, then find it is the thing that hurts on the trail. Naturehike is an established Chinese outdoor brand with a real catalogue and Australian stockists, so this isn’t an anonymous product. The Rock has an aluminium internal frame, a padded hip belt and an included rain cover, and it is listed at roughly 1.2 kg, all at a price well below most framed packs.',
     'The catch is that a number on a label doesn’t tell you how a pack carries. One independent test of this design measured noticeably less space than advertised, and several people mention a fixed, fairly long back length and narrow shoulder straps. Those are exactly the things a new hiker can’t judge from a listing.',
   ],
   specs: [
@@ -61,7 +61,7 @@ const page: ProductPage = {
     },
     {
       label: 'Back length',
-      value: 'Fixed, about 54–55 cm — not adjustable',
+      value: 'Fixed, about 54–55 cm, not adjustable',
       status: 'manufacturer',
       sourceIds: ['naturehike', 'stoker'],
     },

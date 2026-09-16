@@ -4,51 +4,53 @@ import { kits, getKitWeight } from '../data/kits';
 import { productById } from '../data/catalog';
 import { questions } from '../data/questions';
 import QuestionStep from '../components/QuestionStep.astro';
+
 const resultData = Object.fromEntries(
-  kits.map((k) => [
-    k.id,
+  kits.map((kit) => [
+    kit.id,
     {
-      ...k,
-      weight: getKitWeight(k),
-      products: k.productIds.map((id) => productById[id]),
+      id: kit.id,
+      name: kit.name,
+      summary: kit.summary,
+      bestFor: kit.bestFor,
+      price: kit.price,
+      weight: getKitWeight(kit),
+      products: kit.productIds.map((id) => productById[id]),
     },
   ]),
 );
-const valueDuoTent = productById['cloud-up-2p'];
 ---
 
 <BaseLayout
   title="Build My Kit | Bush Gums"
-  description="Answer six quick questions to find a three-season starter kit, or learn why a winter kit needs more research."
+  description="Answer six quick questions to compare the Starter and Value core hiking kits."
   noindex
 >
   <section class="builder-wrap">
     <div class="container builder">
       <div class="builder-intro">
-        <h1>Build My Kit</h1>
+        <p class="eyebrow">A quick starting point</p><h1>Build My Kit</h1>
         <p class="lead">
-          Six quick questions. We’ll match three-season trips to Starter or
-          Value. Premium is coming soon; neither current kit is for winter.
+          Six questions to compare the Starter and Value shortlists for a
+          mild-weather overnight.
         </p>
         <p class="small-print">
           No email needed. Your answers stay in your browser.
         </p>
-        <p id="kit-context" class="kit-context" hidden></p>
         <p class="demo-note">
-          Prototype: recommendations are illustrative, not product or safety
-          advice.
+          This is a rules-based guide, not personalised hiking or safety advice.
         </p>
       </div>
       <div class="builder-panel">
-        <form id="kit-builder">
+        <form id="kit-builder" aria-label="Build My Kit questionnaire">
           <div class="progress" aria-hidden="true"><span></span></div>
           <p id="step-label" class="sr-only" aria-live="polite">
             Question 1 of {questions.length}
           </p>
           {
-            questions.map((q, index) => (
+            questions.map((question, index) => (
               <QuestionStep
-                question={q}
+                question={question}
                 index={index}
                 total={questions.length}
                 active={index === 0}
@@ -70,81 +72,62 @@ const valueDuoTent = productById['cloud-up-2p'];
       </div>
     </div>
   </section>
-  <script is:inline define:vars={{ resultData, valueDuoTent }}>
+  <script is:inline define:vars={{ resultData }}>
     const form = document.querySelector('#kit-builder');
     const result = document.querySelector('#result');
-    const questions = [...document.querySelectorAll('.question')];
+    const steps = [...document.querySelectorAll('.question')];
     const next = document.querySelector('#next');
     const back = document.querySelector('#back');
     const progress = document.querySelector('.progress span');
     const label = document.querySelector('#step-label');
-    const context = document.querySelector('#kit-context');
-    const requestedKitId = new URLSearchParams(window.location.search).get(
-      'kit',
-    );
-    const requestedKit = resultData[requestedKitId];
-    if (requestedKit) {
-      context.hidden = false;
-      context.textContent = `You’re checking whether the ${requestedKit.name} kit suits you. We’ll compare it with your answers.`;
-    } else if (requestedKitId === 'premium') {
-      context.hidden = false;
-      context.textContent =
-        'Premium is coming soon. We’ll check whether one of the current three-season kits fits your trip.';
-    }
     let step = 0;
-    const params = new URLSearchParams(window.location.search);
-    questions.forEach((q, i) => {
-      const value = params.get(q.dataset.key);
-      const input =
-        value && q.querySelector(`input[value="${CSS.escape(value)}"]`);
-      if (input) {
-        input.checked = true;
-        if (step === i) step = i + 1;
-      }
-    });
-    if (step >= questions.length) step = questions.length - 1;
-    const currentInput = () => questions[step].querySelector('input:checked');
-    function update() {
-      questions.forEach((q, i) => q.classList.toggle('active', i === step));
+    const selected = () => steps[step].querySelector('input:checked');
+    const update = () => {
+      steps.forEach((question, index) =>
+        question.classList.toggle('active', index === step),
+      );
       back.hidden = step === 0;
-      next.textContent =
-        step === questions.length - 1 ? 'Show my kit' : 'Continue';
-      next.disabled = !currentInput();
-      progress.style.width = `${((step + 1) / questions.length) * 100}%`;
-      label.textContent = `Question ${step + 1} of ${questions.length}`;
-    }
+      next.textContent = step === steps.length - 1 ? 'Show my kit' : 'Continue';
+      next.disabled = !selected();
+      progress.style.width = `${((step + 1) / steps.length) * 100}%`;
+      label.textContent = `Question ${step + 1} of ${steps.length}`;
+    };
     update();
-    // Auto-advance after a pointer or tap selection. Keyboard users keep
-    // arrow-key browsing inside a question and confirm with Continue.
     let pointerPick = false;
     let advanceTimer;
-    form.addEventListener('pointerdown', () => (pointerPick = true));
-    form.addEventListener('keydown', () => (pointerPick = false));
+    form.addEventListener('pointerdown', () => {
+      pointerPick = true;
+    });
+    form.addEventListener('keydown', () => {
+      pointerPick = false;
+    });
     form.addEventListener('change', () => {
       next.disabled = false;
       if (!pointerPick) return;
       pointerPick = false;
       clearTimeout(advanceTimer);
-      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      advanceTimer = setTimeout(() => next.click(), reduce ? 0 : 280);
+      advanceTimer = setTimeout(
+        () => next.click(),
+        matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 280,
+      );
     });
     back.addEventListener('click', () => {
       clearTimeout(advanceTimer);
-      step--;
+      step -= 1;
       update();
       (
-        questions[step].querySelector('input:checked') ||
-        questions[step].querySelector('input')
+        steps[step].querySelector('input:checked') ||
+        steps[step].querySelector('input')
       ).focus();
     });
     next.addEventListener('click', () => {
-      if (!currentInput()) return;
-      if (step < questions.length - 1) {
-        step++;
+      if (!selected()) return;
+      if (step < steps.length - 1) {
+        step += 1;
         update();
         (
-          questions[step].querySelector('input:checked') ||
-          questions[step].querySelector('input')
+          steps[step].querySelector('input:checked') ||
+          steps[step].querySelector('input')
         ).focus();
         return;
       }
@@ -153,121 +136,106 @@ const valueDuoTent = productById['cloud-up-2p'];
     function showResult() {
       const answers = Object.fromEntries(new FormData(form));
       if (answers.season === 'winter') {
-        result.innerHTML = `<div class="result-header"><p class="result-kicker">No suitable kit yet</p><h2>Premium is coming soon</h2><p>Starter and Value are three-season kits. We’re not recommending either for a winter hike.</p></div><div class="reasons"><h3>Why we’re holding off</h3><p>Winter conditions need trip-specific decisions about shelter, sleeping-bag comfort, ground insulation and weather margins. We haven’t curated or verified a winter-ready kit yet.</p></div><div class="actions"><a class="button" href="/starter-kits#premium">See the Premium update</a><button class="button button-secondary" id="restart" type="button">Start again</button></div>`;
-        finishResult();
+        result.innerHTML = `<div class="result-header"><p class="result-kicker">No current match</p><h2>Neither current kit is for winter</h2><p>We do not currently recommend either Bush Gums kit for winter conditions.</p></div><div class="reasons"><h3>Why we are stopping here</h3><p>Winter trips require route-specific decisions about shelter, sleeping-bag warmth, ground insulation, weather exposure and safety margins. The current Bush Gums shortlist is not a winter system.</p></div><div class="actions"><a class="button" href="/faq">Read the kit FAQ</a><button class="button button-secondary" id="restart" type="button">Start again</button></div>`;
+        finish();
+        return;
+      }
+      if (['vic', 'tasmania'].includes(String(answers.location))) {
+        result.innerHTML = `<div class="result-header"><p class="result-kicker">No current match</p><h2>Check the forecast before choosing a kit</h2><p>The current shortlist is for mild-weather overnights, so it is not specific enough for Victorian High Country or Tasmanian routes.</p></div><div class="reasons"><h3>Why we are stopping here</h3><p>Those routes can bring exposed conditions and cold snaps outside the assumptions behind these shortlists. Check the route, forecast, shelter and sleeping system together before choosing gear.</p></div><div class="actions"><a class="button" href="/faq">Read the kit FAQ</a><button class="button button-secondary" id="restart" type="button">Start again</button></div>`;
+        finish();
         return;
       }
       const scores = { starter: 0, value: 0 };
-      const add = (kitId, points) => (scores[kitId] += points);
-      const budgetRules = {
-        'under-600': ['starter', 5],
-        '600-900': ['value', 5],
-        '900-1300': ['value', 4],
-        '1300+': ['value', 5],
+      const add = (kit, points) => {
+        scores[kit] += points;
       };
-      add(...budgetRules[answers.budget]);
-      const weightedRules = [
-        {
-          'lowest-cost': { starter: 3, value: 1 },
-          comfort: { value: 4 },
-          lightweight: { value: 5 },
-        }[answers.priority],
-        {
-          nsw: { starter: 2, value: 1 },
-          vic: { value: 3 },
-          tasmania: { value: 3 },
-          queensland: { starter: 2, value: 1 },
-          other: { value: 2 },
-        }[answers.location],
-        {
-          'three-season': { value: 3 },
-        }[answers.season],
-      ];
-      weightedRules.forEach((rule) =>
-        Object.entries(rule).forEach(([kitId, points]) => add(kitId, points)),
-      );
-      add(answers.people === 'solo' ? 'value' : 'starter', 1);
-      add(
-        answers.experience === 'first'
-          ? 'starter'
-          : answers.experience === 'few'
-            ? 'value'
-            : 'value',
-        2,
-      );
-      const id = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
-      const locationReasons = {
-        nsw: 'NSW’s varied but often moderate established routes support a versatile first setup.',
-        vic: 'Victorian alpine weather favours a little more shelter and sleep-system margin.',
-        tasmania:
-          'Tasmania’s exposed, changeable conditions favour the greater margin of the two current kits.',
-        queensland:
-          'Queensland’s warmer conditions keep the recommendation focused on ventilation and value.',
-        other:
-          'With the location undecided, the recommendation favours a versatile three-season setup.',
-      };
-      const priorityReasons = {
-        'lowest-cost':
-          'Your lowest-cost priority keeps spending focused on the core overnight system.',
-        comfort:
-          'Your comfort priority directs more budget to sleep warmth, space and a forgiving setup.',
-        lightweight:
-          'Your lower-weight priority directs more budget to the shelter, sleep system and pack.',
-      };
-      const experienceReasons = {
-        first:
-          'For a first overnight, the scoring favours straightforward, forgiving gear.',
-        few: 'With a few hikes completed, the scoring balances value with lower bulk and weight.',
-        experienced:
-          'Your experience supports the lighter, more performance-focused Value option.',
-      };
-      const reasons = [
-        locationReasons[answers.location],
-        'Three-season use rewards a balanced weather and warmth margin.',
-        priorityReasons[answers.priority],
+      (
+        ({
+          'under-300': () => add('starter', 5),
+          '300-500': () => {
+            add('starter', 2);
+            add('value', 3);
+          },
+          'over-500': () => add('value', 5),
+        })[answers.budget] || (() => {})
+      )();
+      (
+        ({
+          'lowest-cost': () => {
+            add('starter', 4);
+            add('value', 1);
+          },
+          comfort: () => add('starter', 2),
+          lightweight: () => add('value', 4),
+        })[answers.priority] || (() => {})
+      )();
+      (
+        ({
+          nsw: () => add('starter', 1),
+          vic: () => add('value', 2),
+          tasmania: () => add('value', 2),
+          queensland: () => add('starter', 1),
+          other: () => add('value', 1),
+        })[answers.location] || (() => {})
+      )();
+      if (answers.people === 'two') add('starter', 1);
+      else add('value', 1);
+      if (answers.experience === 'first') add('starter', 2);
+      else add('value', 2);
+      add('value', 2);
+      const id =
         answers.people === 'two'
-          ? 'Two hikers can share the shelter load and interior space.'
-          : 'For solo use, lower carried weight receives a small scoring advantage.',
-        experienceReasons[answers.experience],
-      ];
-      if (requestedKit)
-        reasons.unshift(
-          requestedKit.id === id
-            ? `Your answers support the ${requestedKit.name} kit you were viewing.`
-            : `Your answers point to ${resultData[id].name} rather than the ${requestedKit.name} kit you were viewing.`,
-        );
+          ? 'starter'
+          : scores.value >= scores.starter
+            ? 'value'
+            : 'starter';
       const kit = resultData[id];
-      const shownProducts =
-        kit.id === 'value' && answers.people === 'two'
-          ? kit.products.map((product) =>
-              product.id === 'cloud-up-1p' ? valueDuoTent : product,
-            )
-          : kit.products;
-      const shownPrice = shownProducts.reduce(
-        (sum, product) => sum + product.price,
-        0,
-      );
-      const shownWeight = shownProducts.reduce(
-        (sum, product) => sum + product.weight,
-        0,
-      );
-      const fmtW = (g) =>
-        g >= 1000 ? (g / 1000).toFixed(2) + ' kg' : g + ' g';
-      result.innerHTML = `<div class="result-header"><p class="result-kicker">Your match</p><h2>The ${kit.name} kit</h2><p>${kit.summary}</p></div><dl class="figures figures-lg"><div><dt>Est. total</dt><dd>$${shownPrice.toLocaleString('en-AU')}</dd></div><div><dt>Approx. weight</dt><dd>${(shownWeight / 1000).toFixed(1)} kg</dd></div><div class="figures-wide"><dt>Suits</dt><dd class="dd-text">${kit.bestFor}</dd></div></dl><div class="reasons"><h3>Why this kit</h3><ul>${reasons.map((r) => `<li>${r}</li>`).join('')}</ul></div><details class="result-products"><summary>What's in the core kit (${shownProducts.length} items)</summary><ul>${shownProducts.map((p) => `<li><span><strong>${p.name}</strong><small>${p.category}, ${fmtW(p.weight)}</small></span><span class="mono">$${p.price}</span></li>`).join('')}</ul></details><div class="actions"><a class="button" href="/starter-kits#${id}">View the ${kit.name} kit</a><button class="button button-secondary" id="restart" type="button">Start again</button></div><p class="demo-note">Prices are what we paid or saw, not live offers. Cookware and accessories are optional add-ons.</p>`;
-      finishResult();
+      const kitScope =
+        answers.people === 'two'
+          ? 'one hiker plus the shared two-person shelter'
+          : 'one hiker';
+      const displayWeight = (grams) =>
+        grams === undefined
+          ? 'Not yet verified'
+          : grams >= 1000
+            ? `${(grams / 1000).toFixed(2)} kg`
+            : `${grams} g`;
+      const reasons = [
+        answers.priority === 'lowest-cost'
+          ? 'Your cost priority keeps the recommendation focused on the core spend.'
+          : answers.priority === 'lightweight'
+            ? answers.people === 'two'
+              ? 'You prioritised lower weight, but the current two-person shelter is the deciding constraint.'
+              : 'Your lower-weight priority gives the lighter Value shortlist extra weight.'
+            : 'Your comfort priority keeps a roomier, simpler setup in consideration.',
+        answers.budget === 'under-300'
+          ? 'Your budget sits closest to the A$218 Starter total.'
+          : answers.budget === 'over-500'
+            ? answers.people === 'two'
+              ? 'Your budget leaves room for Value, but the current two-person shelter makes Starter the suitable match.'
+              : 'Your budget leaves room for the A$446 Value shortlist.'
+            : 'Your middle budget band keeps both current shortlists in play.',
+        answers.people === 'two'
+          ? 'Two hikers need the two-person Starter shelter in the current shortlist.'
+          : 'For solo use, the lighter Value shelter receives a small advantage.',
+        answers.experience === 'first'
+          ? 'For a first overnight, the scoring favours a simpler, lower-cost starting point.'
+          : 'Your previous overnight experience supports considering the more compact Value setup.',
+      ];
+      result.innerHTML = `<div class="result-header"><p class="result-kicker">Your suggested starting point</p><h2>The ${kit.name} kit</h2><p>${kit.summary}</p></div><dl class="figures figures-lg"><div><dt>Recorded core-kit total (${kitScope})</dt><dd>A$${kit.price.toLocaleString('en-AU')}</dd></div><div><dt>Estimated carried weight (${kitScope})</dt><dd>${(kit.weight / 1000).toFixed(1)} kg</dd></div><div class="figures-wide"><dt>Best for</dt><dd class="dd-text">${kit.bestFor}</dd></div></dl><div class="reasons"><h3>Why this result</h3><ul>${reasons.map((reason) => `<li>${reason}</li>`).join('')}</ul></div><details class="result-products"><summary>See the core kit contents (${kit.products.length} items)</summary><ul>${kit.products.map((product) => `<li><span><strong>${product.name}</strong><small>${product.category}, ${displayWeight(product.carriedWeightGrams)}</small></span><span class="mono">A$${product.price}</span></li>`).join('')}</ul></details><div class="actions"><a class="button" href="/starter-kits#${id}">View the ${kit.name} kit</a><a class="button button-secondary" href="/gear">Browse the individual products</a><button class="button button-secondary" id="restart" type="button">Start again</button></div><p class="demo-note">Prices are historical or last checked, not live offers. ${answers.people === 'two' ? "For two hikers, the displayed estimate covers one hiker's personal gear plus the shared shelter; the other hiker's personal gear is not included." : 'Cooking and comfort items are optional add-ons.'}</p>`;
+      finish();
     }
-    function finishResult() {
+    function finish() {
       form.hidden = true;
       result.classList.add('active');
       result.focus();
       result.querySelector('#restart').addEventListener('click', () => {
         form.reset();
-        history.replaceState(null, '', location.pathname);
         step = 0;
         form.hidden = false;
         result.classList.remove('active');
         update();
-        questions[0].querySelector('input').focus();
+        steps[0].querySelector('input').focus();
       });
     }
   </script>

@@ -1,136 +1,108 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Photo from '../../components/Photo.astro';
 import ProductCard from '../../components/ProductCard.astro';
-import { products, categories } from '../../data/catalog';
-import { productPages, productPath } from '../../data/product-pages';
-import type { SlotName } from '../../data/images';
-const groups: {
-  title: string;
-  id: string;
-  slot: SlotName;
-  alt: string;
-  cats: string[];
-}[] = [
+import { productPages } from '../../data/product-pages';
+import { getProductPhoto } from '../../data/images';
+
+const categoryOrder = [
+  { label: 'Shelter', id: 'shelter', matches: ['Shelter'] },
+  { label: 'Sleep', id: 'sleep', matches: ['Sleep'] },
+  { label: 'Packs', id: 'packs', matches: ['Packs'] },
   {
-    title: 'Shelter',
-    id: 'shelter',
-    slot: 'shelter',
-    alt: 'A dome tent pitched among snow gums',
-    cats: ['Shelter'],
-  },
-  {
-    title: 'Sleep',
-    id: 'sleep',
-    slot: 'sleep',
-    alt: 'A sleeping bag and mat inside an open tent',
-    cats: ['Sleep'],
-  },
-  {
-    title: 'Packs',
-    id: 'packs',
-    slot: 'packs',
-    alt: 'A hiker carrying an overnight pack on an alpine track',
-    cats: ['Packs'],
-  },
-  {
-    title: 'Cooking & accessories',
+    label: 'Cooking & accessories',
     id: 'cooking-accessories',
-    slot: 'cooking',
-    alt: 'A small stove boiling water on a rock at a campsite',
-    cats: ['Cooking', 'Accessories'],
+    matches: ['Cooking', 'Accessories'],
   },
 ];
 ---
 
 <BaseLayout
-  title="Beginner hiking gear | Bush Gums"
-  description="A short, curated list of beginner overnight hiking gear, organised by the job each item does."
+  title="Hiking gear research | Bush Gums"
+  description="Evidence-led research on affordable hiking gear for Australian beginners, with clear trade-offs and external merchant paths."
 >
   <header class="page-hero">
-    <div class="container narrow-left">
-      <h1>Gear</h1>
-      <p class="lead">
-        A short list, organised by the job each item does. Start with what the
-        trip needs.
-      </p>
-      <nav class="jump-links" aria-label="Gear categories">
-        <a href="#ordered-for-testing">Bought for testing</a>
-        {groups.map((g) => <a href={`#${g.id}`}>{g.title}</a>)}
-      </nav>
-      <p class="demo-note">
-        Products under “Bought for testing” are real items we’ve purchased. The
-        rest of the catalogue is still demonstration data.
+    <div class="container page-hero-copy">
+      <p class="eyebrow">The gear shelf</p><h1>
+        Real gear, plainly explained.
+      </h1><p class="lead">
+        Every item here is a researched product page, not a generic catalogue
+        card. Start with the category you need, then check the evidence before
+        following a merchant link.
       </p>
     </div>
   </header>
-  <div class="container">
-    <section
-      class="catalog-section ordered-section"
-      id="ordered-for-testing"
-      aria-labelledby="ordered-title"
-    >
-      <div class="catalog-head ordered-head">
-        <div>
-          <p class="eyebrow">Evidence-led product pages</p><h2
-            id="ordered-title"
-          >
-            Bought for testing
-          </h2><p>
-            We bought these with our own money. Their pages show what we know
-            before testing, with no field results yet.
-          </p>
-        </div>
-      </div>
-      <div class="catalog-grid">
-        {
-          productPages.map((productPage) => (
-            <ProductCard
-              productPage={productPage}
-              href={productPath(productPage.slug)}
-              priceLabel="Price we paid"
-            />
-          ))
-        }
-      </div>
-    </section>
-    <div class="catalog-demo-heading">
-      <p class="eyebrow">Prototype catalogue</p><h2>
-        Demonstration catalogue
-      </h2><p>
-        These remaining products, prices and ratings are demonstration data.
-      </p>
+  <section class="section">
+    <div class="container gear-index">
+      {
+        categoryOrder.map((category) => {
+          const group = productPages.filter((product) =>
+            category.matches.includes(product.category),
+          );
+          return group.length ? (
+            <section
+              class="gear-category"
+              id={category.id}
+              aria-labelledby={`${category.id}-title`}
+            >
+              <>
+                <div class="heading-row">
+                  <>
+                    <div>
+                      <>
+                        <p class="eyebrow">{category.label}</p>
+                        <h2 id={`${category.id}-title`}>
+                          {category.label} research
+                        </h2>
+                      </>
+                    </div>
+                    <span class="small-print">
+                      {group.length} researched{' '}
+                      {group.length === 1 ? 'item' : 'items'}
+                    </span>
+                  </>
+                </div>
+                <div class="product-grid">
+                  {group.map((product) => {
+                    const hasPhoto = Boolean(getProductPhoto(product.imageId));
+                    return hasPhoto ? (
+                      <ProductCard
+                        productPage={product}
+                        href={`/gear/${product.slug}/`}
+                      />
+                    ) : (
+                      <article class="research-link-card">
+                        <p class="eyebrow">Research page</p>
+                        <h3>
+                          <a href={`/gear/${product.slug}/`}>{product.name}</a>
+                        </h3>
+                        <p>{product.summary}</p>
+                        <p class="small-print">
+                          A product photo is not available yet.
+                        </p>
+                        <a class="text-link" href={`/gear/${product.slug}/`}>
+                          Read the research
+                        </a>
+                      </article>
+                    );
+                  })}
+                </div>
+              </>
+            </section>
+          ) : null;
+        })
+      }
     </div>
-    {
-      groups.map((group) => (
-        <section
-          class="catalog-section"
-          id={group.id}
-          aria-labelledby={`${group.id}-title`}
-        >
-          <div class="catalog-head">
-            <div class="catalog-head-media">
-              <Photo
-                slot={group.slot}
-                alt={group.alt}
-                sizes="(max-width: 767px) 100vw, 30vw"
-                label={group.title}
-              />
-            </div>
-            <div>
-              <h2 id={`${group.id}-title`}>{group.title}</h2>
-              <p>{categories.find((c) => c.id === group.id)?.copy}</p>
-            </div>
-          </div>
-          <div class="catalog-grid">
-            {products
-              .filter((p) => group.cats.includes(p.category))
-              .map((p) => (
-                <ProductCard product={p} />
-              ))}
-          </div>
-        </section>
-      ))
-    }
-  </div>
+  </section>
+  <section class="section section-tint">
+    <div class="container narrow-copy">
+      <h2>How to use the notes</h2><p>
+        Look for the coverage label, then read the specification notes and open
+        questions. A manufacturer or retailer figure is still different from a
+        Bush Gums measurement. External merchants set current prices, delivery,
+        returns and warranty.
+      </p><a class="button" href="/starter-kits#value"
+        >Start with the Value Kit</a
+      >
+    </div>
+  </section>
 </BaseLayout>

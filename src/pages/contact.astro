@@ -4,24 +4,33 @@ import { site } from '../config/site';
 ---
 
 <BaseLayout
-  title="Contact | Bush Gums"
-  description="Contact the Bush Gums validation project."
-  ><article class="content-page">
-    <div class="container narrow prose">
-      <span class="eyebrow">Contact</span><h1>
-        Questions, feedback or a trail story?
-      </h1><p class="lead">
-        This is a validation prototype, so there is no live support desk or
-        order service yet. Useful feedback on the guides, starter kits and
-        builder is welcome.
-      </p><div class="info-card">
-        <h2>Email</h2><p>
-          <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
-        </p><p class="demo-note">
-          Placeholder address. Replace it in <code>src/config/site.ts</code> before
-          launch.
-        </p>
-      </div>
-    </div>
-  </article></BaseLayout
+  title="Contact Bush Gums"
+  description="Contact Bush Gums with product feedback, research corrections or hiking questions."
 >
+  <article class="content-page">
+    <div class="container narrow prose">
+      <span class="eyebrow">Contact</span>
+      <h1>Help us keep the research useful.</h1>
+      <p class="lead">
+        Send product feedback, a correction request, a question about the
+        research or a relevant owner experience.
+      </p>
+      {
+        site.contactEmail && (
+          <div class="info-card">
+            <>
+              <h2>Email</h2>
+              <p>
+                <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>
+              </p>
+            </>
+          </div>
+        )
+      }
+      <p class="small-print">
+        Bush Gums is not the merchant. Please contact the external merchant for
+        an order, delivery, return or warranty question.
+      </p>
+    </div>
+  </article>
+</BaseLayout>

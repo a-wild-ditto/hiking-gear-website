@@ -48,7 +48,7 @@ const page: ProductPage = {
     },
     {
       label: 'R-value',
-      value: '2.5 claimed — not verified',
+      value: '2.5 claimed, not verified',
       status: 'to-verify',
       note: 'No ASTM F3340 test cited. For comparison, the Therm-a-Rest Z Lite Sol, a 2 cm egg-crate pad, is rated R 2.0 under that standard.',
       sourceIds: ['reseller', 'zlite'],
@@ -104,7 +104,7 @@ const page: ProductPage = {
     {
       id: 'reseller',
       title:
-        '330g Lightweight Foam Camping Mattress Portable Foldable Sleeping Pad…',
+        '330g Lightweight Foam Camping Mattress Portable Foldable Sleeping Pad',
       publisher: 'Smokey Mountains Sports and Outdoors (reseller listing)',
       url: 'https://smokeymountainssportsandoutdoors.com/products/330g-lightweight-foam-camping-mattress-portable-foldable-sleeping-pad-moisture-resistant-insulated-for-hiking-backpacking',
       kind: 'retailer',

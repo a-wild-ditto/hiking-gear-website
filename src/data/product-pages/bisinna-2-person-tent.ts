@@ -17,7 +17,7 @@ const page: ProductPage = {
     'Can a roughly $100 conventional double-wall tent be a usable first backpacking shelter?',
   whyWeChoseIt: [
     'A first overnight hike usually means buying a tent, and tents are where beginners either overspend or buy something that fails on the first wet night. A lot of cheap marketplace tents are single-wall or oddly shaped. The BISINNA is a conventional design: freestanding, two crossing poles, an inner tent with a separate fly, two doors and two vestibules. If it works, it is easy to pitch and easy to understand.',
-    'It also has something most budget tents don’t: a hands-on review by OutdoorGearLab, who bought it themselves. They rated it a reasonable buy under US$100 but found the polyester fly eventually wets out in heavy rain. Our listing specifies the same 190T polyester fly, so that is the single most important thing for us to test — though our listing claims a higher waterproof rating than the tent they tested.',
+    'It also has something most budget tents don’t: a hands-on review by OutdoorGearLab, who bought it themselves. They rated it a reasonable buy under US$100 but found the polyester fly eventually wets out in heavy rain. Our listing specifies the same 190T polyester fly, so that is the single most important thing for us to test, though our listing claims a higher waterproof rating than the tent they tested.',
   ],
   specs: [
     {
@@ -93,7 +93,7 @@ const page: ProductPage = {
       kind: 'written-review',
       relation: 'same-design',
       summary:
-        'Hands-on test of the 190T polyester version (May 2023) — the same fly fabric our listing specifies, though their tent claimed a lower PU 2000 mm rating. Found it light for its price class, with a useful roof vent, but the fly wets out in heavy rain, seam stitching leaves pinholes and the pole-sleeve mesh is loose. OutdoorGearLab says it buys the products it tests.',
+        'Hands-on test of the 190T polyester version (May 2023), the same fly fabric our listing specifies, though their tent claimed a lower PU 2000 mm rating. Found it light for its price class, with a useful roof vent, but the fly wets out in heavy rain, seam stitching leaves pinholes and the pole-sleeve mesh is loose. OutdoorGearLab says it buys the products it tests.',
       quote: 'The fly will eventually wet out in heavy rain.',
     },
     {

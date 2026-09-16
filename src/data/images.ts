@@ -1,12 +1,8 @@
 import type { ImageMetadata } from 'astro';
 
 /*
- * Photography registry. Every image slot on the site is named here, so final
- * brand photography can be swapped by dropping a file into src/assets/images
- * and updating one line. A slot whose file is missing renders a clearly
- * labelled placeholder instead of breaking the build.
- *
- * Current status: all images are AI-generated temporary photography.
+ * Image registry. Product cards must use a matching product asset. A missing
+ * product image never falls back to an unrelated category image.
  */
 const files = import.meta.glob<{ default: ImageMetadata }>(
   '../assets/images/*.{png,jpg,jpeg,webp}',

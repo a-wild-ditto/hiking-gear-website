@@ -2,23 +2,41 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Privacy placeholder | Bush Gums" noindex
-  ><article class="content-page">
-    <div class="container narrow prose">
-      <span class="eyebrow">Legal placeholder</span><h1>Privacy</h1><p
-        class="lead"
-      >
-        This validation version does not collect, transmit or store
-        questionnaire answers or email addresses.
-      </p><h2>Current prototype</h2><p>
-        The kit builder runs locally in the browser. The disabled email form
-        does not submit information. No analytics or advertising trackers have
-        been installed.
-      </p><h2>Before launch</h2><p>
-        This placeholder must be replaced with a policy reflecting the actual
-        hosting, analytics, email and commerce services selected, including
-        their retention and international data-handling practices.
-      </p><p>Last reviewed: 14 September 2026.</p>
-    </div>
-  </article></BaseLayout
+<BaseLayout
+  title="Privacy | Bush Gums"
+  description="How the Bush Gums website handles information."
+  noindex
 >
+  <article class="content-page">
+    <div class="container narrow prose">
+      <span class="eyebrow">Privacy</span><h1>
+        What happens to your information.
+      </h1>
+      <p class="lead">
+        This MVP keeps the decision tool in your browser and does not ask you to
+        create an account or join a mailing list.
+      </p>
+      <h2>Questionnaire answers</h2><p>
+        Build My Kit runs in your browser. Your answers are used to show a
+        recommendation locally and are not sent to Bush Gums. There is no
+        account system, saved-kit feature or active email capture.
+      </p>
+      <h2>External merchant links</h2><p>
+        When you follow a merchant or affiliate link, the external merchant and
+        any affiliate network may receive information about that visit and may
+        use their own cookies or tracking. Review the external merchant’s
+        privacy terms before purchasing.
+      </p>
+      <h2>Contact emails</h2><p>
+        If you email Bush Gums, your message and address are handled by the
+        configured email provider so we can respond. Do not include sensitive
+        information that is not needed for your question.
+      </p>
+      <h2>What this site does not do</h2><p>
+        This MVP has no account system, active email capture, first-party
+        analytics, advertising tracker or questionnaire database.
+      </p>
+      <p class="small-print">Last reviewed: 17 September 2026.</p>
+    </div>
+  </article>
+</BaseLayout>

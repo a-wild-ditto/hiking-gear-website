@@ -7,11 +7,10 @@ import { publicSite } from '../../site.config.mjs';
  */
 export const site = {
   brandName: 'Bush Gums',
-  brandStatus: 'Working brand',
   tagline: 'Your first overnight hike, sorted.',
-  title: 'Bush Gums | Beginner hiking gear made simpler',
+  title: 'Bush Gums | Affordable beginner overnight hiking gear Australia',
   description:
-    'Beginner-friendly hiking gear guidance, starter kits and practical Australian advice for your first overnight hike.',
+    'Curated starter hiking kits and lightweight value gear for Australian beginners planning a first overnight trip. Compare real product research and trade-offs.',
   url: publicSite.url,
   contactEmail: publicSite.contactEmail,
 } as const;
@@ -76,8 +75,7 @@ const vars = (o: Record<string, string>) =>
 export const themeCss = `:root{${vars(theme.light)}${vars(theme.radius)}--font-sans:${theme.fonts.sans};--font-mono:${theme.fonts.mono};color-scheme:light dark}@media (prefers-color-scheme: dark){:root{${vars(theme.dark)}}}`;
 
 export const primaryNav = [
-  { href: '/build-my-kit', label: 'Build My Kit' },
   { href: '/starter-kits', label: 'Starter Kits' },
   { href: '/gear', label: 'Gear' },
-  { href: '/learn', label: 'Learn' },
+  { href: '/learn', label: 'Guides' },
 ] as const;

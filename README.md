@@ -1,19 +1,15 @@
-# Trailwise validation website
+# Bush Gums affiliate curation site
 
-Trailwise is a static-first validation website for an Australian beginner hiking gear concept. It combines practical learning content, researched starter-kit candidates and a transparent rules-based “Build My Kit” questionnaire.
+Bush Gums helps Australian beginners research a first overnight hiking setup. The public journey is Value kit, individual product research, then an external merchant listing. The lower-cost Starter kit is an alternative. The site curates gear and explains evidence and trade-offs; it does not sell or fulfil products.
 
-The brand name and demonstration catalogue are placeholders. The “Bought for testing” product pages describe items purchased with Bush Gums money; they have not been field-tested yet, and their specs carry provenance statuses. No products are offered for sale and no personal information is collected.
+Product pages describe real researched items. Some have been ordered for testing, but field testing remains incomplete. Manufacturer, retailer and seller figures are labelled by provenance. A seller claim is not an independent measurement or a performance guarantee. Prices are what Bush Gums paid or recorded and can differ from current merchant prices.
 
-## Stack
+## Stack and local setup
 
-- Astro and TypeScript
-- Static HTML for every page
-- Plain CSS with central colour tokens
-- Small client-side JavaScript module for the questionnaire
-- Local TypeScript data files; no database, CMS, authentication or backend
-- Cloudflare Workers Static Assets compatible output
-
-## Local setup
+- Astro 7 with static output and TypeScript
+- Local data files, CSS and a browser-side Build My Kit questionnaire
+- Cloudflare Workers Static Assets serving `./dist`
+- No checkout, inventory, database, accounts, analytics or email capture
 
 Node.js 22 or later is recommended.
 
@@ -22,86 +18,29 @@ npm install
 npm run dev
 ```
 
-Astro prints the local URL, normally `http://localhost:4321`.
+Run `npm run check`, `npm run format:check` and `npm run build` before committing. `npm run preview` serves built files locally.
 
-## Validation
+## Public content and data
 
-```bash
-npm run check
-npm run format:check
-npm run build
-npm run preview
-```
+- `src/data/product-pages/*.ts` is the public research source. Each page retains evidence notes, sources, open questions and test plans.
+- `src/data/catalog.ts` contains only real products and variants used by the kits. It keeps product identity separate from merchant offers in `src/data/offers.ts`.
+- `src/data/kits.ts` derives the Starter and Value core-kit totals. Consumer-facing weight totals use estimated carried or packed weight; technical minimum and unknown weights remain distinct. Optional cooking and comfort accessories are outside core totals.
+- `src/data/retailer-comparison.ts` contains dated, sourced category-matched comparison rows and derives all totals and savings. Recheck official retailer prices and specifications before updating the public comparison. Club and sale prices need explicit labels, and the comparison must retain its caveats.
+- `/build-my-kit` runs in the browser, remains noindex and does not send answers to Bush Gums. It recommends only the two current mild-weather kit shortlists and stops on winter answers.
 
-Production files are written to `dist/`.
+All public copy must avoid Unicode U+2014. Keep evidence provenance visible. Do not turn unverified specifications into facts or claim field testing that has not occurred.
 
-## Deploy to Cloudflare
+## Deployment preparation
 
-The included `wrangler.jsonc` points Cloudflare Workers Static Assets at `./dist`.
+`wrangler.jsonc` serves static assets from `./dist`. Set `PUBLIC_SITE_URL` to the final HTTPS origin and `PUBLIC_CONTACT_EMAIL` to a monitored address before a production build. These values are owner-supplied launch inputs. `npm run deploy:check` validates them; it does not deploy. `npm run deploy` is a production action and requires owner approval. Cloudflare account, domain and release setup are outside this repository.
 
-1. Set `PUBLIC_SITE_URL` to the final HTTPS origin.
-2. Set `PUBLIC_CONTACT_EMAIL` to a monitored address.
-3. Run `npm run deploy:check` to verify neither value is still a placeholder.
-4. Preview with `npm run build` followed by `npx wrangler dev`.
-5. Deploy with `npm run deploy`.
+## Commercial scope
 
-The deploy command refuses to publish until the two public identity values are
-configured. Wrangler runs through `npx` without adding a runtime dependency.
-Cloudflare account and domain setup are deliberately outside this repository.
+Bush Gums is in the affiliate curation phase. External merchants control current prices, stock, shipping, returns and warranty. An affiliate relationship does not change the evidence status of a product claim. No Premium tier, checkout, owned inventory, database, accounts or email capture exists. Moving to owned stock, payments, private label or custom products requires separate owner review.
 
-## Editing the site
+## Owner review before launch
 
-### Brand
-
-Edit `src/config/site.ts` for the temporary brand name, tagline, metadata and
-colour tokens. Public URL and contact email come from the environment through
-`site.config.mjs`.
-
-### Products and kits
-
-- `src/data/product-pages/*.ts` contains one purchased product per file for the “Bought for testing” pages. These products are not yet tested; their specs carry provenance statuses. Offers remain separate in `src/data/offers.ts`.
-- `src/pages/gear/[slug].astro` renders these pages. Product images use the `product-<imageId>` convention in `src/assets/images` when available.
-- `src/data/catalog.ts` contains both the retained demonstration range and the real product records used by the Starter and Value kits. Prices are historical purchase/listing context, not live offers.
-- `src/data/kits.ts` defines the kits by product ID. Cooking and comfort accessories are separate optional add-ons rather than part of kit totals.
-- `src/pages/build-my-kit.astro` contains the visible questions and deterministic matching rules.
-
-Product claims marked as demo data must be replaced with verified manufacturer information before launch.
-
-### Guides
-
-Guide cards are listed in `src/data/guides.ts`. The four guide pages live in `src/pages/guides/` and use `src/layouts/GuideLayout.astro`.
-
-## Architecture notes
-
-Astro renders the entire catalogue and content layer at build time. The only meaningful client JavaScript is the recommender. Its answers stay in the browser and the matching rules are intentionally readable:
-
-- Budget provides the strongest initial weighting between Starter and Value.
-- Cost, comfort and lower-weight priorities each add distinct weights.
-- Every location adds a documented condition-based weighting.
-- Winter answers stop before kit scoring and show Premium as coming soon; neither Starter nor Value is recommended for winter hiking.
-- Experience and group size influence both scoring and the explanation.
-- A kit-link query is retained and compared with the questionnaire result.
-
-This gives the business a usable decision-engine prototype without hosting application servers or collecting customer data.
-
-## Future extension points
-
-- Affiliate destinations are marked as sponsored and disclosed. Add a first-party event endpoint only if outbound-click measurement is later approved.
-- Add a hosted email form only after provider selection and privacy-copy review.
-- Introduce checkout through hosted payment links before building a full cart.
-- Add D1 or another store only when dynamic inventory, saved kits or first-party analytics require it.
-- Move content to a CMS only when non-technical editing volume justifies the operational cost.
-- Connect Shopify only once inventory and fulfilment needs exceed static product pages.
-
-## Deliberately unbuilt
-
-Commerce, inventory, user accounts, saved recommendations, analytics, email capture, customer reviews and a CMS are outside this validation version. The site can link to third-party merchant offers or searches, but it has no checkout and does not sell products directly.
-
-## Placeholder launch checklist
-
-- Select and clear the final brand name.
-- Configure `PUBLIC_SITE_URL` and `PUBLIC_CONTACT_EMAIL`.
-- Verify all product specifications, prices and claims.
-- Obtain owner/legal review of privacy, affiliate and terms copy.
-- Add real photography with appropriate rights and optimised responsive formats.
-- Configure the chosen Cloudflare account, domain and deployment workflow.
+- Supply the production URL and monitored contact email.
+- Review comparison freshness, exact merchant listing identity and affiliate compliance.
+- Review legal wording and any safety or performance claim against the cited evidence.
+- Confirm rights and accuracy of all imagery, and configure the Cloudflare domain and deployment workflow.

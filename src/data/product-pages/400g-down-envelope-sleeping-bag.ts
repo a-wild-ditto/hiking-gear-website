@@ -49,7 +49,7 @@ const page: ProductPage = {
     },
     {
       label: 'Temperature rating',
-      value: 'None — we are not assigning one',
+      value: 'None, we are not assigning one',
       status: 'to-verify',
       note: 'Claims conflict badly. Our listing states a "comfortable temperature" of 0 to −10 °C, another seller of the same design suggests 5 to 20 °C, and a buyer of the warmer 600 g version says they used it in spring, summer and autumn. No EN or ISO 23537 test is cited anywhere.',
       sourceIds: ['arknor'],
@@ -95,7 +95,7 @@ const page: ProductPage = {
       kind: 'listing',
       relation: 'exact-model',
       summary:
-        'Nine reviews, rated 4.9 overall. Buyers describe good stitching, a working zip with Velcro and drawstring closures, and a compact, light package. Read them carefully: several are for the blue colour or the heavier 600 g fill rather than our green 400 g, one 600 g buyer found it thinner than expected, and another says the 600 g version suited spring, summer and autumn — which sits awkwardly against the listing’s 0 to −10 °C claim.',
+        'Nine reviews, rated 4.9 overall. Buyers describe good stitching, a working zip with Velcro and drawstring closures, and a compact, light package. Read them carefully: several are for the blue colour or the heavier 600 g fill rather than our green 400 g, one 600 g buyer found it thinner than expected, and another says the 600 g version suited spring, summer and autumn, which sits awkwardly against the listing’s 0 to −10 °C claim.',
       quote:
         'Arrived in great condition. shipping time was very reasonable. the product quality is quite good. stitching is very well done.',
     },

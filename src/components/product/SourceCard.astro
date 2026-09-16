@@ -23,8 +23,15 @@ const kindLabels: Record<Source['kind'], string> = {
   <h3>
     {
       source.url ? (
-        <a href={source.url} class="source-title" lang={source.lang}>
+        <a
+          href={source.url}
+          class="source-title"
+          lang={source.lang}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {source.title}
+          <span class="sr-only"> (opens in a new tab)</span>
         </a>
       ) : (
         <span class="source-title" lang={source.lang}>

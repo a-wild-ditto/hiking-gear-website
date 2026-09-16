@@ -1,70 +1,39 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Photo from '../components/Photo.astro';
-import PremiumComingSoon from '../components/PremiumComingSoon.astro';
-import { kits, getKitWeight, optionalAddonIds, type Kit } from '../data/kits';
+import { kits, getKitWeight, optionalAddonIds } from '../data/kits';
 import { productById, formatWeight } from '../data/catalog';
 import { offersFor } from '../data/offers';
-const factors: { label: string; value: (k: Kit) => string; mono?: boolean }[] =
-  [
-    {
-      label: 'Est. total',
-      value: (k) => `$${k.price.toLocaleString('en-AU')}`,
-      mono: true,
-    },
-    {
-      label: 'Approx. weight',
-      value: (k) => `${(getKitWeight(k) / 1000).toFixed(1)} kg`,
-      mono: true,
-    },
-    { label: 'Suits', value: (k) => k.bestFor },
-    { label: 'Main advantage', value: (k) => k.advantage },
-  ];
-const optionalAddons = optionalAddonIds.map((id) => productById[id]);
-const imageIdFor = (id: string) =>
-  ({
-    'bisinna-2p': 'bisinna-2-person-tent-australian',
-    'bisinna-bag-18': 'bisinna-1-6kg-sleeping-bag-australian',
-    'foil-foam-pad': 'foil-egg-crate-foam-pad-australian',
-    'bisinna-pack-35': 'bisinna-25-10-backpack-australian',
-    'cloud-up-1p': 'naturehike-cloud-up-pro-australian',
-    'cloud-up-2p': 'naturehike-cloud-up-pro-australian',
-    'down-bag-400': '400g-down-envelope-sleeping-bag-australian',
-    'tuye-r35': 'naturehike-r3-5-v2-australian',
-    'rock-60-5': 'naturehike-rock-60-5-australian',
-    'cookware-aluminium': 'widesea-cookware-australian',
-    'memory-foam-pillow': 'memory-foam-camping-pillow-australian',
-  })[id] ?? productById[id].reviewSlug;
-const offerFor = (slug?: string) => (slug ? offersFor(slug)[0] : undefined);
-const kitDrawing = (id: string) => `/illustrations/kit-${id}-line.svg`;
-const kitDrawingAlt = (id: string) =>
-  id === 'starter'
-    ? 'Young gum tree with a tent, folded foam mat, sleeping bag and small pack around its base'
-    : 'Mature gum tree with a tent, packed down sleeping bag, inflatable mat and large pack around its base';
+import { productPageBySlug, productPath } from '../data/product-pages';
+
+const orderedKits = [...kits].sort((a, b) =>
+  a.id === 'value' ? -1 : b.id === 'value' ? 1 : 0,
+);
 ---
 
 <BaseLayout
   title="Starter hiking kits | Bush Gums"
-  description="Compare the Starter and Value three-season hiking kits. Premium is coming soon."
+  description="Compare the Value and Starter core hiking kits for a first mild-weather overnight."
 >
   <header class="page-hero">
     <div class="container page-hero-split">
       <div>
-        <h1>Starter Kits</h1>
-        <p class="lead">
-          Compare two three-season setups for a first overnight. Premium is
-          coming soon; neither current kit is recommended for winter hiking.
-          Cooking gear and comfort accessories remain optional.
+        <p class="eyebrow">Curated core setups</p><h1>Starter Kits</h1><p
+          class="lead"
+        >
+          Compare two researched shelter, sleep and pack setups for a first
+          mild-weather overnight. Cooking and comfort accessories remain
+          optional.
+        </p><div class="actions">
+          <a class="button" href="/starter-kits#value">See the Value Kit</a><a
+            class="button button-secondary"
+            href="/build-my-kit">Build My Kit</a
+          >
+        </div><p class="small-print">
+          Recorded prices, not live offers. Neither current kit is recommended
+          for winter conditions.
         </p>
-        <div class="actions">
-          <a class="button" href="/build-my-kit">Build My Kit</a>
-        </div>
-        <p class="demo-note">
-          Research prototype: prices are what we paid or saw, not live offers.
-          Kits are recommendations, not products for sale.
-        </p>
-      </div>
-      <div class="page-hero-media">
+      </div><div class="page-hero-media">
         <Photo
           slot="kitsPage"
           alt="Two hikers making tea beside a tent among snow gums at sunset"
@@ -78,84 +47,58 @@ const kitDrawingAlt = (id: string) =>
 
   <section class="section" aria-labelledby="compare-title">
     <div class="container">
-      <h2 id="compare-title" class="section-title">Compare at a glance</h2>
-      <div class="compare-scroll">
+      <h2 id="compare-title" class="section-title">Compare at a glance</h2><div
+        class="compare-scroll"
+      >
         <table class="compare">
-          <caption class="sr-only">Starter kit comparison</caption>
-          <colgroup>
-            <col class="compare-label-col" />
-            <col span="2" class="compare-kit-col" />
-          </colgroup>
-          <thead>
-            <tr>
-              <td></td>
-              {
-                kits.map((k) => (
-                  <th scope="col" class:list={{ featured: k.id === 'value' }}>
-                    <img
-                      class="compare-drawing"
-                      src={kitDrawing(k.id)}
-                      alt={kitDrawingAlt(k.id)}
-                      width="400"
-                      height="200"
-                      loading="lazy"
-                    />
-                    {k.name}
-                    {k.id === 'value' && <small>Where most people start</small>}
-                  </th>
-                ))
-              }
-            </tr>
-          </thead>
-          <tbody>
-            {
-              factors.map((f) => (
-                <tr>
-                  <th scope="row">{f.label}</th>
-                  {kits.map((k) => (
-                    <td
-                      class:list={{
-                        mono: f.mono,
-                        featured: k.id === 'value',
-                      }}
-                    >
-                      {f.value(k)}
-                    </td>
-                  ))}
+          <caption class="sr-only">Value and Starter kit comparison</caption
+          ><thead
+            ><tr
+              ><th scope="col">Kit</th><th scope="col">Recorded total</th><th
+                scope="col">Estimated carried weight</th
+              ><th scope="col">Best for</th></tr
+            ></thead
+          ><tbody
+            >{
+              orderedKits.map((kit) => (
+                <tr class:list={{ featured: kit.id === 'value' }}>
+                  <>
+                    <th scope="row">{kit.name}</th>
+                    <td>A${kit.price.toLocaleString('en-AU')}</td>
+                    <td>{(getKitWeight(kit) / 1000).toFixed(1)} kg</td>
+                    <td>{kit.bestFor}</td>
+                  </>
                 </tr>
               ))
-            }
-          </tbody>
+            }</tbody
+          >
         </table>
       </div>
-      <div class="compare-cards">
+      <div class="compare-cards" aria-label="Kit comparison summaries">
         {
-          kits.map((k) => (
-            <section
-              class:list={['compare-card', { featured: k.id === 'value' }]}
-              aria-label={`${k.name} kit summary`}
+          orderedKits.map((kit) => (
+            <article
+              class:list={{
+                'compare-card': true,
+                featured: kit.id === 'value',
+              }}
             >
-              <img
-                class="compare-drawing"
-                src={kitDrawing(k.id)}
-                alt={kitDrawingAlt(k.id)}
-                width="400"
-                height="200"
-                loading="lazy"
-              />
-              <h3>{k.name}</h3>
-              {k.id === 'value' && (
-                <p class="compare-card-note">Where most people start</p>
-              )}
+              <p class="eyebrow">{kit.name} kit</p>
+              <h3>A${kit.price.toLocaleString('en-AU')}</h3>
+              <p class="compare-card-note">{kit.bestFor}</p>
               <dl>
-                {factors.map((f) => (
-                  <div>
-                    <dt>{f.label}</dt>
-                    <dd class:list={{ mono: f.mono }}>{f.value(k)}</dd>
-                  </div>
-                ))}
+                <div>
+                  <dt>Recorded total</dt>
+                  <dd class="mono">A${kit.price.toLocaleString('en-AU')}</dd>
+                </div>
+                <div>
+                  <dt>Estimated carried weight</dt>
+                  <dd class="mono">
+                    {(getKitWeight(kit) / 1000).toFixed(1)} kg
+                  </dd>
+                </div>
               </dl>
-            </section>
+            </article>
           ))
         }
       </div>
@@ -165,200 +108,116 @@ const kitDrawingAlt = (id: string) =>
   <section class="section section-tint" aria-label="Kit contents">
     <div class="container kit-details">
       {
-        kits.map((kit) => (
+        orderedKits.map((kit) => (
           <article class="kit-detail" id={kit.id}>
-            <div class="kit-detail-head">
-              <h2>The {kit.name} kit</h2>
-              <p>{kit.summary}</p>
-              <dl class="figures">
-                <div>
-                  <dt>Est. total</dt>
-                  <dd>${kit.price.toLocaleString('en-AU')}</dd>
-                </div>
-                <div>
-                  <dt>Approx. weight</dt>
-                  <dd>{(getKitWeight(kit) / 1000).toFixed(1)} kg</dd>
-                </div>
-              </dl>
-              <a class="text-link" href={`/build-my-kit?kit=${kit.id}`}>
-                Build My Kit
-                <span class="sr-only">
-                  {' '}
-                  and compare it with the {kit.name} kit
-                </span>
-              </a>
-            </div>
-            <ul class="kit-items">
-              {kit.productIds.map((id) => {
-                const p = productById[id];
-                return (
-                  <li>
-                    {p.kitDetail && p.reviewSlug ? (
-                      <button
-                        class="kit-item-trigger"
-                        type="button"
-                        data-dialog={`kit-product-${p.id}`}
-                        aria-haspopup="dialog"
-                      >
-                        <div class="kit-item-name">
-                          <strong>{p.name}</strong>
-                          <small>{p.goodFor ?? p.summary}</small>
-                        </div>
-                        <span class="kit-item-cat">{p.category}</span>
-                        <span class="mono">{formatWeight(p.weight)}</span>
-                        <span class="mono">${p.price}</span>
-                      </button>
-                    ) : (
+            <>
+              <div class="kit-detail-head">
+                <>
+                  <div class="kit-detail-art">
+                    <img
+                      src={`/illustrations/kit-${kit.id}-line.svg`}
+                      alt=""
+                      width="400"
+                      height="200"
+                    />
+                  </div>
+                  <p class="eyebrow">{kit.label}</p>
+                  <h2>The {kit.name} kit</h2>
+                  <p>{kit.summary}</p>
+                  <dl class="figures">
+                    <>
+                      <div>
+                        <>
+                          <dt>Recorded core-kit total</dt>
+                          <dd>A${kit.price.toLocaleString('en-AU')}</dd>
+                        </>
+                      </div>
+                      <div>
+                        <>
+                          <dt>Estimated carried weight</dt>
+                          <dd>{(getKitWeight(kit) / 1000).toFixed(1)} kg</dd>
+                        </>
+                      </div>
+                    </>
+                  </dl>
+                </>
+              </div>
+              <ul class="kit-items">
+                {kit.productIds.map((id) => {
+                  const product = productById[id];
+                  const page = product.reviewSlug
+                    ? productPageBySlug[product.reviewSlug]
+                    : undefined;
+                  const offer = page ? offersFor(page.slug)[0] : undefined;
+                  return (
+                    <li>
                       <div class="kit-item-static">
                         <div class="kit-item-name">
-                          <strong>{p.name}</strong>
-                          <small>{p.goodFor ?? p.summary} · Demo product</small>
+                          <strong>
+                            <a href={page ? productPath(page.slug) : '/gear'}>
+                              {product.name}
+                            </a>
+                          </strong>
+                          <small>{product.goodFor ?? product.summary}</small>
                         </div>
-                        <span class="kit-item-cat">{p.category}</span>
-                        <span class="mono">{formatWeight(p.weight)}</span>
-                        <span class="mono">${p.price}</span>
+                        <span class="kit-item-cat">{product.category}</span>
+                        <span class="mono">
+                          {formatWeight(product.carriedWeightGrams)}
+                        </span>
+                        <span class="mono">A${product.price}</span>
+                        {offer && page && (
+                          <a class="kit-item-buy" href={productPath(page.slug)}>
+                            Read research first
+                          </a>
+                        )}
                       </div>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
+                    </li>
+                  );
+                })}
+              </ul>
+              <p class="small-print">
+                Weights are estimated carried or packed figures, with provenance
+                shown on each research page.
+              </p>
+            </>
           </article>
         ))
       }
-      <PremiumComingSoon />
     </div>
   </section>
 
   <section class="section optional-addons" aria-labelledby="addons-title">
     <div class="container">
-      <div class="section-intro">
-        <p class="eyebrow">Add only if useful</p>
-        <h2 id="addons-title">Optional cookware and comfort</h2>
-        <p>
-          These sit outside every kit total. Add them when your meal plan or
-          sleep preferences justify the extra weight.
-        </p>
-      </div>
-      <div class="addon-grid">
+      <p class="eyebrow">Add only if useful</p><h2 id="addons-title">
+        Optional cookware and comfort
+      </h2><p class="lead">
+        These sit outside both kit totals. See the research before adding extra
+        weight.
+      </p><div class="addon-grid">
         {
-          optionalAddons.map((p) => (
-            <button
-              class="addon-card"
-              type="button"
-              data-dialog={`kit-product-${p.id}`}
-              aria-haspopup="dialog"
-            >
-              <span class="kit-item-cat">{p.category}</span>
-              <strong>{p.name}</strong>
-              <span>{p.summary}</span>
-              <span class="text-link">See why we recommend it</span>
-            </button>
-          ))
+          optionalAddonIds.map((id) => {
+            const product = productById[id];
+            const page = product.reviewSlug
+              ? productPageBySlug[product.reviewSlug]
+              : undefined;
+            return (
+              <article class="addon-card">
+                <>
+                  <span class="kit-item-cat">{product.category}</span>
+                  <h3>{product.name}</h3>
+                  <p>{product.summary}</p>
+                  <a
+                    class="text-link"
+                    href={page ? productPath(page.slug) : '/gear'}
+                  >
+                    See our research
+                  </a>
+                </>
+              </article>
+            );
+          })
         }
       </div>
     </div>
   </section>
-
-  {
-    [
-      ...new Map(
-        [...kits.flatMap((kit) => kit.productIds), ...optionalAddonIds].map(
-          (id) => [id, productById[id]],
-        ),
-      ).entries(),
-    ]
-      .filter(([, p]) => p.kitDetail && p.reviewSlug)
-      .map(([id, p]) => (
-        <dialog class="kit-product-dialog" id={`kit-product-${id}`}>
-          <button class="dialog-close" type="button" aria-label="Close details">
-            Close
-          </button>
-          <div class="dialog-layout">
-            <div class="dialog-media">
-              <Photo
-                productId={imageIdFor(id)}
-                alt={p.name}
-                sizes="(max-width: 767px) 100vw, 36vw"
-                widths={[480, 800]}
-                label={p.name}
-              />
-            </div>
-            <div class="dialog-copy">
-              <p class="eyebrow">{p.category}</p>
-              <h2>{p.name}</h2>
-              <h3>{p.kitDetail?.headline}</h3>
-              {p.kitDetail?.paragraphs.map((paragraph, index, paragraphs) => (
-                <p>
-                  {paragraph}
-                  {index === paragraphs.length - 1 && p.reviewSlug && (
-                    <>
-                      {' '}
-                      <a class="text-link" href={`/gear/${p.reviewSlug}/`}>
-                        see the full details
-                      </a>
-                    </>
-                  )}
-                </p>
-              ))}
-              <ul>
-                {p.kitDetail?.specs.map((spec) => (
-                  <li>{spec}</li>
-                ))}
-              </ul>
-              {offerFor(p.reviewSlug) ? (
-                <>
-                  <a
-                    class="button"
-                    href={offerFor(p.reviewSlug)?.url}
-                    target="_blank"
-                    rel={
-                      offerFor(p.reviewSlug)?.affiliate
-                        ? 'sponsored noopener noreferrer'
-                        : 'noopener noreferrer'
-                    }
-                  >
-                    {!offerFor(p.reviewSlug)?.url.includes('/w/wholesale-')
-                      ? 'Buy now on AliExpress'
-                      : 'Find on AliExpress'}
-                  </a>
-                  {offerFor(p.reviewSlug)?.affiliate && (
-                    <p class="small-print">
-                      Affiliate link — we may earn a commission if you buy.
-                    </p>
-                  )}
-                </>
-              ) : (
-                <p class="small-print">
-                  Detailed research page coming after we confirm the exact
-                  listing.
-                </p>
-              )}
-            </div>
-          </div>
-        </dialog>
-      ))
-  }
-
-  <script>
-    const triggers = document.querySelectorAll('[data-dialog]');
-    triggers.forEach((trigger) => {
-      trigger.addEventListener('click', () => {
-        if (!(trigger instanceof HTMLElement)) return;
-        const dialogId = trigger.dataset.dialog;
-        if (!dialogId) return;
-        const dialog = document.getElementById(dialogId);
-        if (dialog instanceof HTMLDialogElement) dialog.showModal();
-      });
-    });
-    document.querySelectorAll('.kit-product-dialog').forEach((dialog) => {
-      if (!(dialog instanceof HTMLDialogElement)) return;
-      dialog
-        .querySelector('.dialog-close')
-        ?.addEventListener('click', () => dialog.close());
-      dialog.addEventListener('click', (event) => {
-        if (event.target === dialog) dialog.close();
-      });
-    });
-  </script>
 </BaseLayout>

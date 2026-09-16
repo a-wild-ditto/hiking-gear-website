@@ -10,7 +10,7 @@ const page: ProductPage = {
   tags: ['Starter lightweight pack candidate'],
   pricePaidAud: 47.99,
   summary:
-    'A roughly 580 g roll-top pack for under $50. It only makes sense if the whole load stays light — we want to find where that line is.',
+    'A roughly 580 g roll-top pack for under $50. It only makes sense if the whole load stays light, and we want to find where that line is.',
   metaDescription:
     'What we know about the BISINNA 25+10L backpack before testing: claimed specs, owner reviews on comfort and load limits, and our test plan.',
   question:

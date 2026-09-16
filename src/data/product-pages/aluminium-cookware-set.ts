@@ -53,7 +53,7 @@ const page: ProductPage = {
     },
     {
       label: 'Weight, capacity and burner',
-      value: 'Not established',
+      value: 'Not yet verified',
       status: 'to-verify',
       note: 'Do not assume a burner, fuel support or any particular pot capacity is included.',
     },

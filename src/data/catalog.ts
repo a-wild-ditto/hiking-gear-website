@@ -1,20 +1,22 @@
 export type Category =
   'Shelter' | 'Sleep' | 'Packs' | 'Cooking' | 'Accessories';
+
+export type WeightStatus =
+  'measured' | 'manufacturer' | 'retailer' | 'seller-claim' | 'unknown';
+
 export type Product = {
   id: string;
   name: string;
   category: Category;
   price: number;
-  weight: number;
+  weightGrams?: number;
+  carriedWeightGrams?: number;
+  weightStatus: WeightStatus;
+  weightBasis: string;
   summary: string;
-  note?: string;
-  /** Who it suits, in plain language. */
   goodFor?: string;
-  /** One translated technical figure, e.g. R-value plus what it means. */
   keyFact?: { label: string; meaning: string };
-  /** Detailed research page for real products. */
   reviewSlug?: string;
-  /** Short, evidence-aware copy used in starter-kit detail dialogs. */
   kitDetail?: {
     headline: string;
     paragraphs: string[];
@@ -29,7 +31,10 @@ export const products: Product[] = [
     name: 'BISINNA 2-Person Tent',
     category: 'Shelter',
     price: 100,
-    weight: 2160,
+    weightGrams: 2160,
+    carriedWeightGrams: 2160,
+    weightStatus: 'seller-claim',
+    weightBasis: 'Listing packed weight',
     summary:
       'A conventional freestanding double-wall tent at a low entry price.',
     goodFor: 'Budget-focused first overnights',
@@ -51,10 +56,13 @@ export const products: Product[] = [
   },
   {
     id: 'bisinna-bag-18',
-    name: 'BISINNA 1.6 kg Sleeping Bag',
+    name: 'BISINNA Sleeping Bag',
     category: 'Sleep',
     price: 53,
-    weight: 1600,
+    weightGrams: 1600,
+    carriedWeightGrams: 1600,
+    weightStatus: 'seller-claim',
+    weightBasis: 'Listing weight',
     summary:
       'A roomy synthetic bag for mild trips, with an unverified 13°C comfort claim.',
     goodFor: 'Mild nights where price matters most',
@@ -83,7 +91,10 @@ export const products: Product[] = [
     name: 'Foil Egg-Crate Foam Mat',
     category: 'Sleep',
     price: 17,
-    weight: 330,
+    weightGrams: 330,
+    carriedWeightGrams: 330,
+    weightStatus: 'seller-claim',
+    weightBasis: 'Listing weight',
     summary: 'A simple folding mat that cannot puncture or deflate.',
     goodFor: 'Reliable, low-cost first trips',
     reviewSlug: 'foil-egg-crate-foam-pad',
@@ -107,7 +118,10 @@ export const products: Product[] = [
     name: 'BISINNA 25+10L Pack',
     category: 'Packs',
     price: 48,
-    weight: 580,
+    weightGrams: 580,
+    carriedWeightGrams: 580,
+    weightStatus: 'seller-claim',
+    weightBasis: 'Listing weight',
     summary: 'A very light frameless roll-top for an already compact kit.',
     goodFor: 'Carefully packed lighter loads',
     reviewSlug: 'bisinna-25-10-backpack',
@@ -123,7 +137,7 @@ export const products: Product[] = [
         'Frameless roll-top',
       ],
       caveat:
-        'Owner reports suggest comfort falls away around 8–10 kg; that is not a tested load limit.',
+        'Owner reports suggest comfort falls away around 8 to 10 kg; that is not a tested load limit.',
     },
   },
   {
@@ -131,7 +145,11 @@ export const products: Product[] = [
     name: 'Naturehike Cloud Up Pro 1P',
     category: 'Shelter',
     price: 205,
-    weight: 1230,
+    weightGrams: 1230,
+    carriedWeightGrams: 1390,
+    weightStatus: 'seller-claim',
+    weightBasis:
+      'Estimated carried weight from seller-listed minimum package figure',
     summary: 'The solo option from a well-documented budget tent family.',
     goodFor: 'Solo hikers prioritising lower carried weight',
     reviewSlug: 'naturehike-cloud-up-tent',
@@ -139,7 +157,7 @@ export const products: Product[] = [
       headline: 'The lower-weight Cloud Up for solo trips',
       paragraphs: [
         'The 1P gives one hiker a conventional double-wall shelter without paying for unused floor space.',
-        'The listing claims 1.23 kg excluding accessories, so the complete carried weight will be higher.',
+        'The listing claims 1.23 kg excluding accessories. We use an estimated 1.39 kg carried figure for the kit total.',
       ],
       specs: [
         'One-person capacity',
@@ -155,31 +173,24 @@ export const products: Product[] = [
     name: 'Naturehike Cloud Up Pro 2P',
     category: 'Shelter',
     price: 217,
-    weight: 1750,
+    weightGrams: 1750,
+    carriedWeightGrams: 1910,
+    weightStatus: 'manufacturer',
+    weightBasis:
+      'Estimated carried weight from listing figure plus accessories',
     summary: 'A two-person Cloud Up option for hikers sharing shelter duties.',
     goodFor: 'Duo trips or solo hikers wanting more room',
     reviewSlug: 'naturehike-cloud-up-tent',
-    kitDetail: {
-      headline: 'Shared shelter space for two hikers',
-      paragraphs: [
-        'The 2P is the practical Cloud Up choice for two hikers sharing shelter duties.',
-        'It also gives a solo hiker more room, with a higher price and carried weight than the 1P.',
-      ],
-      specs: [
-        'Two-person capacity',
-        'Double-wall design',
-        '1.75 kg listing claim',
-      ],
-      caveat:
-        'Independent reports describe the two-person interior as tight, and current official weights conflict with the listing.',
-    },
   },
   {
     id: 'down-bag-400',
-    name: '400 g Down Envelope Bag',
+    name: '400 g Down Envelope Sleeping Bag',
     category: 'Sleep',
     price: 86,
-    weight: 725,
+    weightGrams: 725,
+    carriedWeightGrams: 800,
+    weightStatus: 'seller-claim',
+    weightBasis: 'Seller-claimed bag plus stuff sack estimate',
     summary:
       'A light down bag candidate with unresolved fill and temperature claims.',
     goodFor: 'Weight-conscious mild-weather experiments',
@@ -188,7 +199,7 @@ export const products: Product[] = [
       headline: 'Low claimed weight, with important questions attached',
       paragraphs: [
         'This rectangular bag is listed with 400 g of goose down fill and a total bag weight around 725 g.',
-        'If those figures prove accurate, it could reduce sleep-system bulk without the usual premium price.',
+        'We use approximately 800 g in the Value total to allow for the stuff sack.',
       ],
       specs: [
         '400 g fill claimed',
@@ -204,8 +215,11 @@ export const products: Product[] = [
     name: 'Naturehike TuYe R3.5 Mat',
     category: 'Sleep',
     price: 86,
-    weight: 440,
-    summary: 'A compact insulated inflatable mat for broader three-season use.',
+    weightGrams: 440,
+    carriedWeightGrams: 450,
+    weightStatus: 'seller-claim',
+    weightBasis: 'Seller-listed mat weight plus small accessory estimate',
+    summary: 'A compact insulated inflatable mat for broader mild-weather use.',
     goodFor: 'Cooler trips and compact packing',
     reviewSlug: 'naturehike-tuye-r3-5',
     keyFact: {
@@ -215,7 +229,7 @@ export const products: Product[] = [
     kitDetail: {
       headline: 'More ground insulation for cooler trips',
       paragraphs: [
-        'The mummy version is listed at R3.5, 183 × 58 cm and about 440 g.',
+        'The mummy version is listed at R3.5, 183 × 58 cm and about 440 g. We use an estimated 450 g carried figure.',
         'It offers a much smaller packed size than foam while adding claimed ground insulation for cooler nights.',
       ],
       specs: ['R3.5 claimed', '183 × 58 cm', 'About 440 g claimed'],
@@ -228,7 +242,10 @@ export const products: Product[] = [
     name: 'Naturehike Rock 60+5L Pack',
     category: 'Packs',
     price: 69,
-    weight: 1160,
+    weightGrams: 1160,
+    carriedWeightGrams: 1160,
+    weightStatus: 'manufacturer',
+    weightBasis: 'Manufacturer-listed pack weight',
     summary:
       'A framed, high-volume pack with room for a forgiving first setup.',
     goodFor: 'Beginners still learning how compactly they pack',
@@ -249,7 +266,8 @@ export const products: Product[] = [
     name: 'Widesea Aluminium Cookware Set',
     category: 'Cooking',
     price: 56,
-    weight: 0,
+    weightStatus: 'unknown',
+    weightBasis: 'No reliable carried-weight figure identified',
     summary:
       'A nested eight-piece pot set for simple camp meals and hot drinks.',
     goodFor: 'Optional cooking setup',
@@ -257,7 +275,7 @@ export const products: Product[] = [
     kitDetail: {
       headline: 'Straightforward cookware for camp meals',
       paragraphs: [
-        'This Widesea set covers the basic cooking role with a 1.3 L pot, 440 ml cup/pot, burner bracket and utensils.',
+        'This Widesea set covers the basic cooking role with a 1.3 L pot, 440 ml cup or pot, burner bracket and utensils.',
         'It is an optional add-on for hikers who want hot meals or morning coffee.',
       ],
       specs: [
@@ -274,186 +292,28 @@ export const products: Product[] = [
     name: 'NIOFEEL Memory-Foam Camping Pillow',
     category: 'Accessories',
     price: 19,
-    weight: 500,
+    weightGrams: 500,
+    carriedWeightGrams: 500,
+    weightStatus: 'seller-claim',
+    weightBasis: 'Same-design review estimate',
     summary:
       'A compressible foam pillow for hikers prioritising sleep comfort.',
     goodFor: 'Optional comfort add-on',
     reviewSlug: 'memory-foam-camping-pillow',
-    kitDetail: {
-      headline: 'Extra comfort when sleep matters more than grams',
-      paragraphs: [
-        'This compressible pillow uses slow-rebound memory foam with a removable cover.',
-        'It suits beginners who dislike the firmness or movement of inflatable pillows.',
-      ],
-      specs: [
-        'About 38 × 25 × 10 cm',
-        'Slow-rebound memory foam',
-        'Removable cover',
-      ],
-      caveat:
-        'A same-design HIKEMAN review puts it near 500 g; we have not confirmed that its construction matches this NIOFEEL pillow.',
-    },
-  },
-  {
-    id: 'ridge-2p',
-    name: 'Ridge 2P Shelter',
-    category: 'Shelter',
-    price: 169,
-    weight: 1850,
-    summary:
-      'A straightforward two-person shelter with space for a forgiving first setup.',
-  },
-  {
-    id: 'valley-2p',
-    name: 'Valley 2P Shelter',
-    category: 'Shelter',
-    price: 229,
-    weight: 1540,
-    summary:
-      'A lighter shelter option that keeps setup simple and gives useful headroom.',
-  },
-  {
-    id: 'trail-5',
-    name: 'Trail 5° Sleeping Bag',
-    category: 'Sleep',
-    price: 129,
-    weight: 1180,
-    summary: 'A simple synthetic sleep option for mild conditions.',
-    note: 'Temperature figures are demo data, not tested ratings.',
-  },
-  {
-    id: 'summit-2',
-    name: 'Summit 2° Sleeping Bag',
-    category: 'Sleep',
-    price: 179,
-    weight: 970,
-    summary: 'A lighter three-season demo option with more warmth allowance.',
-    note: 'Temperature figures are demo data, not tested ratings.',
-  },
-  {
-    id: 'mat-r3',
-    name: 'TrailMat R3.0',
-    category: 'Sleep',
-    price: 79,
-    weight: 520,
-    summary: 'An entry mat placeholder aimed at mild overnight conditions.',
-    note: 'R-value is demo data, not a tested rating.',
-  },
-  {
-    id: 'mat-r4',
-    name: 'ComfortMat R4.2',
-    category: 'Sleep',
-    price: 119,
-    weight: 480,
-    summary: 'A warmer, lower-weight placeholder for broader three-season use.',
-    note: 'R-value is demo data, not a tested rating.',
-  },
-  {
-    id: 'trek-55',
-    name: 'Trek 55 Pack',
-    category: 'Packs',
-    price: 139,
-    weight: 1580,
-    summary:
-      'A forgiving pack size for beginners still learning what they use.',
-  },
-  {
-    id: 'path-50',
-    name: 'Path 50 Pack',
-    category: 'Packs',
-    price: 219,
-    weight: 1190,
-    summary: 'A lighter all-round pack with sensible room for first-trip gear.',
-  },
-  {
-    id: 'cook-basic',
-    name: 'Solo Cook Set',
-    category: 'Cooking',
-    price: 55,
-    weight: 340,
-    summary: 'A simple stove-and-pot allowance for overnight meals.',
-  },
-  {
-    id: 'cook-light',
-    name: 'Light Cook Set',
-    category: 'Cooking',
-    price: 69,
-    weight: 250,
-    summary: 'A lighter cooking placeholder with less bulk.',
-  },
-  {
-    id: 'cook-compact',
-    name: 'Compact Cook Set',
-    category: 'Cooking',
-    price: 99,
-    weight: 205,
-    summary: 'A compact demo setup for a more weight-conscious kit.',
-  },
-  {
-    id: 'essentials-basic',
-    name: 'Essentials Pack Basic',
-    category: 'Accessories',
-    price: 39,
-    weight: 250,
-    summary: 'Headlamp, basic first-aid kit and repair tape.',
-  },
-  {
-    id: 'essentials-light',
-    name: 'Essentials Pack Light',
-    category: 'Accessories',
-    price: 79,
-    weight: 360,
-    summary: 'Brighter headlamp, first aid, repair kit and dry bags.',
-  },
-  {
-    id: 'essentials-plus',
-    name: 'Essentials Pack Plus',
-    category: 'Accessories',
-    price: 139,
-    weight: 520,
-    summary: 'Everything in Light, plus a squeeze water filter and trowel.',
   },
 ];
-
-const details: Record<string, Pick<Product, 'goodFor' | 'keyFact'>> = {
-  'ridge-2p': { goodFor: 'First trips and budget-conscious hikers' },
-  'valley-2p': { goodFor: 'Regular weekends with a friend' },
-  'trail-5': {
-    goodFor: 'Summer and mild nights',
-    keyFact: { label: 'Comfort 5°C', meaning: 'Warm-weather trips' },
-  },
-  'summit-2': {
-    goodFor: 'Most three-season trips',
-    keyFact: { label: 'Comfort 2°C', meaning: 'Cool spring and autumn nights' },
-  },
-  'mat-r3': {
-    goodFor: 'Mild first overnights',
-    keyFact: { label: 'R-value 3.0', meaning: 'Suitable for mild conditions' },
-  },
-  'mat-r4': {
-    goodFor: 'Cool three-season trips',
-    keyFact: {
-      label: 'R-value 4.2',
-      meaning: 'Suitable for cool three-season trips',
-    },
-  },
-  'trek-55': { goodFor: 'Bulkier budget gear' },
-  'path-50': { goodFor: 'Most first overnight kits' },
-  'cook-basic': { goodFor: 'Hot dinners and a morning coffee' },
-  'cook-light': { goodFor: 'Saving bulk in a lighter kit' },
-  'cook-compact': { goodFor: 'Weight-conscious packers' },
-  'essentials-basic': { goodFor: 'Every first overnight kit' },
-  'essentials-light': { goodFor: 'Wet weather and regular weekends' },
-  'essentials-plus': { goodFor: 'Remote trips with creek water' },
-};
-for (const p of products) Object.assign(p, details[p.id]);
-
-export const formatWeight = (g: number) =>
-  g >= 1000 ? `${(g / 1000).toFixed(2)} kg` : `${g} g`;
 
 export const productById = Object.fromEntries(
   products.map((p) => [p.id, p]),
 ) as Record<string, Product>;
+export const formatWeight = (grams?: number) =>
+  grams === undefined
+    ? 'Not yet verified'
+    : grams >= 1000
+      ? `${(grams / 1000).toFixed(2)} kg`
+      : `${grams} g`;
+export const weightForKit = (product: Product) => product.carriedWeightGrams;
+
 export const categories = [
   {
     name: 'Shelter',

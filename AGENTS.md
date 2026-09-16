@@ -2,20 +2,21 @@
 
 ## Repository context
 
-This is a static-first Astro 7 validation site for an Australian beginner
-hiking gear concept. Astro is configured with `output: 'static'`; pages and
-catalogue data are built from the repository, with only a small browser-side
-questionnaire. The deployment target is Cloudflare Workers Static Assets, with
-`wrangler.jsonc` serving `./dist`.
+This is the static-first Astro 7 Bush Gums affiliate curation MVP for Australian
+beginner overnight hiking gear. Astro is configured with `output: 'static'`;
+pages and research data are built from the repository, with only a small
+browser-side questionnaire. The deployment target is Cloudflare Workers Static
+Assets, with `wrangler.jsonc` serving `./dist`.
 
-There is currently no database, backend, CMS, authentication, commerce system,
-or customer data collection. D1 is a possible future extension only. Do not
+There is currently no database, backend, CMS, authentication, checkout,
+inventory, email capture or customer data collection. D1 is a possible future extension only. Do not
 describe D1 as an existing dependency or introduce database assumptions into
 ordinary static-site work.
 
 The README is the primary project context for current product and deployment
-facts. Preserve its distinction between demonstration data and verified launch
-claims. Do not invent product promises, safety or performance claims, pricing
+facts. Only real researched gear is public. Preserve the distinction between
+seller claims, manufacturer data, retailer data and verified measurements.
+Do not invent product promises, safety or performance claims, pricing
 policy, fulfilment policy, or privacy policy.
 
 Before making commerce, product, affiliate, inventory, architecture, or
@@ -24,8 +25,8 @@ Phasing section below.
 
 ## Business Strategy and Commercial Phasing
 
-This is an Australian beginner hiking/outdoor brand using the working brand
-direction **Bush Gums**, built through low-risk phased validation. The target
+This is an Australian beginner hiking/outdoor brand using **Bush Gums** as the
+public MVP brand, built through low-risk phased validation. The target
 customer is an Australian beginner to entry/mid-level hiker, often moving from
 day hikes to first overnight trips: price-conscious, unwilling to buy obvious
 low-quality junk, overwhelmed by gear choice, and interested in practical
@@ -205,7 +206,15 @@ Code depending on a production schema migration is not release-ready until the
 migration requirement and order are explicit. No current feature may assume D1
 exists.
 
-## Privacy and validation-site principles
+## Privacy and curation-site principles
+
+The core public funnel is Value kit to product research to external merchant.
+The Starter kit is the lower-cost alternative. There is no Premium tier or
+demonstration catalogue. Product field testing remains incomplete for some
+items, and evidence provenance must remain visible. Competitor comparisons
+must be dated, sourced and qualified. Consumer-facing kit totals use estimated
+carried or packed weight. Public copy, metadata, alt text and documentation
+must not use Unicode U+2014.
 
 Prefer minimal infrastructure, first-party functionality, low dependency count,
 replaceable implementations, explicit data collection, graceful degradation,

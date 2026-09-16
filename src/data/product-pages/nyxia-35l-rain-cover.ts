@@ -10,7 +10,7 @@ const page: ProductPage = {
   tags: ['Starter accessory'],
   pricePaidAud: 3.42,
   summary:
-    'A pack cover for a few dollars. A simple accessory where spending more may not buy much — provided the cheap one stays on and keeps rain off.',
+    'A pack cover for a few dollars. A simple accessory where spending more may not buy much, provided the cheap one stays on and keeps rain off.',
   metaDescription:
     'What we know about the NYXIA 35L backpack rain cover before testing, why a cover isn’t enough on its own, and how we’ll test it.',
   question:
@@ -32,7 +32,7 @@ const page: ProductPage = {
       value: 'Not stated',
       status: 'to-verify',
     },
-    { label: 'Weight', value: 'Not stated', status: 'to-verify' },
+    { label: 'Weight', value: 'Not yet verified', status: 'to-verify' },
     { label: 'Waterproof rating', value: 'None stated', status: 'to-verify' },
   ],
   coverage: 'limited',

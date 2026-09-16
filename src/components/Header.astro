@@ -3,8 +3,6 @@ import { primaryNav, site } from '../config/site';
 import Wordmark from './Wordmark.astro';
 const path = Astro.url.pathname;
 const isActive = (href: string) => path === href || path.startsWith(`${href}/`);
-// Build My Kit is the header CTA, so the inline desktop links skip it.
-const desktopLinks = primaryNav.filter((i) => i.href !== '/build-my-kit');
 ---
 
 <header class="site-header">
@@ -14,7 +12,7 @@ const desktopLinks = primaryNav.filter((i) => i.href !== '/build-my-kit');
     >
     <nav class="desktop-nav" aria-label="Primary">
       {
-        desktopLinks.map((item) => (
+        primaryNav.map((item) => (
           <a
             class:list={{ active: isActive(item.href) }}
             aria-current={isActive(item.href) ? 'page' : undefined}
@@ -25,8 +23,8 @@ const desktopLinks = primaryNav.filter((i) => i.href !== '/build-my-kit');
         ))
       }
     </nav>
-    <a class="button button-small desktop-cta" href="/build-my-kit"
-      >Build My Kit</a
+    <a class="button button-small desktop-cta" href="/starter-kits#value"
+      >See the Value Kit</a
     >
     <details class="mobile-nav">
       <summary
@@ -34,8 +32,7 @@ const desktopLinks = primaryNav.filter((i) => i.href !== '/build-my-kit');
           class="burger"
           aria-hidden="true"><span></span><span></span></span
         ><span aria-hidden="true">Menu</span></summary
-      >
-      <nav aria-label="Mobile" class="mobile-panel">
+      ><nav aria-label="Mobile" class="mobile-panel">
         {
           primaryNav.map((item) => (
             <a
@@ -47,7 +44,9 @@ const desktopLinks = primaryNav.filter((i) => i.href !== '/build-my-kit');
             </a>
           ))
         }
-        <a href="/about">About</a><a href="/faq">FAQ</a>
+        <a class="mobile-panel-cta" href="/starter-kits#value"
+          >See the Value Kit</a
+        >
       </nav>
     </details>
   </div>

@@ -2,57 +2,45 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Photo from '../components/Photo.astro';
 import KitCard from '../components/KitCard.astro';
-import PremiumComingSoon from '../components/PremiumComingSoon.astro';
-import QuestionStep from '../components/QuestionStep.astro';
-import { kitById, getKitWeight } from '../data/kits';
-import { guides } from '../data/guides';
-import { questions } from '../data/questions';
+import ProductCard from '../components/ProductCard.astro';
+import ValueComparison from '../components/ValueComparison.astro';
+import { kitById } from '../data/kits';
+import { productPageBySlug } from '../data/product-pages';
 
-const featured = kitById.value;
-const leadGuide = guides[0];
-const sideGuides = [
-  {
-    guide: guides[1],
-    slot: 'guideSleepingBag' as const,
-    alt: 'A hiker sitting up in a sleeping bag at a tent door on a frosty morning',
-  },
-  {
-    guide: guides[2],
-    slot: 'guideMat' as const,
-    alt: 'A hiker unrolling a sleeping mat on a tent floor',
-  },
-];
-const system = [
-  {
-    name: 'Shelter',
-    job: 'Keeps wind, rain and bugs off you overnight.',
-    tip: 'A freestanding two-person tent is the most forgiving first choice.',
-  },
-  {
-    name: 'Sleep',
-    job: 'A bag and a mat work together to keep you warm.',
-    tip: 'The mat matters as much as the bag. Cold comes up from the ground.',
-  },
-  {
-    name: 'Carry',
-    job: 'A pack that fits your back and holds everything above.',
-    tip: 'Around 50 litres suits most first overnight kits.',
-  },
-  {
-    name: 'Cook',
-    job: 'A small stove, a pot and a way to treat water.',
-    tip: 'Keep it simple. Boiling water covers most trail meals.',
-  },
+const valueProducts = [
+  'naturehike-cloud-up-tent',
+  '400g-down-envelope-sleeping-bag',
+  'naturehike-tuye-r3-5',
+  'naturehike-rock-60-5',
+].map((slug) => productPageBySlug[slug]);
+const chooseSteps = [
+  [
+    '01',
+    'Search wider',
+    'We look beyond the familiar retail chains for overlooked value.',
+  ],
+  [
+    '02',
+    'Check the evidence',
+    'We compare specifications, marketplace history, owner reports and independent reviews where available.',
+  ],
+  [
+    '03',
+    'Show the unknowns',
+    'Seller claims, limited evidence and unfinished field testing are labelled rather than hidden.',
+  ],
 ];
 ---
 
-<BaseLayout>
-  <!-- 1. Hero: asymmetric split -->
-  <section class="hero">
+<BaseLayout
+  title="Bush Gums | Affordable beginner overnight hiking gear Australia"
+  description="Curated starter hiking kits and practical gear research for Australian beginners planning a first overnight trip."
+>
+  <section class="hero hero-funnel">
     <div class="hero-media">
       <Photo
         slot="hero"
-        alt="A hiker standing beside a small tent on a sandstone ledge above a misty Blue Mountains valley at sunrise"
+        alt="A hiker beside a small tent on a sandstone ledge above a misty Blue Mountains valley at sunrise"
         sizes="100vw"
         widths={[768, 1280, 1942]}
         position="72% 55%"
@@ -61,203 +49,72 @@ const system = [
     </div>
     <div class="container hero-inner">
       <div class="hero-copy">
+        <p class="eyebrow">Beginner overnight hiking gear, explained</p>
         <h1>Your first overnight hike, sorted.</h1>
         <p class="hero-sub">
-          Curated gear for your bush adventures without spending thousands.
+          Start with a curated core overnight kit from A$218, or choose our
+          lighter A$446 Value setup. We compare the evidence and trade-offs so
+          you can spend less without buying blind.
         </p>
         <div class="actions">
-          <a class="button" href="/build-my-kit">Build My Kit</a>
-          <a class="button button-ghost" href="/starter-kits"
-            >See Starter Kits</a
+          <a class="button" href="/starter-kits#value">See the Value Kit</a><a
+            class="button button-ghost"
+            href="/gear">Browse the Gear</a
           >
         </div>
+        <p class="trust-note">
+          Affiliate links. Prices are historical and may change. Some
+          specifications remain seller claims, and field testing is in progress.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- 2. Value proposition: bordered editorial band -->
-  <section class="value-band" aria-labelledby="value-title">
-    <div class="container value-band-inner" data-reveal>
-      <h2 id="value-title">A reliable setup without the premium price tag.</h2>
-      <ul class="value-points">
-        <li>
-          <h3>Made simple for beginners</h3>
-          <p>Every item comes with a plain-English reason.</p>
-        </li>
-        <li>
-          <h3>Sensible price-to-performance</h3>
-          <p>Spend where it changes warmth, weight or comfort.</p>
-        </li>
-        <li>
-          <h3>Built around Australian trips</h3>
-          <p>From Blue Mountains weekends to Tasmanian highlands.</p>
-        </li>
-      </ul>
-    </div>
-  </section>
+  <ValueComparison />
 
-  <!-- 3. Starter and Value kits, with Premium in research -->
   <section class="section" aria-labelledby="kits-title">
     <div class="container">
       <div class="heading-row">
-        <h2 id="kits-title">Find your starting point.</h2>
-        <a class="text-link" href="/starter-kits">See Starter Kits</a>
+        <div>
+          <p class="eyebrow">Two ways to start</p><h2 id="kits-title">
+            Choose the setup that fits your priorities.
+          </h2>
+        </div><a class="text-link" href="/starter-kits">Compare the kits</a>
       </div>
-      <div class="kit-trio" data-reveal>
-        <KitCard kit={kitById.starter} />
-        <article class="kit-feature">
-          <div class="kit-feature-media">
-            <Photo
-              slot="kitFeatured"
-              alt="Naturehike Cloud Up tent with the Value kit arranged at an Australian alpine campsite"
-              sizes="(max-width: 767px) 100vw, 44vw"
-              position="40% 55%"
-            />
-          </div>
-          <div class="kit-feature-body">
-            <p class="kit-note">Where most people should start</p>
-            <h3>{featured.name}</h3>
-            <p>{featured.summary}</p>
-            <dl class="figures figures-lg">
-              <div>
-                <dt>Est. total</dt><dd>
-                  ${featured.price.toLocaleString('en-AU')}
-                </dd>
-              </div>
-              <div>
-                <dt>Approx. weight</dt><dd>
-                  {(getKitWeight(featured) / 1000).toFixed(1)} kg
-                </dd>
-              </div>
-              <div class="figures-wide">
-                <dt>Suits</dt><dd class="dd-text">{featured.bestFor}</dd>
-              </div>
-            </dl>
-            <a class="text-link" href={`/starter-kits#${featured.id}`}
-              >View the {featured.name} kit</a
-            >
-          </div>
-        </article>
-        <PremiumComingSoon compact />
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. Build My Kit: deep colour block with the live first question -->
-  <section class="recommender-band" aria-labelledby="builder-title">
-    <div class="container recommender-grid">
-      <div class="recommender-copy">
-        <p class="eyebrow">Build My Kit</p>
-        <h2 id="builder-title">
-          Tell us where you're going. We'll help with the gear.
-        </h2>
-        <p>Six quick questions, about two minutes. We ask about:</p>
-        <ul class="topic-list">
-          <li>Trip location</li>
-          <li>Season</li>
-          <li>Budget</li>
-          <li>Comfort vs weight</li>
-        </ul>
-        <p class="small-print">
-          No email needed. Answers stay in your browser.
-        </p>
-      </div>
-      <form
-        class="builder-preview"
-        action="/build-my-kit"
-        method="get"
-        data-reveal
-      >
-        <QuestionStep
-          question={questions[0]}
-          index={0}
-          total={questions.length}
-          active
+      <div class="kit-grid">
+        <KitCard kit={kitById.value} featured /><KitCard
+          kit={kitById.starter}
         />
-        <button class="button" type="submit">Build My Kit</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- 5. Categories: asymmetric bento -->
-  <section class="section" aria-labelledby="cat-title">
-    <div class="container">
-      <h2 id="cat-title" class="section-title">
-        Four categories. Far fewer decisions.
-      </h2>
-      <div class="cat-bento" data-reveal>
-        <a class="cat-tile cat-shelter" href="/gear#shelter">
-          <Photo
-            slot="shelter"
-            alt="A green-grey dome tent pitched among snow gums"
-            sizes="(max-width: 767px) 100vw, 50vw"
-            position="30% 60%"
-          />
-          <span class="cat-caption"
-            ><span class="cat-name">Shelter</span><span
-              >Tents by space, weight and weather.</span
-            ></span
-          >
-        </a>
-        <a class="cat-tile cat-sleep" href="/gear#sleep">
-          <Photo
-            slot="sleep"
-            alt="A sleeping mat and sleeping bag laid out inside an open tent"
-            sizes="(max-width: 767px) 100vw, 25vw"
-          />
-          <span class="cat-caption"
-            ><span class="cat-name">Sleep</span><span
-              >Bags and mats, ratings explained.</span
-            ></span
-          >
-        </a>
-        <a class="cat-tile cat-packs" href="/gear#packs">
-          <Photo
-            slot="packs"
-            alt="A hiker carrying an overnight pack along a rocky alpine track"
-            sizes="(max-width: 767px) 100vw, 25vw"
-            position="60% 50%"
-          />
-          <span class="cat-caption"
-            ><span class="cat-name">Packs</span><span
-              >Enough room, no extra bulk.</span
-            ></span
-          >
-        </a>
-        <a class="cat-tile cat-cooking" href="/gear#cooking-accessories">
-          <Photo
-            slot="cooking"
-            alt="A small stove boiling water on a rock at a campsite"
-            sizes="(max-width: 767px) 100vw, 25vw"
-          />
-          <span class="cat-caption"
-            ><span class="cat-name">Cooking & accessories</span><span
-              >Cook sets and essentials packs.</span
-            ></span
-          >
-        </a>
       </div>
     </div>
   </section>
 
-  <!-- 6. What do I actually need: vertical system sequence -->
-  <section class="section section-tint" aria-labelledby="need-title">
-    <div class="container need-grid">
-      <div class="need-intro">
-        <h2 id="need-title">What do I actually need?</h2>
-        <p>
-          An overnight kit does four jobs. Get these right and everything else
-          is a nice extra.
-        </p>
-        <a class="text-link" href={leadGuide.href}>Read the full checklist</a>
+  <section class="section section-tint" aria-labelledby="method-title">
+    <div class="container method-grid">
+      <div>
+        <p class="eyebrow">How we choose</p><h2 id="method-title">
+          How Bush Gums chooses gear
+        </h2><p>
+          We search beyond the big chains, then keep the useful detail visible.
+          The shortlist is built for beginners who want practical gear at
+          sensible prices, not a wall of jargon.
+        </p><a class="text-link" href="/about#how-we-choose"
+          >Read how we choose</a
+        >
       </div>
-      <ol class="system-steps">
+      <ol class="method-steps">
         {
-          system.map((s) => (
-            <li data-reveal>
-              <h3>{s.name}</h3>
-              <p>{s.job}</p>
-              <p class="system-tip">{s.tip}</p>
+          chooseSteps.map(([number, title, copy]) => (
+            <li>
+              <>
+                <span class="method-number">{number}</span>
+                <div>
+                  <>
+                    <h3>{title}</h3>
+                    <p>{copy}</p>
+                  </>
+                </div>
+              </>
             </li>
           ))
         }
@@ -265,129 +122,57 @@ const system = [
     </div>
   </section>
 
-  <!-- 7. Guides: editorial lead story plus side list -->
-  <section class="section" aria-labelledby="guides-title">
+  <section class="section" aria-labelledby="featured-title">
     <div class="container">
       <div class="heading-row">
-        <h2 id="guides-title">Know enough to choose well.</h2>
-        <a class="text-link" href="/learn">All guides</a>
+        <div>
+          <p class="eyebrow">Inside the Value kit</p><h2 id="featured-title">
+            Real products, with the questions attached.
+          </h2>
+        </div><a class="text-link" href="/gear">See all gear</a>
       </div>
-      <div class="guides-editorial">
-        <article class="guide-lead" data-reveal>
-          <a href={leadGuide.href} class="guide-lead-media" tabindex="-1">
-            <Photo
-              slot="guideFirstOvernight"
-              alt="A hiker walking a eucalyptus bush track after rain"
-              sizes="(max-width: 767px) 100vw, 58vw"
-              position="60% 55%"
+      <div class="product-grid">
+        {
+          valueProducts.map((product) => (
+            <ProductCard
+              productPage={product}
+              href={`/gear/${product.slug}/`}
             />
-          </a>
-          <p class="guide-topic">{leadGuide.eyebrow}</p>
-          <h3><a href={leadGuide.href}>{leadGuide.title}</a></h3>
-          <p>{leadGuide.description}</p>
-        </article>
-        <div class="guide-side">
-          {
-            sideGuides.map(({ guide, slot, alt }) => (
-              <article class="guide-item" data-reveal>
-                <div class="guide-item-media">
-                  <Photo
-                    slot={slot}
-                    alt={alt}
-                    sizes="(max-width: 767px) 40vw, 16vw"
-                    widths={[320, 560]}
-                  />
-                </div>
-                <div>
-                  <p class="guide-topic">{guide.eyebrow}</p>
-                  <h3>
-                    <a href={guide.href}>{guide.title}</a>
-                  </h3>
-                  <p class="guide-meta">{guide.readTime}</p>
-                </div>
-              </article>
-            ))
-          }
-        </div>
+          ))
+        }
       </div>
-    </div>
-  </section>
-
-  <!-- 8. Method: understated statement -->
-  <section class="method" aria-labelledby="method-title">
-    <div class="container method-inner" data-reveal>
-      <h2 id="method-title">How we pick gear</h2>
-      <p class="method-statement">
-        We recommend gear on suitability, value and real specifications, not
-        simply the highest commission.
-      </p>
-      <p>
-        When we earn from a link, we say so. <a href="/affiliate-disclosure"
-          >Read our affiliate disclosure</a
-        >.
+      <p class="section-note">
+        Every product page shows what we know, where it came from and what still
+        needs testing.
       </p>
     </div>
   </section>
 
-  <!-- 9. Email capture: quiet inline form -->
-  <section class="checklist" aria-labelledby="checklist-title">
-    <div class="container checklist-inner">
+  <section class="builder-prompt" aria-labelledby="builder-title">
+    <div class="container builder-prompt-inner">
       <div>
-        <h2 id="checklist-title">The First Overnight Checklist</h2>
-        <p>A printable one-page list of what to pack, and what to skip.</p>
-      </div>
-      <form class="checklist-form" id="checklist-form" novalidate>
-        <div class="field">
-          <label for="checklist-email">Email address</label>
-          <div class="field-row">
-            <input
-              id="checklist-email"
-              name="email"
-              type="email"
-              autocomplete="email"
-              required
-              aria-describedby="checklist-status"
-            />
-            <button class="button" type="submit">Send me the checklist</button>
-          </div>
-          <p id="checklist-status" class="field-help" aria-live="polite">
-            Prototype: emails are not sent or stored yet.
-          </p>
-        </div>
-      </form>
+        <p class="eyebrow">Not sure which way to go?</p><h2 id="builder-title">
+          Build My Kit can narrow it down.
+        </h2><p>
+          Answer a few trip questions in your browser. It recommends Starter or
+          Value, and stops before winter conditions.
+        </p>
+      </div><a class="button button-light" href="/build-my-kit"
+        >Try Build My Kit</a
+      >
     </div>
   </section>
-  <script>
-    // Picking a location on the homepage preview jumps straight into Build My
-    // Kit at question 2. Keyboard users confirm with the button.
-    const preview = document.querySelector<HTMLFormElement>('.builder-preview');
-    let previewPointer = false;
-    preview?.addEventListener('pointerdown', () => (previewPointer = true));
-    preview?.addEventListener('keydown', () => (previewPointer = false));
-    preview?.addEventListener('change', () => {
-      if (!previewPointer) return;
-      setTimeout(() => preview.requestSubmit(), 220);
-    });
 
-    const form = document.querySelector<HTMLFormElement>('#checklist-form');
-    const input = form?.querySelector<HTMLInputElement>('input');
-    const status = document.querySelector<HTMLElement>('#checklist-status');
-    form?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (!input || !status) return;
-      if (!input.checkValidity()) {
-        input.setAttribute('aria-invalid', 'true');
-        status.dataset.state = 'error';
-        status.textContent = input.value
-          ? 'That email address doesn’t look right. Check it and try again.'
-          : 'Enter your email address to get the checklist.';
-        input.focus();
-        return;
-      }
-      input.removeAttribute('aria-invalid');
-      status.dataset.state = 'ok';
-      status.textContent =
-        'Thanks. Checklist emails are not live yet, so nothing was sent or stored.';
-    });
-  </script>
+  <section class="final-cta" aria-labelledby="final-title">
+    <div class="container final-cta-inner">
+      <div>
+        <p class="eyebrow">Ready to compare?</p><h2 id="final-title">
+          See the Value kit, item by item.
+        </h2><p>
+          Follow each product into its research page, review the evidence and
+          then choose an external merchant listing if it suits your trip.
+        </p>
+      </div><a class="button" href="/starter-kits#value">See the Value Kit</a>
+    </div>
+  </section>
 </BaseLayout>

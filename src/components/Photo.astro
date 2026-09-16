@@ -11,7 +11,6 @@ interface Props {
   position?: string;
   eager?: boolean;
   class?: string;
-  label?: string;
 }
 const {
   slot,
@@ -22,7 +21,6 @@ const {
   position = 'center',
   eager = false,
   class: className,
-  label,
 } = Astro.props;
 const src = productId
   ? getProductPhoto(productId)
@@ -45,13 +43,5 @@ const src = productId
       fetchpriority={eager ? 'high' : undefined}
       style={`object-position:${position}`}
     />
-  ) : (
-    <div
-      class:list={['photo photo-placeholder', className]}
-      role="img"
-      aria-label={`Photo placeholder: ${alt}`}
-    >
-      <span>Photo to come{label ? `: ${label}` : ''}</span>
-    </div>
-  )
+  ) : null
 }

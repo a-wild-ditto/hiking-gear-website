@@ -25,9 +25,9 @@ export const questions: Question[] = [
   {
     key: 'season',
     title: 'When are you going?',
-    hint: 'Three season means spring, summer and autumn, with cool nights possible.',
+    hint: 'Choose a mild forecast with no frost expected; the current shortlist is not temperature-rated.',
     options: [
-      ['three-season', 'Three season', 'Spring to autumn, cool nights likely'],
+      ['three-season', 'Mild weather', 'Warm nights, no frost forecast'],
       ['winter', 'Winter', 'Cold nights, frost'],
     ],
   },
@@ -45,10 +45,9 @@ export const questions: Question[] = [
     title: 'What is your budget for the core gear?',
     hint: 'Core gear is shelter, sleep system and pack. Cooking and comfort add-ons are separate.',
     options: [
-      ['under-600', 'Under $600'],
-      ['600-900', '$600 to $900'],
-      ['900-1300', '$900 to $1,300'],
-      ['1300+', '$1,300 or more'],
+      ['under-300', 'Under A$300'],
+      ['300-500', 'A$300 to A$500'],
+      ['over-500', 'Over A$500'],
     ],
   },
   {
@@ -57,7 +56,7 @@ export const questions: Question[] = [
     hint: 'Every kit is a trade-off. Pick the one you would least like to give up.',
     options: [
       ['lowest-cost', 'Lowest cost', 'Spend only where it counts'],
-      ['comfort', 'Comfort', 'Warmer, roomier, easier sleep'],
+      ['comfort', 'Comfort', 'Roomier fit, simpler setup'],
       ['lightweight', 'Lower weight', 'Lighter pack on the trail'],
     ],
   },
