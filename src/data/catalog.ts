@@ -270,7 +270,7 @@ export const products: Product[] = [
   },
   {
     id: 'memory-foam-pillow',
-    name: 'Memory-Foam Camping Pillow',
+    name: 'NIOFEEL Memory-Foam Camping Pillow',
     category: 'Accessories',
     price: 19,
     weight: 500,
@@ -290,7 +290,7 @@ export const products: Product[] = [
         'Removable cover',
       ],
       caveat:
-        'A same-design review puts it near 500 g, and the unbranded unit has not yet been confirmed as identical.',
+        'A same-design HIKEMAN review puts it near 500 g; we have not confirmed that its construction matches this NIOFEEL pillow.',
     },
   },
   {

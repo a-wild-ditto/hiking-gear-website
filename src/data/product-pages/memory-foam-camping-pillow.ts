@@ -3,9 +3,9 @@ import type { ProductPage } from './types';
 const page: ProductPage = {
   slug: 'memory-foam-camping-pillow',
   imageId: 'memory-foam-camping-pillow',
-  name: 'Memory-Foam Camping Pillow',
+  name: 'NIOFEEL Memory-Foam Camping Pillow',
   identityNote:
-    'Unbranded AliExpress pillow, ordered in green. It appears to be the same design sold as HIKEMAN, but we haven’t confirmed that, so the reviews below are of the HIKEMAN version.',
+    'The supplied listing images identify this green pillow as NIOFEEL. It appears to share a design with the HIKEMAN pillow reviewed below, but we have not confirmed identical foam, cover or weight.',
   category: 'Accessories',
   tags: ['Comfort accessory'],
   pricePaidAud: 18.73,
@@ -49,7 +49,7 @@ const page: ProductPage = {
   ],
   coverage: 'limited',
   coverageNote:
-    'One independent Australian review and a couple of short marketplace reviews, all of the HIKEMAN-branded design. Nothing for our unbranded unit.',
+    'One independent Australian review and a couple of short marketplace reviews, all of the HIKEMAN-branded design. We found no independent review of the NIOFEEL-branded unit.',
   sources: [
     {
       id: 'adventurekit',
@@ -109,7 +109,7 @@ const page: ProductPage = {
   watching: [
     'The real weight. Sources range widely, and a 500 g pillow is a meaningful load for a hiker.',
     'How long it takes to expand after being compressed all day.',
-    'Whether our unbranded unit uses the same foam and cover.',
+    'Whether the NIOFEEL unit uses the same foam and cover as the HIKEMAN version.',
     'The only independent review was car camping, not hiking.',
   ],
   testPlan: [
