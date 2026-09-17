@@ -1,8 +1,10 @@
+export const productionSiteUrl = 'https://bushgums.com.au';
+
 const configuredUrl = process.env.PUBLIC_SITE_URL?.replace(/\/$/, '');
 const configuredEmail = process.env.PUBLIC_CONTACT_EMAIL;
 
 export const publicSite = {
-  url: configuredUrl || 'http://localhost:4321',
+  url: productionSiteUrl,
   contactEmail: configuredEmail || '',
 };
 
@@ -12,15 +14,13 @@ export function assertDeployConfig() {
   try {
     const parsed = new URL(configuredUrl);
     validOrigin =
-      parsed.protocol === 'https:' &&
-      parsed.origin === configuredUrl &&
-      !parsed.hostname.endsWith('.example') &&
-      parsed.hostname !== 'localhost';
+      configuredUrl === productionSiteUrl &&
+      parsed.origin === productionSiteUrl;
   } catch {
     // A missing or malformed URL is handled by the same launch-input error.
   }
-  if (!validOrigin) {
-    problems.push('PUBLIC_SITE_URL must be the final https:// site URL');
+  if (configuredUrl && !validOrigin) {
+    problems.push(`PUBLIC_SITE_URL must be ${productionSiteUrl}`);
   }
   if (
     !configuredEmail ||

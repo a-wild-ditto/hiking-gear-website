@@ -44,7 +44,7 @@ All public copy must avoid Unicode U+2014. Keep evidence provenance visible. Do 
 
 ## Deployment preparation
 
-`wrangler.jsonc` serves static assets from `./dist`. Set `PUBLIC_SITE_URL` to the final HTTPS origin and `PUBLIC_CONTACT_EMAIL` to a monitored address before a production build. These values are owner-supplied launch inputs. `npm run deploy:check` validates them; it does not deploy. `npm run deploy` is a production action and requires owner approval. Cloudflare account, domain and release setup are outside this repository.
+The production Worker is `hiking-gear-website`. `wrangler.jsonc` serves static assets from `./dist` with `workers_dev` disabled, and Astro remains configured for static output. The public site origin is fixed at `https://bushgums.com.au`; `PUBLIC_SITE_URL` is optional, but if supplied it must match that origin, and `PUBLIC_CONTACT_EMAIL` must be a monitored address before a production build. `npm run deploy:check` validates the Worker and Astro configuration plus the contact email locally without network access or deployment. The custom domain is managed in the Cloudflare dashboard and is not declared in Wrangler. `npm run deploy` is a production action and requires owner approval. Cloudflare account, domain and release setup are outside this repository.
 
 ## Commercial scope
 
@@ -52,7 +52,7 @@ Bush Gums is in the affiliate curation phase. External merchants control current
 
 ## Owner review before launch
 
-- Supply the production URL and monitored contact email.
+- Confirm the `hiking-gear-website` Worker and `https://bushgums.com.au` custom domain routing in the Cloudflare dashboard, and supply a monitored contact email.
 - Review comparison freshness, exact merchant listing identity and affiliate compliance.
 - Review legal wording and any safety or performance claim against the cited evidence.
 - Confirm rights and accuracy of all imagery, and configure the Cloudflare domain and deployment workflow.
