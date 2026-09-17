@@ -24,7 +24,7 @@ const page: ProductPage = {
     'Is the claimed down fill real enough to make this a genuinely warm, light sleeping bag for the price?',
   whyWeChoseIt: [
     'Warmth for weight is where sleeping bags get expensive. A decent down bag from a known brand usually costs several hundred dollars, which is a lot for someone who isn’t sure they will do more than a few overnight trips. This bag claims 400 g of 90% goose down in a roughly 725 g package for under $90. Taken at face value, that would be an unusually good warmth, weight and price combination.',
-    'But there’s almost nothing standing behind those claims: no brand, no fill-power figure, no standardised temperature rating and conflicting temperature descriptions between listings. Down content claims are also something independent labs regularly find overstated on products in general. That makes this the clearest example of why we buy things ourselves: the potential value is high, and the only way to find out is to check.',
+    'But there’s almost nothing standing behind those claims: no brand, no independently supported fill-power figure, no standardised temperature rating and conflicting temperature descriptions between listings. The manufacturer, retailer and seller-listed specifications on this page are all claims unless Bush Gums has independent evidence or an exact-product measurement. Down content claims are also something independent labs regularly find overstated on products in general. That makes this the clearest example of why we buy things ourselves: the potential value is high, and the only way to find out is to check.',
   ],
   specs: [
     {
@@ -38,7 +38,7 @@ const page: ProductPage = {
       label: 'Fill type',
       value: '90% goose down claimed',
       status: 'seller-claim',
-      note: 'The listing contradicts itself: the specification table says 90% goose down while a description banner says 98%. No certification or test evidence on any listing we found.',
+      note: 'The listing contradicts itself: the specification table says 90% goose down while a description banner says 98%. No certification or exact-product test evidence on any listing we found.',
       sourceIds: ['arknor'],
     },
     {
