@@ -1,6 +1,5 @@
 ---
 import type { Source } from '../../data/product-pages/types';
-import EvidenceBadge from './EvidenceBadge.astro';
 const { source, number } = Astro.props as { source: Source; number: number };
 const kindLabels: Record<Source['kind'], string> = {
   'written-review': 'Written review',
@@ -15,10 +14,7 @@ const kindLabels: Record<Source['kind'], string> = {
 
 <article class="source-card" id={`source-${source.id}`}>
   <div class="source-card-head">
-    <span class="source-number">[{number}]</span><EvidenceBadge
-      value={source.relation}
-      kind="relation"
-    />
+    <span class="source-number">[{number}]</span>
   </div>
   <h3>
     {

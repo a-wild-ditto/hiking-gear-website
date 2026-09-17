@@ -17,14 +17,14 @@ const page: ProductPage = {
   tags: ['Value sleep-system experiment'],
   pricePaidAud: 85.61,
   summary:
-    'A down bag for under $90 with a seller-claimed 400 g of fill. If the claims are close, it’s remarkable value. That’s a big if.',
+    'An under-A$90 down bag that could be strong value. The seller lists 400 g of fill; we still need to check its warmth, fill and delivered weight in use.',
   metaDescription:
-    'What we know about an unbranded 400 g down envelope sleeping bag before testing: seller claims, conflicting temperature claims, and how we’ll check them.',
+    'Research on a generic 400 g down envelope sleeping bag: seller claims, limited owner evidence, conflicting temperature claims and our testing plan.',
   question:
-    'Is the claimed down fill real enough to make this a genuinely warm, light sleeping bag for the price?',
+    'Can this low-cost down bag deliver useful warmth and low weight, or are the listing claims doing too much of the work?',
   whyWeChoseIt: [
-    'Warmth for weight is where sleeping bags get expensive. A decent down bag from a known brand usually costs several hundred dollars, which is a lot for someone who isn’t sure they will do more than a few overnight trips. This bag claims 400 g of 90% goose down in a roughly 725 g package for under $90. Taken at face value, that would be an unusually good warmth, weight and price combination.',
-    'But there’s almost nothing standing behind those claims: no brand, no independently supported fill-power figure, no standardised temperature rating and conflicting temperature descriptions between listings. The manufacturer, retailer and seller-listed specifications on this page are all claims unless Bush Gums has independent evidence or an exact-product measurement. Down content claims are also something independent labs regularly find overstated on products in general. That makes this the clearest example of why we buy things ourselves: the potential value is high, and the only way to find out is to check.',
+    'Down warmth at this price is worth investigating. The listing claims 400 g of 90% goose down in a roughly 725 g bag, or about 800 g with the stuff sack. If those figures are close, it could be an interesting value option for mild-weather overnights.',
+    'The product is generic and its evidence is thin, but that is not the same as proof that it is poor gear. The listing has nine buyer reviews, while fill content, fill power and temperature claims remain unverified and inconsistent across sellers. We ordered it for testing so we can check the delivered bag rather than repeat the listing.',
   ],
   specs: [
     {
@@ -86,7 +86,7 @@ const page: ProductPage = {
   ],
   coverage: 'limited',
   coverageNote:
-    'We found no independent reviews, forum reports or videos of this bag anywhere. The only first-hand accounts are nine buyer reviews on the listing itself, several of which are for different colours and the heavier 600 g fill. That evidence gap is one reason we bought it.',
+    'We found nine buyer reviews on the listing, but several cover other colours or the heavier 600 g option. We have not found enough reports from people using this exact bag to judge its warmth. Ours is ordered for testing, and we are not assigning it a temperature rating.',
   sources: [
     {
       id: 'ali-reviews',
@@ -134,13 +134,13 @@ const page: ProductPage = {
   ],
   positives: [
     {
-      text: 'Buyers of this listing consistently praise the stitching and finish, and say it packs down small and light.',
+      text: 'Buyers of this listing generally praise the stitching, finish and compact package, although several reviews are for another colour or the 600 g option.',
       sourceIds: ['ali-reviews'],
     },
   ],
   negatives: [
     {
-      text: 'One buyer of the heavier 600 g version found it thinner than expected. No buyer reports anything about real-world warmth in cold conditions.',
+      text: 'One buyer of the heavier 600 g version found it thinner than expected. The listing reviews do not establish warmth in cold conditions for the 400 g option.',
       sourceIds: ['ali-reviews'],
     },
   ],

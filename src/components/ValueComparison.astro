@@ -21,10 +21,10 @@ const checkedDate = new Date(
   timeZone: 'UTC',
 });
 const statusLabel: Record<ComparisonRow['weightStatus'], string> = {
-  manufacturer: 'Manufacturer listed',
-  retailer: 'Retailer listed',
-  'seller-claim': 'Seller claim',
-  'comparison-estimate': 'Retained estimate',
+  manufacturer: 'Published weight',
+  retailer: 'Published weight',
+  'seller-claim': 'Published weight',
+  'comparison-estimate': 'Comparison estimate',
 };
 ---
 
@@ -55,9 +55,7 @@ const statusLabel: Record<ComparisonRow['weightStatus'], string> = {
       <div class="comparison-card-head">
         <p class="eyebrow">Category-matched snapshot</p>
         <h3>
-          Pay {formatAud(savings.priceAud)} less. Carry a recorded estimate of about{
-            ' '
-          }
+          Pay {formatAud(savings.priceAud)} less. Carry about{' '}
           {formatKg(savings.weightGrams, 1)}{' '}less.
         </h3>
         <p>
@@ -70,12 +68,8 @@ const statusLabel: Record<ComparisonRow['weightStatus'], string> = {
           setup.
         </p>
         <p class="small-print">
-          The carried-weight totals are retained comparison estimates from the
-          dated research record. Official retailer pages publish the Anaconda
-          product and price, while some weight fields were not exposed in their
-          accessible page text. These manufacturer, retailer and seller-listed
-          specifications remain claims unless Bush Gums has independently
-          measured the exact product.
+          Based on listed weights and retained carried-weight estimates, not a
+          physical comparison by Bush Gums.
         </p>
       </div>
       <div class="comparison-metrics" aria-label="Comparison savings">
@@ -85,7 +79,7 @@ const statusLabel: Record<ComparisonRow['weightStatus'], string> = {
           <small>{savings.pricePercent}% lower</small>
         </div>
         <div>
-          <span>Carried weight estimate</span>
+          <span>Estimated carried weight</span>
           <strong>{formatKg(savings.weightGrams, 1)} lower</strong>
           <small>{savings.weightPercent}% lower</small>
         </div>
@@ -103,9 +97,8 @@ const statusLabel: Record<ComparisonRow['weightStatus'], string> = {
         </div>
       </div>
       <p class="comparison-savings">
-        Save {formatAud(savings.priceAud)} and use the recorded comparison estimate
-        of around {formatKg(savings.weightGrams, 1)}{' '}
-        of pack weight.
+        Save {formatAud(savings.priceAud)} with an estimated carried-weight difference
+        of around {formatKg(savings.weightGrams, 1)}.
       </p>
       <a class="button" href="/starter-kits#value">See the Value Kit</a>
       <p class="small-print">
@@ -116,13 +109,11 @@ const statusLabel: Record<ComparisonRow['weightStatus'], string> = {
   </div>
   <div class="container comparison-detail">
     <p>
-      Category-matched comparison, not identical products. Prices exclude
-      delivery and may change. Weights use manufacturer, retailer or
-      seller-listed carried or packed figures where available, and they have not
-      all been independently measured by Bush Gums. The generic down sleeping
-      bag's weight and insulation specifications remain seller claims, and Bush
-      Gums is not assigning it a temperature rating. Products also differ in
-      construction, verified performance, warranty and retailer support.
+      Category-matched comparison, not identical products. Prices and weight
+      sources were checked on the dates shown and can change. Some carried
+      weights are estimates; Bush Gums has not independently weighed every
+      product. Construction, performance, warranty and retailer support can
+      differ.
     </p>
     <details>
       <summary>How this comparison works</summary>
@@ -131,7 +122,7 @@ const statusLabel: Record<ComparisonRow['weightStatus'], string> = {
           These are category-matched products rather than identical products.
           Bush Gums prices are what we paid or recorded. Anaconda figures are
           advertised sale or Club prices. The totals use estimated carried or
-          packed weights from different evidence levels. The {
+          packed weights from listed figures and retained estimates. The {
             formatKg(savings.weightGrams)
           }{' '}
           difference is calculated from retained comparison estimates, not from a

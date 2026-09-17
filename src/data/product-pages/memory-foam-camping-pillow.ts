@@ -12,7 +12,7 @@ const page: ProductPage = {
   summary:
     'A slow-rebound foam pillow that is heavier than an inflatable. We want to know if better sleep is worth the extra weight.',
   metaDescription:
-    'What we know about a compressible memory-foam camping pillow before testing: same-design reviews, weight questions, and our test plan.',
+    'What we know about a compressible memory-foam camping pillow before testing: owner reports on similar pillows, weight questions and our test plan.',
   question:
     'Is a few hundred grams more than an inflatable pillow worth carrying for noticeably better sleep?',
   whyWeChoseIt: [

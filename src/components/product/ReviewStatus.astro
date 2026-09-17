@@ -6,6 +6,7 @@ const { review } = Astro.props as { review: ProductReviewStatus };
 {
   review.state === 'published' ? (
     <div class="review-panel review-published">
+      <p>{review.verdict}</p>
       <dl class="review-facts">
         <>
           <div>
@@ -32,17 +33,22 @@ const { review } = Astro.props as { review: ProductReviewStatus };
         <p>{note}</p>
       ))}
     </div>
+  ) : review.state === 'testing' ? (
+    <div class="review-panel">
+      <h3>Testing in progress</h3>
+      <p>
+        We are using this product and will add our own observations when we can
+        describe the conditions and trade-offs clearly. The research below is
+        not yet a Bush Gums recommendation.
+      </p>
+    </div>
   ) : (
     <div class="review-panel">
-      <>
-        <p class="eyebrow">Testing soon</p>
-        <h3>We bought it with our own money.</h3>
-        <p>
-          It has not been field-tested yet. We will update this page with
-          measured specs, original photos, field notes, test conditions,
-          weaknesses, and who it suits.
-        </p>
-      </>
+      <h3>Ordered for testing</h3>
+      <p>
+        We have ordered this product but have not used it on an overnight trip
+        yet. Our view may change once we have lived with it outside.
+      </p>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 /*
- * Product detail pages: evidence-led records for real products Bush Gums has
+ * Product detail pages: research records for real products Bush Gums has
  * bought or reviewed. Product identity lives here; where to buy lives in
  * ../offers.ts so a product can move merchant (marketplace → retailer →
  * Bush Gums stock) without its page being rewritten.
@@ -14,7 +14,7 @@ export type EvidenceRelation =
   | 'similar-design'
   | 'seller-claim';
 
-/** Where a specification figure comes from, weakest last. */
+/** Where a specification figure comes from. This is provenance, not quality. */
 export type SpecStatus =
   | 'measured' // measured by Bush Gums on our unit
   | 'manufacturer'
@@ -71,6 +71,8 @@ export type ReviewStatus =
       state: 'published';
       publishedOn: string;
       verdict: string;
+      /** Set only after the published field review supports an editorial verdict. */
+      recommendation?: 'recommended' | 'not-recommended';
       bestFor: string;
       notFor: string;
       conditions: string;

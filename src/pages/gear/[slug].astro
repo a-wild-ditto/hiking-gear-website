@@ -5,10 +5,15 @@ import SpecList from '../../components/product/SpecList.astro';
 import SourceCard from '../../components/product/SourceCard.astro';
 import ReviewStatus from '../../components/product/ReviewStatus.astro';
 import { productPages, productPath } from '../../data/product-pages';
+import { publicProductStatus } from '../../data/product-pages/public-status';
 import { offersFor } from '../../data/offers';
 import { site } from '../../config/site';
 import { getProductPhoto } from '../../data/images';
-import type { ProductPage } from '../../data/product-pages/types';
+import type {
+  Finding,
+  ProductPage,
+  Source,
+} from '../../data/product-pages/types';
 
 export function getStaticPaths() {
   return productPages.map((product) => ({
@@ -26,12 +31,19 @@ const productPhoto = getProductPhoto(p.imageId);
 const sourceNumbers = Object.fromEntries(
   p.sources.map((source, index) => [source.id, index + 1]),
 ) as Record<string, number>;
-const statusLabel =
-  p.review.state === 'ordered'
-    ? 'Ordered for testing'
-    : p.review.state === 'testing'
-      ? 'Testing in progress'
-      : 'Field review published';
+const experienceSource = (source: Source) =>
+  ['written-review', 'forum', 'video', 'blog'].includes(source.kind) ||
+  (source.kind === 'listing' && /buyer|customer|review/i.test(source.title));
+const experienceIds = new Set(
+  p.sources.filter(experienceSource).map((s) => s.id),
+);
+const fromExperience = (finding: Finding) =>
+  finding.sourceIds.some((id) => experienceIds.has(id));
+const ownerPositives = p.positives.filter(fromExperience);
+const ownerNegatives = p.negatives.filter(fromExperience);
+const otherNegatives = p.negatives.filter(
+  (finding) => !fromExperience(finding),
+);
 const date = new Date(`${p.researchedOn}T00:00:00`).toLocaleDateString(
   'en-AU',
   { day: 'numeric', month: 'long', year: 'numeric' },
@@ -92,20 +104,30 @@ const breadcrumbSchema = {
               />
             </div>
           )
-        }<div class="product-hero-copy">
+        }
+        <div class="product-hero-copy">
           <div class="tag-list">
             {p.tags.map((tag) => <span>{tag}</span>)}
-          </div><p class="eyebrow">{p.category}</p><h1 id="product-title">
-            {p.name}
-          </h1><p class="lead">{p.summary}</p><dl class="status-block">
-            <div><dt>Research status</dt><dd>{statusLabel}</dd></div><div>
-              <dt>Evidence coverage</dt><dd>
-                {p.coverage[0].toUpperCase() + p.coverage.slice(1)}
-              </dd>
-            </div><div>
-              <dt>Price paid</dt><dd>A${p.pricePaidAud.toFixed(2)} recorded</dd>
+          </div>
+          <p class="eyebrow">{p.category}</p>
+          <h1 id="product-title">{p.name}</h1>
+          <p class="lead">{p.summary}</p>
+          {
+            p.review.state === 'published' && (
+              <p class="product-verdict">Our take: {p.review.verdict}</p>
+            )
+          }
+          <dl class="status-block">
+            <div>
+              <dt>Bush Gums status</dt><dd>{publicProductStatus(p.review)}</dd>
             </div>
-          </dl>{
+            <div>
+              <dt>What we paid</dt><dd>
+                A${p.pricePaidAud.toFixed(2)} recorded
+              </dd>
+            </div>
+          </dl>
+          {
             offer && (
               <a
                 class="button"
@@ -121,7 +143,8 @@ const breadcrumbSchema = {
                 <span class="sr-only"> (opens in a new tab)</span>
               </a>
             )
-          }{
+          }
+          {
             offer?.affiliate && (
               <p class="small-print">
                 Affiliate link. We may earn a commission at no extra cost to
@@ -133,58 +156,30 @@ const breadcrumbSchema = {
       </section>
       <div class="product-content">
         <section class="product-section why-section">
-          <p class="eyebrow">The short version</p><h2>
-            Why it made our shortlist
-          </h2><p class="question-line">{p.question}</p><div class="prose">
+          <p class="eyebrow">The short version</p>
+          <h2>
+            {
+              p.review.state === 'published'
+                ? 'Our take'
+                : 'Why it made our shortlist'
+            }
+          </h2>
+          <p class="question-line">{p.question}</p>
+          <div class="prose">
             {p.whyWeChoseIt.map((paragraph) => <p>{paragraph}</p>)}
           </div>
         </section>
-        <section class="product-section">
-          <p class="eyebrow">Evidence at a glance</p><h2>
-            What the sources support
-          </h2><SpecList
-            specs={p.specs}
-            sources={p.sources}
-            sourceNumbers={sourceNumbers}
-          />{
-            p.listingRating && (
-              <p class="listing-caveat">
-                Marketplace ratings describe buyer experience, not independent
-                product testing. Mixed variants and small review counts limit
-                what the star rating tells you.
-              </p>
-            )
-          }<div class="evidence-cta">
-            <p>Want to check the current listing?</p>{
-              offer ? (
-                <a
-                  class="button button-small"
-                  href={offer.url}
-                  target="_blank"
-                  rel={
-                    offer.affiliate
-                      ? 'sponsored noopener noreferrer'
-                      : 'noopener noreferrer'
-                  }
-                >
-                  View current listing on {offer.merchant}
-                  <span class="sr-only"> (opens in a new tab)</span>
-                </a>
-              ) : (
-                <p class="small-print">No merchant link added yet.</p>
-              )
-            }
-          </div>
-        </section>
-        <section class="product-section">
-          <p class="eyebrow">Coverage: {p.coverage}</p><h2>
-            What owners and reviewers say
-          </h2><p>{p.coverageNote}</p><div class="finding-grid">
+
+        <section class="product-section" aria-labelledby="owner-reports-title">
+          <p class="eyebrow">Real-world reports</p>
+          <h2 id="owner-reports-title">What owners and reviewers say</h2>
+          <div class="finding-grid">
             <div>
-              <h3>What is encouraging</h3>{
-                p.positives.length ? (
+              <h3>What people like</h3>
+              {
+                ownerPositives.length ? (
                   <ul class="finding-list">
-                    {p.positives.map((finding) => (
+                    {ownerPositives.map((finding) => (
                       <li>
                         {finding.text}{' '}
                         {finding.sourceIds.map((id) => (
@@ -199,58 +194,111 @@ const breadcrumbSchema = {
                     ))}
                   </ul>
                 ) : (
-                  <p class="muted-line">
-                    No credible owner reports identified yet.
-                  </p>
-                )
-              }
-            </div><div>
-              <h3>What to keep in mind</h3>{
-                p.negatives.length ? (
-                  <ul class="finding-list">
-                    {p.negatives.map((finding) => (
-                      <li>
-                        {finding.text}{' '}
-                        {finding.sourceIds.map((id) => (
-                          <a
-                            href={`#source-${id}`}
-                            aria-label={`Source ${sourceNumbers[id] ?? id}`}
-                          >
-                            [{sourceNumbers[id] ?? id}]
-                          </a>
-                        ))}
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p class="muted-line">
-                    No recurring complaint pattern identified yet.
+                  <p>
+                    We have not found enough first-hand reports to call out a
+                    pattern yet.
                   </p>
                 )
               }
             </div>
+            <div>
+              <h3>What people question</h3>
+              {
+                ownerNegatives.length ? (
+                  <ul class="finding-list">
+                    {ownerNegatives.map((finding) => (
+                      <li>
+                        {finding.text}{' '}
+                        {finding.sourceIds.map((id) => (
+                          <a
+                            href={`#source-${id}`}
+                            aria-label={`Source ${sourceNumbers[id] ?? id}`}
+                          >
+                            [{sourceNumbers[id] ?? id}]
+                          </a>
+                        ))}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>No recurring complaint pattern has emerged yet.</p>
+                )
+              }
+            </div>
+          </div>
+          <p class="owner-context">{p.coverageNote}</p>
+        </section>
+
+        <section class="product-section">
+          <p class="eyebrow">Useful specifications</p>
+          <h2>What it promises</h2>
+          <p class="section-intro">
+            These figures help compare options. They describe what was listed or
+            measured, not a guarantee of how this item will perform on your
+            trip.
+          </p>
+          <SpecList
+            specs={p.specs}
+            sources={p.sources}
+            sourceNumbers={sourceNumbers}
+          />
+        </section>
+
+        <section class="product-section">
+          <p class="eyebrow">Bush Gums experience</p>
+          <h2>Our experience</h2>
+          <ReviewStatus review={p.review} />
+        </section>
+
+        <section class="product-section split-lists">
+          <div>
+            <p class="eyebrow">Trade-offs</p>
+            <h2>Things to know</h2>
+            <ul>
+              {
+                otherNegatives.map((finding) => (
+                  <li>
+                    {finding.text}{' '}
+                    {finding.sourceIds.map((id) => (
+                      <a href={`#source-${id}`}>[{sourceNumbers[id] ?? id}]</a>
+                    ))}
+                  </li>
+                ))
+              }
+              {p.watching.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+          <div>
+            <p class="eyebrow">Next steps</p>
+            <h2>What we plan to check</h2>
+            <ol>{p.testPlan.map((item) => <li>{item}</li>)}</ol>
           </div>
         </section>
+
         <section class="product-section">
-          <p class="eyebrow">Research notes</p><h2>
-            Sources and purchase record
-          </h2><div class="purchase-record">
-            {p.identityNote && <p>{p.identityNote}</p>}<p>
+          <p class="eyebrow">Read further</p>
+          <h2>Sources and reviews</h2>
+          <div class="purchase-record">
+            {p.identityNote && <p>{p.identityNote}</p>}
+            <p>
               We paid A${p.pricePaidAud.toFixed(2)}. This is historical purchase
               context, not a live offer. Research was last checked <time
                 datetime={p.researchedOn}>{date}</time
               >.
-            </p>{
+            </p>
+            {
               p.listingRating && (
                 <p>
                   The listing showed {p.listingRating.stars} out of 5 from{' '}
                   {p.listingRating.reviews} reviews on{' '}
                   {p.listingRating.merchant} when checked on{' '}
-                  {p.listingRating.checkedOn}. This is context, not testing.
+                  {p.listingRating.checkedOn}. Read the individual buyer
+                  comments for useful detail beyond the star rating.
                 </p>
               )
             }
-          </div><div class="source-grid">
+          </div>
+          <div class="source-grid">
             {
               p.sources.map((source) => (
                 <SourceCard source={source} number={sourceNumbers[source.id]} />
@@ -258,29 +306,11 @@ const breadcrumbSchema = {
             }
           </div>
         </section>
-        <section class="product-section split-lists">
-          <div>
-            <p class="eyebrow">Open questions</p><h2>What we’re watching</h2><ul
-            >
-              {p.watching.map((item) => <li>{item}</li>)}
-            </ul>
-          </div><div>
-            <p class="eyebrow">Our method</p><h2>What we’ll test</h2><ol>
-              {p.testPlan.map((item) => <li>{item}</li>)}
-            </ol>
-          </div>
-        </section>
-        <section class="product-section">
-          <p class="eyebrow">Bush Gums field review</p><h2>
-            {
-              p.review.state === 'published'
-                ? 'Our field review'
-                : 'Our own test comes next'
-            }
-          </h2><ReviewStatus review={p.review} />
-        </section>
+
         <section class="product-section where-to-buy">
-          <p class="eyebrow">External merchant path</p><h2>Where to buy</h2>{
+          <p class="eyebrow">External merchant</p>
+          <h2>Where to buy</h2>
+          {
             offer ? (
               <div>
                 <a
@@ -307,8 +337,8 @@ const breadcrumbSchema = {
               </div>
             ) : (
               <p>
-                We have not added a buying link yet. We would rather finish
-                checking the exact listing first.
+                We have not added a buying link yet. We would rather check the
+                exact listing first.
               </p>
             )
           }

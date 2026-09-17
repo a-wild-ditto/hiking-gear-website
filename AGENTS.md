@@ -86,6 +86,29 @@ store. The near-term objective is to build the recommendation and
 customer-acquisition layer first, then let customer behaviour determine which
 parts of the value chain the business should own next.
 
+## Editorial and recommendation philosophy
+
+Specs tell us what a product claims to be. Experience tells us what it is
+actually like to own. Bush Gums is a practical, experience-first gear curator,
+not a laboratory review publication. Apply these principles to product,
+comparison, kit and marketing copy:
+
+1. Prioritise Bush Gums real-world use when there is enough of it, then recurring owner and independent reviewer experience, then useful advertised specifications. Brand reputation is context only. This is an editorial priority, not a numerical scoring formula.
+2. Seek recurring patterns across forums, videos, blogs, independent reviews and useful marketplace buyer reports. Do not generalise from one anecdote or dismiss marketplace owners automatically.
+3. Apply the same standard regardless of brand prestige, retailer, price or country of origin. Chinese, generic and marketplace gear is not lower quality because formal documentation is sparse. Established Western brands are not verified because they are familiar.
+4. Less evidence about a claim means more uncertainty about that claim, not proof of lower product quality.
+5. Attribute important specifications naturally to the manufacturer, retailer, seller or Bush Gums measurement. Do not present published figures as independently measured.
+6. Keep advertised claims, recurring owner experience, Bush Gums first-hand experience and Bush Gums editorial recommendation distinct.
+7. Favour plain-language usefulness over technical ceremony. Do not expose provenance, coverage or source-relation taxonomies unless a distinction helps a buyer understand a material uncertainty.
+8. Keep useful source records, URLs, owner findings, provenance and test questions in the repository even when the public UI is simple.
+9. Mention laboratory or standardised tests only when they materially affect a recommendation or clarify an important performance claim. Do not make them the site's identity.
+10. Never invent Bush Gums field experience, observations, trip counts, locations, loads, temperatures or conclusions.
+11. Describe what happened under the conditions actually experienced. Do not turn field observations into unsupported guarantees.
+12. Keep significant safety-related uncertainty clear, especially warmth, ground insulation, severe-weather suitability, water treatment and emergency equipment. Positive owner reports do not remove that uncertainty.
+13. Let recommendations answer who the gear suits, what it does well, what it compromises and whether it is worth the money. A purchased item is not automatically recommended.
+14. Describe conflicting owner experiences plainly and revisit conclusions as more first-hand use and owner reports become available.
+15. Do not invent safety, performance, testing, warranty or certification claims. Preserve affiliate disclosure, privacy, static-first architecture and owner release gates.
+
 ## Orchestration and builders
 
 The primary agent acts as orchestrator and reviewer by default. Delegate

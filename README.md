@@ -2,7 +2,19 @@
 
 Bush Gums helps Australian beginners research a first overnight hiking setup. The public journey is Value kit, individual product research, then an external merchant listing. The lower-cost Starter kit is an alternative. The site curates gear and explains evidence and trade-offs; it does not sell or fulfil products.
 
-Product pages describe real researched items. Some have been ordered for testing, but field testing remains incomplete. Manufacturer, retailer and seller figures are labelled by provenance. A seller claim is not an independent measurement or a performance guarantee. Prices are what Bush Gums paid or recorded and can differ from current merchant prices.
+Product pages describe real researched items. Some have been ordered for testing, but field testing remains incomplete. Important advertised specifications are attributed to their source and are not performance guarantees. Prices are what Bush Gums paid or recorded and can differ from current merchant prices.
+
+## How Bush Gums evaluates gear
+
+Specs tell us what a product claims to be. Experience tells us what it is actually like to own.
+
+Bush Gums is a practical gear curator, not a laboratory review publication. We look for hiking gear that appears unusually good for the money, check useful advertised specifications, read widely across real owner and independent reviewer experiences, and use the gear ourselves in Australian conditions where possible.
+
+Our own field experience is the strongest signal once we have enough of it. Until then, recurring owner and independent reviewer experiences matter more than brand reputation or a specification sheet alone. We look for patterns in comfort, setup, carrying, durability and value, and describe conflicting reports plainly. A single anecdote is not a general verdict.
+
+We show important manufacturer, retailer and seller specifications as advertised claims, not guarantees. Less formal documentation about a lesser-known product means greater uncertainty about a particular claim, not automatically lower product quality. We apply the same judgment to familiar brands, marketplace products and gear from any country.
+
+Our aim is practical: tell people what the gear promises, what owners experience, what we experienced, the compromises we found and whether we think it is worth the money. We do not invent field use or generalise beyond the conditions we actually experienced. Important warmth, severe-weather and other safety-related uncertainties remain clear. External merchants set current prices, stock, delivery, returns and warranty terms.
 
 ## Stack and local setup
 

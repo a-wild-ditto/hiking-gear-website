@@ -1,6 +1,5 @@
 ---
 import type { SpecEntry, Source } from '../../data/product-pages/types';
-import EvidenceBadge from './EvidenceBadge.astro';
 const {
   specs,
   sources = [],
@@ -9,6 +8,15 @@ const {
   specs: SpecEntry[];
   sources?: Source[];
   sourceNumbers?: Record<string, number>;
+};
+const attribution: Record<SpecEntry['status'], string> = {
+  measured: 'Measured by Bush Gums',
+  manufacturer: 'Manufacturer-listed',
+  retailer: 'Retailer-listed',
+  corroborated: 'Listed by multiple sources',
+  'same-design': 'From a related design',
+  'seller-claim': 'Seller-listed',
+  'to-verify': 'Not yet verified',
 };
 ---
 
@@ -20,10 +28,8 @@ const {
           <>
             <dt>{spec.label}</dt>
             <dd>
-              <span class={`spec-value spec-value-${spec.status}`}>
-                {spec.value}
-              </span>
-              <EvidenceBadge value={spec.status} />
+              <span class="spec-value">{spec.value}</span>
+              <span class="spec-attribution">{attribution[spec.status]}</span>
               {spec.note && <small>{spec.note}</small>}
               {spec.sourceIds && spec.sourceIds.length > 0 && (
                 <span class="source-links">
@@ -43,8 +49,4 @@ const {
       ))
     }
   </dl>
-  <p class="spec-legend">
-    Badges show how much weight we give each figure. Measured figures lead;
-    seller claims and unverified figures are deliberately provisional.
-  </p>
 </div>

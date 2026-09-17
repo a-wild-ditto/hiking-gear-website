@@ -44,7 +44,7 @@ export const comparisonRows: ComparisonRow[] = [
     weightStatus: 'seller-claim',
     sourceUrl: '/gear/400g-down-envelope-sleeping-bag/',
     checkedOn: comparisonCheckedOn,
-    note: 'The generic bag remains a seller-claim product. Bush Gums is not assigning it a temperature rating.',
+    note: 'The listed weight comes from the seller. Bush Gums is not assigning this bag a temperature rating.',
   },
   {
     category: 'Sleeping mat',

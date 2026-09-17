@@ -14,17 +14,17 @@ const page: ProductPage = {
   identityNote:
     'The updated AliExpress listing contains Cloud Up Pro 1P, 2P and 3P options. The supplied Pro 1P screenshot shows a grey 20D nylon tent at A$204.88, with a 1.23 kg weight excluding accessories, PU 3000 mm waterproofing and a 39 × 13 cm packed size. Confirm the selected capacity and complete delivered weight.',
   category: 'Shelter',
-  tags: ['Established-brand shelter candidate', 'Variant comparison'],
+  tags: ['Value shelter candidate', 'Variant comparison'],
   pricePaidAud: 204.88,
   summary:
-    'A familiar budget double-wall tent family now offered in Pro 1P, 2P and 3P variants, with capacity-specific weights and dimensions that need to be compared carefully.',
+    'A familiar double-wall tent family with a useful track record, now offered here in Pro 1P, 2P and 3P variants. The practical choice depends on real room, condensation and complete weight.',
   metaDescription:
-    'Research on the Naturehike Cloud Up Pro 1P, 2P and 3P: listing specifications, official information, independent findings and unresolved variant differences.',
+    'Research on the Naturehike Cloud Up Pro 1P, 2P and 3P: owner and reviewer experience, listing specifications, trade-offs and unresolved variant differences.',
   question:
-    'Which Cloud Up variant offers the better beginner shelter once complete weight, usable room, condensation and wet-weather performance are measured consistently?',
+    'Which Cloud Up variant makes the most sense for a beginner once complete weight, usable room, condensation and wet-weather behaviour are checked?',
   whyWeChoseIt: [
-    'The Cloud Up family uses a familiar double-wall structure, aluminium pole and front vestibule, with more independent evidence than an anonymous marketplace tent.',
-    'The Pro 1P, 2P and 3P should not be treated as interchangeable capacity options. Their dimensions, weights and prices differ, and advertised weights may exclude accessories.',
+    'The Cloud Up family combines a familiar double-wall structure, aluminium pole and front vestibule with years of owner and reviewer experience. Older Cloud Up 2 reports describe a shelter that is straightforward to pitch and dependable for casual use below treeline.',
+    'The trade-off is space and variant confusion. Older reviewers found the two-person interior tight, while the Pro 1P, 2P and 3P differ in dimensions, weight and included components. Treat the current listing as a family of options, not one interchangeable tent.',
   ],
   specs: [
     {
@@ -86,7 +86,7 @@ const page: ProductPage = {
   ],
   coverage: 'moderate',
   coverageNote:
-    'The updated listing covers Pro 1P, 2P and 3P variants, while Naturehike pages and older Cloud Up 2 reviews provide useful context. Most independent evidence is not for these exact current listing variants, so capacity-specific claims still need checking.',
+    'Owner and reviewer evidence is useful for the broader Cloud Up design, including long-term casual use and the tight two-person interior. Most independent reports are older Cloud Up variants rather than the exact current Pro options, so capacity-specific claims still need checking.',
   sources: [
     {
       id: 'naturehike-base-1',
@@ -142,17 +142,17 @@ const page: ProductPage = {
   ],
   positives: [
     {
-      text: 'The family uses a conventional double-wall structure and is generally straightforward to pitch.',
+      text: 'Owners and reviewers generally describe the Cloud Up as straightforward to pitch, with a conventional double-wall structure.',
       sourceIds: ['cleverhiker', 'cloud-up-2-measured'],
     },
     {
-      text: 'Older Cloud Up 2 versions have credible long-term evidence for casual three-season use.',
+      text: 'An older Cloud Up 2 has credible long-term evidence for casual use below treeline, including more than 150 nights from one owner report.',
       sourceIds: ['five-year'],
     },
   ],
   negatives: [
     {
-      text: 'The Cloud Up 2 floor is tight for two adults, especially with equipment.',
+      text: 'Reviewers consistently found the Cloud Up 2 interior tight for two adults, especially with equipment, and limited in headroom for taller users.',
       sourceIds: ['cleverhiker', 'cloud-up-2-measured', 'five-year'],
     },
     {

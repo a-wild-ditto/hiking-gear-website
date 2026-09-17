@@ -1,35 +1,20 @@
 ---
-import type { Product } from '../data/catalog';
-import { formatWeight } from '../data/catalog';
 import Photo from './Photo.astro';
 import type { ProductPage } from '../data/product-pages/types';
+import { publicProductStatus } from '../data/product-pages/public-status';
 const {
-  product: p,
   productPage,
   href,
   priceLabel = 'What we paid',
 } = Astro.props as {
-  product?: Product;
-  productPage?: ProductPage;
+  productPage: ProductPage;
   href?: string;
   priceLabel?: string;
 };
-const name = productPage?.name ?? p?.name ?? '';
-const summary = productPage?.summary ?? p?.summary ?? '';
-const imageId = productPage?.imageId ?? p?.id;
-const price = productPage
-  ? `A$${productPage.pricePaidAud.toFixed(2)}`
-  : `A$${p?.price}`;
-const weight = formatWeight(p?.carriedWeightGrams);
-const evidence = productPage
-  ? productPage.review.state === 'published'
-    ? 'Field review published'
-    : 'Field test pending'
-  : p?.weightStatus === 'seller-claim'
-    ? 'Seller claim'
-    : p?.weightStatus === 'unknown'
-      ? 'Weight to verify'
-      : 'Listed weight';
+const name = productPage.name;
+const summary = productPage.summary;
+const imageId = productPage.imageId;
+const price = `A$${productPage.pricePaidAud.toFixed(2)}`;
 ---
 
 <article class="product-card">
@@ -55,35 +40,16 @@ const evidence = productPage
     }
   </div>
   <div class="product-body">
-    <p class="product-status">{productPage?.tags[0] ?? p?.category}</p>
+    <p class="product-status">{productPage.tags[0] ?? productPage.category}</p>
     <h3>{href ? <a href={href}>{name}</a> : name}</h3>
     <p>{summary}</p>
-    {p?.goodFor && <p class="product-for">Good for: {p.goodFor}</p>}
-    {
-      p?.keyFact && (
-        <p class="product-fact">
-          <>
-            <strong>{p.keyFact.label}</strong>
-            <span>{p.keyFact.meaning}</span>
-          </>
-        </p>
-      )
-    }
     <dl class="figures">
       <div><dt>{priceLabel}</dt><dd>{price}</dd></div>
-      {
-        !productPage && (
-          <div>
-            <>
-              <dt>Carried weight</dt>
-              <dd>{weight}</dd>
-            </>
-          </div>
-        )
-      }
     </dl>
     <p class="small-print">
-      {evidence}{productPage && `, researched ${productPage.researchedOn}`}
+      {publicProductStatus(productPage.review)}, researched {
+        productPage.researchedOn
+      }
     </p>
     {
       href && (

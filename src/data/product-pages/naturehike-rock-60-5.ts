@@ -10,14 +10,14 @@ const page: ProductPage = {
   tags: ['Value backpack candidate'],
   pricePaidAud: 68.73,
   summary:
-    'A framed 60+5L pack from an established brand at around $70. The question is how much of that capacity and comfort is real.',
+    'A roughly A$70 framed pack with encouraging owner feedback on value and room. Its fixed harness and lower measured capacity are the trade-offs to understand first.',
   metaDescription:
-    'What we know about the Naturehike Rock 60+5L (NH19BP095) before testing: specs by source, a measured volume result, fit concerns, and our test plan.',
+    'Research on the Naturehike Rock 60+5L (NH19BP095): owner and reviewer experience, measured capacity, fit concerns and our testing plan.',
   question:
-    'Does a ~$70 framed pack from an established brand carry an overnight load well, and is the capacity as big as the label says?',
+    'Can this low-cost framed pack carry a beginner overnight load comfortably, and how much usable space does it really provide?',
   whyWeChoseIt: [
-    'Beginners often buy a pack last and cheaply, then find it is the thing that hurts on the trail. Naturehike is an established Chinese outdoor brand with a real catalogue and Australian stockists, so this isn’t an anonymous product. The Rock has an aluminium internal frame, a padded hip belt and an included rain cover, and it is listed at roughly 1.2 kg, all at a price well below most framed packs.',
-    'The catch is that a number on a label doesn’t tell you how a pack carries. One independent test of this design measured noticeably less space than advertised, and several people mention a fixed, fairly long back length and narrow shoulder straps. Those are exactly the things a new hiker can’t judge from a listing.',
+    'The Rock pairs an aluminium frame, padded hip belt and included rain cover with a low listed weight and price. Buyers of the exact black 60 L listing repeatedly describe it as good value, light for its size and roomy enough for backpacking.',
+    'The important question is fit, not just the capacity label. A self-funded test of the matching design measured about 46 L in the main compartment plus 10 L in pockets, and reports flag a fixed, fairly long back length and narrow shoulder straps. We will check how those trade-offs feel under a real overnight load.',
   ],
   specs: [
     {
@@ -81,7 +81,7 @@ const page: ProductPage = {
   ],
   coverage: 'moderate',
   coverageNote:
-    'Specifications are well documented by the brand and an Australian retailer. Independent testing is thin: one self-funded test of what appears to be this design, plus a few blog and video reviews. There are also plenty of marketplace reviews, which are useful for spotting patterns but are not independent testing.',
+    'Specifications are well documented by the brand and an Australian retailer. Independent testing is thin but useful, with one self-funded test of the matching design and several reviews covering fit and use. Marketplace owners of the exact listing add practical signals, though they are not a substitute for loaded testing.',
   sources: [
     {
       id: 'stoker',
