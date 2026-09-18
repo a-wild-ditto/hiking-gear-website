@@ -15,9 +15,9 @@ Blue Mountains, NSW and Tasmania trip-planning guides also exist. Avoid creating
 URLs for close keyword variants. Recheck authority links and changing park,
 booking, weather and fire information before promoting any route guide.
 
-Git commits show guide content created or reworked on 18 Sep 2026, but no
-verified public launch or editorial review date. Publication and review dates
-remain unset pending owner evidence.
+The owner confirmed all ten existing guides were publicly published on 18 Sep 2026. Their individual `publishedOn` values provide the visible publication
+date and Article `datePublished`. No editorial review or modification dates
+have been confirmed.
 
 ## Next editorial candidates
 
@@ -55,5 +55,6 @@ were first-hand results. Keep safety-related uncertainty clear even when a
 field observation is positive.
 
 Keep future pages in `src/data/guides.ts` when published so the Learn hub and
-sitemap remain aligned. Add `updatedOn` only when an actual content update
-date is known; do not infer it from research notes or the build date.
+sitemap remain aligned. Record `publishedOn` only when the public publication
+date is known. Add `updatedOn` only when an actual content update date is
+known; do not infer either date from research notes or the build date.

@@ -2,12 +2,21 @@ import { existsSync } from 'node:fs';
 import { readFile, readdir } from 'node:fs/promises';
 import { relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import ts from 'typescript';
 
 import { productionSiteUrl } from '../site.config.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const dist = resolve(root, 'dist');
 const problems = [];
+const guideSource = await readFile(resolve(root, 'src/data/guides.ts'), 'utf8');
+const { outputText: guideModule } = ts.transpileModule(guideSource, {
+  compilerOptions: { module: ts.ModuleKind.ESNext },
+});
+const { guides } = await import(
+  `data:text/javascript,${encodeURIComponent(guideModule)}`
+);
+const guideByPath = new Map(guides.map((guide) => [guide.href, guide]));
 
 function report(message) {
   problems.push(message);
@@ -384,6 +393,13 @@ for (const file of files) {
         report(`${path}: Article URL must match the canonical URL`);
       }
       if (path.startsWith('/guides/')) {
+        const sourceDate = guideByPath.get(path)?.publishedOn;
+        if (sourceDate && !validDate(sourceDate)) {
+          report(`${path}: invalid source publishedOn`);
+        }
+        if (article.datePublished !== sourceDate) {
+          report(`${path}: Article datePublished must match guide publishedOn`);
+        }
         if (article.datePublished && !validDate(article.datePublished)) {
           report(`${path}: invalid Article datePublished`);
         }

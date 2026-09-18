@@ -2,12 +2,12 @@
 import type { ImageMetadata } from 'astro';
 import BaseLayout from './BaseLayout.astro';
 import { site } from '../config/site';
+import { guides } from '../data/guides';
 
 interface Props {
   title: string;
   seoTitle?: string;
   description: string;
-  publishedDate?: string;
   reviewedDate?: string;
   eyebrow?: string;
   readTime?: string;
@@ -19,19 +19,19 @@ const {
   title,
   seoTitle = title,
   description,
-  publishedDate,
   reviewedDate,
   eyebrow = 'Guide',
   readTime = '6 min read',
   pageImage,
   pageImageAlt,
 } = Astro.props;
-const pageUrl = new URL(
-  Astro.url.pathname.endsWith('/')
-    ? Astro.url.pathname
-    : `${Astro.url.pathname}/`,
-  site.url,
-).toString();
+const guidePath = Astro.url.pathname.endsWith('/')
+  ? Astro.url.pathname
+  : `${Astro.url.pathname}/`;
+const guide = guides.find(({ href }) => href === guidePath);
+const publishedDate =
+  guide && 'publishedOn' in guide ? guide.publishedOn : undefined;
+const pageUrl = new URL(guidePath, site.url).toString();
 const formatDate = (date: string) =>
   new Intl.DateTimeFormat('en-AU', {
     day: 'numeric',
@@ -53,7 +53,7 @@ const schema = {
       ...(reviewedDate && { dateModified: reviewedDate }),
       author: {
         '@type': 'Organization',
-        name: site.brandName,
+        name: 'Bush Gums Team',
         url: `${site.url}/about/`,
       },
       publisher: {
@@ -106,7 +106,15 @@ const schema = {
       <h1>{title}</h1>
       <p class="lead">{description}</p>
       <div class="guide-byline">
-        <span>By <a href="/about/">{site.brandName}</a></span>
+        <span>By <a href="/about/">Bush Gums Team</a></span>
+        {
+          publishedDate && (
+            <span>
+              Published{' '}
+              <time datetime={publishedDate}>{formatDate(publishedDate)}</time>
+            </span>
+          )
+        }
         {
           reviewedDate && (
             <span>
