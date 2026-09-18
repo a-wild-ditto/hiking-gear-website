@@ -13,6 +13,12 @@ const paths = [
   '/guides/sleeping-bag-temperature-ratings/',
   '/guides/sleeping-mat-r-value/',
   '/guides/2-person-hiking-tent-guide/',
+  '/guides/hiking-stove-guide/',
+  '/guides/best-multi-day-hikes-australia/',
+  '/guides/overnight-hikes-victoria/',
+  '/guides/overnight-hikes-blue-mountains/',
+  '/guides/multi-day-hikes-nsw/',
+  '/guides/multi-day-hikes-tasmania/',
   ...productPages.map((product) => productPath(product.slug)),
 ];
 

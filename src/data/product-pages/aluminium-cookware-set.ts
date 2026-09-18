@@ -93,7 +93,7 @@ const page: ProductPage = {
     },
   ],
   thingsToKnow: [
-    'The stove takes screw-on gas canisters (not included), which you can buy cheaply from [Bunnings](https://www.bunnings.com.au/gasmate-230g-power-fuel-iso-butane-cartridge_p0442265).',
+    'The stove takes screw-on gas canisters (not included), which are sold cheaply at hardware stores and traditional retailers.',
     'Only use the stove outdoors and never inside your tent.',
     'Check local fire restrictions and total fire bans before lighting a stove.',
   ],

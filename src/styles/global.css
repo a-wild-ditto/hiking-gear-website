@@ -3432,3 +3432,20 @@ p {
   padding-left: 22px;
   border-left: 4px solid var(--accent);
 }
+
+/* Guide photos with licence credit */
+.guide-photo {
+  margin: 32px 0;
+}
+.guide-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+.guide-photo figcaption {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+}
