@@ -12,19 +12,19 @@ const page: ProductPage = {
     checkedOn: '2026-09-16',
   },
   identityNote:
-    'The updated listing screenshot shows the olive mummy-shaped 183 × 58 cm variant at approximately 440 g, packed to about 10 × 18 cm. Naturehike pages and older listings quote different weights, so confirm the delivered SKU and weigh the complete mat.',
+    'The current marketplace listing shows the olive mummy-shaped 183 × 58 cm variant at approximately 440 g, packed to about 10 × 18 cm. Naturehike pages and older listings quote different weights, so check the variant you select.',
   category: 'Sleep',
   tags: ['Value insulated-mat candidate'],
   pricePaidAud: 85.99,
   summary:
-    'A compact insulated mat claiming R 3.5 at about 440 g. The key questions are whether its dimensions, insulation and overnight air retention match the listing.',
+    'An insulated mat at about 440 g that packs to the size of a water bottle, for under A$90.',
   metaDescription:
-    'Research on the Naturehike TuYe R3.5 sleeping mat: manufacturer specifications, owner measurements, air-retention concerns and our test plan.',
+    'Research on the Naturehike TuYe R3.5 sleeping mat: manufacturer specifications, owner measurements, air-retention concerns and why we chose it.',
   question:
     'Does the Naturehike R3.5 provide dependable three-season insulation and comfort without losing air or measuring materially smaller than advertised?',
   whyWeChoseIt: [
-    'A sleeping mat is part of the insulation system, and an insulated mat listed around 440 g could give beginners a useful balance of price, packed size and three-season warmth.',
-    'Naturehike does not identify an ASTM F3340 test or publish a laboratory report on the product page. Owner reports also vary on dimensions, weight and long-term valve performance.',
+    'A sleeping mat is part of your insulation, not just padding. An insulated mat listed around 440 g gives beginners a strong balance of price, packed size and claimed three-season warmth, from a brand with a large base of owner reports.',
+    'Naturehike’s R 3.5 figure is a manufacturer claim without a published ASTM F3340 test, and owners report some variation in dimensions and weight. Even allowing for that, it is one of the best-value insulated mats we found.',
   ],
   specs: [
     {
@@ -58,7 +58,7 @@ const page: ProductPage = {
       label: 'Packed size',
       value: 'Approximately 10 × 10 × 18 cm claimed',
       status: 'manufacturer',
-      note: 'The screenshot simplifies this to about 10 × 18 cm; one owner measured about 9 × 19 cm.',
+      note: 'The marketplace listing simplifies this to about 10 × 18 cm; one owner measured about 9 × 19 cm.',
       sourceIds: ['naturehike-global', 'naturehike-japan', 'rl-forum'],
     },
     {
@@ -72,7 +72,7 @@ const page: ProductPage = {
       label: 'Included',
       value: 'Inflation bag and storage sack',
       status: 'manufacturer',
-      note: 'One owner measured the accessories at about 60–64 g.',
+      note: 'One owner measured the accessories at about 60-64 g.',
       sourceIds: ['naturehike-global', 'naturehike-japan', 'rl-forum'],
     },
   ],
@@ -81,13 +81,13 @@ const page: ProductPage = {
     'Official dimensions and materials are available, with useful owner measurements and overnight reports. Evidence is mostly observational, and no ASTM R-value report was found.',
   sources: [
     {
-      id: 'updated-listing-screenshot',
-      title: 'Naturehike R3.5 AliExpress listing screenshot',
+      id: 'marketplace-listing',
+      title: 'Naturehike R3.5 AliExpress marketplace listing',
       publisher: 'AliExpress',
       kind: 'listing',
       relation: 'seller-claim',
       summary:
-        'User-supplied screenshot showing the olive mummy mat at 183 × 58 cm, approximately 440 g, R 3.5, A$85.99, 4.9 stars from 130 reviews and 800+ sold.',
+        'Marketplace listing showing the olive mummy mat at 183 × 58 cm, approximately 440 g, R 3.5, A$85.99, 4.9 stars from 130 reviews and 800+ sold.',
     },
     {
       id: 'naturehike-global',
@@ -135,7 +135,7 @@ const page: ProductPage = {
   positives: [
     {
       text: 'The updated listing’s claimed 440 g weight and small packed size are attractive for an insulated three-season mat.',
-      sourceIds: ['updated-listing-screenshot'],
+      sourceIds: ['marketplace-listing'],
     },
     {
       text: 'Owners generally describe it as comfortable, including for side sleeping.',
@@ -159,6 +159,11 @@ const page: ProductPage = {
       text: 'An owner reported slow leakage after about twenty nights and suspected the valve.',
       sourceIds: ['rl-forum'],
     },
+  ],
+  thingsToKnow: [
+    'This gear is suitable for 3 season use but would not be recommended for winter hikes or hiking in alpine regions.',
+    'Use the included inflation bag rather than your breath to reduce moisture inside the mat.',
+    'Can be combined with the foil egg-crate foam mat underneath for more comfort and puncture resistance.',
   ],
   watching: [
     'Exact SKU, size designation, bag-only weight and total carried weight with accessories.',

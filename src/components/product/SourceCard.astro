@@ -37,8 +37,8 @@ const kindLabels: Record<Source['kind'], string> = {
     }
   </h3>
   <p class="source-meta">
-    {source.publisher} · {kindLabels[source.kind]}{
-      !source.url && ' · no public link'
+    {source.publisher}, {kindLabels[source.kind].toLowerCase()}{
+      !source.url && ' (no public link)'
     }
   </p>
   <p>{source.summary}</p>

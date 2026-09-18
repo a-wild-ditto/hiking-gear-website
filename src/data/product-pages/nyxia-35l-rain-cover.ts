@@ -2,17 +2,17 @@ import type { ProductPage } from './types';
 
 const page: ProductPage = {
   slug: 'nyxia-35l-rain-cover',
-  imageId: 'nyxia-35l-rain-cover',
+  imageId: 'nyxia-35l-rain-cover-australian',
   name: 'NYXIA 35L Backpack Rain Cover',
   identityNote:
-    'Ordered in orange from the NYXIA Plus Store on AliExpress. The listing calls it a universal 35 L rain and dust cover and describes it as waterproof, but gives no material, coating or tested rating.',
+    'Ordered in orange from the NYXIA Plus Store on AliExpress. The listing calls it a universal 35 L rain and dust cover and describes it as waterproof nylon, but gives no coating details or tested rating.',
   category: 'Accessories',
   tags: ['Starter accessory'],
   pricePaidAud: 3.42,
   summary:
-    'A pack cover for a few dollars. A simple accessory where spending more may not buy much, provided the cheap one stays on and keeps rain off.',
+    'A pack cover for a few dollars. No reason to pay more for a simple piece of coated fabric.',
   metaDescription:
-    'What we know about the NYXIA 35L backpack rain cover before testing, why a cover isn’t enough on its own, and how we’ll test it.',
+    'What we know about the NYXIA 35L backpack rain cover and why a cover isn’t enough on its own.',
   question:
     'Does a $3 pack cover stay on the pack and keep meaningful rain off, or is it false economy?',
   whyWeChoseIt: [
@@ -29,16 +29,27 @@ const page: ProductPage = {
     },
     {
       label: 'Material and coating',
-      value: 'Not stated',
-      status: 'to-verify',
+      value: 'Nylon; coating not stated',
+      status: 'retailer',
     },
     { label: 'Weight', value: 'Not yet verified', status: 'to-verify' },
     { label: 'Waterproof rating', value: 'None stated', status: 'to-verify' },
   ],
   coverage: 'limited',
   coverageNote:
-    'We found no owner reviews of this cover. The listing has no real specifications. Wider pack-cover experience is well documented, so we lean on that for context.',
+    'The marketplace listing has 65 buyer reviews rated 4.8, but they are short and none describe sustained heavy rain. The listing gives little beyond size and nylon fabric, so we also lean on wider pack-cover experience for context.',
   sources: [
+    {
+      id: 'ali-reviews',
+      title: 'Buyer reviews on the AliExpress listing we bought from',
+      publisher: 'Marketplace listing',
+      kind: 'listing',
+      relation: 'exact-product',
+      summary:
+        '65 reviews, rated 4.8 overall, with 500+ sold. Buyers report that it covers the pack well and keeps water out, fits large packs and a Deuter 25 L, and can also wrap a camera bag. The reviews are brief and give no detail on heavy or prolonged rain.',
+      quote:
+        'Good product, it was what I expected, covers the backpack well and does not allow water to pass through.',
+    },
     {
       id: 'listing',
       title:
@@ -74,13 +85,23 @@ const page: ProductPage = {
         'A pack maker’s guide explaining that water can still enter through the back panel and that many long-distance hikers rely more on liners.',
     },
   ],
-  positives: [],
+  positives: [
+    {
+      text: 'Buyers say it covers the pack well and keeps rain off the contents.',
+      sourceIds: ['ali-reviews'],
+    },
+    {
+      text: 'The elastic edge fits a range of sizes: owners mention a Deuter 25 L, a large backpack and even a camera bag.',
+      sourceIds: ['ali-reviews'],
+    },
+  ],
   negatives: [
     {
       text: 'Pack covers in general leave the harness side exposed, so the back panel, straps and hip belt can still get wet.',
       sourceIds: ['bpl', 'hilltop'],
     },
   ],
+  thingsToKnow: ['Sized for packs around 35 L.'],
   watching: [
     'Whether the elastic holds the cover on in wind, and whether it loosens over time.',
     'Fit on the 35 L BISINNA pack we also bought.',

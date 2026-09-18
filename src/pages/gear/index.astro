@@ -22,13 +22,20 @@ const categoryOrder = [
 >
   <header class="page-hero">
     <div class="container page-hero-copy">
-      <p class="eyebrow">The gear shelf</p><h1>
-        Real gear, plainly explained.
-      </h1><p class="lead">
+      <h1>Real gear, plainly explained.</h1><p class="lead">
         Start with the category you need. Each page explains why the gear caught
         our eye, what owners report, what we have experienced so far and what to
         consider before following a merchant link.
       </p>
+      <nav class="jump-links" aria-label="Gear categories">
+        {
+          categoryOrder
+            .filter((c) =>
+              productPages.some((p) => c.matches.includes(p.category)),
+            )
+            .map((c) => <a href={`#${c.id}`}>{c.label}</a>)
+        }
+      </nav>
     </div>
   </header>
   <section class="section">
@@ -49,7 +56,6 @@ const categoryOrder = [
                   <>
                     <div>
                       <>
-                        <p class="eyebrow">{category.label}</p>
                         <h2 id={`${category.id}-title`}>
                           {category.label} research
                         </h2>
@@ -71,7 +77,6 @@ const categoryOrder = [
                       />
                     ) : (
                       <article class="research-link-card">
-                        <p class="eyebrow">Research page</p>
                         <h3>
                           <a href={`/gear/${product.slug}/`}>{product.name}</a>
                         </h3>
@@ -100,9 +105,7 @@ const categoryOrder = [
         specification notes and open questions. Published figures are still
         different from a Bush Gums measurement. External merchants set current
         prices, delivery, returns and warranty.
-      </p><a class="button" href="/starter-kits#value"
-        >Start with the Value Kit</a
-      >
+      </p><a class="button" href="/#value">See the Value Kit</a>
     </div>
   </section>
 </BaseLayout>

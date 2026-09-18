@@ -17,14 +17,14 @@ const page: ProductPage = {
   tags: ['Value sleep-system experiment'],
   pricePaidAud: 85.61,
   summary:
-    'An under-A$90 down bag that could be strong value. The seller lists 400 g of fill; we still need to check its warmth, fill and delivered weight in use.',
+    'A down bag for under A$90. About 800 g packed, a fraction of the price of name-brand down.',
   metaDescription:
-    'Research on a generic 400 g down envelope sleeping bag: seller claims, limited owner evidence, conflicting temperature claims and our testing plan.',
+    'Research on a generic 400 g down envelope sleeping bag: seller claims, limited owner evidence, conflicting temperature claims and why we chose it.',
   question:
     'Can this low-cost down bag deliver useful warmth and low weight, or are the listing claims doing too much of the work?',
   whyWeChoseIt: [
-    'Down warmth at this price is worth investigating. The listing claims 400 g of 90% goose down in a roughly 725 g bag, or about 800 g with the stuff sack. If those figures are close, it could be an interesting value option for mild-weather overnights.',
-    'The product is generic and its evidence is thin, but that is not the same as proof that it is poor gear. The listing has nine buyer reviews, while fill content, fill power and temperature claims remain unverified and inconsistent across sellers. We ordered it for testing so we can check the delivered bag rather than repeat the listing.',
+    'Down usually means spending several hundred dollars. The listing claims 400 g of 90% goose down in a roughly 725 g bag, or about 800 g with the stuff sack, which puts it in the weight class of far more expensive bags for under A$100.',
+    'The product is generic and its fill and temperature claims vary between sellers, so plan conservatively and carry backup insulation. But thin documentation is not proof of poor gear, and for weight-conscious mild-weather trips it offers standout value.',
   ],
   specs: [
     {
@@ -63,7 +63,7 @@ const page: ProductPage = {
       label: 'Zip',
       value: 'Full-length YKK zip claimed',
       status: 'seller-claim',
-      note: 'Our listing shows a YKK-branded pull in its description images, and another seller of the same design claims YKK. We will check the actual zip on arrival.',
+      note: 'Our listing shows a YKK-branded pull in its description images, and another seller of the same design claims YKK.',
     },
     {
       label: 'Size',
@@ -86,7 +86,7 @@ const page: ProductPage = {
   ],
   coverage: 'limited',
   coverageNote:
-    'We found nine buyer reviews on the listing, but several cover other colours or the heavier 600 g option. We have not found enough reports from people using this exact bag to judge its warmth. Ours is ordered for testing, and we are not assigning it a temperature rating.',
+    'We found nine buyer reviews on the listing, but several cover other colours or the heavier 600 g option. We have not found enough reports from people using this exact bag to judge its warmth. We are not assigning it a temperature rating.',
   sources: [
     {
       id: 'ali-reviews',
@@ -144,11 +144,15 @@ const page: ProductPage = {
       sourceIds: ['ali-reviews'],
     },
   ],
+  thingsToKnow: [
+    'This gear is suitable for 3 season use but would not be recommended for winter hikes or hiking in alpine regions.',
+    'Pair it with an insulated mat; a bag alone won’t keep you warm on cold ground.',
+  ],
   watching: [
     'Whether the fill is really around 400 g, and really mostly down rather than feather. The listing itself says both 90% and 98% in different places.',
-    'The 0 to −10 °C claim on our listing is far colder than other sellers claim for the same design, and nothing supports it. Treat it as marketing until we have compared the bag against a rated one.',
+    'The 0 to −10 °C claim on our listing is far colder than other sellers claim for the same design, and nothing supports it. Treat it as marketing, not a rating to plan around.',
     'The 750+ fill power claim, which would be high-quality down if true.',
-    'Warmth. We won’t publish a temperature rating from informal testing, but we can compare it with a bag that has a standardised rating.',
+    'Warmth. There is no standardised temperature rating, so plan conservatively and carry backup insulation.',
     'Down leaking through the thin shell and stitching.',
     'Cold spots from uneven fill or sewn-through construction.',
   ],

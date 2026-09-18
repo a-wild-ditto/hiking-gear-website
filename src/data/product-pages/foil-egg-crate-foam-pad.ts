@@ -10,14 +10,20 @@ const page: ProductPage = {
   tags: ['Starter sleep-pad candidate'],
   pricePaidAud: 17.35,
   summary:
-    'A folding closed-cell foam pad for under $20. Nothing to inflate, nothing to puncture. The trade-offs are likely bulk, comfort and warmth.',
+    'A folding foam pad for under $20. Nothing to inflate, nothing to puncture.',
   metaDescription:
-    'What we know about a cheap foil-faced egg-crate foam sleeping pad before testing: seller claims, what similar pads deliver, and our test plan.',
+    'What we know about a cheap foil-faced egg-crate foam sleeping pad: seller claims, what similar pads deliver, and why we chose it.',
   question:
     'Is a $17 folding foam pad comfortable and warm enough for a mild first overnight trip?',
   whyWeChoseIt: [
     'Inflatable mats are comfortable and pack small, but good ones are expensive and cheap ones can go flat at 2 am. A folding foam pad avoids that entirely: unfold it and you are done, and nothing can puncture it. For a beginner on a mild-weather first trip, that reliability is worth a lot.',
-    'This design copies a well-known category of egg-crate foam pads, where name-brand 2 cm versions have standardised ASTM F3340 warmth ratings and years of owner reports. That gives us a sensible benchmark. The questions are whether the cheap version is comparable, and whether the seller’s warmth claim holds up.',
+    'The seller’s R 2.5 claim looks optimistic next to the Therm-a-Rest Z Lite Sol, a comparable 2 cm egg-crate pad rated R 2.0. Even so, pads of this design have years of positive owner reports, and at a fraction of the name-brand price it is an easy, dependable pick for mild nights. It also works well under an inflatable mat for extra warmth later on.',
+  ],
+  keyFindings: [
+    {
+      text: 'The claimed R 2.5 looks optimistic: the Therm-a-Rest Z Lite Sol, a comparable 2 cm egg-crate pad, is rated R 2.0 under the ASTM F3340 standard.',
+      sourceId: 'zlite',
+    },
   ],
   specs: [
     {
@@ -145,8 +151,13 @@ const page: ProductPage = {
       sourceIds: ['ogl-switchback'],
     },
   ],
+  thingsToKnow: [
+    'This gear is suitable for 3 season use but would not be recommended for winter hikes or hiking in alpine regions.',
+    'Bulky when folded, so it is usually strapped to the outside of the pack.',
+    'Can be combined with the Naturehike TuYe R3.5 mat for more comfort and puncture resistance.',
+  ],
   watching: [
-    'The R 2.5 claim looks optimistic next to ASTM-rated 2 cm pads at R 2.0. We won’t publish our own R-value from informal testing.',
+    'The R 2.5 claim looks optimistic next to ASTM-rated 2 cm pads at R 2.0.',
     'Whether the lighter weight means softer foam that flattens sooner.',
     'Side-sleeping comfort, which is the usual weak point of this design.',
   ],

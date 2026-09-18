@@ -4,16 +4,15 @@ import { productPages, productPath } from '../data/product-pages';
 
 const paths = [
   '/',
-  '/starter-kits/',
   '/gear/',
   '/learn/',
   '/about/',
   '/contact/',
   '/faq/',
-  '/guides/first-overnight-hike/',
-  '/guides/sleeping-bag-temperature-guide/',
-  '/guides/sleeping-mat-r-value-guide/',
-  '/guides/choosing-your-first-hiking-tent/',
+  '/guides/overnight-hike-packing-list/',
+  '/guides/sleeping-bag-temperature-ratings/',
+  '/guides/sleeping-mat-r-value/',
+  '/guides/2-person-hiking-tent-guide/',
   ...productPages.map((product) => productPath(product.slug)),
 ];
 

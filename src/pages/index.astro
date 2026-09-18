@@ -1,46 +1,173 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Photo from '../components/Photo.astro';
-import KitCard from '../components/KitCard.astro';
-import ProductCard from '../components/ProductCard.astro';
-import ValueComparison from '../components/ValueComparison.astro';
-import { kitById } from '../data/kits';
-import { productPageBySlug } from '../data/product-pages';
+import {
+  kitById,
+  getKitWeight,
+  optionalAddonIds,
+  type Kit,
+} from '../data/kits';
+import { productById, formatWeight } from '../data/catalog';
+import { offersFor } from '../data/offers';
+import { productPageBySlug, productPath } from '../data/product-pages';
+import {
+  anacondaRows,
+  comparison,
+  formatAud,
+  formatKg,
+} from '../data/retailer-comparison';
 
-const valueProducts = [
-  'naturehike-cloud-up-tent',
-  '400g-down-envelope-sleeping-bag',
-  'naturehike-tuye-r3-5',
-  'naturehike-rock-60-5',
-].map((slug) => productPageBySlug[slug]);
-const chooseSteps = [
-  [
-    '01',
-    'Find the value',
-    'We look beyond the familiar outdoor chains for gear that seems unusually good for the money.',
-  ],
-  [
-    '02',
-    'See what owners think',
-    'We read widely across owner experiences, independent reviews, forums and videos to find recurring strengths and problems.',
-  ],
-  [
-    '03',
-    'Take it outside',
-    'Where we can, we buy the gear and use it ourselves in the Australian bush. That experience matters more to us than the logo.',
-  ],
+// Traced illustrations (scripts/trace-illustrations.cjs) are CSS masks; read
+// each viewBox so the element keeps the drawing's proportions.
+const illustrationSvgs = import.meta.glob<string>(
+  '../../public/illustrations/*.svg',
+  { query: '?raw', import: 'default', eager: true },
+);
+const artRatio = (name: string) => {
+  const svg = illustrationSvgs[`../../public/illustrations/${name}.svg`];
+  const [, , w, h] = svg.match(/viewBox="([^"]+)"/)![1].split(' ');
+  return `${w} / ${h}`;
+};
+
+const traditional = comparison.anaconda;
+const percentDiff = (ours: number, theirs: number) =>
+  Math.round(((theirs - ours) / theirs) * 100);
+const describeDiff = (pct: number, less: string, more: string) =>
+  pct >= 0 ? `${pct}% ${less}` : `${Math.abs(pct)}% ${more}`;
+
+const plans: {
+  kit: Kit;
+  summary: string;
+  items: string[];
+  featured?: boolean;
+  showWeightDiff?: boolean;
+}[] = [
+  {
+    kit: kitById.starter,
+    summary: 'Affordable and reliable kit for casual overnighters.',
+    items: [
+      '3 season lightweight tent',
+      'Ultralight sleeping mat',
+      'Sleeping bag',
+      '35L pack',
+    ],
+  },
+  {
+    kit: kitById.value,
+    summary:
+      'The best balance of price, weight and reliability for casual multi-night trips.',
+    items: [
+      '3 season ultralight tent',
+      'Ultralight sleeping mat',
+      'Ultralight sleeping bag',
+      'Ultralight 60L pack',
+    ],
+    featured: true,
+    showWeightDiff: true,
+  },
+].map((plan) => ({
+  ...plan,
+  featured: plan.featured ?? false,
+  showWeightDiff: plan.showWeightDiff ?? false,
+}));
+
+const planFigures = (kit: Kit) => {
+  const weight = getKitWeight(kit);
+  return {
+    price: kit.price,
+    weight,
+    priceDiff: describeDiff(
+      percentDiff(kit.price, traditional.priceAud),
+      'cheaper',
+      'more expensive',
+    ),
+    weightDiff: describeDiff(
+      percentDiff(weight, traditional.weightGrams),
+      'lighter',
+      'heavier',
+    ),
+  };
+};
+
+const problems = [
+  {
+    icon: 'choice',
+    copy: "With so many gear options, it's hard to tell which ones you actually need.",
+  },
+  {
+    icon: 'price',
+    copy: 'Traditional retailers and brands are overcharging Aussies.',
+  },
+  {
+    icon: 'quality',
+    copy: "It's hard to tell which affordable gear options are good and which are crap.",
+  },
+];
+
+const itemFor = (id: string) => {
+  const product = productById[id];
+  const page = product.reviewSlug
+    ? productPageBySlug[product.reviewSlug]
+    : undefined;
+  const offer = page ? offersFor(page.slug)[0] : undefined;
+  return { product, page, offer };
+};
+// Short homepage table descriptions, keyed by catalog product id.
+const tableNotes: Record<string, string> = {
+  'bisinna-2p': '2P lightweight tent that can handle mild rain',
+  'bisinna-bag-18': 'Comfort up to around 5°C',
+  'foil-foam-pad': 'Light, reliable and insulating',
+  'bisinna-pack-35': 'Extremely light and capable pack for overnight trips',
+  'cloud-up-1p':
+    'Ultralight tent highly rated by independent reviewers. 2P variant also available',
+  'down-bag-400':
+    'Ultralight and warm bag that competes with bags double its price',
+  'rock-60-5': 'Ultralight pack suitable for multi-day hikes',
+};
+const kitTotals = (kit: Kit) => ({
+  price: kit.price,
+  weight: getKitWeight(kit),
+});
+const tableSections = [
+  {
+    id: 'starter',
+    title: 'The Starter kit',
+    blurb:
+      'Perfect for first timers who want to try overnight hikes without spending hundreds. Suitable for 3 season use and mild rain conditions.',
+    productIds: kitById.starter.productIds,
+    totals: kitTotals(kitById.starter),
+    art: 'kit-starter-line',
+  },
+  {
+    id: 'value',
+    title: 'The Value kit',
+    blurb:
+      'The best price to performance gear for casual multi-day hikes. Suitable for 3 season use in all conditions.',
+    productIds: kitById.value.productIds,
+    totals: kitTotals(kitById.value),
+    art: 'kit-value-line',
+  },
+  {
+    id: 'accessories',
+    title: 'Optional accessories',
+    blurb: 'Outside both kit totals. Add them if they suit your trip.',
+    productIds: optionalAddonIds,
+    totals: undefined,
+    art: 'icon-choice',
+  },
 ];
 ---
 
 <BaseLayout
   title="Bush Gums | Affordable beginner overnight hiking gear Australia"
-  description="Curated starter hiking kits and practical gear research for Australian beginners planning a first overnight trip."
+  description="Curated best-value hiking kits for Australian beginners planning a first overnight trip, compared against traditional retail prices."
 >
-  <section class="hero hero-funnel">
+  <!-- 1. Hero: full-bleed photo, copy over a directional scrim -->
+  <section class="hero">
     <div class="hero-media">
       <Photo
         slot="hero"
-        alt="A hiker beside a small tent on a sandstone ledge above a misty Blue Mountains valley at sunrise"
+        alt="A hiker standing beside a bright green two-person tent on a sandstone ledge above a misty Blue Mountains valley at sunrise"
         sizes="100vw"
         widths={[768, 1280, 1942]}
         position="72% 55%"
@@ -49,129 +176,319 @@ const chooseSteps = [
     </div>
     <div class="container hero-inner">
       <div class="hero-copy">
-        <p class="eyebrow">Beginner overnight hiking gear, explained</p>
-        <h1>Your first overnight hike, sorted.</h1>
+        <h1>We help you experience the Aussie bush.</h1>
         <p class="hero-sub">
-          Start with a curated core overnight kit from A$218, or choose our
-          lighter A$446 Value setup. We compare owner experiences and trade-offs
-          so you can spend less without buying blind.
+          We've curated the best value gear so you can adventure without
+          breaking the bank.
         </p>
         <div class="actions">
-          <a class="button" href="/starter-kits#value">See the Value Kit</a><a
-            class="button button-ghost"
-            href="/gear">Browse the Gear</a
-          >
+          <a class="button" href="#kits">See the kits</a>
         </div>
-        <p class="trust-note">
-          Affiliate links. Prices are historical and may change. Some
-          specifications remain seller claims, and field testing is in progress.
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Problem: one prominent statement, three quiet cards -->
+  <section class="section problem" aria-labelledby="problem-title">
+    <div class="container">
+      <div class="problem-panel" data-reveal>
+        <div class="problem-statement">
+          <div
+            class="problem-branch"
+            style={`aspect-ratio: ${artRatio('wilted-gum-branch')}`}
+            aria-hidden="true"
+          >
+          </div>
+          <h2 id="problem-title">
+            Preparing for your first hike can be <em>overwhelming.</em>
+          </h2>
+        </div>
+        <ul class="problem-cards">
+          {
+            problems.map(({ icon, copy }) => (
+              <li class="problem-card">
+                <span class="problem-icon" aria-hidden="true">
+                  <span
+                    class="problem-icon-art"
+                    style={`--art: url('/illustrations/icon-${icon}.svg')`}
+                  />
+                </span>
+                <p>{copy}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Solution: two kit plans side by side -->
+  <section
+    class="section section-tint solution"
+    id="kits"
+    aria-labelledby="kits-title"
+  >
+    <div class="container">
+      <h2 id="kits-title" class="solution-title" data-reveal>
+        We've waded through the internet and curated the best value hiking gear
+        suitable for Australian conditions.
+      </h2>
+      <div class="plan-grid" data-reveal>
+        {
+          plans.map(({ kit, summary, items, featured, showWeightDiff }) => {
+            const f = planFigures(kit);
+            return (
+              <article
+                class:list={['plan-card', { 'is-featured': featured }]}
+                aria-labelledby={`plan-${kit.id}`}
+              >
+                <div
+                  class="plan-art"
+                  style={`--art: url('/illustrations/kit-${kit.id}-line.svg'); aspect-ratio: ${artRatio(`kit-${kit.id}-line`)}`}
+                  aria-hidden="true"
+                />
+                <h3 id={`plan-${kit.id}`}>The {kit.name} kit</h3>
+                <p class="plan-summary">{summary}</p>
+                <p class="plan-price">
+                  <span class="plan-price-value">
+                    ~A${f.price.toLocaleString('en-AU')}
+                  </span>
+                  <span class="plan-price-weight">
+                    Est. carried weight {formatKg(f.weight, 1)}
+                  </span>
+                </p>
+                <div class="plan-compare">
+                  <span class="plan-compare-label">
+                    Compared to traditional retailers
+                  </span>
+                  <span class="plan-compare-pills">
+                    <span>
+                      {f.priceDiff}
+                      <sup>*</sup>
+                    </span>
+                    {showWeightDiff && (
+                      <span>
+                        {f.weightDiff}
+                        <sup>*</sup>
+                      </span>
+                    )}
+                  </span>
+                </div>
+                <a
+                  class:list={[
+                    'button',
+                    'plan-cta',
+                    { 'button-secondary': !featured },
+                  ]}
+                  href={`#${kit.id}`}
+                >
+                  See the {kit.name} kit
+                </a>
+                <ul class="plan-items">
+                  {items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </article>
+            );
+          })
+        }
+      </div>
+      <div class="plan-footnote">
+        <p>
+          <sup>*</sup> Compared with a category-matched setup from a traditional outdoor
+          retailer ({formatAud(traditional.priceAud)}, {
+            formatKg(traditional.weightGrams, 1)
+          }). Prices exclude delivery and can change.
+        </p>
+        <details>
+          <summary>Traditional retailer comparison</summary>
+          <table class="retailer-table">
+            <caption class="sr-only"
+              >Traditional retailer comparison setup</caption
+            >
+            <thead>
+              <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Advertised price</th>
+                <th scope="col">Weight</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                anacondaRows.map((row) => (
+                  <tr>
+                    <th scope="row">{row.productName}</th>
+                    <td class="mono">{formatAud(row.priceAud)}</td>
+                    <td class="mono">{formatKg(row.weightGrams)}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+            <tfoot>
+              <tr>
+                <th scope="row">Total</th>
+                <td class="mono">{formatAud(traditional.priceAud)}</td>
+                <td class="mono">{formatKg(traditional.weightGrams)}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. How we choose gear -->
+  <section class="section" aria-labelledby="method-title">
+    <div class="container need-grid">
+      <div class="need-intro">
+        <h2 id="method-title">How we choose gear</h2>
+        <a class="text-link" href="/about#how-we-choose">Read how we choose</a>
+      </div>
+      <div class="method-copy" data-reveal>
+        <p class="method-lead">
+          We looked beyond traditional outdoor chains for gear that maximises
+          bang for your buck. The gear had to be reliable for casual hiking use
+          in Australian conditions.
+        </p>
+        <p>
+          We have no attachment to traditional brands that pocket record profits
+          in the middle of a cost of living crisis.
+        </p>
+        <p>
+          Our final kit selection was validated through owner experiences,
+          independent reviews, forums and videos.
         </p>
       </div>
     </div>
   </section>
 
-  <ValueComparison />
+  <!-- 5. Kit contents, optional accessories and disclosure -->
+  <section class="section section-tint" aria-label="Kit contents">
+    <div class="container kit-details">
+      {
+        tableSections.map(({ id, title, blurb, productIds, totals, art }) => (
+          <article class="kit-detail" id={id}>
+            <div class="kit-detail-head">
+              <div
+                class="kit-detail-art"
+                style={`--art: url('/illustrations/${art}.svg'); aspect-ratio: ${artRatio(art)}`}
+                aria-hidden="true"
+              />
+              <h2>{title}</h2>
+              {totals && (
+                <dl class="figures">
+                  <div>
+                    <dt>Approx. core-kit total</dt>
+                    <dd>~A${totals.price.toLocaleString('en-AU')}</dd>
+                  </div>
+                  <div>
+                    <dt>Estimated carried weight</dt>
+                    <dd>{(totals.weight / 1000).toFixed(1)} kg</dd>
+                  </div>
+                </dl>
+              )}
+              <p>{blurb}</p>
+            </div>
+            <ul class="kit-items">
+              {productIds.map((productId) => {
+                const { product, page, offer } = itemFor(productId);
+                return (
+                  <li>
+                    <div class="kit-item-static">
+                      <div class="kit-item-name">
+                        <strong>{product.name}</strong>
+                        {product.components ? (
+                          <ul class="kit-item-components">
+                            {product.components.map((part) => (
+                              <li>{part}</li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <small>
+                            {tableNotes[product.id] ??
+                              product.goodFor ??
+                              product.summary}
+                          </small>
+                        )}
+                        {product.id === 'cookware-aluminium' && (
+                          <small>
+                            The stove takes affordable A$5 fuel cartridges from{' '}
+                            <a
+                              href="https://www.bunnings.com.au/gasmate-230g-power-fuel-iso-butane-cartridge_p0442265"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Bunnings
+                              <span class="sr-only"> (opens in a new tab)</span>
+                            </a>
+                            .
+                          </small>
+                        )}
+                        {page && (
+                          <a
+                            class="kit-item-more"
+                            href={productPath(page.slug)}
+                          >
+                            See more
+                            <span class="sr-only"> about {product.name}</span>
+                          </a>
+                        )}
+                      </div>
+                      <span class="kit-item-cat">{product.category}</span>
+                      <span class="mono">
+                        {formatWeight(product.carriedWeightGrams)}
+                      </span>
+                      <span class="mono">A${product.price}</span>
+                      <div class="kit-item-actions">
+                        {offer && (
+                          <a
+                            class="button button-small kit-item-buy"
+                            href={offer.url}
+                            target="_blank"
+                            rel="sponsored noopener noreferrer"
+                          >
+                            Check current price
+                            <span class="sr-only">
+                              {' '}
+                              for {product.name} (opens in a new tab)
+                            </span>
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </article>
+        ))
+      }
 
-  <section class="section" aria-labelledby="kits-title">
-    <div class="container">
-      <div class="heading-row">
-        <div>
-          <p class="eyebrow">Two ways to start</p><h2 id="kits-title">
-            Choose the setup that fits your priorities.
-          </h2>
-        </div><a class="text-link" href="/starter-kits">Compare the kits</a>
-      </div>
-      <div class="kit-grid">
-        <KitCard kit={kitById.value} featured /><KitCard
-          kit={kitById.starter}
-        />
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-tint" aria-labelledby="method-title">
-    <div class="container method-grid">
-      <div>
-        <p class="eyebrow">How we choose</p><h2 id="method-title">
-          How Bush Gums chooses gear
-        </h2><p>
-          We still check the specs. We just care more about what the gear is
-          actually like to own and use.
-        </p><a class="text-link" href="/about#how-we-choose"
-          >Read how we choose</a
-        >
-      </div>
-      <ol class="method-steps">
-        {
-          chooseSteps.map(([number, title, copy]) => (
-            <li>
-              <>
-                <span class="method-number">{number}</span>
-                <div>
-                  <>
-                    <h3>{title}</h3>
-                    <p>{copy}</p>
-                  </>
-                </div>
-              </>
-            </li>
-          ))
-        }
-      </ol>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="featured-title">
-    <div class="container">
-      <div class="heading-row">
-        <div>
-          <p class="eyebrow">Inside the Value kit</p><h2 id="featured-title">
-            Real products, with the questions attached.
-          </h2>
-        </div><a class="text-link" href="/gear">See all gear</a>
-      </div>
-      <div class="product-grid">
-        {
-          valueProducts.map((product) => (
-            <ProductCard
-              productPage={product}
-              href={`/gear/${product.slug}/`}
-            />
-          ))
-        }
-      </div>
-      <p class="section-note">
-        Every product page shows what we know, where it came from and what still
-        needs testing.
+      <p class="affiliate-note">
+        These product links on Bush Gums are affiliate links. These support the
+        running costs of this site. We may earn a commission if you buy through
+        one, at no extra cost to you. All our opinions are completely
+        independent of the manufacturers.{' '}
+        <a href="/affiliate-disclosure">Affiliate disclosure</a>
       </p>
     </div>
   </section>
 
-  <section class="builder-prompt" aria-labelledby="builder-title">
-    <div class="container builder-prompt-inner">
-      <div>
-        <p class="eyebrow">Not sure which way to go?</p><h2 id="builder-title">
-          Build My Kit can narrow it down.
-        </h2><p>
-          Answer a few trip questions in your browser. It recommends Starter or
-          Value, and stops before winter conditions.
-        </p>
-      </div><a class="button button-light" href="/build-my-kit"
-        >Try Build My Kit</a
-      >
+  <!-- 6. Build My Kit: deep band with photo -->
+  <section class="builder-band" aria-labelledby="builder-title">
+    <div class="builder-band-media">
+      <Photo
+        slot="recommender"
+        alt="Two hikers on a boardwalk through Tasmanian button grass"
+        sizes="(max-width: 767px) 100vw, 45vw"
+        position="30% 55%"
+      />
     </div>
-  </section>
-
-  <section class="final-cta" aria-labelledby="final-title">
-    <div class="container final-cta-inner">
-      <div>
-        <p class="eyebrow">Ready to compare?</p><h2 id="final-title">
-          See the Value kit, item by item.
-        </h2><p>
-          Follow each product into its research page, read what owners say and
-          then choose an external merchant listing if it suits your trip.
-        </p>
-      </div><a class="button" href="/starter-kits#value">See the Value Kit</a>
+    <div class="builder-band-copy" data-reveal>
+      <h2 id="builder-title">Not sure which kit suits you?</h2>
+      <p>Answer a few trip questions in your browser.</p>
+      <a class="button" href="/build-my-kit">Build My Kit</a>
     </div>
   </section>
 </BaseLayout>

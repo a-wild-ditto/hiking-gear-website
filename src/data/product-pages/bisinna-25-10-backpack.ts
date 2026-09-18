@@ -10,14 +10,14 @@ const page: ProductPage = {
   tags: ['Starter lightweight pack candidate'],
   pricePaidAud: 47.99,
   summary:
-    'A roughly 580 g roll-top pack for under $50. It only makes sense if the whole load stays light, and we want to find where that line is.',
+    'A ~580 g roll-top pack for under $50. Ultralight carrying without the ultralight price.',
   metaDescription:
-    'What we know about the BISINNA 25+10L backpack before testing: claimed specs, owner reviews on comfort and load limits, and our test plan.',
+    'What we know about the BISINNA 25+10L backpack: claimed specs, owner reviews on comfort and load limits, and why we chose it.',
   question:
     'At what total carried weight does this very cheap, very light pack stop being comfortable enough for a beginner?',
   whyWeChoseIt: [
-    'Well-known ultralight packs cost many times more than this, and a beginner doesn’t need to spend that to find out whether a lighter style of hiking suits them. The BISINNA is a simple frameless roll-top with about 35 L of space and a claimed weight of around 580 g, and it is one of the few cheap packs with detailed owner write-ups.',
-    'Those owners broadly agree: well made for the price, but thin shoulder straps and no frame. That means comfort depends almost entirely on how heavy and how carefully packed the load is. So “is it a good backpack?” isn’t the useful question. The useful question is how much weight a beginner can put in it before it becomes a bad day.',
+    'Well-known ultralight packs cost many times more than this, and a beginner doesn’t need to spend that to find out whether a lighter style of hiking suits them. The BISINNA is a simple roll-top with about 35 L of space and a claimed weight of around 580 g, and it is one of the few cheap packs with detailed owner write-ups.',
+    'Those owners broadly agree that it is well made for the price. With thin shoulder straps and no frame, comfort depends on keeping the load light and packing it carefully, which is exactly what a compact overnight kit allows.',
   ],
   specs: [
     {
@@ -83,7 +83,7 @@ const page: ProductPage = {
       language: 'Korean',
       lang: 'ko',
       summary:
-        'An experienced backpacker bought it on AliExpress with their own money and packed 8–9 kg (before food and water) for a 2-day trip. Rates the build as excellent for the price, but comfort clearly below their Gregory and Mystery Ranch packs, and the “mesh” back runs hot.',
+        'An experienced backpacker bought it on AliExpress with their own money and packed 8-9 kg (before food and water) for a 2-day trip. Rates the build as excellent for the price, but comfort clearly below their Gregory and Mystery Ranch packs, and the “mesh” back runs hot.',
       quote: '등판은 메쉬소재로 형식상 되어있습니다',
       quoteTranslation: 'The back panel is mesh, but only nominally.',
     },
@@ -156,8 +156,12 @@ const page: ProductPage = {
       sourceIds: ['maxcamp'],
     },
   ],
+  thingsToKnow: [
+    'Best with a light, compact kit. Keep the total load modest for comfort, as there is no frame to transfer weight to your hips.',
+    'Pack soft items against your back so nothing hard presses through.',
+  ],
   watching: [
-    'Comfort likely falls off somewhere around 8–10 kg total. That is an owner-report estimate, not a measured limit.',
+    'Comfort likely falls off somewhere around 8-10 kg total. That is an owner-report estimate, not a measured limit.',
     'Whether a complete beginner overnight kit actually fits in about 35 L.',
     'Durability of the 40D fabric and external mesh over time.',
     'How water-resistant the fabric and roll-top really are.',

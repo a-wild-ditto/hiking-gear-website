@@ -1,52 +1,18 @@
 ---
-import type { SpecEntry, Source } from '../../data/product-pages/types';
-const {
-  specs,
-  sources = [],
-  sourceNumbers = {},
-} = Astro.props as {
-  specs: SpecEntry[];
-  sources?: Source[];
-  sourceNumbers?: Record<string, number>;
-};
-const attribution: Record<SpecEntry['status'], string> = {
-  measured: 'Measured by Bush Gums',
-  manufacturer: 'Manufacturer-listed',
-  retailer: 'Retailer-listed',
-  corroborated: 'Listed by multiple sources',
-  'same-design': 'From a related design',
-  'seller-claim': 'Seller-listed',
-  'to-verify': 'Not yet verified',
-};
+import type { SpecEntry } from '../../data/product-pages/types';
+const { specs } = Astro.props as { specs: SpecEntry[] };
 ---
 
-<div class="spec-list">
-  <dl>
+<table class="spec-table">
+  <caption class="sr-only">Specifications</caption>
+  <tbody>
     {
       specs.map((spec) => (
-        <div class="spec-row">
-          <>
-            <dt>{spec.label}</dt>
-            <dd>
-              <span class="spec-value">{spec.value}</span>
-              <span class="spec-attribution">{attribution[spec.status]}</span>
-              {spec.note && <small>{spec.note}</small>}
-              {spec.sourceIds && spec.sourceIds.length > 0 && (
-                <span class="source-links">
-                  {spec.sourceIds.map((id) => (
-                    <a
-                      href={`#source-${id}`}
-                      aria-label={`Source ${sourceNumbers[id] ?? id}: ${sources.find((source) => source.id === id)?.publisher ?? id}`}
-                    >
-                      [{sourceNumbers[id] ?? id}]
-                    </a>
-                  ))}
-                </span>
-              )}
-            </dd>
-          </>
-        </div>
+        <tr>
+          <th scope="row">{spec.label}</th>
+          <td>{spec.value}</td>
+        </tr>
       ))
     }
-  </dl>
-</div>
+  </tbody>
+</table>

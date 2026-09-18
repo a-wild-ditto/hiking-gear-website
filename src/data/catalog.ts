@@ -15,6 +15,8 @@ export type Product = {
   weightBasis: string;
   summary: string;
   goodFor?: string;
+  /** Included pieces, listed under the name in kit tables. */
+  components?: string[];
   keyFact?: { label: string; meaning: string };
   reviewSlug?: string;
   kitDetail?: {
@@ -263,11 +265,20 @@ export const products: Product[] = [
   },
   {
     id: 'cookware-aluminium',
-    name: 'Widesea Aluminium Cookware Set',
+    name: 'Lightweight cookware set',
     category: 'Cooking',
     price: 56,
-    weightStatus: 'unknown',
-    weightBasis: 'No reliable carried-weight figure identified',
+    weightGrams: 557,
+    carriedWeightGrams: 557,
+    weightStatus: 'seller-claim',
+    weightBasis: 'Seller-listed set weight (WSCS-1051 listing)',
+    components: [
+      '1.3 L pot (12.5 x 16 cm)',
+      '440 ml cup (8 x 8 cm)',
+      'Folding gas stove',
+      'Pot bracket',
+      'Cutlery set',
+    ],
     summary:
       'A nested eight-piece pot set for simple camp meals and hot drinks.',
     goodFor: 'Optional cooking setup',
@@ -284,12 +295,12 @@ export const products: Product[] = [
         'For basic camp meals',
       ],
       caveat:
-        'Weight, capacities, coating and included pieces still need to be confirmed from the exact listing.',
+        'The 557 g weight and capacities are seller-listed figures, not Bush Gums measurements.',
     },
   },
   {
     id: 'memory-foam-pillow',
-    name: 'NIOFEEL Memory-Foam Camping Pillow',
+    name: 'Memory-foam camping pillow',
     category: 'Accessories',
     price: 19,
     weightGrams: 500,

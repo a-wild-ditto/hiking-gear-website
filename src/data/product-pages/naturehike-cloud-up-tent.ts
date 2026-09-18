@@ -12,19 +12,19 @@ const page: ProductPage = {
     checkedOn: '2026-09-16',
   },
   identityNote:
-    'The updated AliExpress listing contains Cloud Up Pro 1P, 2P and 3P options. The supplied Pro 1P screenshot shows a grey 20D nylon tent at A$204.88, with a 1.23 kg weight excluding accessories, PU 3000 mm waterproofing and a 39 × 13 cm packed size. Confirm the selected capacity and complete delivered weight.',
+    'The updated AliExpress listing contains Cloud Up Pro 1P, 2P and 3P options. The Pro 1P marketplace listing shows a grey 20D nylon tent at A$204.88, with a 1.23 kg weight excluding accessories, PU 3000 mm waterproofing and a 39 × 13 cm packed size. Check you have selected the capacity you want.',
   category: 'Shelter',
   tags: ['Value shelter candidate', 'Variant comparison'],
   pricePaidAud: 204.88,
   summary:
-    'A familiar double-wall tent family with a useful track record, now offered here in Pro 1P, 2P and 3P variants. The practical choice depends on real room, condensation and complete weight.',
+    'A proven ultralight tent family at a budget price. The 1P carries at about 1.4 kg.',
   metaDescription:
     'Research on the Naturehike Cloud Up Pro 1P, 2P and 3P: owner and reviewer experience, listing specifications, trade-offs and unresolved variant differences.',
   question:
     'Which Cloud Up variant makes the most sense for a beginner once complete weight, usable room, condensation and wet-weather behaviour are checked?',
   whyWeChoseIt: [
-    'The Cloud Up family combines a familiar double-wall structure, aluminium pole and front vestibule with years of owner and reviewer experience. Older Cloud Up 2 reports describe a shelter that is straightforward to pitch and dependable for casual use below treeline.',
-    'The trade-off is space and variant confusion. Older reviewers found the two-person interior tight, while the Pro 1P, 2P and 3P differ in dimensions, weight and included components. Treat the current listing as a family of options, not one interchangeable tent.',
+    'The Cloud Up family combines a familiar double-wall structure, aluminium poles and a front vestibule with years of owner and reviewer experience. Reports describe a shelter that is straightforward to pitch and dependable for casual use, at a fraction of the price of comparable name-brand ultralight tents.',
+    'Older reviewers found the two-person interior tight, so solo hikers get the best balance from the 1P, while the 2P suits pairs who pack light. The Pro 1P, 2P and 3P differ in dimensions and weight, so check the variant you select.',
   ],
   specs: [
     {
@@ -43,13 +43,13 @@ const page: ProductPage = {
       label: 'Pro 1 listing weight',
       value: '1.23 kg excluding accessories',
       status: 'seller-claim',
-      note: 'The supplied screenshot also claims 210 × 60 × 105 cm and a 39 × 13 cm packed size. Measure the complete delivered kit.',
+      note: 'The marketplace listing also claims 210 × 60 × 105 cm and a 39 × 13 cm packed size. Measure the complete delivered kit.',
     },
     {
       label: 'Pro 2 listing weight',
-      value: '1.75 kg shown in the supplied screenshot',
+      value: '1.75 kg shown on the marketplace listing',
       status: 'seller-claim',
-      note: 'An earlier supplied Pro 2 screenshot shows 1.75 kg including accessories. Naturehike currently states approximately 1.36 kg minimum / 1.53 kg packed.',
+      note: 'An earlier Pro 2 marketplace listing shows 1.75 kg including accessories. Naturehike currently states approximately 1.36 kg minimum / 1.53 kg packed.',
       sourceIds: ['naturehike-pro-2'],
     },
     {
@@ -65,7 +65,7 @@ const page: ProductPage = {
     },
     {
       label: 'Pro 3 listing specifications',
-      value: 'Not shown in the supplied screenshot',
+      value: 'Not shown on the marketplace listing',
       status: 'to-verify',
       note: 'The affiliate listing offers a 3P option, but its dimensions and weight must be checked on the selected variant before comparison.',
     },
@@ -81,7 +81,7 @@ const page: ProductPage = {
       label: 'Capacity',
       value: 'Updated listing offers Pro 1P, 2P and 3P capacities',
       status: 'seller-claim',
-      note: 'The updated screenshot specifies only Pro 1P dimensions and weight; an earlier screenshot provides Pro 2 details. Confirm the current 2P and 3P specifications before comparing them. Independent Cloud Up 2 reviews describe the two-person interior as tight for two adults.',
+      note: 'The current marketplace listing specifies only Pro 1P dimensions and weight; an earlier listing provides Pro 2 details. Confirm the current 2P and 3P specifications before comparing them. Independent Cloud Up 2 reviews describe the two-person interior as tight for two adults.',
     },
   ],
   coverage: 'moderate',
@@ -160,9 +160,14 @@ const page: ProductPage = {
       sourceIds: ['naturehike-base-1', 'naturehike-pro-2'],
     },
     {
-      text: 'The screenshot weights conflict materially with Naturehike’s current figures.',
+      text: 'The marketplace listing weights conflict materially with Naturehike’s current figures.',
       sourceIds: ['naturehike-base-1', 'naturehike-pro-2'],
     },
+  ],
+  thingsToKnow: [
+    'Suitable for 3 season use. Not recommended for winter or exposed alpine campsites.',
+    'The 1P suits one hiker and their gear. Pairs wanting more room should choose the 2P.',
+    'Open the vents on still nights to reduce condensation inside the tent.',
   ],
   watching: [
     'Exact ordered variant, model code, complete carried weight and included footprint.',

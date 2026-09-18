@@ -105,12 +105,16 @@ export type ProductPage = {
   question: string;
   whyWeChoseIt: string[];
   specs: SpecEntry[];
+  /** Significant findings shown under the spec table, each citing one source. */
+  keyFindings?: { text: string; sourceId: string }[];
   coverage: Coverage;
   coverageNote: string;
   sources: Source[];
   positives: Finding[];
   negatives: Finding[];
   watching: string[];
+  /** Practical buyer advice shown in the Things to know section. */
+  thingsToKnow?: string[];
   testPlan: string[];
   review: ReviewStatus;
   /** ISO date the research was last checked. */

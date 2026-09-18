@@ -13,7 +13,13 @@ const trace = (img) =>
       if (e) return rej(e);
       potrace.trace(
         buf,
-        { threshold: 150, turdSize: 20, optTolerance: 0.3, alphaMax: 1, color: '#1f4a2c' },
+        {
+          threshold: 150,
+          turdSize: 20,
+          optTolerance: 0.3,
+          alphaMax: 1,
+          color: '#1f4a2c',
+        },
         (err, svg) => (err ? rej(err) : res(svg)),
       );
     }),
@@ -28,14 +34,24 @@ const trace = (img) =>
   const full = await trace(src.clone().crop(...fullBox));
   const toMark = (svg) =>
     svg
-      .replace(/<svg[^>]*>/, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${markBox[2]} ${markBox[3]}">`)
+      .replace(
+        /<svg[^>]*>/,
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${markBox[2]} ${markBox[3]}">`,
+      )
       .replace(/fill="#1f4a2c"/g, 'fill="currentColor"')
       .replace(/stroke="none"\s*/g, '')
       .replace(/fill-rule="evenodd"/g, 'fill-rule="evenodd"');
   fs.writeFileSync('src/assets/brand/mark.svg', toMark(mark));
   fs.writeFileSync(
     'public/logo-traced.svg',
-    full.replace(/<svg[^>]*>/, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${fullBox[2]} ${fullBox[3]}" role="img" aria-label="Bush Gums">`),
+    full.replace(
+      /<svg[^>]*>/,
+      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${fullBox[2]} ${fullBox[3]}" role="img" aria-label="Bush Gums">`,
+    ),
   );
-  console.log('traced', fs.statSync('src/assets/brand/mark.svg').size, fs.statSync('public/logo-traced.svg').size);
+  console.log(
+    'traced',
+    fs.statSync('src/assets/brand/mark.svg').size,
+    fs.statSync('public/logo-traced.svg').size,
+  );
 })();

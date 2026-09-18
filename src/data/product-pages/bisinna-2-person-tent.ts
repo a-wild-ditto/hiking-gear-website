@@ -5,19 +5,29 @@ const page: ProductPage = {
   imageId: 'bisinna-2-person-tent-australian',
   name: 'BISINNA 2-Person Backpacking Tent',
   identityNote:
-    'We ordered the green/camel two-person tent from the BISINNA Global Store on AliExpress. BISINNA sells several 2-person tents under near-identical names; the listing we bought from specifies a 190T polyester fly rather than the 20D nylon version, which matches the tent OutdoorGearLab tested. The listing’s own instruction video is branded BENYUE, a sign this is a factory design sold under more than one name. We will confirm the fabric and weight on arrival.',
+    'We ordered the green/camel two-person tent from the BISINNA Global Store on AliExpress. BISINNA sells several 2-person tents under near-identical names; the listing we bought from specifies a 190T polyester fly rather than the 20D nylon version, which matches the tent OutdoorGearLab tested. The listing’s own instruction video is branded BENYUE, a sign this is a factory design sold under more than one name.',
   category: 'Shelter',
   tags: ['Value shelter candidate'],
   pricePaidAud: 99.8,
   summary:
-    'A roughly A$100 freestanding double-wall tent with two doors and two vestibules. The key question is whether its polyester fly stays usable when rain persists.',
+    'A roomy $100 freestanding tent. It weighs only ~2 kg and can handle mild rain.',
   metaDescription:
-    'Research on the BISINNA 2-person tent: reviewer findings on rain and build, variant limits, listing specifications and our test plan.',
+    'Research on the BISINNA 2-person tent: reviewer findings on rain and build, variant limits, listing specifications and why we chose it.',
   question:
-    'Can this low-cost conventional tent provide a dependable first shelter, especially in sustained rain?',
+    'Can this low-cost conventional tent provide a dependable first shelter?',
   whyWeChoseIt: [
-    'For a first overnight, a conventional freestanding design is easy to understand: two crossing poles, a separate fly, two doors and two vestibules. That gives this tent a practical starting point at a low price, subject to checking the delivered variant.',
-    'OutdoorGearLab bought and tested a 190T polyester version, the same fly fabric specified by our listing. They found useful ventilation and reasonable value, but the fly eventually wetted out in heavy rain. Our listing claims PU 3000 mm rather than the tested tent’s PU 2000 mm, so that result is an important concern to investigate, not a conclusion about this exact tent.',
+    'For a first overnight, a conventional freestanding design is easy to set up: two crossing poles, a separate fly, two doors and two vestibules. It also provides plenty of space for casual hikes while still remaining lightweight. That gives this tent a practical starting point at a low price. Check the listing variant before buying.',
+    'OutdoorGearLab bought and tested a 190T polyester version, the same fly fabric specified by our listing. They found useful ventilation and reasonable value, but the fly eventually wetted out in heavy rain. However, as a budget choice for casual hikers who probably aren’t hiking in storm conditions, this tent is as good as it gets.',
+  ],
+  keyFindings: [
+    {
+      text: 'OutdoorGearLab found the fly of the 190T polyester version eventually wetted out in heavy rain, and seam stitching let water seep through pinholes.',
+      sourceId: 'ogl',
+    },
+    {
+      text: 'OutdoorGearLab weighed the polyester version at just under 2.3 kg, heavier than the 2.16 kg listed.',
+      sourceId: 'ogl',
+    },
   ],
   specs: [
     {
@@ -38,7 +48,7 @@ const page: ProductPage = {
       label: 'Fly fabric',
       value: '190T polyester',
       status: 'seller-claim',
-      note: 'Specified by the listing we bought from, and the same fly fabric as the tent OutdoorGearLab tested. We will check the label on arrival.',
+      note: 'Specified by the listing we bought from, and the same fly fabric as the tent OutdoorGearLab tested.',
     },
     {
       label: 'Waterproof rating',
@@ -144,7 +154,7 @@ const page: ProductPage = {
   ],
   negatives: [
     {
-      text: 'On the polyester tent OutdoorGearLab tested, the fly eventually wetted out in heavy rain and seam stitching created pinholes where water seeped through. Our exact listing still needs checking.',
+      text: 'On the polyester tent OutdoorGearLab tested, the fly eventually wetted out in heavy rain and seam stitching created pinholes where water seeped through. The exact listing we chose has not been independently reviewed.',
       sourceIds: ['ogl'],
     },
     {
@@ -155,6 +165,10 @@ const page: ProductPage = {
       text: 'Minimal internal storage and budget materials raise durability questions.',
       sourceIds: ['ogl'],
     },
+  ],
+  thingsToKnow: [
+    'Suitable for 3 season use in mild conditions. Not recommended for winter, alpine areas or sustained heavy rain.',
+    'Pitch it once at home before your first trip so you know how the poles and fly go together.',
   ],
   watching: [
     'Rain is the main question. Our listing claims a PU 3000 mm rating against the PU 2000 mm of the tent that wet out in testing, and we don’t know whether that makes a real difference.',

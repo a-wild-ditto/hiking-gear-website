@@ -3,9 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Photo from '../../components/Photo.astro';
 import SpecList from '../../components/product/SpecList.astro';
 import SourceCard from '../../components/product/SourceCard.astro';
-import ReviewStatus from '../../components/product/ReviewStatus.astro';
 import { productPages, productPath } from '../../data/product-pages';
-import { publicProductStatus } from '../../data/product-pages/public-status';
 import { offersFor } from '../../data/offers';
 import { site } from '../../config/site';
 import { getProductPhoto } from '../../data/images';
@@ -41,9 +39,6 @@ const fromExperience = (finding: Finding) =>
   finding.sourceIds.some((id) => experienceIds.has(id));
 const ownerPositives = p.positives.filter(fromExperience);
 const ownerNegatives = p.negatives.filter(fromExperience);
-const otherNegatives = p.negatives.filter(
-  (finding) => !fromExperience(finding),
-);
 const date = new Date(`${p.researchedOn}T00:00:00`).toLocaleDateString(
   'en-AU',
   { day: 'numeric', month: 'long', year: 'numeric' },
@@ -106,27 +101,13 @@ const breadcrumbSchema = {
           )
         }
         <div class="product-hero-copy">
-          <div class="tag-list">
-            {p.tags.map((tag) => <span>{tag}</span>)}
-          </div>
-          <p class="eyebrow">{p.category}</p>
+          <p class="product-kicker">
+            {p.category}
+            {p.tags.length > 0 && <span>{p.tags.join(', ')}</span>}
+          </p>
           <h1 id="product-title">{p.name}</h1>
           <p class="lead">{p.summary}</p>
-          {
-            p.review.state === 'published' && (
-              <p class="product-verdict">Our take: {p.review.verdict}</p>
-            )
-          }
-          <dl class="status-block">
-            <div>
-              <dt>Bush Gums status</dt><dd>{publicProductStatus(p.review)}</dd>
-            </div>
-            <div>
-              <dt>What we paid</dt><dd>
-                A${p.pricePaidAud.toFixed(2)} recorded
-              </dd>
-            </div>
-          </dl>
+          <p class="product-price">~A${p.pricePaidAud.toFixed(2)}</p>
           {
             offer && (
               <a
@@ -154,195 +135,219 @@ const breadcrumbSchema = {
           }
         </div>
       </section>
-      <div class="product-content">
-        <section class="product-section why-section">
-          <p class="eyebrow">The short version</p>
-          <h2>
+      <div class="product-body-grid">
+        <aside class="product-rail" aria-label="On this page">
+          <nav class="rail-nav">
+            <p>On this page</p>
+            <a href="#shortlist">Why we chose it</a>
+            <a href="#specs">Technical specifications</a>
+            <a href="#owners">What owners say</a>
             {
-              p.review.state === 'published'
-                ? 'Our take'
-                : 'Why it made our shortlist'
+              p.thingsToKnow?.length ? (
+                <a href="#trade-offs">Things to know</a>
+              ) : null
             }
-          </h2>
-          <p class="question-line">{p.question}</p>
-          <div class="prose">
-            {p.whyWeChoseIt.map((paragraph) => <p>{paragraph}</p>)}
-          </div>
-        </section>
+            <a href="#sources">Sources</a>
+            <a href="#buy">Where to buy</a>
+          </nav>
+        </aside>
+        <div class="product-content">
+          <section class="product-section why-section" id="shortlist">
+            <h2>Why we chose it</h2>
+            <div class="prose">
+              {p.whyWeChoseIt.map((paragraph) => <p>{paragraph}</p>)}
+            </div>
+          </section>
 
-        <section class="product-section" aria-labelledby="owner-reports-title">
-          <p class="eyebrow">Real-world reports</p>
-          <h2 id="owner-reports-title">What owners and reviewers say</h2>
-          <div class="finding-grid">
-            <div>
-              <h3>What people like</h3>
-              {
-                ownerPositives.length ? (
-                  <ul class="finding-list">
-                    {ownerPositives.map((finding) => (
+          <section class="product-section" id="specs">
+            <h2>Technical specifications</h2>
+            <SpecList specs={p.specs} />
+            {
+              p.keyFindings && p.keyFindings.length > 0 && (
+                <div class="key-findings">
+                  <h3>Key findings</h3>
+                  <ul>
+                    {p.keyFindings.map((finding) => (
                       <li>
                         {finding.text}{' '}
-                        {finding.sourceIds.map((id) => (
-                          <a
-                            href={`#source-${id}`}
-                            aria-label={`Source ${sourceNumbers[id] ?? id}`}
-                          >
-                            [{sourceNumbers[id] ?? id}]
-                          </a>
-                        ))}
+                        <a
+                          href={`#source-${finding.sourceId}`}
+                          aria-label={`Source ${sourceNumbers[finding.sourceId]}`}
+                        >
+                          [{sourceNumbers[finding.sourceId]}]
+                        </a>
                       </li>
                     ))}
                   </ul>
-                ) : (
+                </div>
+              )
+            }
+          </section>
+
+          <section
+            class="product-section"
+            id="owners"
+            aria-labelledby="owner-reports-title"
+          >
+            <h2 id="owner-reports-title">What owners and reviewers say</h2>
+            <div class="finding-grid">
+              <div>
+                <h3>What people like</h3>
+                {
+                  ownerPositives.length ? (
+                    <ul class="finding-list">
+                      {ownerPositives.map((finding) => (
+                        <li>
+                          {finding.text}{' '}
+                          {finding.sourceIds.map((id) => (
+                            <a
+                              href={`#source-${id}`}
+                              aria-label={`Source ${sourceNumbers[id] ?? id}`}
+                            >
+                              [{sourceNumbers[id] ?? id}]
+                            </a>
+                          ))}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p>
+                      We have not found enough first-hand reports to call out a
+                      pattern yet.
+                    </p>
+                  )
+                }
+              </div>
+              <div>
+                <h3>What people question</h3>
+                {
+                  ownerNegatives.length ? (
+                    <ul class="finding-list">
+                      {ownerNegatives.map((finding) => (
+                        <li>
+                          {finding.text}{' '}
+                          {finding.sourceIds.map((id) => (
+                            <a
+                              href={`#source-${id}`}
+                              aria-label={`Source ${sourceNumbers[id] ?? id}`}
+                            >
+                              [{sourceNumbers[id] ?? id}]
+                            </a>
+                          ))}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p>No recurring complaint pattern has emerged yet.</p>
+                  )
+                }
+              </div>
+            </div>
+            <p class="owner-context">{p.coverageNote}</p>
+          </section>
+
+          {
+            p.thingsToKnow && p.thingsToKnow.length > 0 && (
+              <section class="product-section" id="trade-offs">
+                <h2>Things to know</h2>
+                <ul>
+                  {p.thingsToKnow.map((item) => {
+                    // Supports one inline [text](url) link per item.
+                    const link = item.match(
+                      /^(.*)\[([^\]]+)\]\(([^)]+)\)(.*)$/,
+                    );
+                    return link ? (
+                      <li>
+                        {link[1]}
+                        <a
+                          href={link[3]}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {link[2]}
+                          <span class="sr-only"> (opens in a new tab)</span>
+                        </a>
+                        {link[4]}
+                      </li>
+                    ) : (
+                      <li>{item}</li>
+                    );
+                  })}
+                </ul>
+              </section>
+            )
+          }
+
+          <section class="product-section" id="sources">
+            <h2>Sources and reviews</h2>
+            <div class="purchase-record">
+              {p.identityNote && <p>{p.identityNote}</p>}
+              <p>
+                Recorded price A${p.pricePaidAud.toFixed(2)}. This is historical
+                context, not a live offer. Research was last checked <time
+                  datetime={p.researchedOn}>{date}</time
+                >.
+              </p>
+              {
+                p.listingRating && (
                   <p>
-                    We have not found enough first-hand reports to call out a
-                    pattern yet.
+                    The listing showed {p.listingRating.stars} out of 5 from{' '}
+                    {p.listingRating.reviews} reviews on{' '}
+                    {p.listingRating.merchant} when checked on{' '}
+                    {p.listingRating.checkedOn}. Read the individual buyer
+                    comments for useful detail beyond the star rating.
                   </p>
                 )
               }
             </div>
-            <div>
-              <h3>What people question</h3>
+            <div class="source-grid">
               {
-                ownerNegatives.length ? (
-                  <ul class="finding-list">
-                    {ownerNegatives.map((finding) => (
-                      <li>
-                        {finding.text}{' '}
-                        {finding.sourceIds.map((id) => (
-                          <a
-                            href={`#source-${id}`}
-                            aria-label={`Source ${sourceNumbers[id] ?? id}`}
-                          >
-                            [{sourceNumbers[id] ?? id}]
-                          </a>
-                        ))}
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p>No recurring complaint pattern has emerged yet.</p>
-                )
-              }
-            </div>
-          </div>
-          <p class="owner-context">{p.coverageNote}</p>
-        </section>
-
-        <section class="product-section">
-          <p class="eyebrow">Useful specifications</p>
-          <h2>What it promises</h2>
-          <p class="section-intro">
-            These figures help compare options. They describe what was listed or
-            measured, not a guarantee of how this item will perform on your
-            trip.
-          </p>
-          <SpecList
-            specs={p.specs}
-            sources={p.sources}
-            sourceNumbers={sourceNumbers}
-          />
-        </section>
-
-        <section class="product-section">
-          <p class="eyebrow">Bush Gums experience</p>
-          <h2>Our experience</h2>
-          <ReviewStatus review={p.review} />
-        </section>
-
-        <section class="product-section split-lists">
-          <div>
-            <p class="eyebrow">Trade-offs</p>
-            <h2>Things to know</h2>
-            <ul>
-              {
-                otherNegatives.map((finding) => (
-                  <li>
-                    {finding.text}{' '}
-                    {finding.sourceIds.map((id) => (
-                      <a href={`#source-${id}`}>[{sourceNumbers[id] ?? id}]</a>
-                    ))}
-                  </li>
+                p.sources.map((source) => (
+                  <SourceCard
+                    source={source}
+                    number={sourceNumbers[source.id]}
+                  />
                 ))
               }
-              {p.watching.map((item) => <li>{item}</li>)}
-            </ul>
-          </div>
-          <div>
-            <p class="eyebrow">Next steps</p>
-            <h2>What we plan to check</h2>
-            <ol>{p.testPlan.map((item) => <li>{item}</li>)}</ol>
-          </div>
-        </section>
+            </div>
+          </section>
 
-        <section class="product-section">
-          <p class="eyebrow">Read further</p>
-          <h2>Sources and reviews</h2>
-          <div class="purchase-record">
-            {p.identityNote && <p>{p.identityNote}</p>}
-            <p>
-              We paid A${p.pricePaidAud.toFixed(2)}. This is historical purchase
-              context, not a live offer. Research was last checked <time
-                datetime={p.researchedOn}>{date}</time
-              >.
-            </p>
+          <section class="product-section where-to-buy" id="buy">
+            <h2>Where to buy</h2>
             {
-              p.listingRating && (
+              offer ? (
+                <div>
+                  <a
+                    class="button"
+                    href={offer.url}
+                    target="_blank"
+                    rel={
+                      offer.affiliate
+                        ? 'sponsored noopener noreferrer'
+                        : 'noopener noreferrer'
+                    }
+                  >
+                    Check current price on {offer.merchant}
+                    <span class="sr-only"> (opens in a new tab)</span>
+                  </a>
+                  {offer.affiliate && (
+                    <p class="small-print">
+                      Affiliate link. We may earn a commission at no extra cost
+                      to you. The merchant sets current price, stock, delivery,
+                      returns and warranty.{' '}
+                      <a href="/affiliate-disclosure/">Disclosure</a>
+                    </p>
+                  )}
+                </div>
+              ) : (
                 <p>
-                  The listing showed {p.listingRating.stars} out of 5 from{' '}
-                  {p.listingRating.reviews} reviews on{' '}
-                  {p.listingRating.merchant} when checked on{' '}
-                  {p.listingRating.checkedOn}. Read the individual buyer
-                  comments for useful detail beyond the star rating.
+                  We have not added a buying link yet. We would rather confirm
+                  the exact listing first.
                 </p>
               )
             }
-          </div>
-          <div class="source-grid">
-            {
-              p.sources.map((source) => (
-                <SourceCard source={source} number={sourceNumbers[source.id]} />
-              ))
-            }
-          </div>
-        </section>
-
-        <section class="product-section where-to-buy">
-          <p class="eyebrow">External merchant</p>
-          <h2>Where to buy</h2>
-          {
-            offer ? (
-              <div>
-                <a
-                  class="button"
-                  href={offer.url}
-                  target="_blank"
-                  rel={
-                    offer.affiliate
-                      ? 'sponsored noopener noreferrer'
-                      : 'noopener noreferrer'
-                  }
-                >
-                  View current listing on {offer.merchant}
-                  <span class="sr-only"> (opens in a new tab)</span>
-                </a>
-                {offer.affiliate && (
-                  <p class="small-print">
-                    Affiliate link. We may earn a commission at no extra cost to
-                    you. The merchant sets current price, stock, delivery,
-                    returns and warranty.{' '}
-                    <a href="/affiliate-disclosure/">Disclosure</a>
-                  </p>
-                )}
-              </div>
-            ) : (
-              <p>
-                We have not added a buying link yet. We would rather check the
-                exact listing first.
-              </p>
-            )
-          }
-        </section>
+          </section>
+        </div>
       </div>
     </div>
   </article>

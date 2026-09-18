@@ -7,7 +7,10 @@ import opentype from 'opentype.js';
 
 const COLOR = '#1f4a2c';
 const mark = fs.readFileSync('src/assets/brand/mark.svg', 'utf8');
-const [, , mw, mh] = mark.match(/viewBox="([^"]+)"/)[1].split(' ').map(Number);
+const [, , mw, mh] = mark
+  .match(/viewBox="([^"]+)"/)[1]
+  .split(' ')
+  .map(Number);
 const inner = mark
   .replace(/^[\s\S]*?<svg[^>]*>/, '')
   .replace(/<\/svg>\s*$/, '')
@@ -39,5 +42,8 @@ fs.writeFileSync(
   'public/logo.svg',
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${mh}" role="img" aria-label="Bush Gums"><svg width="${mw}" height="${mh}" viewBox="0 0 ${mw} ${mh}">${inner}</svg><path fill="${COLOR}" d="${text.toPathData(2)}"/></svg>\n`,
 );
-fs.writeFileSync('public/logo-mark.svg', mark.replaceAll('currentColor', COLOR));
+fs.writeFileSync(
+  'public/logo-mark.svg',
+  mark.replaceAll('currentColor', COLOR),
+);
 console.log('logo.svg', width, 'x', mh);

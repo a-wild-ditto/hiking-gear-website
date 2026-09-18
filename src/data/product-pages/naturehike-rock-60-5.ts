@@ -5,19 +5,25 @@ const page: ProductPage = {
   imageId: 'naturehike-rock-60-5-australian',
   name: 'Naturehike Rock 60+5L Backpack',
   identityNote:
-    'We ordered the black 60 L version from the Naturehike Outdoor Gear Store on AliExpress. That listing quotes about 1.16 kg, which matches the Standard version rather than the heavier Upgraded one, but we will confirm from the label and the scales.',
+    'We ordered the black 60 L version from the Naturehike Outdoor Gear Store on AliExpress. That listing quotes about 1.16 kg, which matches the Standard version rather than the heavier Upgraded one.',
   category: 'Packs',
   tags: ['Value backpack candidate'],
   pricePaidAud: 68.73,
   summary:
-    'A roughly A$70 framed pack with encouraging owner feedback on value and room. Its fixed harness and lower measured capacity are the trade-offs to understand first.',
+    'A framed ~1.16 kg pack with hip belt and rain cover for about A$70. Owners rate it highly for value.',
   metaDescription:
-    'Research on the Naturehike Rock 60+5L (NH19BP095): owner and reviewer experience, measured capacity, fit concerns and our testing plan.',
+    'Research on the Naturehike Rock 60+5L (NH19BP095): owner and reviewer experience, measured capacity, fit concerns and why we chose it.',
   question:
     'Can this low-cost framed pack carry a beginner overnight load comfortably, and how much usable space does it really provide?',
   whyWeChoseIt: [
-    'The Rock pairs an aluminium frame, padded hip belt and included rain cover with a low listed weight and price. Buyers of the exact black 60 L listing repeatedly describe it as good value, light for its size and roomy enough for backpacking.',
-    'The important question is fit, not just the capacity label. A self-funded test of the matching design measured about 46 L in the main compartment plus 10 L in pockets, and reports flag a fixed, fairly long back length and narrow shoulder straps. We will check how those trade-offs feel under a real overnight load.',
+    'The Rock gives you the features that usually cost several times more: an aluminium frame, a padded hip belt and an included rain cover, at a low listed weight and a price well under A$100. Buyers of the exact black 60 L listing repeatedly describe it as good value, light for its size and roomy enough for backpacking.',
+    'An independent test of the matching design measured about 46 L in the main compartment plus 10 L in pockets, so it is smaller than the 60+5 L label suggests. That is still plenty for a compact multi-day kit, and reports of a fixed, fairly long back length mainly matter for shorter hikers, who should check the fit first.',
+  ],
+  keyFindings: [
+    {
+      text: 'An independent test of this design measured about 46 L in the main compartment plus about 10 L in pockets, short of the 60+5 L label.',
+      sourceId: 'stoker',
+    },
   ],
   specs: [
     {
@@ -50,7 +56,7 @@ const page: ProductPage = {
       label: 'Fabric',
       value: 'Polyester (polyester + TPU on the Upgraded version)',
       status: 'manufacturer',
-      note: 'Naturehike’s own page says polyester, so we follow the manufacturer. Snowys lists 420D nylon, and we’ll check the label on arrival.',
+      note: 'Naturehike’s own page says polyester, so we follow the manufacturer. Snowys lists 420D nylon.',
       sourceIds: ['snowys', 'naturehike'],
     },
     {
@@ -61,7 +67,7 @@ const page: ProductPage = {
     },
     {
       label: 'Back length',
-      value: 'Fixed, about 54–55 cm, not adjustable',
+      value: 'Fixed, about 54-55 cm, not adjustable',
       status: 'manufacturer',
       sourceIds: ['naturehike', 'stoker'],
     },
@@ -75,7 +81,7 @@ const page: ProductPage = {
       label: 'Suggested maximum load',
       value: 'About 14 kg stated on the listing we bought from',
       status: 'seller-claim',
-      note: 'Naturehike publishes no official figure, and Snowys suggests staying under 18–20 kg. Neither is a tested limit. One buyer echoes the 14 kg figure in their review.',
+      note: 'Naturehike publishes no official figure, and Snowys suggests staying under 18-20 kg. Neither is a tested limit. One buyer echoes the 14 kg figure in their review.',
       sourceIds: ['ali-reviews', 'snowys'],
     },
   ],
@@ -209,6 +215,11 @@ const page: ProductPage = {
       text: 'One buyer replaced their pack after the frame broke, and wished the frame could be bought separately. A single report, but worth watching.',
       sourceIds: ['ali-reviews'],
     },
+  ],
+  thingsToKnow: [
+    'The back length is fixed, so shorter hikers should check the fit first.',
+    'Load heavier items close to your back and let the hip belt carry most of the weight.',
+    'The included rain cover helps keep the pack dry in showers.',
   ],
   watching: [
     'Real capacity. We’ll measure it rather than repeat the label. Buyers of our listing describe it as roomy, which sits awkwardly against the one independent test that measured about 56 L.',

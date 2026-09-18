@@ -10,14 +10,14 @@ const page: ProductPage = {
   tags: ['Comfort accessory'],
   pricePaidAud: 18.73,
   summary:
-    'A slow-rebound foam pillow that is heavier than an inflatable. We want to know if better sleep is worth the extra weight.',
+    'Real memory foam that packs down small, for about $20. Better sleep on your first overnight.',
   metaDescription:
-    'What we know about a compressible memory-foam camping pillow before testing: owner reports on similar pillows, weight questions and our test plan.',
+    'What we know about a compressible memory-foam camping pillow: owner reports on similar pillows, weight questions and why we chose it.',
   question:
     'Is a few hundred grams more than an inflatable pillow worth carrying for noticeably better sleep?',
   whyWeChoseIt: [
     'A lot of hiking advice is about carrying less. But a beginner who barely sleeps can have a miserable first overnight trip, and a bad night is often what puts people off going again. Many people find inflatable pillows slippery, noisy or too firm.',
-    'This pillow is a counterpoint: real foam, compressed into a small bag, for about $20. Reviews of what appears to be the same design are positive on comfort but clear that it’s heavy and bulky. That puts it squarely in the category of trade-offs we want to measure rather than guess at.',
+    'This pillow is a counterpoint: real foam, compressed into a small bag, for about $20. Reviews of what appears to be the same design are positive on comfort. It is heavier and bulkier than an inflatable, so it suits hikers who put a good night’s sleep first.',
   ],
   specs: [
     {
@@ -105,6 +105,10 @@ const page: ProductPage = {
       text: 'Heavy for hiking and bulkier packed than an inflatable pillow.',
       sourceIds: ['adventurekit'],
     },
+  ],
+  thingsToKnow: [
+    'Leave it uncompressed at home so the foam keeps its loft.',
+    'It is heavier than an inflatable pillow, so it suits trips where comfort matters more than weight.',
   ],
   watching: [
     'The real weight. Sources range widely, and a 500 g pillow is a meaningful load for a hiker.',

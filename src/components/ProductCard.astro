@@ -1,7 +1,6 @@
 ---
 import Photo from './Photo.astro';
 import type { ProductPage } from '../data/product-pages/types';
-import { publicProductStatus } from '../data/product-pages/public-status';
 const {
   productPage,
   href,
@@ -15,6 +14,14 @@ const name = productPage.name;
 const summary = productPage.summary;
 const imageId = productPage.imageId;
 const price = `A$${productPage.pricePaidAud.toFixed(2)}`;
+const researched = new Date(
+  `${productPage.researchedOn}T00:00:00Z`,
+).toLocaleDateString('en-AU', {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
 ---
 
 <article class="product-card">
@@ -40,16 +47,14 @@ const price = `A$${productPage.pricePaidAud.toFixed(2)}`;
     }
   </div>
   <div class="product-body">
-    <p class="product-status">{productPage.tags[0] ?? productPage.category}</p>
+    <p class="product-topic">{productPage.category}</p>
     <h3>{href ? <a href={href}>{name}</a> : name}</h3>
     <p>{summary}</p>
     <dl class="figures">
       <div><dt>{priceLabel}</dt><dd>{price}</dd></div>
     </dl>
-    <p class="small-print">
-      {publicProductStatus(productPage.review)}, researched {
-        productPage.researchedOn
-      }
+    <p class="product-meta">
+      Researched {researched}
     </p>
     {
       href && (

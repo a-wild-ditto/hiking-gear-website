@@ -1,34 +1,34 @@
 export const guides = [
   {
-    title: 'Your first overnight hike: what you actually need',
-    href: '/guides/first-overnight-hike',
+    title: 'Overnight hike packing list: what you actually need',
+    href: '/guides/overnight-hike-packing-list',
     eyebrow: 'Start here',
     description:
-      'A practical checklist separating genuine essentials from gear you can add later.',
-    readTime: '7 min read',
+      'An overnight hiking checklist for Australian beginners, with what to skip.',
+    readTime: '10 min read',
   },
   {
-    title: 'Sleeping bag temperature ratings, explained',
-    href: '/guides/sleeping-bag-temperature-guide',
+    title: 'Sleeping bag temperature ratings: comfort vs limit',
+    href: '/guides/sleeping-bag-temperature-ratings',
     eyebrow: 'Sleep system',
     description:
-      'Read comfort and limit ratings, then add a sensible margin for your trip.',
-    readTime: '6 min read',
+      'ISO and EN ratings decoded, what temperature you need, and down vs synthetic.',
+    readTime: '9 min read',
   },
   {
-    title: 'Sleeping mat R-values without the jargon',
-    href: '/guides/sleeping-mat-r-value-guide',
+    title: 'Sleeping mat R-value: what do you need?',
+    href: '/guides/sleeping-mat-r-value',
     eyebrow: 'Sleep system',
     description:
-      'Why the mat under you matters almost as much as the bag around you.',
-    readTime: '5 min read',
+      'An R-value chart by season, ASTM testing, and foam vs inflatable mats.',
+    readTime: '8 min read',
   },
   {
-    title: 'Choosing your first hiking tent',
-    href: '/guides/choosing-your-first-hiking-tent',
+    title: '2 person hiking tent guide',
+    href: '/guides/2-person-hiking-tent-guide',
     eyebrow: 'Shelter',
     description:
-      'A beginner framework for space, weather, weight, setup and useful features.',
-    readTime: '8 min read',
+      'Weight bands, freestanding vs trekking-pole, and single vs double wall.',
+    readTime: '9 min read',
   },
 ] as const;

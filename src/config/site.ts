@@ -75,7 +75,7 @@ const vars = (o: Record<string, string>) =>
 export const themeCss = `:root{${vars(theme.light)}${vars(theme.radius)}--font-sans:${theme.fonts.sans};--font-mono:${theme.fonts.mono};color-scheme:light dark}@media (prefers-color-scheme: dark){:root{${vars(theme.dark)}}}`;
 
 export const primaryNav = [
-  { href: '/starter-kits', label: 'Starter Kits' },
+  { href: '/#kits', label: 'Kits' },
   { href: '/gear', label: 'Gear' },
   { href: '/learn', label: 'Guides' },
 ] as const;

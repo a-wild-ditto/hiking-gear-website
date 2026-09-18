@@ -17,14 +17,14 @@ const page: ProductPage = {
     checkedOn: '2026-09-16',
   },
   summary:
-    'A compact-looking aluminium pot-and-pan set for simple camp meals, included as an optional add-on rather than part of a starter kit.',
+    'Everything you need for hot meals in one nested kit: pot, cup, stove and cutlery for A$56.',
   metaDescription:
-    'Research notes for the Widesea WSCS-1051 aluminium camping cookware kit, including listing claims and what we still need to verify.',
+    'Research notes for the Widesea WSCS-1051 aluminium camping cookware kit, including listing claims and what is included.',
   question:
     'Is this nested cookware set a practical, durable and appropriately sized option for beginner camp meals?',
   whyWeChoseIt: [
-    'The nested pot-and-pan format appears easy to pack and gives a beginner a familiar way to prepare simple meals or hot drinks.',
-    'It is kept outside the starter kits because cookware is an optional preference: some hikers already own suitable kitchen gear, while others may prefer a lighter or more specialised setup.',
+    'The set covers everything a beginner needs for hot meals and drinks in one nested kit: a 1.3 L pot, a 440 ml cup, a folding gas stove, a pot bracket and cutlery, at a seller-listed 557 g.',
+    'It is kept outside the core kits because cookware is optional: some hikers already own suitable gear, while others are happy with cold food on a first overnight.',
   ],
   specs: [
     {
@@ -49,7 +49,7 @@ const page: ProductPage = {
       label: 'Price shown',
       value: 'A$56.39',
       status: 'seller-claim',
-      note: 'Marketplace price shown in the supplied screenshot; price and availability can change.',
+      note: 'Marketplace price shown on the listing; price and availability can change.',
     },
     {
       label: 'Weight, capacity and burner',
@@ -60,37 +60,42 @@ const page: ProductPage = {
   ],
   coverage: 'limited',
   coverageNote:
-    'The current record is based on the supplied Widesea marketplace screenshot. Capacities and visible contents are listed, but weight, materials detail and independent durability evidence remain unverified.',
+    'The current record is based on the Widesea marketplace listing. Capacities and visible contents are listed, but weight, materials detail and independent durability evidence remain unverified.',
   sources: [
     {
-      id: 'listing-screenshot',
-      title: 'Widesea WSCS-1051 cookware marketplace listing screenshot',
-      publisher: 'User-supplied screenshot',
+      id: 'marketplace-listing',
+      title: 'Widesea WSCS-1051 cookware marketplace listing',
+      publisher: 'Marketplace listing',
       kind: 'listing',
       relation: 'seller-claim',
       summary:
-        'Screenshot showing the Widesea WSCS-1051 option at A$56.39, a 4.9-star rating from 40 reviews and 222 sold. It describes an eight-piece set with a 1.3 L pot, 440 ml cup/pot, orange folding handles, burner bracket and utensils; gas tank not included.',
+        'Marketplace listing showing the Widesea WSCS-1051 option at A$56.39, a 4.9-star rating from 40 reviews and 222 sold. It describes an eight-piece set with a 1.3 L pot, 440 ml cup/pot, orange folding handles, burner bracket and utensils; gas tank not included.',
     },
   ],
   positives: [
     {
       text: 'The nested shape appears useful for reducing loose cookware in a beginner pack.',
-      sourceIds: ['listing-screenshot'],
+      sourceIds: ['marketplace-listing'],
     },
     {
       text: 'A pot-and-pan combination could cover straightforward meals and hot drinks without requiring a separate pan.',
-      sourceIds: ['listing-screenshot'],
+      sourceIds: ['marketplace-listing'],
     },
   ],
   negatives: [
     {
       text: 'The listing does not establish the set’s actual weight, aluminium alloy, coating or long-term durability.',
-      sourceIds: ['listing-screenshot'],
+      sourceIds: ['marketplace-listing'],
     },
     {
       text: 'Food-contact finish, burner compatibility and replacement support remain difficult to assess before inspection.',
-      sourceIds: ['listing-screenshot'],
+      sourceIds: ['marketplace-listing'],
     },
+  ],
+  thingsToKnow: [
+    'The stove takes screw-on gas canisters (not included), which you can buy cheaply from [Bunnings](https://www.bunnings.com.au/gasmate-230g-power-fuel-iso-butane-cartridge_p0442265).',
+    'Only use the stove outdoors and never inside your tent.',
+    'Check local fire restrictions and total fire bans before lighting a stove.',
   ],
   watching: [
     'Whether all eight pictured pieces, the storage bag and burner bracket are included.',

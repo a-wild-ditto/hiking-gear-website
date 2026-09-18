@@ -12,19 +12,19 @@ const page: ProductPage = {
     checkedOn: '2026-09-16',
   },
   identityNote:
-    'The selected listing option is the orange 1.6 kg model. Its screenshot claims a 13°C comfortable temperature, 190 × 85 cm dimensions and a 40 × 25 cm packed size. No EN or ISO 23537 result is shown, so 13°C remains an unverified seller claim.',
+    'The selected listing option is the orange 1.6 kg model. The marketplace listing claims a 13°C comfortable temperature, 190 × 85 cm dimensions and a 40 × 25 cm packed size. No EN or ISO 23537 result is shown, so 13°C remains an unverified seller claim.',
   category: 'Sleep',
   tags: ['Value synthetic sleeping-bag candidate'],
   pricePaidAud: 53.12,
   summary:
-    'A roomy 1.6 kg synthetic bag whose listing claims a 13°C comfortable temperature. That figure needs field testing before it can guide trip planning.',
+    'A roomy, easy-care synthetic bag for about A$53. A low-cost way to get started on mild nights.',
   metaDescription:
-    'What we know about the BISINNA 1.6 kg synthetic sleeping bag: listing claims, related manufacturer specifications, independent observations and our test plan.',
+    'What we know about the BISINNA 1.6 kg synthetic sleeping bag: listing claims, related manufacturer specifications, independent observations and why we chose it.',
   question:
     'Is this a practical mild-weather beginner sleeping bag, and is the listing’s 13°C comfort claim credible?',
   whyWeChoseIt: [
-    'Synthetic insulation is inexpensive, comparatively tolerant of damp conditions and straightforward for a beginner to care for. The roomy rectangular cut also suits campers who value space over low packed weight.',
-    'At roughly 1.6 kg it remains a heavy backpacking sleep system, and the prominent 13°C figure is not a verified comfort rating.',
+    'Synthetic insulation is inexpensive, comparatively tolerant of damp conditions and straightforward for a beginner to care for. The roomy rectangular cut also suits campers who value space and comfort over low packed weight.',
+    'At roughly 1.6 kg it is heavier than a down bag, and the listed 13°C comfort figure is a seller claim rather than a standardised rating. For mild-weather first trips, it is a low-cost way to get started without a big upfront spend.',
   ],
   specs: [
     {
@@ -117,6 +117,11 @@ const page: ProductPage = {
       text: 'The listing’s 13°C comfort figure is not independently verified.',
       sourceIds: ['bisinna-manual'],
     },
+  ],
+  thingsToKnow: [
+    'This gear is suitable for 3 season use but would not be recommended for winter hikes or hiking in alpine regions.',
+    'Bulky when packed, so it suits a larger pack.',
+    'Pair it with an insulated mat; a bag alone won’t keep you warm on cold ground.',
   ],
   watching: [
     'Exact model label, actual bag-only weight and packed volume.',
