@@ -9,14 +9,15 @@ const page: ProductPage = {
   category: 'Accessories',
   tags: ['Starter accessory'],
   pricePaidAud: 3.42,
+  seoTitle: 'Backpack Rain Cover vs Pack Liner: NYXIA 35L',
   summary:
-    'A pack cover for a few dollars. No reason to pay more for a simple piece of coated fabric.',
+    'A low-cost 35 L pack cover with limited rain evidence. Protect essential contents with a liner or dry bags too.',
   metaDescription:
-    'What we know about the NYXIA 35L backpack rain cover and why a cover isn’t enough on its own.',
+    'NYXIA 35L backpack rain cover research: listing claims, brief buyer reports and how a pack cover differs from a liner in wet weather.',
   question:
     'Does a $3 pack cover stay on the pack and keep meaningful rain off, or is it false economy?',
   whyWeChoseIt: [
-    'Some gear rewards spending more; a pack cover mostly doesn’t. It is a shaped piece of coated fabric with an elastic edge. If a very cheap one fits well, stays put in wind and sheds rain, there’s little reason for a beginner to pay much more.',
+    'The low recorded price makes this cover worth checking as a simple way to shield the outside of a pack. Buyer comments report good fit and some rain protection, but do not describe prolonged rain or windy conditions.',
     'We’re also using it to make a point: a pack cover on its own won’t keep a pack dry. Water gets in through the side against your back. Sleeping bags, spare clothes and electronics should also go inside a waterproof liner or dry bag. We want to show how much a cover helps, not suggest it’s enough.',
   ],
   specs: [
@@ -101,6 +102,13 @@ const page: ProductPage = {
       sourceIds: ['bpl', 'hilltop'],
     },
   ],
+  buyerContext: {
+    heading: 'Pack cover vs pack liner',
+    paragraphs: [
+      'A pack cover goes around the outside of the bag. It can shield the fabric and outer pockets, but leaves the harness side open. Hikers in the Backpacking Light discussion and the Hilltop Packs guide describe water running between the wearer and the pack, leaving the back panel and straps wet.',
+      'A pack liner sits inside the main compartment around the contents. For a sleeping bag, spare clothes and electronics, use a liner or suitable dry bags even when carrying an outer cover. Neither the brief buyer reports nor the listing establish how this particular NYXIA cover performs in sustained rain.',
+    ],
+  },
   thingsToKnow: ['Sized for packs around 35 L.'],
   watching: [
     'Whether the elastic holds the cover on in wind, and whether it loosens over time.',

@@ -1,9 +1,14 @@
 ---
 import GuideLayout from '../../layouts/GuideLayout.astro';
+import { Image } from 'astro:assets';
+import guideImage from '../../assets/images/guides/nsw.jpg';
 ---
 
 <GuideLayout
-  title="Multi Day Hikes in NSW: Best Overnight Walks and How to Book"
+  title="Planning multi day hikes in NSW"
+  seoTitle="Multi Day Hikes in NSW: Overnight Walks and How to Book"
+  pageImage={guideImage}
+  pageImageAlt="Sandstone cliffs on the Coast Track, Royal National Park"
   description="Planning multi-day hikes in NSW? Find verified overnight routes, NPWS campsite booking rules, entry fees and NSW RFS fire season dates before you set out."
   eyebrow="Where to go"
   readTime="9 min read"
@@ -43,12 +48,12 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
       </li>
       <li>
         Blue Mountains routes are covered separately in our <a
-          href="/guides/overnight-hikes-blue-mountains"
+          href="/guides/overnight-hikes-blue-mountains/"
           >overnight hikes Blue Mountains guide</a
         >; this guide covers the rest of the state.
       </li>
       <li>
-        Your <a href="/guides/overnight-hike-packing-list"
+        Your <a href="/guides/overnight-hike-packing-list/"
           >overnight hike packing list</a
         > and sleep system matter as much as the track you pick.
       </li>
@@ -56,11 +61,11 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
   </div>
 
   <figure class="guide-photo">
-    <img
-      src="/images/guides/nsw.jpg"
+    <Image
+      src={guideImage}
       alt="Sandstone cliffs on the Coast Track, Royal National Park"
-      width="1400"
-      height="1050"
+      widths={[360, 720, 1024, 1400]}
+      sizes="(max-width: 760px) calc(100vw - 32px), 680px"
       loading="lazy"
       decoding="async"
     />
@@ -179,7 +184,7 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
     campsites within day-trip range of Sydney, so it gets its own dedicated
     guide rather than a summary here. If Katoomba, the Grose Valley or the Six
     Foot Track area is your target, start with our <a
-      href="/guides/overnight-hikes-blue-mountains"
+      href="/guides/overnight-hikes-blue-mountains/"
       >overnight hikes Blue Mountains guide</a
     > for verified routes, campsites and bookings specific to that region.
   </p>
@@ -246,21 +251,21 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
   </p>
   <ul>
     <li>
-      Check your <a href="/guides/sleeping-bag-temperature-ratings"
+      Check your <a href="/guides/sleeping-bag-temperature-ratings/"
         >sleeping bag temperature rating</a
       > against the coldest night on your route, not the daytime forecast.
     </li>
     <li>
-      Pair it with enough <a href="/guides/sleeping-mat-r-value"
+      Pair it with enough <a href="/guides/sleeping-mat-r-value/"
         >sleeping mat R-value</a
       > to stop the ground from cancelling out your bag's warmth.
     </li>
     <li>
-      A <a href="/guides/2-person-hiking-tent-guide">2-person hiking tent</a> gives
+      A <a href="/guides/2-person-hiking-tent-guide/">2-person hiking tent</a> gives
       most solo hikers welcome extra room for gear on multi-night trips.
     </li>
     <li>
-      Run through the full <a href="/guides/overnight-hike-packing-list"
+      Run through the full <a href="/guides/overnight-hike-packing-list/"
         >overnight hike packing list</a
       > before a longer route like Yuraygir or Green Gully.
     </li>
@@ -268,7 +273,7 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
   <p>
     If you are assembling a first kit from scratch, our <a href="/#kits"
       >beginner hiking kits</a
-    > bundle a matched sleeping system and pack, and <a href="/build-my-kit"
+    > bundle a matched sleeping system and pack, and <a href="/build-my-kit/"
       >Build My Kit</a
     > fills in whatever you are missing without duplicating gear you already own.
   </p>

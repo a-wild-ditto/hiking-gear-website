@@ -100,6 +100,8 @@ export type ProductPage = {
   };
   /** One-line positioning for hero, cards and meta description. */
   summary: string;
+  /** Search title when the useful query differs from the product name. */
+  seoTitle?: string;
   metaDescription: string;
   /** Key question the page and our testing are built around. */
   question: string;
@@ -115,6 +117,8 @@ export type ProductPage = {
   watching: string[];
   /** Practical buyer advice shown in the Things to know section. */
   thingsToKnow?: string[];
+  /** A short buyer explanation where a product needs more than a trade-off bullet. */
+  buyerContext?: { heading: string; paragraphs: string[] };
   testPlan: string[];
   review: ReviewStatus;
   /** ISO date the research was last checked. */

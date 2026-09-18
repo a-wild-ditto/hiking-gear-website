@@ -76,6 +76,6 @@ export const themeCss = `:root{${vars(theme.light)}${vars(theme.radius)}--font-s
 
 export const primaryNav = [
   { href: '/#kits', label: 'Kits' },
-  { href: '/gear', label: 'Gear' },
-  { href: '/learn', label: 'Guides' },
+  { href: '/gear/', label: 'Gear' },
+  { href: '/learn/', label: 'Guides' },
 ] as const;

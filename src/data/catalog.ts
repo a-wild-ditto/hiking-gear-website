@@ -214,7 +214,7 @@ export const products: Product[] = [
   },
   {
     id: 'tuye-r35',
-    name: 'Naturehike TuYe R3.5 Mat',
+    name: 'Naturehike R3.5 Mat',
     category: 'Sleep',
     price: 86,
     weightGrams: 440,
@@ -226,12 +226,13 @@ export const products: Product[] = [
     reviewSlug: 'naturehike-tuye-r3-5',
     keyFact: {
       label: 'R-value 3.5 claimed',
-      meaning: 'Manufacturer rating, test standard unstated',
+      meaning:
+        'Seller claim; exact TuYe identity and test standard unconfirmed',
     },
     kitDetail: {
       headline: 'More ground insulation for cooler trips',
       paragraphs: [
-        'The mummy version is listed at R3.5, 183 × 58 cm and about 440 g. We use an estimated 450 g carried figure.',
+        'The marketplace mummy mat is listed at R3.5, 183 × 58 cm and about 440 g. The exact TuYe model identity is unconfirmed. We use an estimated 450 g carried figure.',
         'It offers a much smaller packed size than foam while adding claimed ground insulation for cooler nights.',
       ],
       specs: ['R3.5 claimed', '183 × 58 cm', 'About 440 g claimed'],

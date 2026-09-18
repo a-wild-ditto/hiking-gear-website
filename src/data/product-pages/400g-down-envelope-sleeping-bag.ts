@@ -19,7 +19,7 @@ const page: ProductPage = {
   summary:
     'A down bag for under A$90. About 800 g packed, a fraction of the price of name-brand down.',
   metaDescription:
-    'Research on a generic 400 g down envelope sleeping bag: seller claims, limited owner evidence, conflicting temperature claims and why we chose it.',
+    '400 g down envelope sleeping bag research: conflicting seller warmth claims, mixed-variant buyer comments and the limits of this untested listing.',
   question:
     'Can this low-cost down bag deliver useful warmth and low weight, or are the listing claims doing too much of the work?',
   whyWeChoseIt: [

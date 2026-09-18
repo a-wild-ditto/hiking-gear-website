@@ -26,6 +26,17 @@ async function assertStaticProductionConfig() {
   if (wrangler.assets?.directory !== './dist') {
     problems.push('wrangler.jsonc assets.directory must be ./dist');
   }
+  if (wrangler.assets?.html_handling !== 'auto-trailing-slash') {
+    problems.push(
+      'wrangler.jsonc assets.html_handling must be auto-trailing-slash',
+    );
+  }
+  if (wrangler.assets?.not_found_handling !== '404-page') {
+    problems.push('wrangler.jsonc assets.not_found_handling must be 404-page');
+  }
+  if ('main' in wrangler || 'run_worker_first' in (wrangler.assets ?? {})) {
+    problems.push('wrangler.jsonc must remain static-assets only');
+  }
   if (
     'route' in wrangler ||
     'routes' in wrangler ||
@@ -37,6 +48,19 @@ async function assertStaticProductionConfig() {
   }
   if (astroConfig.output !== 'static') {
     problems.push('astro.config.mjs output must be static');
+  }
+  if (astroConfig.site !== productionSiteUrl) {
+    problems.push(`astro.config.mjs site must be ${productionSiteUrl}`);
+  }
+
+  const redirects = readFileSync(
+    new URL('../public/_redirects', import.meta.url),
+    'utf8',
+  );
+  if (!/^\/sitemap-index\.xml\s+\/sitemap\.xml\s+301\s*$/m.test(redirects)) {
+    problems.push(
+      'public/_redirects must permanently redirect the old sitemap endpoint',
+    );
   }
 
   if (problems.length) {

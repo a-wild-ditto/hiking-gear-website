@@ -1,7 +1,7 @@
 export const guides = [
   {
     title: 'Overnight hike packing list: what you actually need',
-    href: '/guides/overnight-hike-packing-list',
+    href: '/guides/overnight-hike-packing-list/',
     eyebrow: 'Start here',
     description:
       'An overnight hiking checklist for Australian beginners, with what to skip.',
@@ -9,7 +9,7 @@ export const guides = [
   },
   {
     title: 'Sleeping bag temperature ratings: comfort vs limit',
-    href: '/guides/sleeping-bag-temperature-ratings',
+    href: '/guides/sleeping-bag-temperature-ratings/',
     eyebrow: 'Sleep system',
     description:
       'ISO and EN ratings decoded, what temperature you need, and down vs synthetic.',
@@ -17,7 +17,7 @@ export const guides = [
   },
   {
     title: 'Sleeping mat R-value: what do you need?',
-    href: '/guides/sleeping-mat-r-value',
+    href: '/guides/sleeping-mat-r-value/',
     eyebrow: 'Sleep system',
     description:
       'An R-value chart by season, ASTM testing, and foam vs inflatable mats.',
@@ -25,7 +25,7 @@ export const guides = [
   },
   {
     title: '2 person hiking tent guide',
-    href: '/guides/2-person-hiking-tent-guide',
+    href: '/guides/2-person-hiking-tent-guide/',
     eyebrow: 'Shelter',
     description:
       'Weight bands, freestanding vs trekking-pole, and single vs double wall.',
@@ -33,15 +33,15 @@ export const guides = [
   },
   {
     title: 'Hiking stove guide: canister vs alcohol vs solid fuel',
-    href: '/guides/hiking-stove-guide',
+    href: '/guides/hiking-stove-guide/',
     eyebrow: 'Cooking',
     description:
       'Stove types, weight, fuel you can buy in Australia and fire ban rules.',
     readTime: '9 min read',
   },
   {
-    title: 'Best multi-day hikes in Australia',
-    href: '/guides/best-multi-day-hikes-australia',
+    title: 'Multi-day hikes in Australia: where to start',
+    href: '/guides/best-multi-day-hikes-australia/',
     eyebrow: 'Where to go',
     description:
       'A state-by-state starting point for your first multi-day walk.',
@@ -49,7 +49,7 @@ export const guides = [
   },
   {
     title: 'Overnight hikes in Victoria',
-    href: '/guides/overnight-hikes-victoria',
+    href: '/guides/overnight-hikes-victoria/',
     eyebrow: 'Where to go',
     description:
       'Beginner routes near Melbourne, Parks Victoria bookings and permits.',
@@ -57,7 +57,7 @@ export const guides = [
   },
   {
     title: 'Overnight hikes in the Blue Mountains',
-    href: '/guides/overnight-hikes-blue-mountains',
+    href: '/guides/overnight-hikes-blue-mountains/',
     eyebrow: 'Where to go',
     description:
       'Walk-in campsites, NPWS bookings and fire season limits near Sydney.',
@@ -65,7 +65,7 @@ export const guides = [
   },
   {
     title: 'Multi-day hikes in NSW',
-    href: '/guides/multi-day-hikes-nsw',
+    href: '/guides/multi-day-hikes-nsw/',
     eyebrow: 'Where to go',
     description:
       'Overnight routes across NSW, campsite bookings and fire season dates.',
@@ -73,7 +73,7 @@ export const guides = [
   },
   {
     title: 'Multi-day hikes in Tasmania',
-    href: '/guides/multi-day-hikes-tasmania',
+    href: '/guides/multi-day-hikes-tasmania/',
     eyebrow: 'Where to go',
     description:
       'Overland Track, Three Capes and Freycinet compared, plus passes and weather.',

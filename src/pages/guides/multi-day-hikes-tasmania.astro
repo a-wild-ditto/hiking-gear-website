@@ -1,9 +1,14 @@
 ---
 import GuideLayout from '../../layouts/GuideLayout.astro';
+import { Image } from 'astro:assets';
+import guideImage from '../../assets/images/guides/tasmania.jpg';
 ---
 
 <GuideLayout
-  title="Multi Day Hikes Tasmania: Best Overnight Walks & How to Book"
+  title="Planning multi day hikes in Tasmania"
+  seoTitle="Multi Day Hikes Tasmania: Overnight Walks and How to Book"
+  pageImage={guideImage}
+  pageImageAlt="Wineglass Bay seen from above, Freycinet National Park"
   description="Multi day hikes Tasmania guide: compare the Overland Track, Three Capes Track and Freycinet, plus parks passes, booking rules and Tasmania's weather risks."
   eyebrow="Where to go"
   readTime="10 min read"
@@ -54,11 +59,11 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
   </div>
 
   <figure class="guide-photo">
-    <img
-      src="/images/guides/tasmania.jpg"
+    <Image
+      src={guideImage}
       alt="Wineglass Bay seen from above, Freycinet National Park"
-      width="1400"
-      height="930"
+      widths={[360, 720, 1024, 1400]}
+      sizes="(max-width: 760px) calc(100vw - 32px), 680px"
       loading="lazy"
       decoding="async"
     />
@@ -155,7 +160,7 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
     walkers with experience in remote alpine areas, warning that severe cold,
     wet and windy conditions can occur at any time of year, including summer.
     That is not marketing caution. Take it as the baseline for what gear this
-    walk demands, from a <a href="/guides/sleeping-bag-temperature-ratings"
+    walk demands, from a <a href="/guides/sleeping-bag-temperature-ratings/"
       >sleeping bag rated well below the forecast</a
     > to genuinely waterproof layers.
   </p>
@@ -176,7 +181,7 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
     mostly food, water, clothing layers and a daypack's worth of gear rather
     than a full overnight setup. It is a reasonable first booked multi-day walk
     for someone who has already done <a
-      href="/guides/overnight-hike-packing-list">a night or two camping</a
+      href="/guides/overnight-hike-packing-list/">a night or two camping</a
     > but is not ready to carry a tent and mat over several days.
   </p>
 
@@ -258,7 +263,7 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
       just an "extreme" number on the tag.
     </li>
     <li>
-      A sleeping mat with enough <a href="/guides/sleeping-mat-r-value"
+      A sleeping mat with enough <a href="/guides/sleeping-mat-r-value/"
         >R-value</a
       > to stop the ground pulling heat out of you overnight, since Tasmanian ground
       and huts both run cold.
@@ -282,7 +287,7 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
   <p>
     If you are assembling a first overnight kit rather than buying piece by
     piece, our <a href="/#kits">beginner hiking kits</a> bundle a bag, mat and shelter
-    suited to three-season Australian conditions, and <a href="/build-my-kit"
+    suited to three-season Australian conditions, and <a href="/build-my-kit/"
       >Build My Kit</a
     > fills in whatever you don't already own. A full pack list is in our overnight
     hike packing list, linked earlier in this guide.
@@ -308,12 +313,12 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
     Track or Three Capes Track well ahead if that is the trip you want, confirm
     whether you need a separate parks pass, and treat every weather forecast as
     provisional once you are in alpine or exposed coastal terrain. Sort out
-    cooking and fuel with our <a href="/guides/hiking-stove-guide"
+    cooking and fuel with our <a href="/guides/hiking-stove-guide/"
       >hiking stove guide</a
     > before you pack. Get the booking and the gear right and these are some of the
     best multi-day hikes in Australia; get either wrong and Tasmania will make you
     pay for it in cold, wet hours rather than money. Planning a mainland trip too?
-    Our <a href="/guides/multi-day-hikes-nsw">multi day hikes NSW guide</a> covers
+    Our <a href="/guides/multi-day-hikes-nsw/">multi day hikes NSW guide</a> covers
     the equivalent routes across Bass Strait.
   </p>
 

@@ -12,7 +12,7 @@ const page: ProductPage = {
   summary:
     'Real memory foam that packs down small, for about $20. Better sleep on your first overnight.',
   metaDescription:
-    'What we know about a compressible memory-foam camping pillow: owner reports on similar pillows, weight questions and why we chose it.',
+    'NIOFEEL memory-foam camping pillow research: similar-design comfort reports, uncertain exact specifications and the weight trade-off.',
   question:
     'Is a few hundred grams more than an inflatable pillow worth carrying for noticeably better sleep?',
   whyWeChoseIt: [

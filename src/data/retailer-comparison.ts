@@ -49,7 +49,8 @@ export const comparisonRows: ComparisonRow[] = [
   {
     category: 'Sleeping mat',
     side: 'Bush Gums',
-    productName: 'Naturehike TuYe R3.5 Mat, regular mummy',
+    productName:
+      'Naturehike R3.5 Mat, mummy listing (TuYe identity unconfirmed)',
     priceAud: 86,
     priceType: 'Price recorded',
     weightGrams: 450,

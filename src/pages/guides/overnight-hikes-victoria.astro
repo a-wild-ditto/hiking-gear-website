@@ -1,9 +1,14 @@
 ---
 import GuideLayout from '../../layouts/GuideLayout.astro';
+import { Image } from 'astro:assets';
+import guideImage from '../../assets/images/guides/victoria.jpg';
 ---
 
 <GuideLayout
-  title="Overnight Hikes Victoria: Beginner Routes and Booking Guide"
+  title="Where to start with overnight hikes in Victoria"
+  seoTitle="Overnight Hikes Victoria: Beginner Routes and Booking Guide"
+  pageImage={guideImage}
+  pageImageAlt="Beach at Sealers Cove, Wilsons Promontory National Park"
   description="Overnight hikes in Victoria for beginners: verified Parks Victoria bookings, routes near Melbourne, permit rules, fire-season notes and a gear checklist."
   eyebrow="Where to go"
   readTime="9 min read"
@@ -42,7 +47,7 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
       <li>
         Cathedral Range's Farmyard camping area needs no booking or fee, which
         makes it a low-friction way to test your <a
-          href="/guides/overnight-hike-packing-list">overnight kit</a
+          href="/guides/overnight-hike-packing-list/">overnight kit</a
         > close to home.
       </li>
       <li>
@@ -52,11 +57,11 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
   </div>
 
   <figure class="guide-photo">
-    <img
-      src="/images/guides/victoria.jpg"
+    <Image
+      src={guideImage}
       alt="Beach at Sealers Cove, Wilsons Promontory National Park"
-      width="1400"
-      height="1050"
+      widths={[360, 720, 1024, 1400]}
+      sizes="(max-width: 760px) calc(100vw - 32px), 680px"
       loading="lazy"
       decoding="async"
     />
@@ -208,8 +213,8 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
   </p>
   <p>
     If you are coming from interstate or comparing options more broadly, our <a
-      href="/guides/multi-day-hikes-nsw">multi day hikes NSW guide</a
-    > and <a href="/guides/overnight-hikes-blue-mountains"
+      href="/guides/multi-day-hikes-nsw/">multi day hikes NSW guide</a
+    > and <a href="/guides/overnight-hikes-blue-mountains/"
       >Blue Mountains overnight hikes guide</a
     > cover the equivalent routes for New South Wales.
   </p>
@@ -268,12 +273,12 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
     depth elsewhere. In short, you are carrying a shelter, a sleep system
     matched to a realistic overnight low, a way to cook, and enough water
     capacity for a site with no reliable tap. Our <a
-      href="/guides/overnight-hike-packing-list">overnight hike packing list</a
+      href="/guides/overnight-hike-packing-list/">overnight hike packing list</a
     > runs through the full kit, our <a
-      href="/guides/sleeping-bag-temperature-ratings"
+      href="/guides/sleeping-bag-temperature-ratings/"
       >sleeping bag temperature ratings guide</a
     > helps you avoid a cold night, and our <a
-      href="/guides/2-person-hiking-tent-guide">two-person hiking tent guide</a
+      href="/guides/2-person-hiking-tent-guide/">two-person hiking tent guide</a
     > covers shelter for a pair. If you would rather start from a complete set, browse
     our <a href="/#kits">beginner hiking kits</a>.
   </p>
@@ -292,7 +297,7 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
     route to your experience rather than the distance alone, book through
     ParkStay Victoria as early as you can, and verify the specific park page for
     distance, closures and fire rules before you commit to a date. If you're
-    missing pieces of your kit, <a href="/build-my-kit">Build My Kit</a> fills gaps
+    missing pieces of your kit, <a href="/build-my-kit/">Build My Kit</a> fills gaps
     around gear you already own.
   </p>
 

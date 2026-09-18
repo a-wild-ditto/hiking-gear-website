@@ -43,8 +43,8 @@ const date = new Date(`${p.researchedOn}T00:00:00`).toLocaleDateString(
   'en-AU',
   { day: 'numeric', month: 'long', year: 'numeric' },
 );
+const pageUrl = new URL(productPath(p.slug), site.url).toString();
 const breadcrumbSchema = {
-  '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
     {
@@ -63,16 +63,53 @@ const breadcrumbSchema = {
       '@type': 'ListItem',
       position: 3,
       name: p.name,
-      item: new URL(productPath(p.slug), site.url).toString(),
+      item: pageUrl,
+    },
+  ],
+};
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    breadcrumbSchema,
+    {
+      '@type': 'Article',
+      '@id': `${pageUrl}#article`,
+      headline: p.name,
+      description: p.metaDescription,
+      dateModified: p.researchedOn,
+      inLanguage: 'en-AU',
+      mainEntityOfPage: pageUrl,
+      author: { '@type': 'Organization', name: site.brandName, url: site.url },
+      publisher: {
+        '@type': 'Organization',
+        name: site.brandName,
+        url: site.url,
+      },
+      about: { '@id': `${pageUrl}#product` },
+      mainEntity: { '@id': `${pageUrl}#product` },
+    },
+    {
+      '@type': 'Product',
+      '@id': `${pageUrl}#product`,
+      name: p.name,
+      description: p.metaDescription,
+      category: p.category,
+      url: pageUrl,
+      ...(productPhoto && {
+        image: new URL(productPhoto.src, site.url).toString(),
+      }),
     },
   ],
 };
 ---
 
 <BaseLayout
-  title={`${p.name} | Bush Gums`}
+  title={`${p.seoTitle ?? p.name} | Bush Gums`}
   description={p.metaDescription}
-  schema={breadcrumbSchema}
+  ogType="article"
+  socialImage={productPhoto}
+  socialImageAlt={productPhoto ? p.name : undefined}
+  schema={pageSchema}
 >
   <article class="product-page">
     <div class="container">
@@ -142,6 +179,11 @@ const breadcrumbSchema = {
             <a href="#shortlist">Why we chose it</a>
             <a href="#specs">Technical specifications</a>
             <a href="#owners">What owners say</a>
+            {
+              p.buyerContext && (
+                <a href="#buyer-context">{p.buyerContext.heading}</a>
+              )
+            }
             {
               p.thingsToKnow?.length ? (
                 <a href="#trade-offs">Things to know</a>
@@ -245,6 +287,19 @@ const breadcrumbSchema = {
             </div>
             <p class="owner-context">{p.coverageNote}</p>
           </section>
+
+          {
+            p.buyerContext && (
+              <section class="product-section" id="buyer-context">
+                <h2>{p.buyerContext.heading}</h2>
+                <div class="prose">
+                  {p.buyerContext.paragraphs.map((paragraph) => (
+                    <p>{paragraph}</p>
+                  ))}
+                </div>
+              </section>
+            )
+          }
 
           {
             p.thingsToKnow && p.thingsToKnow.length > 0 && (

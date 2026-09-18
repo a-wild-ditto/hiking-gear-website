@@ -1,29 +1,128 @@
 ---
+import type { ImageMetadata } from 'astro';
 import BaseLayout from './BaseLayout.astro';
+import { site } from '../config/site';
+
+interface Props {
+  title: string;
+  seoTitle?: string;
+  description: string;
+  publishedDate?: string;
+  reviewedDate?: string;
+  eyebrow?: string;
+  readTime?: string;
+  pageImage?: ImageMetadata;
+  pageImageAlt?: string;
+}
+
 const {
   title,
+  seoTitle = title,
   description,
+  publishedDate,
+  reviewedDate,
   eyebrow = 'Guide',
   readTime = '6 min read',
+  pageImage,
+  pageImageAlt,
 } = Astro.props;
+const pageUrl = new URL(
+  Astro.url.pathname.endsWith('/')
+    ? Astro.url.pathname
+    : `${Astro.url.pathname}/`,
+  site.url,
+).toString();
+const formatDate = (date: string) =>
+  new Intl.DateTimeFormat('en-AU', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(new Date(`${date}T00:00:00Z`));
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      headline: title,
+      description,
+      mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
+      url: pageUrl,
+      inLanguage: 'en-AU',
+      ...(publishedDate && { datePublished: publishedDate }),
+      ...(reviewedDate && { dateModified: reviewedDate }),
+      author: {
+        '@type': 'Organization',
+        name: site.brandName,
+        url: `${site.url}/about/`,
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: site.brandName,
+        url: site.url,
+      },
+      ...(pageImage && { image: new URL(pageImage.src, site.url).toString() }),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: `${site.url}/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Guides',
+          item: `${site.url}/learn/`,
+        },
+        { '@type': 'ListItem', position: 3, name: title, item: pageUrl },
+      ],
+    },
+  ],
+};
 ---
 
-<BaseLayout title={`${title} | Bush Gums`} description={description}>
+<BaseLayout
+  title={`${seoTitle} | Bush Gums`}
+  description={description}
+  ogType="article"
+  socialImage={pageImage}
+  socialImageAlt={pageImageAlt}
+  schema={schema}
+>
   <article class="guide-shell">
     <header class="guide-hero container narrow">
-      <a class="back-link" href="/learn">← Back to Learn</a><span
-        class="eyebrow">{eyebrow}</span
-      ><h1>{title}</h1><p class="lead">{description}</p><div
-        class="guide-byline"
-      >
-        <span>{readTime}</span><span>Beginner guide</span><span
-          >Australian context</span
-        >
+      <nav class="guide-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li><a href="/learn/">Guides</a></li>
+          <li aria-current="page">{title}</li>
+        </ol>
+      </nav>
+      <span class="eyebrow">{eyebrow}</span>
+      <h1>{title}</h1>
+      <p class="lead">{description}</p>
+      <div class="guide-byline">
+        <span>By <a href="/about/">{site.brandName}</a></span>
+        {
+          reviewedDate && (
+            <span>
+              Last reviewed{' '}
+              <time datetime={reviewedDate}>{formatDate(reviewedDate)}</time>
+            </span>
+          )
+        }
+        <span>{readTime}</span>
       </div>
     </header>
     <div class="guide-content container narrow prose">
-      <slot /><aside class="guide-note">
-        <strong>Check before you go</strong><p>
+      <slot />
+      <aside class="guide-note">
+        <strong>Check before you go</strong>
+        <p>
           Conditions, trip grading and individual needs vary. Check current
           forecasts, park alerts and manufacturer specifications before heading
           out.
@@ -32,3 +131,27 @@ const {
     </div>
   </article>
 </BaseLayout>
+
+<style>
+  .guide-breadcrumbs {
+    margin-bottom: 28px;
+    color: var(--ink-muted);
+    font-size: 0.9rem;
+  }
+  .guide-breadcrumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .guide-breadcrumbs li + li::before {
+    content: '/';
+    margin-right: 8px;
+  }
+  .guide-breadcrumbs a {
+    color: inherit;
+    text-underline-offset: 4px;
+  }
+</style>

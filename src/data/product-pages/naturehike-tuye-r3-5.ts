@@ -3,7 +3,8 @@ import type { ProductPage } from './types';
 const page: ProductPage = {
   slug: 'naturehike-tuye-r3-5',
   imageId: 'naturehike-r3-5-v2-australian',
-  name: 'Naturehike TuYe R3.5 Inflatable Sleeping Mat',
+  name: 'Naturehike R3.5 Inflatable Sleeping Mat',
+  seoTitle: 'Naturehike R3.5 Sleeping Mat: TuYe Identity and Claims',
   listingRating: {
     stars: 4.9,
     reviews: 130,
@@ -12,40 +13,44 @@ const page: ProductPage = {
     checkedOn: '2026-09-16',
   },
   identityNote:
-    'The current marketplace listing shows the olive mummy-shaped 183 × 58 cm variant at approximately 440 g, packed to about 10 × 18 cm. Naturehike pages and older listings quote different weights, so check the variant you select.',
+    'The marketplace listing identifies an olive Naturehike R3.5 mummy-shaped mat, 183 × 58 cm, at approximately 440 g. It does not establish the exact TuYe model or size designation. Naturehike’s TuYe pages describe a similar mummy mat at about 490 g; confirm the delivered label before treating those specifications as applying to this unit.',
   category: 'Sleep',
   tags: ['Value insulated-mat candidate'],
   pricePaidAud: 85.99,
   summary:
-    'An insulated mat at about 440 g that packs to the size of a water bottle, for under A$90.',
+    'The listing claims 440 g and R 3.5; Naturehike’s similar TuYe mummy mat is listed around 490 g. Exact model identity remains open.',
   metaDescription:
-    'Research on the Naturehike TuYe R3.5 sleeping mat: manufacturer specifications, owner measurements, air-retention concerns and why we chose it.',
+    'Naturehike R3.5 sleeping mat research: TuYe model identity, conflicting listed weights, owner measurements and the unverified insulation claim.',
   question:
     'Does the Naturehike R3.5 provide dependable three-season insulation and comfort without losing air or measuring materially smaller than advertised?',
   whyWeChoseIt: [
-    'A sleeping mat is part of your insulation, not just padding. An insulated mat listed around 440 g gives beginners a strong balance of price, packed size and claimed three-season warmth, from a brand with a large base of owner reports.',
-    'Naturehike’s R 3.5 figure is a manufacturer claim without a published ASTM F3340 test, and owners report some variation in dimensions and weight. Even allowing for that, it is one of the best-value insulated mats we found.',
+    'A sleeping mat is part of your insulation, not just padding. The olive mummy mat’s listing claims R 3.5, about 440 g and a compact packed size for the recorded A$85.99 price. Those are listing claims, and we have not confirmed the delivered model.',
+    'Naturehike publishes similar TuYe mummy-mat specifications, while owners report variation in inflated dimensions and occasional air loss. We have not found an ASTM F3340 test report for the R-value claim, so the mat needs careful checking before relying on it for colder nights.',
   ],
   specs: [
     {
       label: 'Listing variant',
       value: 'Mummy, approximately 183 × 58 × 7 cm',
       status: 'seller-claim',
-      note: 'Likely the current Standard Single Mummy or Mummy Large variant; confirm the delivered size designation.',
-      sourceIds: ['naturehike-global', 'naturehike-japan'],
+      note: 'The exact TuYe model and size designation are not established by this listing; confirm the delivered label.',
+      sourceIds: ['marketplace-listing'],
     },
     {
       label: 'Claimed R-value',
       value: 'R 3.5',
-      status: 'manufacturer',
-      note: 'No ASTM F3340 test standard or laboratory report is identified. Treat this as a manufacturer claim.',
-      sourceIds: ['naturehike-global', 'naturehike-japan'],
+      status: 'seller-claim',
+      note: 'The listing and similar Naturehike TuYe pages show R 3.5. No ASTM F3340 report or exact model match is identified.',
+      sourceIds: [
+        'marketplace-listing',
+        'naturehike-global',
+        'naturehike-japan',
+      ],
     },
     {
       label: 'Temperature guidance',
       value: 'Suitable above −6°C claimed',
       status: 'manufacturer',
-      note: 'Not a comfort guarantee or verified safe-use threshold.',
+      note: 'Guidance for Naturehike’s TuYe model; the listing’s exact model is unconfirmed. This is not a comfort guarantee or verified safe-use threshold.',
       sourceIds: ['naturehike-global'],
     },
     {
@@ -64,21 +69,22 @@ const page: ProductPage = {
     {
       label: 'Material and construction',
       value:
-        '20D nylon laminated with TPU; five-layer construction including aluminium film claimed',
+        'Naturehike TuYe: 20D nylon laminated with TPU; five-layer construction including aluminium film claimed',
       status: 'manufacturer',
+      note: 'The purchased listing has not been confirmed as this exact TuYe model.',
       sourceIds: ['naturehike-global', 'naturehike-japan'],
     },
     {
       label: 'Included',
-      value: 'Inflation bag and storage sack',
+      value: 'Naturehike TuYe: inflation bag and storage sack listed',
       status: 'manufacturer',
-      note: 'One owner measured the accessories at about 60-64 g.',
+      note: 'Check what arrives with the marketplace mat. One TuYe owner measured the accessories at about 60-64 g.',
       sourceIds: ['naturehike-global', 'naturehike-japan', 'rl-forum'],
     },
   ],
   coverage: 'moderate',
   coverageNote:
-    'Official dimensions and materials are available, with useful owner measurements and overnight reports. Evidence is mostly observational, and no ASTM R-value report was found.',
+    'Naturehike TuYe dimensions and materials are available for comparison, with owner measurements and overnight reports for that model. The marketplace mat’s exact identity remains unconfirmed, and no ASTM R-value report was found.',
   sources: [
     {
       id: 'marketplace-listing',
@@ -95,7 +101,7 @@ const page: ProductPage = {
       publisher: 'Naturehike',
       url: 'https://www.naturehike.com/products/tuye-r3-5-ultralight-inflatable-pad',
       kind: 'manufacturer',
-      relation: 'exact-model',
+      relation: 'similar-design',
       summary:
         'Current manufacturer page specifying R 3.5, 20D nylon/TPU, 7 cm thickness, a 183 × 58 cm mummy variant around 490 g and packed dimensions around 18 × 10 × 10 cm. No R-value test report is identified.',
     },
@@ -105,7 +111,7 @@ const page: ProductPage = {
       publisher: 'Naturehike Japan',
       url: 'https://naturehike.co.jp/products/cnh22dz018',
       kind: 'manufacturer',
-      relation: 'exact-model',
+      relation: 'similar-design',
       lang: 'ja',
       summary:
         'Regional manufacturer page matching the 183 × 58 cm mummy mat at approximately 490 g and 10 × 10 × 18 cm packed.',
@@ -116,7 +122,7 @@ const page: ProductPage = {
       publisher: 'Randonner Léger forum',
       url: 'https://www.randonner-leger.org/forum/viewtopic.php?id=42124',
       kind: 'forum',
-      relation: 'exact-model',
+      relation: 'similar-design',
       lang: 'fr',
       summary:
         'Owner thread with weights, inflated measurements and overnight reports. One nominal 183 × 58 cm mat measured roughly 175 × 54 × 6.5 cm and another owner reported slow air loss after about twenty nights.',
@@ -127,7 +133,7 @@ const page: ProductPage = {
       publisher: 'Naturehike South Africa',
       url: 'https://www.naturehike.co.za/products/r3-5-ultralight-sleeping-pad',
       kind: 'retailer',
-      relation: 'exact-model',
+      relation: 'similar-design',
       summary:
         'Seller-hosted customer feedback including a report of six weeks of use and good side-sleeping comfort. Useful anecdotal evidence, not controlled testing.',
     },
@@ -138,11 +144,11 @@ const page: ProductPage = {
       sourceIds: ['marketplace-listing'],
     },
     {
-      text: 'Owners generally describe it as comfortable, including for side sleeping.',
+      text: 'Owners of the similar Naturehike R3.5 mat describe it as comfortable, including for side sleeping.',
       sourceIds: ['rl-forum', 'naturehike-za-reviews'],
     },
     {
-      text: 'The supplied inflation bag avoids introducing breath moisture and makes inflation easier.',
+      text: 'Naturehike lists an inflation bag for the TuYe model; whether it is supplied with this marketplace option needs checking.',
       sourceIds: ['naturehike-global', 'rl-forum'],
     },
   ],
@@ -152,17 +158,17 @@ const page: ProductPage = {
       sourceIds: ['naturehike-global'],
     },
     {
-      text: 'At least one owner measured the inflated mat shorter, narrower and thinner than the nominal dimensions.',
+      text: 'An owner of a similar Naturehike R3.5 mat measured it shorter, narrower and thinner than the nominal dimensions.',
       sourceIds: ['rl-forum'],
     },
     {
-      text: 'An owner reported slow leakage after about twenty nights and suspected the valve.',
+      text: 'An owner of a similar Naturehike R3.5 mat reported slow leakage after about twenty nights and suspected the valve.',
       sourceIds: ['rl-forum'],
     },
   ],
   thingsToKnow: [
-    'This gear is suitable for 3 season use but would not be recommended for winter hikes or hiking in alpine regions.',
-    'Use the included inflation bag rather than your breath to reduce moisture inside the mat.',
+    'The claimed R 3.5 is not independently verified here. Do not use the listing’s temperature guidance as a safe-use threshold for winter or alpine trips.',
+    'If the delivered mat includes an inflation bag, use it rather than your breath to reduce moisture inside the mat.',
     'Can be combined with the foil egg-crate foam mat underneath for more comfort and puncture resistance.',
   ],
   watching: [

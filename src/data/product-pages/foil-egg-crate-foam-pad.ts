@@ -12,7 +12,7 @@ const page: ProductPage = {
   summary:
     'A folding foam pad for under $20. Nothing to inflate, nothing to puncture.',
   metaDescription:
-    'What we know about a cheap foil-faced egg-crate foam sleeping pad: seller claims, what similar pads deliver, and why we chose it.',
+    'Foil-faced foam sleeping pad research: unverified R-value claim, reports on similar folding pads and what to check before a mild-weather trip.',
   question:
     'Is a $17 folding foam pad comfortable and warm enough for a mild first overnight trip?',
   whyWeChoseIt: [
@@ -154,7 +154,7 @@ const page: ProductPage = {
   thingsToKnow: [
     'This gear is suitable for 3 season use but would not be recommended for winter hikes or hiking in alpine regions.',
     'Bulky when folded, so it is usually strapped to the outside of the pack.',
-    'Can be combined with the Naturehike TuYe R3.5 mat for more comfort and puncture resistance.',
+    'Can be combined with the Naturehike R3.5 mat for more comfort and puncture resistance.',
   ],
   watching: [
     'The R 2.5 claim looks optimistic next to ASTM-rated 2 cm pads at R 2.0.',

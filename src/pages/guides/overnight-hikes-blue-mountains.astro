@@ -1,9 +1,14 @@
 ---
 import GuideLayout from '../../layouts/GuideLayout.astro';
+import { Image } from 'astro:assets';
+import guideImage from '../../assets/images/guides/blue-mountains.jpg';
 ---
 
 <GuideLayout
-  title="Overnight Hikes in the Blue Mountains: Routes and Fire Rules"
+  title="Planning an overnight hike in the Blue Mountains"
+  seoTitle="Overnight Hikes in the Blue Mountains: Routes and Fire Rules"
+  pageImage={guideImage}
+  pageImageAlt="Grose River near Blue Gum Forest in the Grose Valley, Blue Mountains"
   description="Overnight hikes in the Blue Mountains: verified NPWS routes, walk-in campsites, booking rules and fire season limits for planning your first multi-day trip."
   eyebrow="Where to go"
   readTime="9 min read"
@@ -20,9 +25,10 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
     your back, and NSW's fire season closes tracks and restricts stoves for
     months at a time. This guide sticks to routes and rules we can verify
     against NSW National Parks and the NSW Rural Fire Service, and stays out of
-    the cooking and gear detail that <a href="/guides/hiking-stove-guide"
+    the cooking and gear detail that <a href="/guides/hiking-stove-guide/"
       >our stove guide</a
-    > and <a href="/guides/overnight-hike-packing-list">packing list</a> already cover.
+    > and <a href="/guides/overnight-hike-packing-list/">packing list</a> already
+    cover.
   </p>
 
   <div class="takeaways">
@@ -55,11 +61,11 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
   </div>
 
   <figure class="guide-photo">
-    <img
-      src="/images/guides/blue-mountains.jpg"
+    <Image
+      src={guideImage}
       alt="Grose River near Blue Gum Forest in the Grose Valley, Blue Mountains"
-      width="1400"
-      height="933"
+      widths={[360, 720, 1024, 1400]}
+      sizes="(max-width: 760px) calc(100vw - 32px), 680px"
       loading="lazy"
       decoding="async"
     />
@@ -251,7 +257,7 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
     something to plan around weeks out: look up the specific track's NPWS alerts
     page and the current NSW RFS fire ban status the afternoon before you leave,
     and have a fallback plan if either says no. Our <a
-      href="/guides/hiking-stove-guide">hiking stove guide</a
+      href="/guides/hiking-stove-guide/">hiking stove guide</a
     > covers stove types and fuel in more depth if you're still choosing gear.
   </p>
 
@@ -284,15 +290,15 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
     The routes above don't need anything exotic, but the steep, rocky descents
     reward a pack that actually fits and gear you've tested before you're 4km
     from the car with a sore back. Our <a
-      href="/guides/overnight-hike-packing-list">overnight hike packing list</a
+      href="/guides/overnight-hike-packing-list/">overnight hike packing list</a
     > covers the full kit list, and if you're still choosing a sleeping system, start
-    with <a href="/guides/sleeping-bag-temperature-ratings"
+    with <a href="/guides/sleeping-bag-temperature-ratings/"
       >sleeping bag temperature ratings</a
-    > and <a href="/guides/sleeping-mat-r-value">sleeping mat R-value</a>, since
-    Blue Mountains nights get cold even when Sydney doesn't. Our <a
+    > and <a href="/guides/sleeping-mat-r-value/">sleeping mat R-value</a>,
+    since Blue Mountains nights get cold even when Sydney doesn't. Our <a
       href="/#kits">beginner hiking kits</a
     > bundle a pack, sleep system and shelter together, or use <a
-      href="/build-my-kit">Build My Kit</a
+      href="/build-my-kit/">Build My Kit</a
     > to fill gaps in gear you already own.
   </p>
 

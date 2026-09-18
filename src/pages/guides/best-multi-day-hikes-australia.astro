@@ -1,9 +1,14 @@
 ---
 import GuideLayout from '../../layouts/GuideLayout.astro';
+import { Image } from 'astro:assets';
+import guideImage from '../../assets/images/guides/queensland.jpg';
 ---
 
 <GuideLayout
-  title="Best Multi Day Hikes in Australia: A State-by-State Guide"
+  title="Multi day hikes around Australia"
+  seoTitle="Multi Day Hikes in Australia: A State-by-State Guide"
+  pageImage={guideImage}
+  pageImageAlt="Main Range National Park seen from farmland at Rosevale, Queensland"
   description="Best multi day hikes Australia has to offer, state by state: verified routes, bookings and fire rules for NSW, Victoria, Tasmania and overnight Brisbane hikes."
   eyebrow="Where to go"
   readTime="10 min read"
@@ -31,8 +36,8 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
         dates.
       </li>
       <li>
-        The <a href="/guides/overnight-hikes-blue-mountains">Blue Mountains</a> and
-        <a href="/guides/overnight-hikes-victoria">Great Ocean Walk</a> are two of
+        The <a href="/guides/overnight-hikes-blue-mountains/">Blue Mountains</a> and
+        <a href="/guides/overnight-hikes-victoria/">Great Ocean Walk</a> are two of
         the most accessible first multi day hikes near a capital city.
       </li>
       <li>
@@ -45,7 +50,7 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
       </li>
       <li>
         Whichever state you choose, your <a
-          href="/guides/overnight-hike-packing-list">packing list</a
+          href="/guides/overnight-hike-packing-list/">packing list</a
         > and sleep system matter as much as the track itself.
       </li>
     </ul>
@@ -90,7 +95,7 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
     committing to dates.
   </p>
   <p>
-    Our <a href="/guides/overnight-hikes-victoria"
+    Our <a href="/guides/overnight-hikes-victoria/"
       >overnight hikes Victoria guide</a
     > covers verified one-way distances, booking links and a beginner-suitable route
     table for both the Great Ocean Walk and Wilsons Promontory.
@@ -118,10 +123,10 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
     on stoves and open fires tighten further on a declared Total Fire Ban day.
   </p>
   <p>
-    See our <a href="/guides/overnight-hikes-blue-mountains"
+    See our <a href="/guides/overnight-hikes-blue-mountains/"
       >overnight hikes Blue Mountains guide</a
     > for that region's verified routes and fire rules, and our <a
-      href="/guides/multi-day-hikes-nsw">multi day hikes NSW guide</a
+      href="/guides/multi-day-hikes-nsw/">multi day hikes NSW guide</a
     > for the rest of the state, including the Coast Track, Yuraygir Coastal Walk
     and the Green Gully Track.
   </p>
@@ -148,7 +153,7 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
   </p>
   <p>
     Full booking details, fees and a route comparison table are in our <a
-      href="/guides/multi-day-hikes-tasmania">multi day hikes Tasmania guide</a
+      href="/guides/multi-day-hikes-tasmania/">multi day hikes Tasmania guide</a
     >.
   </p>
 
@@ -156,11 +161,11 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
     What are the best overnight hikes near Brisbane, Queensland?
   </h2>
   <figure class="guide-photo">
-    <img
-      src="/images/guides/queensland.jpg"
+    <Image
+      src={guideImage}
       alt="Main Range National Park seen from farmland at Rosevale, Queensland"
-      width="1400"
-      height="1050"
+      widths={[360, 720, 1024, 1400]}
+      sizes="(max-width: 760px) calc(100vw - 32px), 680px"
       loading="lazy"
       decoding="async"
     />
@@ -276,23 +281,23 @@ import GuideLayout from '../../layouts/GuideLayout.astro';
   <p>
     The gear side stays mostly the same across states; only the margins change.
     Tasmania and alpine sections of NSW and Victoria call for a warmer <a
-      href="/guides/sleeping-bag-temperature-ratings"
+      href="/guides/sleeping-bag-temperature-ratings/"
       >sleeping bag temperature rating</a
-    > and more <a href="/guides/sleeping-mat-r-value">sleeping mat R-value</a> than
+    > and more <a href="/guides/sleeping-mat-r-value/">sleeping mat R-value</a> than
     a mild coastal walk in Queensland or the Great Ocean Walk. A <a
-      href="/guides/2-person-hiking-tent-guide">two-person hiking tent</a
+      href="/guides/2-person-hiking-tent-guide/">two-person hiking tent</a
     > covers most solo and pair setups, and cooking fuel choice depends on the fire
     rules for wherever you're walking, which our <a
-      href="/guides/hiking-stove-guide">hiking stove guide</a
+      href="/guides/hiking-stove-guide/">hiking stove guide</a
     > covers in detail.
   </p>
   <p>
     If you're assembling a first kit rather than buying piece by piece, our <a
       href="/#kits">beginner hiking kits</a
-    > bundle a matched sleep system and shelter, and <a href="/build-my-kit"
+    > bundle a matched sleep system and shelter, and <a href="/build-my-kit/"
       >Build My Kit</a
     > fills in whatever you're missing around gear you already own. Run through the
-    full <a href="/guides/overnight-hike-packing-list"
+    full <a href="/guides/overnight-hike-packing-list/"
       >overnight hike packing list</a
     > before any multi-day trip, regardless of state.
   </p>

@@ -1,6 +1,11 @@
 /starter-kits /#kits 301
 /starter-kits/ /#kits 301
-/guides/first-overnight-hike /guides/overnight-hike-packing-list 301
-/guides/sleeping-bag-temperature-guide /guides/sleeping-bag-temperature-ratings 301
-/guides/sleeping-mat-r-value-guide /guides/sleeping-mat-r-value 301
-/guides/choosing-your-first-hiking-tent /guides/2-person-hiking-tent-guide 301
+/sitemap-index.xml /sitemap.xml 301
+/guides/first-overnight-hike /guides/overnight-hike-packing-list/ 301
+/guides/first-overnight-hike/ /guides/overnight-hike-packing-list/ 301
+/guides/sleeping-bag-temperature-guide /guides/sleeping-bag-temperature-ratings/ 301
+/guides/sleeping-bag-temperature-guide/ /guides/sleeping-bag-temperature-ratings/ 301
+/guides/sleeping-mat-r-value-guide /guides/sleeping-mat-r-value/ 301
+/guides/sleeping-mat-r-value-guide/ /guides/sleeping-mat-r-value/ 301
+/guides/choosing-your-first-hiking-tent /guides/2-person-hiking-tent-guide/ 301
+/guides/choosing-your-first-hiking-tent/ /guides/2-person-hiking-tent-guide/ 301

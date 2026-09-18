@@ -12,7 +12,7 @@ const page: ProductPage = {
   summary:
     'A roomy $100 freestanding tent. It weighs only ~2 kg and can handle mild rain.',
   metaDescription:
-    'Research on the BISINNA 2-person tent: reviewer findings on rain and build, variant limits, listing specifications and why we chose it.',
+    'BISINNA 2-person tent research: a tested 190T polyester variant, rain and seam concerns, and why 20D nylon claims must be kept separate.',
   question:
     'Can this low-cost conventional tent provide a dependable first shelter?',
   whyWeChoseIt: [

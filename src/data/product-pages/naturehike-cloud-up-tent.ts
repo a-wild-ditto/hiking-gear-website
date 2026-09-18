@@ -16,15 +16,16 @@ const page: ProductPage = {
   category: 'Shelter',
   tags: ['Value shelter candidate', 'Variant comparison'],
   pricePaidAud: 204.88,
+  seoTitle: 'Naturehike Cloud Up Pro Variants and Older Cloud Up 2 Evidence',
   summary:
-    'A proven ultralight tent family at a budget price. The 1P carries at about 1.4 kg.',
+    'The listing offers Cloud Up Pro 1P, 2P and 3P tents. Most hands-on reviews cover older Cloud Up 2 variants.',
   metaDescription:
-    'Research on the Naturehike Cloud Up Pro 1P, 2P and 3P: owner and reviewer experience, listing specifications, trade-offs and unresolved variant differences.',
+    'Naturehike Cloud Up Pro 1P, 2P and 3P listing claims alongside older Cloud Up 2 reviews. See what carries across, and which variant details remain unverified.',
   question:
     'Which Cloud Up variant makes the most sense for a beginner once complete weight, usable room, condensation and wet-weather behaviour are checked?',
   whyWeChoseIt: [
-    'The Cloud Up family combines a familiar double-wall structure, aluminium poles and a front vestibule with years of owner and reviewer experience. Reports describe a shelter that is straightforward to pitch and dependable for casual use, at a fraction of the price of comparable name-brand ultralight tents.',
-    'Older reviewers found the two-person interior tight, so solo hikers get the best balance from the 1P, while the 2P suits pairs who pack light. The Pro 1P, 2P and 3P differ in dimensions and weight, so check the variant you select.',
+    'The Cloud Up family uses a familiar double-wall structure, aluminium poles and a front vestibule. Reviews of older Cloud Up 2 tents describe straightforward pitching and useful casual performance, but they do not establish how the current Pro variants behave.',
+    'Older reviewers found the Cloud Up 2 interior tight for two adults. The current marketplace listing offers Pro 1P, 2P and 3P options, yet gives incomplete capacity-specific specifications. Check the exact option and included components before comparing weights or space.',
   ],
   specs: [
     {
@@ -165,9 +166,9 @@ const page: ProductPage = {
     },
   ],
   thingsToKnow: [
-    'Suitable for 3 season use. Not recommended for winter or exposed alpine campsites.',
-    'The 1P suits one hiker and their gear. Pairs wanting more room should choose the 2P.',
-    'Open the vents on still nights to reduce condensation inside the tent.',
+    'Naturehike describes the design as three-season; severe-weather suitability of the listed Pro options has not been established here.',
+    'Reviews of older Cloud Up 2 tents found limited room for two adults and their equipment. Check the selected Pro variant’s pitched dimensions.',
+    'Ventilation may help with condensation, but the current Pro variants need their own field checks.',
   ],
   watching: [
     'Exact ordered variant, model code, complete carried weight and included footprint.',
