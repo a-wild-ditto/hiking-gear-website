@@ -157,14 +157,14 @@ on-site rather than relying on affiliate sub-IDs, and sub-IDs are the better sou
 
 If you proceed, the change needs all six answers in the commit, not afterwards:
 
-| Question | Answer for Cloudflare Web Analytics |
-| --- | --- |
-| What is collected | Page URL, referrer, coarse country, device type, browser. No identifier that persists across visits. |
-| Where stored | Cloudflare, under the existing hosting account. |
-| Why needed | To learn whether guide pages lead to product pages, which is the core funnel assumption. |
-| Retention | Whatever the Cloudflare product default is at the time. Check and record it. |
-| Privacy copy | `privacy.astro` must change in the same commit. The "no first-party analytics" line becomes a statement of what is collected and what is not. `README.md` line 24 too. |
-| Failure behaviour | Script is async and non-blocking. Site renders and functions identically without it. |
+| Question          | Answer for Cloudflare Web Analytics                                                                                                                                    |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| What is collected | Page URL, referrer, coarse country, device type, browser. No identifier that persists across visits.                                                                   |
+| Where stored      | Cloudflare, under the existing hosting account.                                                                                                                        |
+| Why needed        | To learn whether guide pages lead to product pages, which is the core funnel assumption.                                                                               |
+| Retention         | Whatever the Cloudflare product default is at the time. Check and record it.                                                                                           |
+| Privacy copy      | `privacy.astro` must change in the same commit. The "no first-party analytics" line becomes a statement of what is collected and what is not. `README.md` line 24 too. |
+| Failure behaviour | Script is async and non-blocking. Site renders and functions identically without it.                                                                                   |
 
 ---
 
@@ -193,15 +193,15 @@ anything. Test titles on YouTube, where the impression volume is large enough to
 
 Re-running the seven objectives from `content-strategy-summary.md` against Tier 0 alone:
 
-| # | Objective | Answerable with Tier 0? | Source |
-| --- | --- | --- | --- |
-| 1 | Which title proposition produces the highest click-through rate | **Yes** | YouTube Studio |
-| 2 | Does cheap-vs-expensive beat model-specific review | **Yes** | YouTube Studio |
-| 3 | Do Shorts drive long-form views | **Yes** | YouTube Studio traffic sources |
-| 4 | Does Australian localisation improve search performance | **Yes** | Search Console, country filter |
-| 5 | Which product produces the most affiliate clicks | **Yes, and better** | Affiliate sub-IDs, including conversions |
-| 6 | Which video type generates returning viewers | **Yes** | YouTube Studio |
-| 7 | Is the Naturehike bet real | **Yes** | Search Console impressions on `naturehike` terms |
+| #   | Objective                                                       | Answerable with Tier 0? | Source                                           |
+| --- | --------------------------------------------------------------- | ----------------------- | ------------------------------------------------ |
+| 1   | Which title proposition produces the highest click-through rate | **Yes**                 | YouTube Studio                                   |
+| 2   | Does cheap-vs-expensive beat model-specific review              | **Yes**                 | YouTube Studio                                   |
+| 3   | Do Shorts drive long-form views                                 | **Yes**                 | YouTube Studio traffic sources                   |
+| 4   | Does Australian localisation improve search performance         | **Yes**                 | Search Console, country filter                   |
+| 5   | Which product produces the most affiliate clicks                | **Yes, and better**     | Affiliate sub-IDs, including conversions         |
+| 6   | Which video type generates returning viewers                    | **Yes**                 | YouTube Studio                                   |
+| 7   | Is the Naturehike bet real                                      | **Yes**                 | Search Console impressions on `naturehike` terms |
 
 **All seven are answerable with no site analytics at all.** The earlier claim in
 `content-strategy-summary.md` that the absence of analytics blocks the learning plan was too

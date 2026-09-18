@@ -6,16 +6,16 @@ publishing.**
 
 ## Output target from a single overnight trip
 
-| Output | Quantity | Source |
-| --- | --- | --- |
-| Flagship YouTube video | 1 | The trip narrative itself |
-| Product-specific videos | 2 to 4 | Per-item segments filmed deliberately during the trip |
-| Shorts / Reels / TikToks | 8 to 12 | Vertical pass, plus the dedicated capture list below |
-| Product photography | 40 to 60 usable stills | Before, on trail, and after |
-| Website review updates | 4 to 8 product pages | Evidence notes and test-plan status in `src/data/product-pages/*.ts` |
-| Social posts | 6 to 10 | Stills plus a single honest observation each |
-| Community posts | 1 to 2 | Only where genuinely useful and disclosed |
-| Long-form written article | 1 | Only if the trip produced something the guides do not already cover |
+| Output                    | Quantity               | Source                                                               |
+| ------------------------- | ---------------------- | -------------------------------------------------------------------- |
+| Flagship YouTube video    | 1                      | The trip narrative itself                                            |
+| Product-specific videos   | 2 to 4                 | Per-item segments filmed deliberately during the trip                |
+| Shorts / Reels / TikToks  | 8 to 12                | Vertical pass, plus the dedicated capture list below                 |
+| Product photography       | 40 to 60 usable stills | Before, on trail, and after                                          |
+| Website review updates    | 4 to 8 product pages   | Evidence notes and test-plan status in `src/data/product-pages/*.ts` |
+| Social posts              | 6 to 10                | Stills plus a single honest observation each                         |
+| Community posts           | 1 to 2                 | Only where genuinely useful and disclosed                            |
+| Long-form written article | 1                      | Only if the trip produced something the guides do not already cover  |
 
 ## Field filming checklist
 

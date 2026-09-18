@@ -2,15 +2,15 @@
 
 ## Data provenance
 
-| Field | Value |
-| --- | --- |
-| Source | Google Ads Keyword Planner API (`generateKeywordIdeas`, `generateKeywordHistoricalMetrics`) |
-| Date pulled | 2026-09-18 |
-| Geography | Australia only (`geoTargetConstants/2036`) |
-| Language | English (`languageConstants/1000`) |
-| Network | `GOOGLE_SEARCH` (search only, matching the Keyword Planner web UI default rather than the higher search-partners figure) |
-| Currency | AUD. Bid fields converted from micros by dividing by 1,000,000 |
-| Historical window | Sep 2025 to Aug 2026 inclusive (12 months) |
+| Field             | Value                                                                                                                    |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Source            | Google Ads Keyword Planner API (`generateKeywordIdeas`, `generateKeywordHistoricalMetrics`)                              |
+| Date pulled       | 2026-09-18                                                                                                               |
+| Geography         | Australia only (`geoTargetConstants/2036`)                                                                               |
+| Language          | English (`languageConstants/1000`)                                                                                       |
+| Network           | `GOOGLE_SEARCH` (search only, matching the Keyword Planner web UI default rather than the higher search-partners figure) |
+| Currency          | AUD. Bid fields converted from micros by dividing by 1,000,000                                                           |
+| Historical window | Sep 2025 to Aug 2026 inclusive (12 months)                                                                               |
 
 ### What these numbers are and are not
 
@@ -37,13 +37,13 @@ Further limitations that affect how this plan should be read:
 
 ## Collection volume
 
-| Stage | Count |
-| --- | --- |
-| Raw ideas returned by `generateKeywordIdeas` (4 seeds, AU) | 1,053 |
-| Raw ideas after normalising spacing and word order | 936 |
-| Ideas with non-zero AU volume | 735 |
-| Explicit seed keywords checked via `generateKeywordHistoricalMetrics` | 110 |
-| Curated, deduplicated rows in `keyword-research-australia.csv` | 112 |
+| Stage                                                                 | Count |
+| --------------------------------------------------------------------- | ----- |
+| Raw ideas returned by `generateKeywordIdeas` (4 seeds, AU)            | 1,053 |
+| Raw ideas after normalising spacing and word order                    | 936   |
+| Ideas with non-zero AU volume                                         | 735   |
+| Explicit seed keywords checked via `generateKeywordHistoricalMetrics` | 110   |
+| Curated, deduplicated rows in `keyword-research-australia.csv`        | 112   |
 
 Normalisation merged `nature hike X` into `naturehike X` and collapsed word-order variants.
 The curated CSV further merges close variants that returned byte-identical planner metrics
@@ -76,18 +76,18 @@ two keywords means nothing. A twenty-point difference means something.
 
 ## Cluster summary
 
-| Cluster | Rows | Total measured AU volume/mo | Dominant intent | Top-scoring keyword | Format |
-| --- | --- | --- | --- | --- | --- |
-| D: Tents | 23 | 7,840 | Commercial / navigational | `naturehike` (2,900) | Model reviews + tent buying guide |
-| H: Cooking and accessories | 9 | 3,250 | Commercial | `hiking pillow` (390) | Short-form and accessory round-up |
-| B: Cheap and value gear | 20 | 1,380 | Commercial / transactional | `aliexpress naturehike` (30) | Flagship browse video |
-| C: Retailer comparison | 8 | 1,230 | Commercial | `kathmandu vs macpac` (170) | Comparison page + one video |
-| F: Sleeping mats | 8 | 1,130 | Commercial | `naturehike sleeping mat` (210) | Product review + R-value guide |
-| A: Beginner hiking | 17 | 1,010 | Informational | `overnight hiking checklist` (70) | Checklist page + beginner video |
-| G: Backpacks | 8 | 870 | Commercial | `naturehike backpack` (110) | Product reviews |
-| E: Sleeping bags | 11 | 820 | Commercial | `down sleeping bag australia` (210) | Product review + temperature guide |
-| J: Modifiers and local | 8 | 530 | Mixed | `is naturehike good` (10) | Trust content |
-| **Total** | **112** | **18,060** | | | |
+| Cluster                    | Rows    | Total measured AU volume/mo | Dominant intent            | Top-scoring keyword                 | Format                             |
+| -------------------------- | ------- | --------------------------- | -------------------------- | ----------------------------------- | ---------------------------------- |
+| D: Tents                   | 23      | 7,840                       | Commercial / navigational  | `naturehike` (2,900)                | Model reviews + tent buying guide  |
+| H: Cooking and accessories | 9       | 3,250                       | Commercial                 | `hiking pillow` (390)               | Short-form and accessory round-up  |
+| B: Cheap and value gear    | 20      | 1,380                       | Commercial / transactional | `aliexpress naturehike` (30)        | Flagship browse video              |
+| C: Retailer comparison     | 8       | 1,230                       | Commercial                 | `kathmandu vs macpac` (170)         | Comparison page + one video        |
+| F: Sleeping mats           | 8       | 1,130                       | Commercial                 | `naturehike sleeping mat` (210)     | Product review + R-value guide     |
+| A: Beginner hiking         | 17      | 1,010                       | Informational              | `overnight hiking checklist` (70)   | Checklist page + beginner video    |
+| G: Backpacks               | 8       | 870                         | Commercial                 | `naturehike backpack` (110)         | Product reviews                    |
+| E: Sleeping bags           | 11      | 820                         | Commercial                 | `down sleeping bag australia` (210) | Product review + temperature guide |
+| J: Modifiers and local     | 8       | 530                         | Mixed                      | `is naturehike good` (10)           | Trust content                      |
+| **Total**                  | **112** | **18,060**                  |                            |                                     |                                    |
 
 ## Cluster detail
 
@@ -284,7 +284,7 @@ These are the places where AU demand exists and the answer currently does not.
    These require a real trip to serve honestly.
 
 7. **The exact catalogue SKUs have no review content at all.** `bisinna tent`, `bisinna
-   sleeping bag`, `bisinna backpack`, `naturehike tuye` and `naturehike cloud up pro` are
+sleeping bag`, `bisinna backpack`, `naturehike tuye` and `naturehike cloud up pro` are
    near-total vacuums. Volumes are tiny (10 to 30/mo) so this is not a traffic play. It is a
    conversion play: the person who does search it is deep in a buying decision and currently
    finds nothing trustworthy.
@@ -292,7 +292,7 @@ These are the places where AU demand exists and the answer currently does not.
 ## What the data says not to do
 
 - Do not build pages for `chinese hiking gear`, `cheap hiking setup`, `hiking gear under
-  500`, `best value hiking gear` or `how to choose hiking gear`. All returned 0 AU volume.
+500`, `best value hiking gear` or `how to choose hiking gear`. All returned 0 AU volume.
   Several are excellent video titles. None are page targets.
 - Do not chase `hiking gear sydney` or `hiking gear melbourne`. Local retail intent Bush
   Gums cannot serve.
@@ -300,5 +300,5 @@ These are the places where AU demand exists and the answer currently does not.
 - Do not build a stove page. No stove in the catalogue.
 - Do not treat `camping pillow` volume as opportunity. Wrong intent, low product value.
 - Do not create separate pages for close variants. `cheap hiking gear`, `budget hiking
-  gear`, `inexpensive hiking gear`, `cheap hiking equipment` and `cheap trekking gear` are
+gear`, `inexpensive hiking gear`, `cheap hiking equipment` and `cheap trekking gear` are
   one page, not five.

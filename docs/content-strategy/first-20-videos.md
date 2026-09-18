@@ -22,10 +22,10 @@ inputs in this order:
 Prices are the recorded Bush Gums prices from `src/data/catalog.ts` in AUD. Merchants set
 current prices and these can drift.
 
-| Kit | Components | Recorded total |
-| --- | --- | --- |
-| Starter | BISINNA 2-Person Tent (100), BISINNA Sleeping Bag (53), Foil Egg-Crate Foam Mat (17), BISINNA 25+10L Pack (48) | **218** |
-| Value | Naturehike Cloud Up Pro 1P (205), 400 g Down Envelope Sleeping Bag (86), Naturehike TuYe R3.5 Mat (86), Naturehike Rock 60+5L Pack (69) | **446** |
+| Kit     | Components                                                                                                                              | Recorded total |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
+| Starter | BISINNA 2-Person Tent (100), BISINNA Sleeping Bag (53), Foil Egg-Crate Foam Mat (17), BISINNA 25+10L Pack (48)                          | **218**        |
+| Value   | Naturehike Cloud Up Pro 1P (205), 400 g Down Envelope Sleeping Bag (86), Naturehike TuYe R3.5 Mat (86), Naturehike Rock 60+5L Pack (69) | **446**        |
 
 Outside core totals: Widesea Aluminium Cookware Set (56), NIOFEEL Memory-Foam Camping Pillow
 (19), Nyxia 35L Rain Cover, Naturehike Cloud Up Pro 2P (217).
@@ -404,12 +404,12 @@ video may describe field use that has not happened. Both kits are mild-weather o
 
 ## Sequencing summary
 
-| Phase | Videos | Field trip dependency |
-| --- | --- | --- |
-| Before the first trip | 1, 2, 3, 5, 10, 13, 14, 15 | None. Eight publishable videos exist with zero trips. |
-| From the first overnight | 4, 6, 7, 8, 9, 12, 16, 17, 19 | One trip yields the core of nine videos. |
-| Accumulated use | 11 (five trips), 18 (six months) | Cannot be accelerated. Schedule and protect. |
-| Logistics-dependent | 20 | Multi-day Tasmanian trip, season-gated. |
+| Phase                    | Videos                           | Field trip dependency                                 |
+| ------------------------ | -------------------------------- | ----------------------------------------------------- |
+| Before the first trip    | 1, 2, 3, 5, 10, 13, 14, 15       | None. Eight publishable videos exist with zero trips. |
+| From the first overnight | 4, 6, 7, 8, 9, 12, 16, 17, 19    | One trip yields the core of nine videos.              |
+| Accumulated use          | 11 (five trips), 18 (six months) | Cannot be accelerated. Schedule and protect.          |
+| Logistics-dependent      | 20                               | Multi-day Tasmanian trip, season-gated.               |
 
 The important structural finding: **eight of the first twenty videos can be made honestly
 before Bush Gums has done a single overnight trip.** That removes the main excuse for not

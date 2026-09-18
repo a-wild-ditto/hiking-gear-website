@@ -31,15 +31,15 @@ match their production quality within a quarter.
 
 Positioning: "No-BS hiking gear, backpacking advice, and trail-ready training."
 
-| Video | Views | Age | Views per subscriber |
-| --- | --- | --- | --- |
-| Backpacking Gear I'd Never Buy Again | 207K | 3mo | 13.9x |
-| Stop Overspending on Solo Backpacking Gear (Simple Kit That Works) | 163K | 6mo | 10.9x |
-| Scotland's West Highland Way: A Journey Into the Highlands | 158K | 3y | 10.6x |
-| I Wasted Money on Backpacking Gear, Here's What's Actually Worth It | 142K | 3mo | 9.5x |
-| 6 Backpacking Gear Upgrades That Are Actually Worth It | 119K | 5mo | 8.0x |
-| My Ultralight Gear Upgrades: What Changed | 96K | 6mo | 6.4x |
-| Ultimate Guide to the Overland Track: Hiker's Paradise | 25K | 1y | 1.7x |
+| Video                                                               | Views | Age | Views per subscriber |
+| ------------------------------------------------------------------- | ----- | --- | -------------------- |
+| Backpacking Gear I'd Never Buy Again                                | 207K  | 3mo | 13.9x                |
+| Stop Overspending on Solo Backpacking Gear (Simple Kit That Works)  | 163K  | 6mo | 10.9x                |
+| Scotland's West Highland Way: A Journey Into the Highlands          | 158K  | 3y  | 10.6x                |
+| I Wasted Money on Backpacking Gear, Here's What's Actually Worth It | 142K  | 3mo | 9.5x                 |
+| 6 Backpacking Gear Upgrades That Are Actually Worth It              | 119K  | 5mo | 8.0x                 |
+| My Ultralight Gear Upgrades: What Changed                           | 96K   | 6mo | 6.4x                 |
+| Ultimate Guide to the Overland Track: Hiker's Paradise              | 25K   | 1y  | 1.7x                 |
 
 **Why it works:** the top four videos are all regret-and-money framings published in the
 last six months, each pulling 9x to 14x his subscriber count. The Overland Track guide, an
@@ -57,15 +57,15 @@ strongest browse format in the category.
 
 Head-to-head budget testing, organised into a "Sleep Systems" playlist.
 
-| Video | Views | Age | Views per subscriber |
-| --- | --- | --- | --- |
-| What is the BEST BUDGET SLEEPING BAG? 4 Budget Sleeping Bags Tested and Reviewed | 178K | 5y | 7.2x |
-| What is the BEST BUDGET SLEEPING PAD, budget backpacking sleeping pad review and comparison | 138K | 5y | 5.6x |
-| BEST BUDGET SLEEPING PAD Round 2! 3 More Backpacking Sleeping Pads Tested and Reviewed | 79K | 5y | 3.2x |
-| 0 Degree Sleeping Bags, Teton Sports Leef vs Paria Thermodown | 67K | 4y | 2.7x |
-| Testing Two Budget Winter Sleeping Pads, Paria Recharge XL vs Gear Doctors Apollo Air | 32K | 4y | 1.3x |
-| Budget Winter Sleeping Pad, full test and review of the Apollo Air | 16K | 5y | 0.7x |
-| Gear I'm Stoked About and will be testing in 2024 | 8.2K | 2y | 0.3x |
+| Video                                                                                       | Views | Age | Views per subscriber |
+| ------------------------------------------------------------------------------------------- | ----- | --- | -------------------- |
+| What is the BEST BUDGET SLEEPING BAG? 4 Budget Sleeping Bags Tested and Reviewed            | 178K  | 5y  | 7.2x                 |
+| What is the BEST BUDGET SLEEPING PAD, budget backpacking sleeping pad review and comparison | 138K  | 5y  | 5.6x                 |
+| BEST BUDGET SLEEPING PAD Round 2! 3 More Backpacking Sleeping Pads Tested and Reviewed      | 79K   | 5y  | 3.2x                 |
+| 0 Degree Sleeping Bags, Teton Sports Leef vs Paria Thermodown                               | 67K   | 4y  | 2.7x                 |
+| Testing Two Budget Winter Sleeping Pads, Paria Recharge XL vs Gear Doctors Apollo Air       | 32K   | 4y  | 1.3x                 |
+| Budget Winter Sleeping Pad, full test and review of the Apollo Air                          | 16K   | 5y  | 0.7x                 |
+| Gear I'm Stoked About and will be testing in 2024                                           | 8.2K  | 2y  | 0.3x                 |
 
 **Why it works:** the multi-product comparison beats the single-product review consistently
 and by a wide margin. Four bags tested against each other pulls 178K. One pad reviewed alone
@@ -83,14 +83,14 @@ Search-led budget tests also age extremely well, which matters for a one-person 
 Hayley, Australian, multi-day trails plus tips and gear. The closest direct comparator for
 an Australian hiking channel.
 
-| Video | Views | Age | Views per subscriber |
-| --- | --- | --- | --- |
-| What's in my Backpack? Multi-Day Hiking Gear Loadout | 32K | 2w | 1.2x |
-| The Camera Gear behind my Hiking Films, Adventure Filmmaking | 15K | 5d | 0.5x |
-| Everything I do on trail so tomorrow hurts less, HIKING RECOVERY | 7.4K | 4mo | 0.3x |
-| Can one hike change your life? I went back to find out | 7.0K | 4mo | 0.3x |
-| What does a LUXURY HIKE look like? Uluru-Kata Tjuta Signature Walk | 6.5K | 2mo | 0.2x |
-| Evening Stretch Routine for Hikers, Follow Along at Camp | 2.2K | 4mo | 0.1x |
+| Video                                                              | Views | Age | Views per subscriber |
+| ------------------------------------------------------------------ | ----- | --- | -------------------- |
+| What's in my Backpack? Multi-Day Hiking Gear Loadout               | 32K   | 2w  | 1.2x                 |
+| The Camera Gear behind my Hiking Films, Adventure Filmmaking       | 15K   | 5d  | 0.5x                 |
+| Everything I do on trail so tomorrow hurts less, HIKING RECOVERY   | 7.4K  | 4mo | 0.3x                 |
+| Can one hike change your life? I went back to find out             | 7.0K  | 4mo | 0.3x                 |
+| What does a LUXURY HIKE look like? Uluru-Kata Tjuta Signature Walk | 6.5K  | 2mo | 0.2x                 |
+| Evening Stretch Routine for Hikers, Follow Along at Camp           | 2.2K  | 4mo | 0.1x                 |
 
 **Why it works:** the gear loadout video hit 32K in two weeks against a 186-video back
 catalogue where trail films sit at 6K to 7K. Gear is outperforming destination on an
@@ -105,20 +105,20 @@ Bush Gums should not model its first 90 days on Jack Brookes' 207K outlier.
 
 The most instructive channel in the study, precisely because it is tiny.
 
-| Content | Views | Format | Views per subscriber |
-| --- | --- | --- | --- |
-| $64 vs $570 Rain Pants for Hiking | 42K | Short | **148x** |
-| GEAR REVIEW: ULTRALIGHT HIKING BACKPACK, Gossamer Gear Mariposa 60 | 20K | Short | **71x** |
-| Songs I love to hear on Bluetooth speakers while hiking | 4.1K | Short | 14x |
-| Is this ultralight cooking kit all you really need? | 1.9K | Short | 6.7x |
-| Type 3 fun? | 1.1K | Short | 3.9x |
-| Day Hike Packing | 945 | Short | 3.3x |
-| BRUTALLY HONEST Gear Review After 4 Months on the Hexatrek | 5.2K | Long-form | 18x |
-| Gear Review: Neve Gear Waratah Quilt | 5.0K | Long-form | 18x |
-| EVERYTHING I'M TAKING FOR A 3,000km HIKE | 1.7K | Long-form | 6.0x |
-| HEXATREK, EVERYTHING YOU NEED TO KNOW | 1.6K | Long-form | 5.7x |
-| Overnight Hike to Lake Tali Karng + Realistic Packing | 732 | Long-form | 2.6x |
-| Is this the BEST hike in Victoria? | 707 | Long-form | 2.5x |
+| Content                                                            | Views | Format    | Views per subscriber |
+| ------------------------------------------------------------------ | ----- | --------- | -------------------- |
+| $64 vs $570 Rain Pants for Hiking                                  | 42K   | Short     | **148x**             |
+| GEAR REVIEW: ULTRALIGHT HIKING BACKPACK, Gossamer Gear Mariposa 60 | 20K   | Short     | **71x**              |
+| Songs I love to hear on Bluetooth speakers while hiking            | 4.1K  | Short     | 14x                  |
+| Is this ultralight cooking kit all you really need?                | 1.9K  | Short     | 6.7x                 |
+| Type 3 fun?                                                        | 1.1K  | Short     | 3.9x                 |
+| Day Hike Packing                                                   | 945   | Short     | 3.3x                 |
+| BRUTALLY HONEST Gear Review After 4 Months on the Hexatrek         | 5.2K  | Long-form | 18x                  |
+| Gear Review: Neve Gear Waratah Quilt                               | 5.0K  | Long-form | 18x                  |
+| EVERYTHING I'M TAKING FOR A 3,000km HIKE                           | 1.7K  | Long-form | 6.0x                 |
+| HEXATREK, EVERYTHING YOU NEED TO KNOW                              | 1.6K  | Long-form | 5.7x                 |
+| Overnight Hike to Lake Tali Karng + Realistic Packing              | 732   | Long-form | 2.6x                 |
+| Is this the BEST hike in Victoria?                                 | 707   | Long-form | 2.5x                 |
 
 **Why it works:** a 283-subscriber Australian channel got 42,000 views on a Short whose
 entire concept is a price comparison stated numerically in the title. `$64 vs $570` does all
@@ -138,15 +138,15 @@ Kathmandu basket is exactly this format, and the price data already exists in
 The dominant voice on the queries Bush Gums cares about, including in Australian search
 results.
 
-| Video | Views | Age |
-| --- | --- | --- |
-| The KEY to Great Sleep Outdoors | 4.7M | 4y |
-| The SCAM Outdoor Brands Don't Want You To Know | 3.9M | 2y |
-| The Biggest PROBLEM with Modern Rain Gear | 3.8M | 3y |
-| Backpacking Stoves I Wish I Tried Sooner | 3.5M | 3y |
-| Gear to AVOID! And What You Should Get Instead | 2.8M | 2y |
-| Next-Level Gear No One is Talking About (All Under $30) | 2.7M | 3y |
-| The Truth About Expensive Winter Gear | 2.0M | 3y |
+| Video                                                         | Views    | Age    |
+| ------------------------------------------------------------- | -------- | ------ |
+| The KEY to Great Sleep Outdoors                               | 4.7M     | 4y     |
+| The SCAM Outdoor Brands Don't Want You To Know                | 3.9M     | 2y     |
+| The Biggest PROBLEM with Modern Rain Gear                     | 3.8M     | 3y     |
+| Backpacking Stoves I Wish I Tried Sooner                      | 3.5M     | 3y     |
+| Gear to AVOID! And What You Should Get Instead                | 2.8M     | 2y     |
+| Next-Level Gear No One is Talking About (All Under $30)       | 2.7M     | 3y     |
+| The Truth About Expensive Winter Gear                         | 2.0M     | 3y     |
 | **Naturehike Cloud Up 2 Person Backpacking Tent Review 2021** | **284K** | **5y** |
 
 **Why it matters:** MyLifeOutdoors is the top result for `naturehike cloud up review` with a
@@ -159,18 +159,18 @@ and secret-revealing framings, consistently, at multi-million scale.
 
 ### Other channels observed in search results
 
-| Channel | Video | Views | Note |
-| --- | --- | --- | --- |
-| Outdoor Boys | $25 Walmart Survival Challenge | 8.1M | Budget-constraint challenge format, US retailer |
-| Outdoor Boys | CHEAPEST Walmart Gear Camping Challenge | 6.8M | Same format |
-| DropForgedSurvival | $100 Walmart Survival Kit, 7 Day Challenge | 6.1M | Dollar figure in title |
-| Joe Robinet | 24h Walmart Camping Challenge, $500 Spent | 5.5M | Dollar figure in title |
-| Jon Conti | Beginner's Guide to Solo Backpacking | 1.7M | Beginner category winner |
-| GearTest Outdoors | Budget Backpacking Gear for Beginners | 1.6M | Exact Bush Gums topic, US |
-| Dan Becker | How I fit all this backpacking gear in a 40L pack | 1.7M | Packing format |
-| JupiterHikes | My Favorite BUDGET Hiking Gear (Full Gear List) | 436K | Top result for AU budget query |
-| TheOutdoorGearReview | EVERY Tent Company Should Copy This, NatureHike StarRiver 2 UL | 270K | Naturehike coverage, US |
-| Scotty's Gone Walkabout | Australian camping channel, ~78K to 189K subscribers per third-party sources | n/a | Bushcraft and swag camping, not budget gear reviews |
+| Channel                 | Video                                                                        | Views | Note                                                |
+| ----------------------- | ---------------------------------------------------------------------------- | ----- | --------------------------------------------------- |
+| Outdoor Boys            | $25 Walmart Survival Challenge                                               | 8.1M  | Budget-constraint challenge format, US retailer     |
+| Outdoor Boys            | CHEAPEST Walmart Gear Camping Challenge                                      | 6.8M  | Same format                                         |
+| DropForgedSurvival      | $100 Walmart Survival Kit, 7 Day Challenge                                   | 6.1M  | Dollar figure in title                              |
+| Joe Robinet             | 24h Walmart Camping Challenge, $500 Spent                                    | 5.5M  | Dollar figure in title                              |
+| Jon Conti               | Beginner's Guide to Solo Backpacking                                         | 1.7M  | Beginner category winner                            |
+| GearTest Outdoors       | Budget Backpacking Gear for Beginners                                        | 1.6M  | Exact Bush Gums topic, US                           |
+| Dan Becker              | How I fit all this backpacking gear in a 40L pack                            | 1.7M  | Packing format                                      |
+| JupiterHikes            | My Favorite BUDGET Hiking Gear (Full Gear List)                              | 436K  | Top result for AU budget query                      |
+| TheOutdoorGearReview    | EVERY Tent Company Should Copy This, NatureHike StarRiver 2 UL               | 270K  | Naturehike coverage, US                             |
+| Scotty's Gone Walkabout | Australian camping channel, ~78K to 189K subscribers per third-party sources | n/a   | Bushcraft and swag camping, not budget gear reviews |
 
 ## Recurring title patterns that work
 
@@ -207,7 +207,7 @@ framings, routine and technique videos, and "gear I'm excited about" previews.
   Bush Gums' affiliate disclosure page is consistent with category norms.
 - **Anaconda buys YouTube pre-roll on Australian gear queries.** Sponsored Anaconda results
   appeared above organic results on both `aliexpress hiking gear` and `hiking gear australia
-  budget`, and Naturehike itself advertised on `naturehike cloud up review`. The queries are
+budget`, and Naturehike itself advertised on `naturehike cloud up review`. The queries are
   commercially proven even where organic content is absent.
 
 ## Implications for Bush Gums, in priority order
@@ -238,23 +238,23 @@ Added 2026-09-18. Figures read from channel pages sorted by the channel's own "P
 The most important channel in either pass, and the one that most directly challenges the
 first-pass conclusion.
 
-| Video | Views | Age | Views per subscriber |
-| --- | --- | --- | --- |
-| Hiking for over 30 Years has taught me this | 841K | 1y | **19.7x** |
-| The only 9 things worth carrying after 34 years | 226K | 4mo | 5.3x |
-| THE Ultimate Guide to Hiking Footwear | 177K | 2y | 4.2x |
-| I have worn a LOT OF FLEECE! These are my favourites | 168K | 2y | 3.9x |
-| STOP Wasting Money on These 5 Hiking Gear Traps | 138K | 1y | 3.2x |
-| 10 Common Hiking Mistakes Most Beginners Make | 135K | 2y | 3.2x |
-| I asked 15,000 hikers for their best tips | 127K | 1y | 3.0x |
-| 5 Embarrassing Hiking Problems Nobody Talks About | 100K | 1y | 2.3x |
-| **What Tasmania taught me about Cold (Wet Cold, Not Dry Cold)** | **95K** | **2mo** | **2.2x** |
-| The TRUTH About Arc Teryx Beta AR Durability | 48K | 2y | 1.1x |
-| Is Zenbivy the BEST Sleep system for 2026? | 37K | 1y | 0.9x |
-| The Tent You Think You Need Is Wrong | 36K | 2mo | 0.8x |
+| Video                                                           | Views   | Age     | Views per subscriber |
+| --------------------------------------------------------------- | ------- | ------- | -------------------- |
+| Hiking for over 30 Years has taught me this                     | 841K    | 1y      | **19.7x**            |
+| The only 9 things worth carrying after 34 years                 | 226K    | 4mo     | 5.3x                 |
+| THE Ultimate Guide to Hiking Footwear                           | 177K    | 2y      | 4.2x                 |
+| I have worn a LOT OF FLEECE! These are my favourites            | 168K    | 2y      | 3.9x                 |
+| STOP Wasting Money on These 5 Hiking Gear Traps                 | 138K    | 1y      | 3.2x                 |
+| 10 Common Hiking Mistakes Most Beginners Make                   | 135K    | 2y      | 3.2x                 |
+| I asked 15,000 hikers for their best tips                       | 127K    | 1y      | 3.0x                 |
+| 5 Embarrassing Hiking Problems Nobody Talks About               | 100K    | 1y      | 2.3x                 |
+| **What Tasmania taught me about Cold (Wet Cold, Not Dry Cold)** | **95K** | **2mo** | **2.2x**             |
+| The TRUTH About Arc Teryx Beta AR Durability                    | 48K     | 2y      | 1.1x                 |
+| Is Zenbivy the BEST Sleep system for 2026?                      | 37K     | 1y      | 0.9x                 |
+| The Tent You Think You Need Is Wrong                            | 36K     | 2mo     | 0.8x                 |
 
 **Why it works:** Mowser is an Australian hiking channel with an 841K video, built almost
-entirely on *experience-authority framing* rather than product reviews. The top ten are
+entirely on _experience-authority framing_ rather than product reviews. The top ten are
 lessons, mistakes, traps and "what X taught me". The only two named-product reviews in his
 top thirty (Arc Teryx at 48K, Zenbivy at 37K) sit near the bottom of it.
 
@@ -268,7 +268,7 @@ and "34 years", stated in the titles. Bush Gums has incomplete field testing and
 policy against claiming experience it has not had. Copying this format would be the single
 most damaging thing the brand could do.
 
-The honest adaptation is to swap the authority source from *time* to *method and money*:
+The honest adaptation is to swap the authority source from _time_ to _method and money_:
 "I bought eleven pieces of cheap gear and weighed every one" is a verifiable claim Bush Gums
 can make today. `STOP Wasting Money on These 5 Hiking Gear Traps` at 138K shows the money
 framing works on its own, without the decades.
@@ -277,18 +277,18 @@ framing works on its own, without the decades.
 
 The most commercially sophisticated channel observed, and a template for cadence.
 
-| Video | Views | Age |
-| --- | --- | --- |
-| I Went Backpacking with the Best Gear I have Ever Seen! | 118K | 2w |
-| THE BEST 2-PERSON BACKPACKING TENTS (2026 Awards) | 93K | 3mo |
-| The Best 1-Person Backpacking Tents of 2026 | 88K | 4mo |
-| I Built the Most Comfortable Backpacking Kit! | 78K | 4mo |
-| I Test 9 Comfy Sleeping Pads, One Destroyed the Competition | 72K | 4mo |
-| I Went Backpacking with the Founder of Durston Gear | 65K | 2mo |
-| **Top Picks for Affordable Backpacking Gear** | **60K** | **13d** |
-| THE BEST PACKS for BACKPACKING (2026 Awards) | 57K | 4mo |
-| Best Sleeping Pads for Backpacking in 2026 (Cheap to Expensive) | 31K | 3w |
-| New Budget Gear That is Actually Good? | 24K | 2mo |
+| Video                                                           | Views   | Age     |
+| --------------------------------------------------------------- | ------- | ------- |
+| I Went Backpacking with the Best Gear I have Ever Seen!         | 118K    | 2w      |
+| THE BEST 2-PERSON BACKPACKING TENTS (2026 Awards)               | 93K     | 3mo     |
+| The Best 1-Person Backpacking Tents of 2026                     | 88K     | 4mo     |
+| I Built the Most Comfortable Backpacking Kit!                   | 78K     | 4mo     |
+| I Test 9 Comfy Sleeping Pads, One Destroyed the Competition     | 72K     | 4mo     |
+| I Went Backpacking with the Founder of Durston Gear             | 65K     | 2mo     |
+| **Top Picks for Affordable Backpacking Gear**                   | **60K** | **13d** |
+| THE BEST PACKS for BACKPACKING (2026 Awards)                    | 57K     | 4mo     |
+| Best Sleeping Pads for Backpacking in 2026 (Cheap to Expensive) | 31K     | 3w      |
+| New Budget Gear That is Actually Good?                          | 24K     | 2mo     |
 
 **Why it works:** near-weekly publishing with a tight floor. Nothing in his recent thirty
 falls below about 16K on 137K subscribers. The "Awards" and "Best X of 2026" roundups are
@@ -302,20 +302,20 @@ not a launch move, since it needs products actually tested.
 
 ## Backcountry Exposure (US, 81.7K subscribers, 853 videos)
 
-| Video | Views | Age |
-| --- | --- | --- |
-| What Is A Wag Bag? How To Poop In The Woods Responsibly | 2.0M | 8y |
-| How to LEVEL UP Your Camping in 2025 | 883K | 1y |
-| I Wish I Knew This Sooner About Hammock Camping | 454K | 4y |
-| 5 Mistakes Every New Tent Camper Makes | 419K | 7y |
-| The BEST and WORST Tents Of 2020 | 383K | 5y |
-| Expert Backpacking Habits EVERY Beginner Should Master | 243K | 1y |
-| **Backpacking Gear You Should Buy First And Why** | **232K** | **7y** |
+| Video                                                                    | Views    | Age    |
+| ------------------------------------------------------------------------ | -------- | ------ |
+| What Is A Wag Bag? How To Poop In The Woods Responsibly                  | 2.0M     | 8y     |
+| How to LEVEL UP Your Camping in 2025                                     | 883K     | 1y     |
+| I Wish I Knew This Sooner About Hammock Camping                          | 454K     | 4y     |
+| 5 Mistakes Every New Tent Camper Makes                                   | 419K     | 7y     |
+| The BEST and WORST Tents Of 2020                                         | 383K     | 5y     |
+| Expert Backpacking Habits EVERY Beginner Should Master                   | 243K     | 1y     |
+| **Backpacking Gear You Should Buy First And Why**                        | **232K** | **7y** |
 | **What Gear Do I Need for Backpacking? The Ultimate No-Fluff Checklist** | **213K** | **1y** |
-| **The Best Backpacking Sleeping Pad? Cheap vs Expensive** | **207K** | **8y** |
-| **Cheap vs Expensive Backpacking Tents! The Truth!** | **109K** | **3y** |
-| *This $140 Sleeping Pad Was Almost Perfect (latest)* | *6.4K* | *3d* |
-| *Pinyon Gear Tote Overview (latest)* | *2.0K* | *8d* |
+| **The Best Backpacking Sleeping Pad? Cheap vs Expensive**                | **207K** | **8y** |
+| **Cheap vs Expensive Backpacking Tents! The Truth!**                     | **109K** | **3y** |
+| _This $140 Sleeping Pad Was Almost Perfect (latest)_                     | _6.4K_   | _3d_   |
+| _Pinyon Gear Tote Overview (latest)_                                     | _2.0K_   | _8d_   |
 
 **Why it matters:** this is the clearest single-channel demonstration of the format gap in
 the whole research. His `Cheap vs Expensive` videos sit at 207K and 109K and are three to
@@ -332,17 +332,17 @@ that has clearly tried both formats at scale.
 Ecologist, Alone Australia season one participant. The closest match to the Bush Gums
 audience and conditions.
 
-| Video | Views | Age | Views per subscriber |
-| --- | --- | --- | --- |
-| 30 YEARS hiking experience in 30 minutes, Overnight Backpacking Gear list 2024 | 14K | 2y | 1.3x |
-| I Tested Water Filters Until They Failed (BeFree vs Sawyer) | 12K | 3mo | 1.1x |
-| **3F UL LanShan 2 Ultralight Tent review, a great ultralight cheap tent** | **7.7K** | **1y** | **0.71x** |
-| My Best Tent for Hiking: Mont Moondance | 6.5K | 1y | 0.60x |
-| Hiking Mount Solitary, Blue Mountains | 5.1K | 1y | 0.47x |
-| Big Agnes Tiger Wall UL2 tent review | 4.7K | 1y | 0.44x |
-| I Tested Every Type of Hiking Pillow | 2.7K | 2mo | 0.25x |
-| Which Sleeping Pad is Right for YOU? NEMO vs Sea to Summit vs Therm-a-Rest | 1.9K | 1mo | 0.18x |
-| Various destination and overnight hikes | 1.7K to 3.3K | various | 0.16x to 0.31x |
+| Video                                                                          | Views        | Age     | Views per subscriber |
+| ------------------------------------------------------------------------------ | ------------ | ------- | -------------------- |
+| 30 YEARS hiking experience in 30 minutes, Overnight Backpacking Gear list 2024 | 14K          | 2y      | 1.3x                 |
+| I Tested Water Filters Until They Failed (BeFree vs Sawyer)                    | 12K          | 3mo     | 1.1x                 |
+| **3F UL LanShan 2 Ultralight Tent review, a great ultralight cheap tent**      | **7.7K**     | **1y**  | **0.71x**            |
+| My Best Tent for Hiking: Mont Moondance                                        | 6.5K         | 1y      | 0.60x                |
+| Hiking Mount Solitary, Blue Mountains                                          | 5.1K         | 1y      | 0.47x                |
+| Big Agnes Tiger Wall UL2 tent review                                           | 4.7K         | 1y      | 0.44x                |
+| I Tested Every Type of Hiking Pillow                                           | 2.7K         | 2mo     | 0.25x                |
+| Which Sleeping Pad is Right for YOU? NEMO vs Sea to Summit vs Therm-a-Rest     | 1.9K         | 1mo     | 0.18x                |
+| Various destination and overnight hikes                                        | 1.7K to 3.3K | various | 0.16x to 0.31x       |
 
 **Three findings that directly affect the Bush Gums plan:**
 
@@ -363,17 +363,17 @@ video. Testing to failure is a format Bush Gums has not considered and probably 
 
 ## Chris and Danya (Australian and Canadian, 9.96K subscribers, 116 videos)
 
-| Video | Views | Age | Views per subscriber |
-| --- | --- | --- | --- |
-| HIKING, The ancient KUMANO KODO Trail, Japan | 113K | 6y | 11.3x |
-| TRAIL LOGISTICS, How to Plan and Book the Kumano Kodo Trail | 80K | 6y | 8.0x |
-| Hiking the Routeburn Track, New Zealand Great Walks | 67K | 4y | 6.7x |
-| Hiking the Milford Track | 57K | 4y | 5.7x |
-| POST HIKE GEAR LIST, LARAPINTA TRAIL END TO END | 19K | 7y | 1.9x |
+| Video                                                       | Views | Age | Views per subscriber |
+| ----------------------------------------------------------- | ----- | --- | -------------------- |
+| HIKING, The ancient KUMANO KODO Trail, Japan                | 113K  | 6y  | 11.3x                |
+| TRAIL LOGISTICS, How to Plan and Book the Kumano Kodo Trail | 80K   | 6y  | 8.0x                 |
+| Hiking the Routeburn Track, New Zealand Great Walks         | 67K   | 4y  | 6.7x                 |
+| Hiking the Milford Track                                    | 57K   | 4y  | 5.7x                 |
+| POST HIKE GEAR LIST, LARAPINTA TRAIL END TO END             | 19K   | 7y  | 1.9x                 |
 
 **Why it matters as a counter-example.** This is a destination channel with a 113K video on
 under 10K subscribers, which appears to contradict the "gear beats destination" finding. It
-does not. Their breakouts are *named international trails with logistics problems attached*,
+does not. Their breakouts are _named international trails with logistics problems attached_,
 which is a travel-planning audience, not a gear-buying one. Their single gear video sits at
 19K, roughly one sixth of their best.
 

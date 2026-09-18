@@ -44,18 +44,18 @@ on format. Bush Gums' own data model is already a two-kit comparison.
 Ranked by the model in `keyword-clusters.md` (demand 25 percent, affiliate intent 20,
 catalogue relevance 20, differentiation 15, browse 10, competition opportunity 10).
 
-| # | Keyword | AU vol/mo | Competition | Bid range AUD | Score | Why |
-| --- | --- | --- | --- | --- | --- | --- |
-| 1 | `naturehike` | 2,900 | HIGH | 0.35 to 1.81 | 87.0 | Largest relevant signal in the study, no AU voice |
-| 2 | `naturehike cloud up 1` | 170 | HIGH | 0.31 to 0.97 | 80.6 | Maps to the Value kit shelter |
-| 3 | `naturehike 2 person tent` | 140 | HIGH | 0.17 to 1.06 | 78.8 | Matches the Cloud Up Pro 2P |
-| 4 | `aliexpress naturehike` | 30 | HIGH | 0.37 to 1.89 | 77.8 | The exact Bush Gums buying path, no content exists |
-| 5 | `cloud up 2` | 90 | HIGH | 0.42 to 1.17 | 77.4 | Model shorthand, high purchase proximity |
-| 6 | `naturehike tent` | 1,300 | HIGH | 0.25 to 1.04 | 77.0 | Category head term for a stocked brand |
-| 7 | `naturehike cloud up 2` | 880 | HIGH | 0.35 to 1.22 | 76.3 | Highest model-level demand found |
-| 8 | `naturehike australia` | 390 | HIGH | 0.34 to 1.56 | 74.0 | Buyers actively seeking local supply |
-| 9 | `naturehike sleeping mat` | 210 | HIGH | 0.27 to 0.81 | 73.0 | Direct TuYe R3.5 match |
-| 10 | `hiking sleeping mat` | 480 | HIGH | 0.25 to 1.43 | 71.1 | Best non-brand volume-to-fit ratio |
+| #   | Keyword                    | AU vol/mo | Competition | Bid range AUD | Score | Why                                                |
+| --- | -------------------------- | --------- | ----------- | ------------- | ----- | -------------------------------------------------- |
+| 1   | `naturehike`               | 2,900     | HIGH        | 0.35 to 1.81  | 87.0  | Largest relevant signal in the study, no AU voice  |
+| 2   | `naturehike cloud up 1`    | 170       | HIGH        | 0.31 to 0.97  | 80.6  | Maps to the Value kit shelter                      |
+| 3   | `naturehike 2 person tent` | 140       | HIGH        | 0.17 to 1.06  | 78.8  | Matches the Cloud Up Pro 2P                        |
+| 4   | `aliexpress naturehike`    | 30        | HIGH        | 0.37 to 1.89  | 77.8  | The exact Bush Gums buying path, no content exists |
+| 5   | `cloud up 2`               | 90        | HIGH        | 0.42 to 1.17  | 77.4  | Model shorthand, high purchase proximity           |
+| 6   | `naturehike tent`          | 1,300     | HIGH        | 0.25 to 1.04  | 77.0  | Category head term for a stocked brand             |
+| 7   | `naturehike cloud up 2`    | 880       | HIGH        | 0.35 to 1.22  | 76.3  | Highest model-level demand found                   |
+| 8   | `naturehike australia`     | 390       | HIGH        | 0.34 to 1.56  | 74.0  | Buyers actively seeking local supply               |
+| 9   | `naturehike sleeping mat`  | 210       | HIGH        | 0.27 to 0.81  | 73.0  | Direct TuYe R3.5 match                             |
+| 10  | `hiking sleeping mat`      | 480       | HIGH        | 0.25 to 1.43  | 71.1  | Best non-brand volume-to-fit ratio                 |
 
 Nine of the top ten are Naturehike terms. That is not a modelling artefact. It is the
 finding.
@@ -67,13 +67,13 @@ index 30, the most on-thesis query in the study), `kathmandu vs macpac` (170/mo 
 
 ## Top 5 product opportunities
 
-| Product | Recorded price | Supporting demand | Classification |
-| --- | --- | --- | --- |
-| **Naturehike Cloud Up Pro 1P** | 205 | `naturehike cloud up` 140, `cloud up 2` 90, `naturehike cloud up 1` 170, series total 1,400+ | **High commercial intent** |
-| **Naturehike TuYe R3.5 Mat** | 86 | `hiking sleeping mat` 480, `naturehike sleeping mat` 210, `insulated sleeping mat` 320 | **High commercial intent** |
-| **Naturehike Rock 60+5L Pack** | 69 | `hiking backpack australia` 210, `60l hiking backpack` 140, `naturehike backpack` 110 | **High commercial intent** |
-| **400 g Down Envelope Sleeping Bag** | 86 | `down sleeping bag australia` 210, `goose down sleeping bag` 90 (seasonal to 170) | **Mixed** (warmth uncertainty caps how hard it can be sold) |
-| **BISINNA 2-Person Tent** | 100 | `bisinna tent` 20, `cheap hiking tent` 40 | **Mixed** (total content vacuum, tiny volume, high conversion when found) |
+| Product                              | Recorded price | Supporting demand                                                                            | Classification                                                            |
+| ------------------------------------ | -------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| **Naturehike Cloud Up Pro 1P**       | 205            | `naturehike cloud up` 140, `cloud up 2` 90, `naturehike cloud up 1` 170, series total 1,400+ | **High commercial intent**                                                |
+| **Naturehike TuYe R3.5 Mat**         | 86             | `hiking sleeping mat` 480, `naturehike sleeping mat` 210, `insulated sleeping mat` 320       | **High commercial intent**                                                |
+| **Naturehike Rock 60+5L Pack**       | 69             | `hiking backpack australia` 210, `60l hiking backpack` 140, `naturehike backpack` 110        | **High commercial intent**                                                |
+| **400 g Down Envelope Sleeping Bag** | 86             | `down sleeping bag australia` 210, `goose down sleeping bag` 90 (seasonal to 170)            | **Mixed** (warmth uncertainty caps how hard it can be sold)               |
+| **BISINNA 2-Person Tent**            | 100            | `bisinna tent` 20, `cheap hiking tent` 40                                                    | **Mixed** (total content vacuum, tiny volume, high conversion when found) |
 
 **Products to de-prioritise:** the NIOFEEL pillow (390/mo on `hiking pillow` but a 19 AUD
 item, so affiliate return per click is small; treat as Shorts fuel), the Nyxia rain cover
@@ -102,13 +102,13 @@ their success and in several cases is zero.
 In publication order, chosen so that the first four require no field trip and the fifth is
 the payoff for the first one.
 
-| Order | Video | Field trip | Landing page | Why this one, now |
-| --- | --- | --- | --- | --- |
-| 1 | Can You Actually Do an Overnight Hike in Australia for $446? | No | `/starter-kits` | Flagship. Explicit dollar figure, the single most reliable breakout signal found. |
-| 2 | Naturehike in Australia: Is It Actually Any Good? | No | `/gear` | Claims the 2,900/mo term before anyone else does. |
-| 3 | Cheap vs Expensive Hiking Tent: $100 vs $205 vs $600 | No | `/starter-kits` | Price contrast applied to the highest-volume cluster. |
-| 4 | Anaconda vs Kathmandu vs AliExpress | No | `/starter-kits` | Uses `retailer-comparison.ts`, which already exists, against a query at competition index 2. |
-| 5 | Everything That Went Wrong on My First $446 Overnight | **Yes** | `/gear` | The trip video. Converts the site from research to experience and pays off video 1. |
+| Order | Video                                                        | Field trip | Landing page    | Why this one, now                                                                            |
+| ----- | ------------------------------------------------------------ | ---------- | --------------- | -------------------------------------------------------------------------------------------- |
+| 1     | Can You Actually Do an Overnight Hike in Australia for $446? | No         | `/starter-kits` | Flagship. Explicit dollar figure, the single most reliable breakout signal found.            |
+| 2     | Naturehike in Australia: Is It Actually Any Good?            | No         | `/gear`         | Claims the 2,900/mo term before anyone else does.                                            |
+| 3     | Cheap vs Expensive Hiking Tent: $100 vs $205 vs $600         | No         | `/starter-kits` | Price contrast applied to the highest-volume cluster.                                        |
+| 4     | Anaconda vs Kathmandu vs AliExpress                          | No         | `/starter-kits` | Uses `retailer-comparison.ts`, which already exists, against a query at competition index 2. |
+| 5     | Everything That Went Wrong on My First $446 Overnight        | **Yes**    | `/gear`         | The trip video. Converts the site from research to experience and pays off video 1.          |
 
 ## SEO and website integration
 
@@ -117,20 +117,20 @@ Existing pages: `/`, `/gear`, `/gear/[slug]`, `/starter-kits`, `/build-my-kit`, 
 `/guides/sleeping-bag-temperature-ratings`, `/guides/sleeping-mat-r-value`, plus
 `/about`, `/faq`, `/contact` and the legal pages.
 
-| Cluster | Target URL | Exists? | Primary keyword | Internal links | Affiliate CTA | Video embed |
-| --- | --- | --- | --- | --- | --- | --- |
-| D: Tents | `/gear/naturehike-cloud-up-tent` | Yes | `naturehike cloud up` (140) | From tent guide, both kit pages | Above the fold and after the verdict | Videos 4, 3 |
-| D: Tents | `/gear/bisinna-2-person-tent` | Yes | `bisinna tent` (20) | From Starter kit, tent guide | After the evidence section | Video 16 |
-| D: Tents (buying guide) | `/guides/2-person-hiking-tent-guide` | Yes | `best budget hiking tent australia` (20), `hiking tent australia` (140) | To both tent product pages | End of each decision section | Videos 3, 12 |
-| F: Mats | `/gear/naturehike-tuye-r3-5` | Yes | `naturehike sleeping mat` (210) | From R-value guide, Value kit | Above the fold | Video 7 |
-| F: Mats (guide) | `/guides/sleeping-mat-r-value` | Yes | `hiking sleeping mat` (480), `insulated sleeping mat` (320) | To both mat product pages | End of guide | Video 7 |
-| E: Bags | `/gear/400g-down-envelope-sleeping-bag` | Yes | `cheap down sleeping bag` (30) | From temperature guide | After the uncertainty statement, never before it | Video 8 |
-| E: Bags (guide) | `/guides/sleeping-bag-temperature-ratings` | Yes | `down sleeping bag australia` (210) | To both bag pages | End of guide | Video 8 |
-| G: Packs | `/gear/naturehike-rock-60-5` | Yes | `60l hiking backpack` (140), `naturehike backpack` (110) | From Value kit | Above the fold | Video 9 |
-| A: Beginner | `/guides/overnight-hike-packing-list` | Yes | `overnight hiking checklist` (70) | To both kits, Build My Kit | End of each category section | Video 13 |
-| B + C: Value and comparison | `/starter-kits` | Yes | `cheap hiking gear` (70), `hiking starter kit` (10) | To every product page | Per kit and per item | Videos 1, 3, 5, 10 |
-| D: Brand hub | **`/guides/naturehike-australia` (proposed)** | **No** | `naturehike` (2,900), `naturehike australia` (390), `is naturehike good` (10) | To all four Naturehike product pages | Per product | Videos 2, 4 |
-| A: Weight | `/starter-kits` (weights section) | Yes | `hiking pack weight` (40, index 1) | To both kits | Existing kit CTAs | Video 15 |
+| Cluster                     | Target URL                                    | Exists? | Primary keyword                                                               | Internal links                       | Affiliate CTA                                    | Video embed        |
+| --------------------------- | --------------------------------------------- | ------- | ----------------------------------------------------------------------------- | ------------------------------------ | ------------------------------------------------ | ------------------ |
+| D: Tents                    | `/gear/naturehike-cloud-up-tent`              | Yes     | `naturehike cloud up` (140)                                                   | From tent guide, both kit pages      | Above the fold and after the verdict             | Videos 4, 3        |
+| D: Tents                    | `/gear/bisinna-2-person-tent`                 | Yes     | `bisinna tent` (20)                                                           | From Starter kit, tent guide         | After the evidence section                       | Video 16           |
+| D: Tents (buying guide)     | `/guides/2-person-hiking-tent-guide`          | Yes     | `best budget hiking tent australia` (20), `hiking tent australia` (140)       | To both tent product pages           | End of each decision section                     | Videos 3, 12       |
+| F: Mats                     | `/gear/naturehike-tuye-r3-5`                  | Yes     | `naturehike sleeping mat` (210)                                               | From R-value guide, Value kit        | Above the fold                                   | Video 7            |
+| F: Mats (guide)             | `/guides/sleeping-mat-r-value`                | Yes     | `hiking sleeping mat` (480), `insulated sleeping mat` (320)                   | To both mat product pages            | End of guide                                     | Video 7            |
+| E: Bags                     | `/gear/400g-down-envelope-sleeping-bag`       | Yes     | `cheap down sleeping bag` (30)                                                | From temperature guide               | After the uncertainty statement, never before it | Video 8            |
+| E: Bags (guide)             | `/guides/sleeping-bag-temperature-ratings`    | Yes     | `down sleeping bag australia` (210)                                           | To both bag pages                    | End of guide                                     | Video 8            |
+| G: Packs                    | `/gear/naturehike-rock-60-5`                  | Yes     | `60l hiking backpack` (140), `naturehike backpack` (110)                      | From Value kit                       | Above the fold                                   | Video 9            |
+| A: Beginner                 | `/guides/overnight-hike-packing-list`         | Yes     | `overnight hiking checklist` (70)                                             | To both kits, Build My Kit           | End of each category section                     | Video 13           |
+| B + C: Value and comparison | `/starter-kits`                               | Yes     | `cheap hiking gear` (70), `hiking starter kit` (10)                           | To every product page                | Per kit and per item                             | Videos 1, 3, 5, 10 |
+| D: Brand hub                | **`/guides/naturehike-australia` (proposed)** | **No**  | `naturehike` (2,900), `naturehike australia` (390), `is naturehike good` (10) | To all four Naturehike product pages | Per product                                      | Videos 2, 4        |
+| A: Weight                   | `/starter-kits` (weights section)             | Yes     | `hiking pack weight` (40, index 1)                                            | To both kits                         | Existing kit CTAs                                | Video 15           |
 
 **Only one new page is recommended: a Naturehike Australia hub.** It is the one cluster where
 demand (2,900/mo brand plus roughly 3,000/mo across models) is not addressable by any
@@ -174,17 +174,17 @@ objectives below are written so that most of them can be answered from YouTube S
 
 Classified directionally. Actual commission rates are not available and are not invented here.
 
-| Topic | Signals | Classification |
-| --- | --- | --- |
-| Naturehike tents (Cloud Up series) | 1,400+ combined vol, bids to 1.81 AUD, 205 to 217 AUD product, live offer | **High commercial intent** |
-| Hiking sleeping mats | 480 + 320 + 210 vol, bids to 1.97 AUD, 86 AUD product, live offer | **High commercial intent** |
-| Hiking backpacks | 210 + 170 + 140 + 110 vol, bids to 2.73 AUD (study maximum), 69 AUD product | **High commercial intent** |
-| Down sleeping bags | 210 + 90 vol, bids to 1.93 AUD, 86 AUD product, strong seasonality | **Mixed**, capped by warmth uncertainty |
-| Retailer comparison | 1,230 cluster vol, competition index 2 to 43, points at multiple products | **Mixed**, high traffic value, indirect conversion |
-| Complete kit content | Zero search volume, highest browse potential, points at 4 products at once | **Mixed**, the highest total-cart opportunity |
-| Beginner guides and checklists | 1,010 cluster vol, informational, bids as low as 0.03 AUD | **Audience-building** |
-| Pillows, rain covers, cookware | 1,900 + 720 + 390 vol but 19 to 56 AUD products | **Audience-building**, poor revenue per click |
-| Kmart, Aldi, Sydney, Melbourne terms | 1,000 + 40 + 390 + 90 vol, no affiliate path at all | **Neither.** Do not pursue. |
+| Topic                                | Signals                                                                     | Classification                                     |
+| ------------------------------------ | --------------------------------------------------------------------------- | -------------------------------------------------- |
+| Naturehike tents (Cloud Up series)   | 1,400+ combined vol, bids to 1.81 AUD, 205 to 217 AUD product, live offer   | **High commercial intent**                         |
+| Hiking sleeping mats                 | 480 + 320 + 210 vol, bids to 1.97 AUD, 86 AUD product, live offer           | **High commercial intent**                         |
+| Hiking backpacks                     | 210 + 170 + 140 + 110 vol, bids to 2.73 AUD (study maximum), 69 AUD product | **High commercial intent**                         |
+| Down sleeping bags                   | 210 + 90 vol, bids to 1.93 AUD, 86 AUD product, strong seasonality          | **Mixed**, capped by warmth uncertainty            |
+| Retailer comparison                  | 1,230 cluster vol, competition index 2 to 43, points at multiple products   | **Mixed**, high traffic value, indirect conversion |
+| Complete kit content                 | Zero search volume, highest browse potential, points at 4 products at once  | **Mixed**, the highest total-cart opportunity      |
+| Beginner guides and checklists       | 1,010 cluster vol, informational, bids as low as 0.03 AUD                   | **Audience-building**                              |
+| Pillows, rain covers, cookware       | 1,900 + 720 + 390 vol but 19 to 56 AUD products                             | **Audience-building**, poor revenue per click      |
+| Kmart, Aldi, Sydney, Melbourne terms | 1,000 + 40 + 390 + 90 vol, no affiliate path at all                         | **Neither.** Do not pursue.                        |
 
 The pattern worth internalising: **volume and revenue are inversely correlated in this
 catalogue.** The highest-volume terms point at the cheapest products. The most valuable
@@ -303,7 +303,7 @@ adding analytics to the site.
 ## What not to waste time on
 
 - **Pages for zero-volume keywords.** `chinese hiking gear`, `cheap hiking setup`, `hiking
-  gear under 500`, `best value hiking gear`, `how to choose hiking gear`. All returned 0 AU
+gear under 500`, `best value hiking gear`, `how to choose hiking gear`. All returned 0 AU
   volume. Several are excellent video titles. None are page targets.
 - **City and state pages.** `hiking gear sydney` (390/mo) and `hiking gear melbourne` (90/mo)
   are people looking for a shop to walk into.
@@ -331,6 +331,6 @@ ignoring it to look balanced would be dishonest.
 But it means Bush Gums is building audience and search authority around a brand it does not
 control, cannot guarantee supply of, and has no commercial relationship with beyond an
 affiliate link. The mitigation is not to dilute the bet. It is to make sure the Bush Gums
-*method* is the thing people remember, so that the audience follows the judgment rather than
+_method_ is the thing people remember, so that the audience follows the judgment rather than
 the brand. That is what videos 6, 11 and 18 exist to do, and it is why the trust content
 should not be deferred just because the browse content performs faster.
