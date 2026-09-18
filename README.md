@@ -21,7 +21,8 @@ Our aim is practical: tell people what the gear promises, what owners experience
 - Astro 7 with static output and TypeScript
 - Local data files, CSS and a browser-side Build My Kit questionnaire
 - Cloudflare Workers Static Assets serving `./dist`
-- No checkout, inventory, database, accounts, analytics or email capture
+- Microsoft Clarity behavioural analytics (project `yk49dw3tso`)
+- No checkout, inventory, database, accounts or email capture
 
 Node.js 22 or later is recommended.
 

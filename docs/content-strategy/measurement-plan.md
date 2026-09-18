@@ -1,9 +1,27 @@
 # Measurement plan: what analytics Bush Gums should have
 
+**Update, 2026-09-18:** After launch, the owner chose Microsoft Clarity (project
+`yk49dw3tso`) for behavioural analytics, superseding the earlier advice against heatmaps
+and session recording and the assumption that the site has no analytics. **All recommendations
+and current-state claims below describe the earlier pre-launch assessment; they are historical,
+not guidance for the present implementation.** The original reasoning is retained below.
+
+Clarity review record: Microsoft [describes collection of page and interaction data](https://learn.microsoft.com/en-us/clarity/setup-and-installation/clarity-data),
+including clicks, scrolls and session playback data, stored in Clarity. Its [typical cookie
+setup](https://learn.microsoft.com/en-us/clarity/setup-and-installation/clarity-cookies) uses
+pseudonymous identifiers. As of 2026-09-18, Microsoft [states](https://learn.microsoft.com/en-us/clarity/setup-and-installation/data-retention)
+that playback data is retained for 30 days and click and heatmap data for 9 months (labeled
+or favorited sessions can also last 9 months). The site's purpose is to improve usability,
+navigation and content. The Clarity script loads asynchronously; failure to load it does not
+affect the site's main functions.
+
+The shared layout excludes `/build-my-kit` from Clarity to keep local questionnaire
+answers out of Clarity.
+
 Written 2026-09-18 as a follow-up to `content-strategy-summary.md`, which flagged that the
 90-day learning objectives could not all be answered with the site as it currently stands.
 
-## What the repository currently commits to
+## What the repository committed to at the pre-launch review
 
 This is not a blank slate. Three things in the repo constrain the decision, and two of them
 are public promises.
