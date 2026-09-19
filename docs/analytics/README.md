@@ -13,6 +13,13 @@ first only for `POST /api/analytics`; all other requests are served through the
 `bush_gums_events_v1` through binding `ANALYTICS`. There is no public reporting
 endpoint.
 
+All browser analytics are gated by the exact hostname allowlist in
+`src/config/analytics.ts`. Analytics intentionally runs only on
+`bushgums.com.au` and `www.bushgums.com.au`; local development, automated
+agents, Playwright tests, Cloudflare previews, branch deployments and staging
+hosts do not load Clarity or send first-party events. No GA4 or Google tag
+configuration currently exists in this repository.
+
 Cloudflare documented Analytics Engine retention as three months when this was
 implemented on 19 September 2026. Queries use the authenticated Analytics
 Engine SQL API. Recheck retention before changing the privacy page.

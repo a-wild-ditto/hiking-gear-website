@@ -1,3 +1,5 @@
+import { isAnalyticsAllowedLocation } from '../src/config/analytics.ts';
+
 type AnalyticsEngineDataset = {
   writeDataPoint(point: {
     indexes: string[];
@@ -164,12 +166,20 @@ function validEvent(body: Record<string, unknown>) {
   return true;
 }
 
-function originAllowed(request: Request) {
+export function originAllowed(request: Request) {
   const origin = request.headers.get('origin');
   const site = request.headers.get('sec-fetch-site');
-  const local = origin?.match(/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/);
+  let allowedOrigin = false;
+  try {
+    const parsedOrigin = new URL(origin ?? '');
+    allowedOrigin =
+      parsedOrigin.origin === origin &&
+      isAnalyticsAllowedLocation(parsedOrigin.hostname, parsedOrigin.protocol);
+  } catch {
+    // Missing and malformed origins are rejected.
+  }
   return (
-    (origin === 'https://bushgums.com.au' || Boolean(local)) &&
+    allowedOrigin &&
     (!site || ['same-origin', 'same-site', 'none'].includes(site))
   );
 }

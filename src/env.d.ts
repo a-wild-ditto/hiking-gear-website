@@ -5,6 +5,7 @@ interface Navigator {
 }
 
 interface Window {
+  clarity?: ((...args: unknown[]) => void) & { q?: unknown[][] };
   bushGumsAnalytics?: {
     track: typeof import('./scripts/analytics').track;
     beginBuilderAttempt: () => number;

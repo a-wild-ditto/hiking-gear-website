@@ -29,14 +29,6 @@ const {
 };
 const canonical = new URL(Astro.url.pathname, site.url).toString();
 const socialImageUrl = new URL(pageSocialImage.src, site.url).toString();
-const loadClarity = Astro.url.pathname !== '/build-my-kit/';
-const clarityBootstrap = `
-  (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-  })(window, document, "clarity", "script", "yk49dw3tso");
-`;
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
@@ -102,11 +94,24 @@ const schema = {
     <style is:inline set:html={themeCss}></style>
     <meta name="theme-color" content="#1c3328" />
     <title>{title}</title>
-    {
-      loadClarity && (
-        <script is:inline type="text/javascript" set:html={clarityBootstrap} />
-      )
-    }
+    <script>
+      import { shouldEnableAnalytics } from '../config/analytics';
+
+      if (
+        shouldEnableAnalytics() &&
+        window.location.pathname !== '/build-my-kit/'
+      ) {
+        window.clarity =
+          window.clarity ||
+          function (...args: unknown[]) {
+            (window.clarity!.q = window.clarity!.q || []).push(args);
+          };
+        const clarityScript = document.createElement('script');
+        clarityScript.async = true;
+        clarityScript.src = 'https://www.clarity.ms/tag/yk49dw3tso';
+        document.head.append(clarityScript);
+      }
+    </script>
   </head>
   <body
     ><a class="skip-link" href="#main">Skip to content</a><Header /><main

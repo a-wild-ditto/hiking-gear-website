@@ -11,6 +11,7 @@
     "deploy": "npm run deploy:check && npm run build && npx wrangler deploy",
     "preview": "astro preview",
     "check": "astro check",
+    "test:analytics": "node scripts/check-analytics.mjs",
     "seo:check": "node scripts/check-seo.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check ."

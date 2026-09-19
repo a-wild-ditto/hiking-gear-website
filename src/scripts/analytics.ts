@@ -1,3 +1,5 @@
+import { shouldEnableAnalytics } from '../config/analytics';
+
 export type AnalyticsEvent =
   | 'session_start'
   | 'page_view'
@@ -210,11 +212,13 @@ const applicableJourney = (): Partial<JourneyContext> => {
 const privacyOptOut = () =>
   navigator.doNotTrack === '1' || navigator.globalPrivacyControl === true;
 
+const analyticsEnabled = shouldEnableAnalytics();
+
 export const track = (
   event: AnalyticsEvent,
   context: AnalyticsContext = {},
 ) => {
-  if (privacyOptOut()) return;
+  if (!analyticsEnabled || privacyOptOut()) return;
   try {
     const acquisition = getAcquisition();
     const journey = applicableJourney();
@@ -257,6 +261,7 @@ export const track = (
 };
 
 export const beginBuilderAttempt = () => {
+  if (!analyticsEnabled) return 0;
   const active = Number(safeStorage.get(keys.startedAttempt) ?? '0');
   if (active > 0) return active;
   const previous = Number(safeStorage.get(keys.attemptCounter) ?? '0');
@@ -269,12 +274,15 @@ export const beginBuilderAttempt = () => {
 };
 
 export const completeBuilderAttempt = (attempt: number) => {
+  if (!analyticsEnabled) return;
   safeStorage.set(keys.latestAttempt, String(attempt));
   safeStorage.remove(keys.startedAttempt);
 };
 
-export const resetBuilderAttempt = () =>
+export const resetBuilderAttempt = () => {
+  if (!analyticsEnabled) return;
   safeStorage.remove(keys.startedAttempt);
+};
 
 window.bushGumsAnalytics = {
   track,
@@ -292,89 +300,96 @@ const autoContext = () => {
   };
 };
 
-document.addEventListener('click', (event) => {
-  const target =
-    event.target instanceof Element ? event.target.closest('a') : null;
-  if (!(target instanceof HTMLAnchorElement)) return;
-  const namedEvent = target.dataset.analyticsEvent as
-    AnalyticsEvent | undefined;
-  const productMatch = pathnameOnly(target.href).match(/^\/gear\/([^/]+)\/?$/);
-  const eventName = namedEvent ?? (productMatch ? 'product_click' : undefined);
-  if (!eventName) return;
+const registerClickTracking = () =>
+  document.addEventListener('click', (event) => {
+    const target =
+      event.target instanceof Element ? event.target.closest('a') : null;
+    if (!(target instanceof HTMLAnchorElement)) return;
+    const namedEvent = target.dataset.analyticsEvent as
+      AnalyticsEvent | undefined;
+    const productMatch = pathnameOnly(target.href).match(
+      /^\/gear\/([^/]+)\/?$/,
+    );
+    const eventName =
+      namedEvent ?? (productMatch ? 'product_click' : undefined);
+    if (!eventName) return;
 
-  const base = currentSurface();
-  const defaultPlacement =
-    base.sourceSurface === 'guide'
-      ? 'guide_inline'
-      : base.sourceSurface === 'home'
-        ? 'home_kit_table'
-        : base.sourceSurface === 'gear'
-          ? 'gear_index'
-          : 'other';
-  const context: AnalyticsContext = {
-    ...(productMatch ? { productSlug: productMatch[1] } : {}),
-    ...(target.dataset.productSlug
-      ? { productSlug: target.dataset.productSlug }
-      : {}),
-    ...(target.dataset.kitId
-      ? { kitId: target.dataset.kitId as 'starter' | 'value' }
-      : {}),
-    placement: target.dataset.placement ?? defaultPlacement,
-    ...(target.dataset.sourceSurface
-      ? { sourceSurface: target.dataset.sourceSurface as SourceSurface }
-      : eventName === 'product_click'
-        ? { sourceSurface: base.sourceSurface }
+    const base = currentSurface();
+    const defaultPlacement =
+      base.sourceSurface === 'guide'
+        ? 'guide_inline'
+        : base.sourceSurface === 'home'
+          ? 'home_kit_table'
+          : base.sourceSurface === 'gear'
+            ? 'gear_index'
+            : 'other';
+    const context: AnalyticsContext = {
+      ...(productMatch ? { productSlug: productMatch[1] } : {}),
+      ...(target.dataset.productSlug
+        ? { productSlug: target.dataset.productSlug }
         : {}),
-    ...(target.dataset.sourceId
-      ? { sourceId: target.dataset.sourceId }
-      : eventName === 'product_click' && base.sourceId
-        ? { sourceId: base.sourceId }
+      ...(target.dataset.kitId
+        ? { kitId: target.dataset.kitId as 'starter' | 'value' }
         : {}),
-    ...(target.dataset.merchant ? { merchant: target.dataset.merchant } : {}),
-    ...(target.dataset.affiliate
-      ? { affiliate: target.dataset.affiliate === 'true' }
-      : {}),
-    ...(target.dataset.affiliateTrackingKey
-      ? { affiliateTrackingKey: target.dataset.affiliateTrackingKey }
-      : {}),
-    ...(target.dataset.builderResult
-      ? {
-          builderResult: target.dataset.builderResult as
-            'starter' | 'value' | 'no_match',
-        }
-      : {}),
-  };
-  track(eventName, context);
-  if (eventName === 'product_click' || eventName === 'builder_result_click') {
-    const journey: JourneyContext = {
-      targetPath: pathnameOnly(target.href),
-      productSlug: context.productSlug,
-      kitId: context.kitId,
-      sourceSurface: context.sourceSurface ?? base.sourceSurface,
-      sourceId: context.sourceId ?? base.sourceId,
-      placement: context.placement,
-      createdAt: Date.now(),
+      placement: target.dataset.placement ?? defaultPlacement,
+      ...(target.dataset.sourceSurface
+        ? { sourceSurface: target.dataset.sourceSurface as SourceSurface }
+        : eventName === 'product_click'
+          ? { sourceSurface: base.sourceSurface }
+          : {}),
+      ...(target.dataset.sourceId
+        ? { sourceId: target.dataset.sourceId }
+        : eventName === 'product_click' && base.sourceId
+          ? { sourceId: base.sourceId }
+          : {}),
+      ...(target.dataset.merchant ? { merchant: target.dataset.merchant } : {}),
+      ...(target.dataset.affiliate
+        ? { affiliate: target.dataset.affiliate === 'true' }
+        : {}),
+      ...(target.dataset.affiliateTrackingKey
+        ? { affiliateTrackingKey: target.dataset.affiliateTrackingKey }
+        : {}),
+      ...(target.dataset.builderResult
+        ? {
+            builderResult: target.dataset.builderResult as
+              'starter' | 'value' | 'no_match',
+          }
+        : {}),
     };
-    safeStorage.set(keys.journey, JSON.stringify(journey));
-  }
-});
-
-if (!safeStorage.get(keys.sessionStarted)) {
-  safeStorage.set(keys.sessionStarted, '1');
-  track('session_start', autoContext());
-}
-track('page_view', autoContext());
-
-const comparison = document.querySelector<HTMLDetailsElement>(
-  '[data-retailer-comparison]',
-);
-let comparisonTracked = false;
-comparison?.addEventListener('toggle', () => {
-  if (!comparison.open || comparisonTracked) return;
-  comparisonTracked = true;
-  track('retailer_comparison_open', {
-    sourceSurface: 'home',
-    sourceId: 'traditional-retailer-comparison',
-    placement: 'kit_comparison',
+    track(eventName, context);
+    if (eventName === 'product_click' || eventName === 'builder_result_click') {
+      const journey: JourneyContext = {
+        targetPath: pathnameOnly(target.href),
+        productSlug: context.productSlug,
+        kitId: context.kitId,
+        sourceSurface: context.sourceSurface ?? base.sourceSurface,
+        sourceId: context.sourceId ?? base.sourceId,
+        placement: context.placement,
+        createdAt: Date.now(),
+      };
+      safeStorage.set(keys.journey, JSON.stringify(journey));
+    }
   });
-});
+
+if (analyticsEnabled) {
+  registerClickTracking();
+  if (!safeStorage.get(keys.sessionStarted)) {
+    safeStorage.set(keys.sessionStarted, '1');
+    track('session_start', autoContext());
+  }
+  track('page_view', autoContext());
+
+  const comparison = document.querySelector<HTMLDetailsElement>(
+    '[data-retailer-comparison]',
+  );
+  let comparisonTracked = false;
+  comparison?.addEventListener('toggle', () => {
+    if (!comparison.open || comparisonTracked) return;
+    comparisonTracked = true;
+    track('retailer_comparison_open', {
+      sourceSurface: 'home',
+      sourceId: 'traditional-retailer-comparison',
+      placement: 'kit_comparison',
+    });
+  });
+}
