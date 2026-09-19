@@ -2,9 +2,18 @@
   "name": "hiking-gear-website",
   "compatibility_date": "2026-09-14",
   "workers_dev": false,
+  "main": "./worker/index.ts",
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/analytics"],
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page",
   },
+  "analytics_engine_datasets": [
+    {
+      "binding": "ANALYTICS",
+      "dataset": "bush_gums_events_v1",
+    },
+  ],
 }

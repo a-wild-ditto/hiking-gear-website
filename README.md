@@ -22,6 +22,8 @@ Our aim is practical: tell people what the gear promises, what owners experience
 - Local data files, CSS and a browser-side Build My Kit questionnaire
 - Cloudflare Workers Static Assets serving `./dist`
 - Microsoft Clarity behavioural analytics (project `yk49dw3tso`)
+- A narrow `/api/analytics` Worker route writing validated, structured funnel
+  and Build My Kit demand events to Cloudflare Workers Analytics Engine
 - No checkout, inventory, database, accounts or email capture
 
 Node.js 22 or later is recommended.
@@ -39,13 +41,13 @@ Run `npm run check`, `npm run format:check` and `npm run build` before committin
 - `src/data/catalog.ts` contains only real products and variants used by the kits. It keeps product identity separate from merchant offers in `src/data/offers.ts`.
 - `src/data/kits.ts` derives the Starter and Value core-kit totals. Consumer-facing weight totals use estimated carried or packed weight; technical minimum and unknown weights remain distinct. Optional cooking and comfort accessories are outside core totals.
 - `src/data/retailer-comparison.ts` contains dated, sourced category-matched comparison rows and derives all totals and savings. Recheck official retailer prices and specifications before updating the public comparison. Club and sale prices need explicit labels, and the comparison must retain its caveats.
-- `/build-my-kit` runs in the browser, remains noindex and does not send answers to Bush Gums. It recommends only the two current mild-weather kit shortlists and stops on winter answers.
+- `/build-my-kit` runs in the browser and remains noindex. It recommends only the two current mild-weather kit shortlists and stops on winter answers. Its six predefined answer values and interaction events are sent to the first-party Analytics Engine dataset for demand research; no free text or contact details are collected.
 
 All public copy must avoid Unicode U+2014. Keep evidence provenance visible. Do not turn unverified specifications into facts or claim field testing that has not occurred.
 
 ## Deployment preparation
 
-The production Worker is `hiking-gear-website`. `wrangler.jsonc` serves static assets from `./dist` with `workers_dev` disabled, and Astro remains configured for static output. The public site origin is fixed at `https://bushgums.com.au`; `PUBLIC_SITE_URL` is optional, but if supplied it must match that origin, and `PUBLIC_CONTACT_EMAIL` must be a monitored address before a production build. `npm run deploy:check` validates the Worker and Astro configuration plus the contact email locally without network access or deployment. The custom domain is managed in the Cloudflare dashboard and is not declared in Wrangler. `npm run deploy` is a production action and requires owner approval. Cloudflare account, domain and release setup are outside this repository.
+The production Worker is `hiking-gear-website`. `wrangler.jsonc` serves static assets from `./dist`; only `/api/analytics` runs Worker logic first, while all other requests fall through to the `ASSETS` binding. Astro remains configured for static output. The analytics route writes to `bush_gums_events_v1` through the `ANALYTICS` binding. The public site origin is fixed at `https://bushgums.com.au`; `PUBLIC_SITE_URL` is optional, but if supplied it must match that origin, and `PUBLIC_CONTACT_EMAIL` must be a monitored address before a production build. `npm run deploy:check` validates the Worker and Astro configuration plus the contact email locally without network access or deployment. The custom domain is managed in the Cloudflare dashboard and is not declared in Wrangler. `npm run deploy` is a production action and requires owner approval. Cloudflare account, domain and release setup are outside this repository.
 
 ## Commercial scope
 

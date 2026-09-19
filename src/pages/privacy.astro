@@ -11,24 +11,46 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container narrow prose">
       <h1>What happens to your information.</h1>
       <p class="lead">
-        This MVP keeps the decision tool in your browser and does not ask you to
-        create an account or join a mailing list.
+        This MVP does not ask you to create an account or join a mailing list.
       </p>
-      <h2>Questionnaire answers</h2><p>
-        Build My Kit runs in your browser. Your answers are used to show a
-        recommendation locally and are not deliberately sent to Bush Gums as
-        questionnaire data. Clarity does not run on the Build My Kit page. There
-        is no account system, saved-kit feature or active email capture.
+      <h2>Website and demand analytics</h2><p>
+        Bush Gums records limited first-party website interactions to improve
+        recommendations and understand what hiking gear visitors are looking
+        for. These can include the page and traffic source or campaign, kit and
+        product interactions, merchant-link clicks, Build My Kit progress and
+        result, and the six choices made in Build My Kit: broad hiking location,
+        intended season, solo or two-person shelter, budget range, cost, comfort
+        or lightweight priority, and overnight-hiking experience.
+      </p><p>
+        We use this information to provide and improve kit recommendations,
+        understand demand and desired price points, identify unmet gear needs,
+        decide what products and categories to research, improve navigation and
+        content, and understand which traffic sources produce useful engagement.
+        The first-party dataset does not intentionally contain names, email
+        addresses, phone numbers, exact addresses or locations, account IDs,
+        payment information or arbitrary free-text answers.
+      </p><p>
+        Cloudflare may also add a coarse two-letter request country, such as AU
+        or NZ, to an event. Bush Gums does not store city, postcode, precise
+        location or IP address in this dataset.
+      </p><p>
+        A random identifier stored only for the current browser-tab session can
+        connect traffic source, questionnaire, product and merchant interactions
+        during that session. It is not stored in a cookie or used to create a
+        persistent visitor profile. Event data is processed in Cloudflare
+        Workers Analytics Engine, which Cloudflare states retains data for three
+        months. The first-party tracker honours browser Do Not Track and Global
+        Privacy Control signals.
       </p>
-      <h2>Website analytics</h2><p>
+      <h2>Microsoft Clarity</h2><p>
         Bush Gums uses Microsoft Clarity to understand how visitors interact
-        with the website. It may provide aggregated usage information, heatmaps
-        and session recordings of clicks, scrolling and navigation. We use these
-        to improve the site's usability, navigation and content. Clarity may set
-        cookies with a pseudonymous identifier. We do not intentionally use
-        Clarity to identify individual visitors. Microsoft processes this
-        information under its own <a
-          href="https://www.microsoft.com/privacy/privacystatement"
+        with most pages through heatmaps, session recordings and interaction
+        patterns such as clicks, scrolling and navigation. Clarity is separate
+        from the structured first-party analytics above and does not run on the
+        Build My Kit page. Bush Gums does not send questionnaire answer values
+        to Clarity custom tags or identity APIs. Clarity may set cookies with a
+        pseudonymous identifier. Microsoft processes this information under its
+        own <a href="https://www.microsoft.com/privacy/privacystatement"
           >privacy terms</a
         >. Microsoft says it retains recording playback for 30 days, or up to
         nine months for labeled or favorited sessions. It retains click and
@@ -37,8 +59,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <h2>External merchant links</h2><p>
         When you follow a merchant or affiliate link, the external merchant and
         any affiliate network may receive information about that visit and may
-        use their own cookies or tracking. Review the external merchant’s
-        privacy terms before purchasing.
+        use their own cookies or tracking. Where a network supports it, Bush
+        Gums may attach a non-personal placement identifier to understand which
+        recommendations generate merchant visits or affiliate-network purchases.
+        Bush Gums does not infer that a merchant click became a sale; purchase
+        and commission reporting comes from the affiliate network. Review the
+        external merchant's privacy terms before purchasing.
       </p>
       <h2>Contact emails</h2><p>
         If you email Bush Gums, your message and address are handled by the
@@ -46,11 +72,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         information that is not needed for your question.
       </p>
       <h2>What this site does not do</h2><p>
-        This MVP has no account system, active email capture or questionnaire
-        database. External merchant and affiliate tracking is separate from
-        Clarity.
+        This MVP has no account system, active email capture, checkout, customer
+        database or persistent first-party visitor identifier. External merchant
+        and affiliate tracking, Clarity and Bush Gums' structured analytics are
+        separate systems.
       </p>
-      <p class="small-print">Last reviewed: 18 September 2026.</p>
+      <p class="small-print">Last reviewed: 19 September 2026.</p>
     </div>
   </article>
 </BaseLayout>

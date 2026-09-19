@@ -9,6 +9,7 @@ import {
 } from '../data/kits';
 import { productById, formatWeight } from '../data/catalog';
 import { offersFor } from '../data/offers';
+import { buildTrackedMerchantUrl } from '../lib/affiliate-tracking';
 import { productPageBySlug, productPath } from '../data/product-pages';
 import {
   anacondaRows,
@@ -110,7 +111,16 @@ const itemFor = (id: string) => {
     ? productPageBySlug[product.reviewSlug]
     : undefined;
   const offer = page ? offersFor(page.slug)[0] : undefined;
-  return { product, page, offer };
+  const trackedOffer =
+    page && offer
+      ? buildTrackedMerchantUrl(offer, {
+          productSlug: page.slug,
+          sourceSurface: 'home',
+          sourceId: 'kit-table',
+          placement: 'home_buy_inline',
+        })
+      : undefined;
+  return { product, page, offer, trackedOffer };
 };
 // Short homepage table descriptions, keyed by catalog product id.
 const tableNotes: Record<string, string> = {
@@ -281,6 +291,9 @@ const tableSections = [
                     { 'button-secondary': !featured },
                   ]}
                   href={`#${kit.id}`}
+                  data-analytics-event="kit_cta_click"
+                  data-kit-id={kit.id}
+                  data-placement="home_plan_card"
                 >
                   See the {kit.name} kit
                 </a>
@@ -301,7 +314,7 @@ const tableSections = [
             formatKg(traditional.weightGrams, 1)
           }). Prices exclude delivery and can change.
         </p>
-        <details>
+        <details data-retailer-comparison>
           <summary>Traditional retailer comparison</summary>
           <table class="retailer-table">
             <caption class="sr-only"
@@ -392,7 +405,8 @@ const tableSections = [
             </div>
             <ul class="kit-items">
               {productIds.map((productId) => {
-                const { product, page, offer } = itemFor(productId);
+                const { product, page, offer, trackedOffer } =
+                  itemFor(productId);
                 return (
                   <li>
                     <div class="kit-item-static">
@@ -429,6 +443,15 @@ const tableSections = [
                           <a
                             class="kit-item-more"
                             href={productPath(page.slug)}
+                            data-product-slug={page.slug}
+                            data-source-surface="kit"
+                            data-source-id={id}
+                            data-kit-id={
+                              id === 'starter' || id === 'value'
+                                ? id
+                                : undefined
+                            }
+                            data-placement="home_kit_table"
                           >
                             See more
                             <span class="sr-only"> about {product.name}</span>
@@ -444,9 +467,24 @@ const tableSections = [
                         {offer && (
                           <a
                             class="button button-small kit-item-buy"
-                            href={offer.url}
+                            href={trackedOffer?.url}
                             target="_blank"
                             rel="sponsored noopener noreferrer"
+                            data-analytics-event="merchant_click"
+                            data-product-slug={page?.slug}
+                            data-merchant={offer.merchant}
+                            data-affiliate={String(offer.affiliate)}
+                            data-affiliate-tracking-key={
+                              trackedOffer?.trackingKey
+                            }
+                            data-kit-id={
+                              id === 'starter' || id === 'value'
+                                ? id
+                                : undefined
+                            }
+                            data-source-surface="kit"
+                            data-source-id={id}
+                            data-placement="home_buy_inline"
                           >
                             Check current price
                             <span class="sr-only">

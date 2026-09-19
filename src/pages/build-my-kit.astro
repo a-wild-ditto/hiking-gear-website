@@ -35,7 +35,13 @@ const resultData = Object.fromEntries(
           mild-weather overnight.
         </p>
         <p class="small-print">
-          No email needed. Your answers stay in your browser.
+          <strong>No email or account needed.</strong> We use your answers to recommend
+          a kit and to understand what hiking gear Australians are looking for.
+        </p>
+        <p class="small-print">
+          Questionnaire responses and website interactions may be recorded for
+          product research and analytics. We don't ask for your name or contact
+          details. See our <a href="/privacy/">Privacy page</a>.
         </p>
         <p class="demo-note">
           This is a rules-based guide, not personalised hiking or safety advice.
@@ -81,6 +87,31 @@ const resultData = Object.fromEntries(
     const progress = document.querySelector('.progress span');
     const label = document.querySelector('#step-label');
     let step = 0;
+    let attempt = 0;
+    const committed = new Map();
+    const analytics = () => window.bushGumsAnalytics;
+    const ensureAttempt = () => {
+      if (!attempt) attempt = analytics()?.beginBuilderAttempt() || 0;
+      return attempt;
+    };
+    const trackAnswer = (placement, questionStep, input) => {
+      const currentAttempt = ensureAttempt();
+      if (!currentAttempt || !input) return;
+      const questionKey = steps[questionStep].dataset.key;
+      const answerValue = input.value;
+      if (placement === 'step_commit') {
+        const key = `${currentAttempt}:${questionKey}`;
+        if (committed.get(key) === answerValue) return;
+        committed.set(key, answerValue);
+      }
+      analytics()?.track('builder_answer', {
+        questionKey,
+        answerValue,
+        stepNumber: questionStep + 1,
+        builderAttemptNumber: currentAttempt,
+        placement,
+      });
+    };
     const selected = () => steps[step].querySelector('input:checked');
     const update = () => {
       steps.forEach((question, index) =>
@@ -102,6 +133,7 @@ const resultData = Object.fromEntries(
       pointerPick = false;
     });
     form.addEventListener('change', () => {
+      ensureAttempt();
       next.disabled = false;
       if (!pointerPick) return;
       pointerPick = false;
@@ -122,6 +154,7 @@ const resultData = Object.fromEntries(
     });
     next.addEventListener('click', () => {
       if (!selected()) return;
+      trackAnswer('step_commit', step, selected());
       if (step < steps.length - 1) {
         step += 1;
         update();
@@ -136,13 +169,13 @@ const resultData = Object.fromEntries(
     function showResult() {
       const answers = Object.fromEntries(new FormData(form));
       if (answers.season === 'winter') {
-        result.innerHTML = `<div class="result-header"><p class="result-kicker">No current match</p><h2>Neither current kit is for winter</h2><p>We do not currently recommend either Bush Gums kit for winter conditions.</p></div><div class="reasons"><h3>Why we are stopping here</h3><p>Winter trips require route-specific decisions about shelter, sleeping-bag warmth, ground insulation, weather exposure and safety margins. The current Bush Gums shortlist is not a winter system.</p></div><div class="actions"><a class="button" href="/faq/">Read the kit FAQ</a><button class="button button-secondary" id="restart" type="button">Start again</button></div>`;
-        finish();
+        result.innerHTML = `<div class="result-header"><p class="result-kicker">No current match</p><h2>Neither current kit is for winter</h2><p>We do not currently recommend either Bush Gums kit for winter conditions.</p></div><div class="reasons"><h3>Why we are stopping here</h3><p>Winter trips require route-specific decisions about shelter, sleeping-bag warmth, ground insulation, weather exposure and safety margins. The current Bush Gums shortlist is not a winter system.</p></div><div class="actions"><a class="button" href="/faq/" data-analytics-event="builder_result_click" data-builder-result="no_match" data-source-id="read_faq" data-placement="builder_result">Read the kit FAQ</a><button class="button button-secondary" id="restart" type="button">Start again</button></div>`;
+        finish('no_match');
         return;
       }
       if (['vic', 'tasmania'].includes(String(answers.location))) {
-        result.innerHTML = `<div class="result-header"><p class="result-kicker">No current match</p><h2>Check the forecast before choosing a kit</h2><p>The current shortlist is for mild-weather overnights, so it is not specific enough for Victorian High Country or Tasmanian routes.</p></div><div class="reasons"><h3>Why we are stopping here</h3><p>Those routes can bring exposed conditions and cold snaps outside the assumptions behind these shortlists. Check the route, forecast, shelter and sleeping system together before choosing gear.</p></div><div class="actions"><a class="button" href="/faq/">Read the kit FAQ</a><button class="button button-secondary" id="restart" type="button">Start again</button></div>`;
-        finish();
+        result.innerHTML = `<div class="result-header"><p class="result-kicker">No current match</p><h2>Check the forecast before choosing a kit</h2><p>The current shortlist is for mild-weather overnights, so it is not specific enough for Victorian High Country or Tasmanian routes.</p></div><div class="reasons"><h3>Why we are stopping here</h3><p>Those routes can bring exposed conditions and cold snaps outside the assumptions behind these shortlists. Check the route, forecast, shelter and sleeping system together before choosing gear.</p></div><div class="actions"><a class="button" href="/faq/" data-analytics-event="builder_result_click" data-builder-result="no_match" data-source-id="read_faq" data-placement="builder_result">Read the kit FAQ</a><button class="button button-secondary" id="restart" type="button">Start again</button></div>`;
+        finish('no_match');
         return;
       }
       const scores = { starter: 0, value: 0 };
@@ -222,15 +255,30 @@ const resultData = Object.fromEntries(
           ? 'For a first overnight, the scoring favours a simpler, lower-cost starting point.'
           : 'Your previous overnight experience supports considering the more compact Value setup.',
       ];
-      result.innerHTML = `<div class="result-header"><p class="result-kicker">Your suggested starting point</p><h2>The ${kit.name} kit</h2><p>${kit.summary}</p></div><dl class="figures figures-lg"><div><dt>Recorded core-kit total (${kitScope})</dt><dd>A$${kit.price.toLocaleString('en-AU')}</dd></div><div><dt>Estimated carried weight (${kitScope})</dt><dd>${(kit.weight / 1000).toFixed(1)} kg</dd></div><div class="figures-wide"><dt>Best for</dt><dd class="dd-text">${kit.bestFor}</dd></div></dl><div class="reasons"><h3>Why this result</h3><ul>${reasons.map((reason) => `<li>${reason}</li>`).join('')}</ul></div><details class="result-products"><summary>See the core kit contents (${kit.products.length} items)</summary><ul>${kit.products.map((product) => `<li><span><strong>${product.name}</strong><small>${product.category}, ${displayWeight(product.carriedWeightGrams)}</small></span><span class="mono">A$${product.price}</span></li>`).join('')}</ul></details><div class="actions"><a class="button" href="/#${id}">View the ${kit.name} kit</a><a class="button button-secondary" href="/gear/">Browse the individual products</a><button class="button button-secondary" id="restart" type="button">Start again</button></div><p class="demo-note">Prices are historical or last checked, not live offers. ${answers.people === 'two' ? "For two hikers, the displayed estimate covers one hiker's personal gear plus the shared shelter; the other hiker's personal gear is not included." : 'Cooking and comfort items are optional add-ons.'}</p>`;
-      finish();
+      result.innerHTML = `<div class="result-header"><p class="result-kicker">Your suggested starting point</p><h2>The ${kit.name} kit</h2><p>${kit.summary}</p></div><dl class="figures figures-lg"><div><dt>Recorded core-kit total (${kitScope})</dt><dd>A$${kit.price.toLocaleString('en-AU')}</dd></div><div><dt>Estimated carried weight (${kitScope})</dt><dd>${(kit.weight / 1000).toFixed(1)} kg</dd></div><div class="figures-wide"><dt>Best for</dt><dd class="dd-text">${kit.bestFor}</dd></div></dl><div class="reasons"><h3>Why this result</h3><ul>${reasons.map((reason) => `<li>${reason}</li>`).join('')}</ul></div><details class="result-products"><summary>See the core kit contents (${kit.products.length} items)</summary><ul>${kit.products.map((product) => `<li><span><strong>${product.name}</strong><small>${product.category}, ${displayWeight(product.carriedWeightGrams)}</small></span><span class="mono">A$${product.price}</span></li>`).join('')}</ul></details><div class="actions"><a class="button" href="/#${id}" data-analytics-event="builder_result_click" data-builder-result="${id}" data-source-id="view_${id}" data-kit-id="${id}" data-placement="builder_result">View the ${kit.name} kit</a><a class="button button-secondary" href="/gear/" data-analytics-event="builder_result_click" data-builder-result="${id}" data-source-id="browse_gear" data-placement="builder_result">Browse the individual products</a><button class="button button-secondary" id="restart" type="button">Start again</button></div><p class="demo-note">Prices are historical or last checked, not live offers. ${answers.people === 'two' ? "For two hikers, the displayed estimate covers one hiker's personal gear plus the shared shelter; the other hiker's personal gear is not included." : 'Cooking and comfort items are optional add-ons.'}</p>`;
+      finish(id);
     }
-    function finish() {
+    function finish(builderResult) {
+      const currentAttempt = ensureAttempt();
+      steps.forEach((question, questionStep) =>
+        trackAnswer(
+          'final_snapshot',
+          questionStep,
+          question.querySelector('input:checked'),
+        ),
+      );
+      analytics()?.completeBuilderAttempt(currentAttempt);
+      analytics()?.track('builder_result', {
+        builderResult,
+        builderAttemptNumber: currentAttempt,
+      });
       form.hidden = true;
       result.classList.add('active');
       result.focus();
       result.querySelector('#restart').addEventListener('click', () => {
         form.reset();
+        analytics()?.resetBuilderAttempt();
+        attempt = 0;
         step = 0;
         form.hidden = false;
         result.classList.remove('active');

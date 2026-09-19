@@ -5,6 +5,7 @@ import SpecList from '../../components/product/SpecList.astro';
 import SourceCard from '../../components/product/SourceCard.astro';
 import { productPages, productPath } from '../../data/product-pages';
 import { offersFor } from '../../data/offers';
+import { buildTrackedMerchantUrl } from '../../lib/affiliate-tracking';
 import { site } from '../../config/site';
 import { getProductPhoto } from '../../data/images';
 import type {
@@ -25,6 +26,13 @@ const categoryAnchor =
     ? 'cooking-accessories'
     : p.category.toLowerCase();
 const offer = offersFor(p.slug)[0];
+const trackedOffer = offer
+  ? buildTrackedMerchantUrl(offer, {
+      productSlug: p.slug,
+      sourceSurface: 'gear',
+      placement: 'product_buy_primary',
+    })
+  : undefined;
 const productPhoto = getProductPhoto(p.imageId);
 const sourceNumbers = Object.fromEntries(
   p.sources.map((source, index) => [source.id, index + 1]),
@@ -149,13 +157,19 @@ const pageSchema = {
             offer && (
               <a
                 class="button"
-                href={offer.url}
+                href={trackedOffer?.url}
                 target="_blank"
                 rel={
                   offer.affiliate
                     ? 'sponsored noopener noreferrer'
                     : 'noopener noreferrer'
                 }
+                data-analytics-event="merchant_click"
+                data-product-slug={p.slug}
+                data-merchant={offer.merchant}
+                data-affiliate={String(offer.affiliate)}
+                data-affiliate-tracking-key={trackedOffer?.trackingKey}
+                data-placement="product_buy_primary"
               >
                 Check current price on {offer.merchant}
                 <span class="sr-only"> (opens in a new tab)</span>
@@ -374,13 +388,19 @@ const pageSchema = {
                 <div>
                   <a
                     class="button"
-                    href={offer.url}
+                    href={trackedOffer?.url}
                     target="_blank"
                     rel={
                       offer.affiliate
                         ? 'sponsored noopener noreferrer'
                         : 'noopener noreferrer'
                     }
+                    data-analytics-event="merchant_click"
+                    data-product-slug={p.slug}
+                    data-merchant={offer.merchant}
+                    data-affiliate={String(offer.affiliate)}
+                    data-affiliate-tracking-key={trackedOffer?.trackingKey}
+                    data-placement="product_buy_primary"
                   >
                     Check current price on {offer.merchant}
                     <span class="sr-only"> (opens in a new tab)</span>

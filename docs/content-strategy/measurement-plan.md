@@ -1,5 +1,13 @@
 # Measurement plan: what analytics Bush Gums should have
 
+**Update, 2026-09-19:** The owner chose to add a minimal first-party funnel and
+demand-research layer using Cloudflare Workers Analytics Engine. It records
+structured page, kit, product, merchant and Build My Kit events, including the
+six predefined questionnaire answer enums. It uses a tab-session identifier in
+`sessionStorage`, not a persistent first-party visitor identifier. Microsoft
+Clarity remains the separate qualitative UX tool and stays disabled on Build My
+Kit. See `docs/analytics/README.md` for the implemented event and privacy model.
+
 **Update, 2026-09-18:** After launch, the owner chose Microsoft Clarity (project
 `yk49dw3tso`) for behavioural analytics, superseding the earlier advice against heatmaps
 and session recording and the assumption that the site has no analytics. **All recommendations

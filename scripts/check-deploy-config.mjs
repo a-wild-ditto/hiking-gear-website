@@ -34,8 +34,28 @@ async function assertStaticProductionConfig() {
   if (wrangler.assets?.not_found_handling !== '404-page') {
     problems.push('wrangler.jsonc assets.not_found_handling must be 404-page');
   }
-  if ('main' in wrangler || 'run_worker_first' in (wrangler.assets ?? {})) {
-    problems.push('wrangler.jsonc must remain static-assets only');
+  if (wrangler.main !== './worker/index.ts') {
+    problems.push('wrangler.jsonc main must be ./worker/index.ts');
+  }
+  if (wrangler.assets?.binding !== 'ASSETS') {
+    problems.push('wrangler.jsonc assets.binding must be ASSETS');
+  }
+  if (
+    JSON.stringify(wrangler.assets?.run_worker_first) !==
+    JSON.stringify(['/api/analytics'])
+  ) {
+    problems.push(
+      'wrangler.jsonc assets.run_worker_first must contain only /api/analytics',
+    );
+  }
+  const analyticsBinding = wrangler.analytics_engine_datasets;
+  if (
+    !Array.isArray(analyticsBinding) ||
+    analyticsBinding.length !== 1 ||
+    analyticsBinding[0]?.binding !== 'ANALYTICS' ||
+    analyticsBinding[0]?.dataset !== 'bush_gums_events_v1'
+  ) {
+    problems.push('wrangler.jsonc must bind ANALYTICS to bush_gums_events_v1');
   }
   if (
     'route' in wrangler ||
