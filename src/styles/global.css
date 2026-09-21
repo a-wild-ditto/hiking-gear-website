@@ -218,6 +218,19 @@ p {
   display: none;
 }
 
+/* Timing note for merchants that run regular sale events. */
+.buy-timing {
+  margin: 16px 0 0;
+  padding: 2px 0 2px 14px;
+  border-left: 3px solid var(--accent);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--ink-muted);
+}
+.buy-timing strong {
+  color: var(--ink);
+}
+
 /* Secondary merchant link under a primary buy button. */
 .buy-alt {
   margin: 8px 0 0;

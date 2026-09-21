@@ -242,11 +242,11 @@ const resultData = Object.fromEntries(
               : 'Your lower-weight priority gives the lighter Value shortlist extra weight.'
             : 'Your comfort priority keeps a roomier, simpler setup in consideration.',
         answers.budget === 'under-300'
-          ? 'Your budget sits closest to the A$218 Starter total.'
+          ? `Your budget sits closest to the A$${resultData.starter.price} Starter total.`
           : answers.budget === 'over-500'
             ? answers.people === 'two'
               ? 'Your budget leaves room for Value, but the current two-person shelter makes Starter the suitable match.'
-              : 'Your budget leaves room for the A$446 Value shortlist.'
+              : `Your budget leaves room for the A$${resultData.value.price} Value shortlist.`
             : 'Your middle budget band keeps both current shortlists in play.',
         answers.people === 'two'
           ? 'Two hikers need the two-person Starter shelter in the current shortlist.'

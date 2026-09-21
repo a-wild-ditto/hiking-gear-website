@@ -146,12 +146,16 @@ export const products: Product[] = [
     id: 'cloud-up-1p',
     name: 'Naturehike Cloud Up Pro 1P',
     category: 'Shelter',
-    price: 205,
+    // Recorded from the Amazon Australia 20D nylon listing (ASIN
+    // B0FXGHX1PL, Forest Green) on 2026-09-21, which is the listing the kit
+    // links to. Other colour variants of the same tent were priced higher on
+    // the same day.
+    price: 149,
     weightGrams: 1230,
     carriedWeightGrams: 1390,
     weightStatus: 'seller-claim',
     weightBasis:
-      'Estimated carried weight from seller-listed minimum package figure',
+      'Estimated carried weight from seller-listed minimum package figure. The Amazon listing states a 1.55 kg item weight without saying what it includes, so it is not comparable with the carried figures used across the kits and the AliExpress-derived estimate is retained.',
     summary: 'The solo option from a well-documented budget tent family.',
     goodFor: 'Solo hikers prioritising lower carried weight',
     reviewSlug: 'naturehike-cloud-up-tent',

@@ -91,12 +91,11 @@ export const offers: Offer[] = [
     merchant: 'Amazon Australia',
     url: 'https://www.amazon.com.au/dp/B0FXGHX1PL',
     affiliate: true,
-    // Review page only. The Value kit row shows the price and estimated
-    // carried weight recorded from the AliExpress Cloud Up Pro 1P listing,
-    // and the Amazon listing quotes different figures. Until those figures
-    // are re-recorded against Amazon, that row must keep linking to the
-    // listing its displayed numbers came from.
-    catalogIds: [],
+    // The Value kit row displays the price recorded from this exact listing
+    // (Forest Green, 20D nylon), so the row links here. Its carried weight is
+    // still the AliExpress-sourced estimate; see the weightBasis note on
+    // cloud-up-1p in ../catalog.ts for why the Amazon item weight is not used.
+    catalogIds: ['cloud-up-1p'],
     variantLabel: '1 person',
     checkedOn: '2026-09-21',
   },
@@ -121,13 +120,12 @@ export const offers: Offer[] = [
     affiliate: true,
     checkedOn: '2026-09-16',
   },
-  {
-    productSlug: 'naturehike-rock-60-5',
-    merchant: 'Amazon Australia',
-    url: 'https://www.amazon.com.au/dp/B0G3P2ZNSV',
-    affiliate: true,
-    checkedOn: '2026-09-21',
-  },
+  // No Amazon offer for this pack yet. ASIN B0G3P2ZNSV sits under parent
+  // B08D97RCYM and resolves to the "45l/Black/Rock 1.0" variant, checked on
+  // 2026-09-21. The listing title says "ROCK Series 60+5L", but the only
+  // purchasable variant under that ASIN is the 45 L pack, which is not the
+  // product we recommend. Do not add an Amazon link here until a listing for
+  // the 60+5 L pack has been confirmed.
   {
     productSlug: 'naturehike-rock-60-5',
     merchant: 'AliExpress',

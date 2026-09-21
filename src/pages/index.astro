@@ -13,6 +13,8 @@ import { buildTrackedMerchantUrl } from '../lib/affiliate-tracking';
 import { productPageBySlug, productPath } from '../data/product-pages';
 import {
   anacondaRows,
+  bushGumsShelterCheckedOn,
+  comparisonCheckedOn,
   comparison,
   formatAud,
   formatKg,
@@ -31,6 +33,12 @@ const artRatio = (name: string) => {
 };
 
 const traditional = comparison.anaconda;
+const formatDate = (iso: string) =>
+  new Date(`${iso}T00:00:00`).toLocaleDateString('en-AU', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
 const percentDiff = (ours: number, theirs: number) =>
   Math.round(((theirs - ours) / theirs) * 100);
 const describeDiff = (pct: number, less: string, more: string) =>
@@ -330,7 +338,11 @@ const tableSections = [
           <sup>*</sup> Compared with a category-matched setup from a traditional outdoor
           retailer ({formatAud(traditional.priceAud)}, {
             formatKg(traditional.weightGrams, 1)
-          }). Prices exclude delivery and can change.
+          }), advertised prices checked {formatDate(comparisonCheckedOn)}. On
+          our side the Cloud Up price was updated {
+            formatDate(bushGumsShelterCheckedOn)
+          }; the other prices were checked {formatDate(comparisonCheckedOn)}.
+          Prices exclude delivery and can change.
         </p>
         <details data-retailer-comparison>
           <summary>Traditional retailer comparison</summary>

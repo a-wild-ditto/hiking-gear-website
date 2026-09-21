@@ -51,6 +51,9 @@ const trackSecondary = (placement: string) =>
         amazonContext: 'gear-detail',
       })
     : undefined;
+const hasAliExpressOffer = productOffers.some(
+  (o) => o.merchant === 'AliExpress',
+);
 const trackedSecondaryOffer = trackSecondary('product_buy_secondary');
 const trackedBuySecondaryOffer = trackSecondary(
   'product_buy_where_to_buy_secondary',
@@ -478,6 +481,16 @@ const pageSchema = {
                       to you. The merchant sets current price, stock, delivery,
                       returns and warranty.{' '}
                       <a href="/affiliate-disclosure/">Disclosure</a>
+                    </p>
+                  )}
+                  {hasAliExpressOffer && (
+                    <p class="buy-timing">
+                      <strong>Worth knowing about timing.</strong> AliExpress
+                      runs site-wide sale events through the year. Prices can be
+                      lower during one, so if you are not in a hurry it is worth
+                      checking whether the next sale is close. Sellers choose
+                      whether to take part and set their own sale pricing, so a
+                      discount is never guaranteed and the size of it varies.
                     </p>
                   )}
                 </div>

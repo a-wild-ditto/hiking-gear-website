@@ -199,13 +199,14 @@ for (const url of ['', 'not a url', '/dp/B0G3P2ZNSV', 'javascript:alert(1)']) {
 // 12. Click context: kit and gear-detail produce the documented pairs, and a
 // non-Amazon offer in the same place keeps its own tracking key.
 {
+  const slug = 'naturehike-cloud-up-tent';
   const amazonOffer = offers.find(
-    (o) => o.productSlug === 'naturehike-rock-60-5' && isAmazonUrl(o.url),
+    (o) => o.productSlug === slug && isAmazonUrl(o.url),
   );
-  assert.ok(amazonOffer, 'Rock 60+5 has an Amazon offer');
+  assert.ok(amazonOffer, 'Cloud Up has an Amazon offer');
 
   const kitClick = buildTrackedMerchantUrl(amazonOffer, {
-    productSlug: 'naturehike-rock-60-5',
+    productSlug: slug,
     sourceSurface: 'home',
     sourceId: 'kit-table',
     placement: 'home_buy_inline',
@@ -216,7 +217,7 @@ for (const url of ['', 'not a url', '/dp/B0G3P2ZNSV', 'javascript:alert(1)']) {
   assert.equal(tagOf(kitClick.url), 'bushgums-kit-22');
 
   const gearClick = buildTrackedMerchantUrl(amazonOffer, {
-    productSlug: 'naturehike-rock-60-5',
+    productSlug: slug,
     sourceSurface: 'gear',
     placement: 'product_buy_primary',
     amazonContext: 'gear-detail',
@@ -226,11 +227,11 @@ for (const url of ['', 'not a url', '/dp/B0G3P2ZNSV', 'javascript:alert(1)']) {
   assert.equal(tagOf(gearClick.url), 'bushgums-gear-22');
 
   const aliOffer = offers.find(
-    (o) => o.productSlug === 'naturehike-rock-60-5' && !isAmazonUrl(o.url),
+    (o) => o.productSlug === slug && !isAmazonUrl(o.url),
   );
-  assert.ok(aliOffer, 'Rock 60+5 keeps its AliExpress offer');
+  assert.ok(aliOffer, 'Cloud Up keeps its AliExpress offer');
   const aliClick = buildTrackedMerchantUrl(aliOffer, {
-    productSlug: 'naturehike-rock-60-5',
+    productSlug: slug,
     sourceSurface: 'gear',
     placement: 'product_buy_primary',
     amazonContext: 'gear-detail',
@@ -238,6 +239,19 @@ for (const url of ['', 'not a url', '/dp/B0G3P2ZNSV', 'javascript:alert(1)']) {
   assert.equal(aliClick.url, aliOffer.url, 'AliExpress URL unchanged');
   assert.equal(aliClick.amazonTrackingId, undefined);
   assert.ok(aliClick.trackingKey.startsWith('bg1_'));
+}
+
+// 12b. The Rock 60+5L must not carry an Amazon offer: ASIN B0G3P2ZNSV
+// resolves to the 45 L variant, which is not the product we recommend.
+{
+  const rockOffers = offers.filter(
+    (o) => o.productSlug === 'naturehike-rock-60-5',
+  );
+  assert.ok(rockOffers.length > 0, 'Rock 60+5 still has an offer');
+  assert.ok(
+    rockOffers.every((o) => !isAmazonUrl(o.url)),
+    'Rock 60+5 must not link to the 45 L Amazon variant',
+  );
 }
 
 // 13. No stored offer hard-codes a tag, and every stored Amazon URL is
