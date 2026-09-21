@@ -18,7 +18,6 @@ const page: ProductPage = {
   pricePaidAud: 204.88,
   seoTitle: 'Naturehike Cloud Up Pro Variants and Older Cloud Up 2 Evidence',
   pricedOn: '2026-09-16',
-  pricedFrom: 'AliExpress',
   summary:
     'The listing offers Cloud Up Pro 1P, 2P and 3P tents. Most hands-on reviews cover older Cloud Up 2 variants.',
   metaDescription:

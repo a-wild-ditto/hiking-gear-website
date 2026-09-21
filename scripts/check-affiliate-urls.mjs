@@ -7,7 +7,7 @@ import {
   extractAmazonAsin,
   isAmazonUrl,
 } from '../src/lib/affiliate-tracking.ts';
-import { offers } from '../src/data/offers.ts';
+import { offers, offersForCatalogItem } from '../src/data/offers.ts';
 
 const CANONICAL = 'https://www.amazon.com.au/dp/B0G3P2ZNSV';
 const LONG_SEARCH_URL =
@@ -262,7 +262,29 @@ for (const url of ['', 'not a url', '/dp/B0G3P2ZNSV', 'javascript:alert(1)']) {
   );
   assert.ok(
     rockOffers.some((o) => !isAmazonUrl(o.url)),
-    'Rock 60+5 keeps its AliExpress alternative',
+    'Rock 60+5 keeps its AliExpress offer',
+  );
+  // The kit row leads with the cheaper AliExpress listing its price came
+  // from, with Amazon beneath it.
+  const kitRow = offersForCatalogItem('naturehike-rock-60-5', 'rock-60-5');
+  assert.equal(
+    kitRow[0].merchant,
+    'AliExpress',
+    'Rock kit row leads with AliExpress',
+  );
+  assert.ok(isAmazonUrl(kitRow[1].url), 'Rock kit row offers Amazon beneath');
+  assert.equal(rockAmazon[0].recordedPriceAud, 119);
+}
+
+// 12c. Every Amazon offer shown as an alternative carries a recorded price
+// and a check date, so the gear page can show both.
+for (const offer of offers) {
+  if (offer.recordedPriceAud === undefined) continue;
+  assert.ok(offer.recordedPriceAud > 0, `${offer.url} price`);
+  assert.match(
+    offer.checkedOn ?? '',
+    /^\d{4}-\d{2}-\d{2}$/,
+    `${offer.url} date`,
   );
 }
 

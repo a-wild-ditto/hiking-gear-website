@@ -39,6 +39,12 @@ export type Offer = {
    * the first one listed. Leave undefined for a product with a single offer.
    */
   variantLabel?: string;
+  /**
+   * Price recorded from this listing on `checkedOn`, shown beside the link
+   * when the offer is listed as an alternative. A dated snapshot, never
+   * presented as a live price.
+   */
+  recordedPriceAud?: number;
   /** Human-readable price note; never presented as a live price. */
   priceNote?: string;
   checkedOn?: string;
@@ -82,6 +88,7 @@ export const offers: Offer[] = [
     merchant: 'Amazon Australia',
     url: 'https://www.amazon.com.au/dp/B0DPFK6LPJ',
     affiliate: true,
+    recordedPriceAud: 229,
     catalogIds: ['cloud-up-2p'],
     variantLabel: '2 person',
     checkedOn: '2026-09-21',
@@ -91,6 +98,7 @@ export const offers: Offer[] = [
     merchant: 'Amazon Australia',
     url: 'https://www.amazon.com.au/dp/B0FXGHX1PL',
     affiliate: true,
+    recordedPriceAud: 149,
     // The Value kit row displays the price recorded from this exact listing
     // (Forest Green, 20D nylon), so the row links here. Its carried weight is
     // still the AliExpress-sourced estimate; see the weightBasis note on
@@ -120,6 +128,15 @@ export const offers: Offer[] = [
     affiliate: true,
     checkedOn: '2026-09-16',
   },
+  // AliExpress is listed first: it is the cheaper listing and the one the
+  // kit price was recorded from, so the kit row leads with it.
+  {
+    productSlug: 'naturehike-rock-60-5',
+    merchant: 'AliExpress',
+    url: 'https://s.click.aliexpress.com/e/_c4V1qZBr',
+    affiliate: true,
+    checkedOn: '2026-09-16',
+  },
   // ASIN B08PV3XF4H is the Grey 60+5L variant under parent B0GWHG65BL, with
   // manufacturer reference NH19BP095, which matches the model code on the
   // product page. Checked 2026-09-21. Do not use B0G3P2ZNSV: despite a
@@ -130,14 +147,8 @@ export const offers: Offer[] = [
     merchant: 'Amazon Australia',
     url: 'https://www.amazon.com.au/dp/B08PV3XF4H',
     affiliate: true,
+    recordedPriceAud: 119,
     checkedOn: '2026-09-21',
-  },
-  {
-    productSlug: 'naturehike-rock-60-5',
-    merchant: 'AliExpress',
-    url: 'https://s.click.aliexpress.com/e/_c4V1qZBr',
-    affiliate: true,
-    checkedOn: '2026-09-16',
   },
   {
     productSlug: 'aluminium-cookware-set',

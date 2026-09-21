@@ -1,0 +1,91 @@
+---
+/*
+ * Quieter alternative-merchant links shown beneath a product's primary buy
+ * button, one line per offer. An offer with a recorded price shows it with
+ * its check date, so a visitor can compare merchants without leaving the page.
+ */
+import type { Offer } from '../../data/offers';
+import { buildTrackedMerchantUrl } from '../../lib/affiliate-tracking';
+
+type Props = {
+  offers: Offer[];
+  productSlug: string;
+  productCategory: string;
+  /** Base placement; each offer appends its variant, if any. */
+  placement: string;
+};
+
+const { offers, productSlug, productCategory, placement } = Astro.props;
+
+const slugPart = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+const formatDate = (iso: string) =>
+  new Date(`${iso}T00:00:00`).toLocaleDateString('en-AU', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+
+const links = offers.map((offer) => {
+  // The placement is both the non-Amazon sub-id in the outbound URL and the
+  // placement recorded on the click, so the two cannot drift apart.
+  const offerPlacement = offer.variantLabel
+    ? `${placement}_${slugPart(offer.variantLabel)}`
+    : placement;
+  const tracked = buildTrackedMerchantUrl(offer, {
+    productSlug,
+    sourceSurface: 'gear',
+    placement: offerPlacement,
+    // Gear detail / review links carry the gear Associates tracking ID.
+    amazonContext: 'gear-detail',
+  });
+  const name = offer.variantLabel
+    ? `${offer.merchant} (${offer.variantLabel})`
+    : offer.merchant;
+  return { offer, tracked, offerPlacement, name };
+});
+---
+
+{
+  links.map(({ offer, tracked, offerPlacement, name }) => (
+    <p class="buy-alt">
+      <a
+        href={tracked.url}
+        target="_blank"
+        rel={
+          offer.affiliate
+            ? 'sponsored noopener noreferrer'
+            : 'noopener noreferrer'
+        }
+        data-analytics-event="merchant_click"
+        data-product-slug={productSlug}
+        data-product-category={productCategory}
+        data-merchant={offer.merchant}
+        data-affiliate={String(offer.affiliate)}
+        data-affiliate-tracking-key={tracked.trackingKey}
+        data-placement={offerPlacement}
+      >
+        Also available on {name}
+        <span class="sr-only"> (opens in a new tab)</span>
+      </a>
+      {offer.recordedPriceAud !== undefined && (
+        <>
+          {' '}
+          A${offer.recordedPriceAud.toFixed(2)}
+          {offer.checkedOn && (
+            <>
+              , recorded{' '}
+              <time datetime={offer.checkedOn}>
+                {formatDate(offer.checkedOn)}
+              </time>
+            </>
+          )}
+        </>
+      )}
+    </p>
+  ))
+}

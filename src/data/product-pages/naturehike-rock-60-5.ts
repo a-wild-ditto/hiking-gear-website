@@ -10,7 +10,6 @@ const page: ProductPage = {
   tags: ['Value backpack candidate'],
   pricePaidAud: 68.73,
   pricedOn: '2026-09-16',
-  pricedFrom: 'AliExpress',
   summary:
     'A framed ~1.16 kg pack with hip belt and rain cover for about A$70. Owners rate it highly for value.',
   metaDescription:

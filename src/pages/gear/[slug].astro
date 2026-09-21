@@ -4,9 +4,9 @@ import Photo from '../../components/Photo.astro';
 import SpecList from '../../components/product/SpecList.astro';
 import SourceTable from '../../components/product/SourceTable.astro';
 import OfferChoice from '../../components/product/OfferChoice.astro';
+import OfferAlternatives from '../../components/product/OfferAlternatives.astro';
 import { productPages, productPath } from '../../data/product-pages';
 import { offersFor } from '../../data/offers';
-import { buildTrackedMerchantUrl } from '../../lib/affiliate-tracking';
 import { site } from '../../config/site';
 import { getProductPhoto } from '../../data/images';
 import type {
@@ -27,36 +27,16 @@ const categoryAnchor =
     ? 'cooking-accessories'
     : p.category.toLowerCase();
 const productOffers = offersFor(p.slug);
-// A product page may carry several offers for the same listing family in
-// different sizes. Those become a buyer-selectable choice, defaulting to the
-// first one. Everything else is a single primary offer plus one alternative
-// merchant shown quietly underneath.
-const variantOffers = productOffers.filter((o) => o.variantLabel);
-const primaryOffers =
-  variantOffers.length > 1 ? variantOffers : productOffers.slice(0, 1);
-const offer = primaryOffers[0];
-const secondaryOffer = productOffers.find((o) => !primaryOffers.includes(o));
-// The hero CTA and the "Where to buy" CTA are separate links, so each gets
-// its own placement. The value is the single source of truth: it is both the
-// non-Amazon sub-id in the outbound URL and the `placement` recorded on the
-// click, so the two can never drift apart. Primary CTAs are built inside
-// OfferChoice; these are the quieter alternative-merchant links.
-const trackSecondary = (placement: string) =>
-  secondaryOffer
-    ? buildTrackedMerchantUrl(secondaryOffer, {
-        productSlug: p.slug,
-        sourceSurface: 'gear',
-        placement,
-        // Gear detail / review links carry the gear Associates tracking ID.
-        amazonContext: 'gear-detail',
-      })
-    : undefined;
+// On gear detail pages the primary button goes to AliExpress whenever the
+// product has an AliExpress offer; every other merchant, such as Amazon, is
+// listed beneath it with its recorded price. Products without an AliExpress
+// offer use their first listed offer.
+const offer =
+  productOffers.find((o) => o.merchant === 'AliExpress') ?? productOffers[0];
+const primaryOffers = offer ? [offer] : [];
+const alternativeOffers = productOffers.filter((o) => o !== offer);
 const hasAliExpressOffer = productOffers.some(
   (o) => o.merchant === 'AliExpress',
-);
-const trackedSecondaryOffer = trackSecondary('product_buy_secondary');
-const trackedBuySecondaryOffer = trackSecondary(
-  'product_buy_where_to_buy_secondary',
 );
 const productPhoto = getProductPhoto(p.imageId);
 const sourceNumbers = Object.fromEntries(
@@ -188,15 +168,6 @@ const pageSchema = {
           <p class="lead">{p.summary}</p>
           <p class="product-price">~A${p.pricePaidAud.toFixed(2)}</p>
           {
-            p.pricedFrom && (
-              <p class="product-price-source">
-                Recorded {p.pricedFrom} price,{' '}
-                <time datetime={p.pricedOn}>{pricedOnDate}</time>. The buy link
-                below may show a different current price.
-              </p>
-            )
-          }
-          {
             offer && (
               <OfferChoice
                 offers={primaryOffers}
@@ -207,33 +178,12 @@ const pageSchema = {
               />
             )
           }
-          {
-            secondaryOffer && (
-              <p class="buy-alt">
-                <a
-                  href={trackedSecondaryOffer?.url}
-                  target="_blank"
-                  rel={
-                    secondaryOffer.affiliate
-                      ? 'sponsored noopener noreferrer'
-                      : 'noopener noreferrer'
-                  }
-                  data-analytics-event="merchant_click"
-                  data-product-slug={p.slug}
-                  data-product-category={p.category}
-                  data-merchant={secondaryOffer.merchant}
-                  data-affiliate={String(secondaryOffer.affiliate)}
-                  data-affiliate-tracking-key={
-                    trackedSecondaryOffer?.trackingKey
-                  }
-                  data-placement="product_buy_secondary"
-                >
-                  Also available on {secondaryOffer.merchant}
-                  <span class="sr-only"> (opens in a new tab)</span>
-                </a>
-              </p>
-            )
-          }
+          <OfferAlternatives
+            offers={alternativeOffers}
+            productSlug={p.slug}
+            productCategory={p.category}
+            placement="product_buy_secondary"
+          />
           {
             offer?.affiliate && (
               <p class="small-print">
@@ -459,31 +409,12 @@ const pageSchema = {
                     placement="product_buy_where_to_buy"
                     groupId="buy-where"
                   />
-                  {secondaryOffer && (
-                    <p class="buy-alt">
-                      <a
-                        href={trackedBuySecondaryOffer?.url}
-                        target="_blank"
-                        rel={
-                          secondaryOffer.affiliate
-                            ? 'sponsored noopener noreferrer'
-                            : 'noopener noreferrer'
-                        }
-                        data-analytics-event="merchant_click"
-                        data-product-slug={p.slug}
-                        data-product-category={p.category}
-                        data-merchant={secondaryOffer.merchant}
-                        data-affiliate={String(secondaryOffer.affiliate)}
-                        data-affiliate-tracking-key={
-                          trackedBuySecondaryOffer?.trackingKey
-                        }
-                        data-placement="product_buy_where_to_buy_secondary"
-                      >
-                        Also available on {secondaryOffer.merchant}
-                        <span class="sr-only"> (opens in a new tab)</span>
-                      </a>
-                    </p>
-                  )}
+                  <OfferAlternatives
+                    offers={alternativeOffers}
+                    productSlug={p.slug}
+                    productCategory={p.category}
+                    placement="product_buy_where_to_buy_secondary"
+                  />
                   {offer.affiliate && (
                     <p class="small-print">
                       Affiliate link. We may earn a commission at no extra cost

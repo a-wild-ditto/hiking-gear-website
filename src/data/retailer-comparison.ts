@@ -17,9 +17,9 @@ export type ComparisonRow = {
 
 export const comparisonCheckedOn = '2026-09-17';
 /**
- * The shelter and pack rows were re-priced against their Amazon listings
- * after the rest of the comparison was checked, so they carry their own date.
- * Both dates are shown publicly alongside the comparison.
+ * The shelter row was re-priced against its Amazon listing after the rest of
+ * the comparison was checked, so it carries its own date. Both dates are
+ * shown publicly alongside the comparison.
  */
 export const bushGumsRepricedOn = '2026-09-21';
 
@@ -70,14 +70,14 @@ export const comparisonRows: ComparisonRow[] = [
     category: 'Pack',
     side: 'Bush Gums',
     productName: 'Naturehike Rock 60+5L Pack, standard version',
-    priceAud: 119,
+    priceAud: 69,
     priceType: 'Price recorded',
     weightGrams: 1160,
     weightBasis: 'Manufacturer-listed pack weight',
     weightStatus: 'manufacturer',
     sourceUrl: '/gear/naturehike-rock-60-5/',
-    checkedOn: bushGumsRepricedOn,
-    note: 'Price recorded from the Amazon Australia 60+5L listing on 21 September 2026. The standard-version listing weight includes the stated rain cover.',
+    checkedOn: comparisonCheckedOn,
+    note: 'The standard-version listing weight includes the stated rain cover.',
   },
   {
     category: 'Shelter',

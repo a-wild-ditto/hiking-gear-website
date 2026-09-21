@@ -248,11 +248,10 @@ export const products: Product[] = [
     id: 'rock-60-5',
     name: 'Naturehike Rock 60+5L Pack',
     category: 'Packs',
-    // Recorded from the Amazon Australia listing (ASIN B08PV3XF4H, Grey
-    // 60+5L, manufacturer reference NH19BP095) on 2026-09-21, which is the
-    // listing the kit links to. The AliExpress listing was cheaper at A$69
-    // when recorded on 2026-09-16 and remains available as the alternative.
-    price: 119,
+    // Recorded from the AliExpress listing the kit links to. The Amazon
+    // Australia listing (ASIN B08PV3XF4H) was A$119 on 2026-09-21 and is
+    // offered beneath it as the alternative.
+    price: 69,
     weightGrams: 1160,
     carriedWeightGrams: 1160,
     weightStatus: 'manufacturer',
