@@ -58,4 +58,8 @@ export const getKitWeight = (kit: Kit) => {
   }
   return verifiedWeights.reduce((sum, weight) => sum + weight, 0);
 };
-export const optionalAddonIds = ['cookware-aluminium', 'trekology-aluft-pillow'];
+export const optionalAddonIds = [
+  'cookware-aluminium',
+  'trekology-aluft-pillow',
+  'jnln-rain-jacket',
+];

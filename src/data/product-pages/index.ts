@@ -10,6 +10,7 @@ import bisinnaSleepingBag from './bisinna-1-8kg-sleeping-bag';
 import cloudUpTent from './naturehike-cloud-up-tent';
 import tuyeMat from './naturehike-tuye-r3-5';
 import aluminiumCookwareSet from './aluminium-cookware-set';
+import jnlnRainJacket from './jnln-lightweight-rain-jacket';
 
 /** Real products with detail pages, in catalogue display order. */
 export const productPages: ProductPage[] = [
@@ -24,6 +25,7 @@ export const productPages: ProductPage[] = [
   cloudUpTent,
   tuyeMat,
   aluminiumCookwareSet,
+  jnlnRainJacket,
 ];
 
 export const productPageBySlug = Object.fromEntries(

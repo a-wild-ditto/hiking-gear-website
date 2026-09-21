@@ -65,6 +65,8 @@ export type Finding = { text: string; sourceIds: string[] };
 export type Coverage = 'strong' | 'moderate' | 'limited';
 
 export type ReviewStatus =
+  /** Not bought; listing research only. */
+  | { state: 'researching' }
   | { state: 'ordered'; orderedOn?: string }
   | { state: 'testing'; startedOn?: string }
   | {

@@ -167,6 +167,16 @@ export const offers: Offer[] = [
     checkedOn: '2026-09-21',
   },
   {
+    productSlug: 'jnln-lightweight-rain-jacket',
+    merchant: 'AliExpress',
+    // Plain product link with the search and session parameters removed.
+    // Not an affiliate link yet: replace with an s.click.aliexpress.com
+    // affiliate link and set affiliate: true once one has been generated.
+    url: 'https://www.aliexpress.com/item/1005008883929503.html',
+    affiliate: false,
+    checkedOn: '2026-09-21',
+  },
+  {
     productSlug: 'nyxia-35l-rain-cover',
     merchant: 'AliExpress',
     url: 'https://s.click.aliexpress.com/e/_c3ng9hop',

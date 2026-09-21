@@ -319,6 +319,21 @@ export const products: Product[] = [
     goodFor: 'Optional comfort add-on',
     reviewSlug: 'trekology-aluft-2-0-pillow',
   },
+  {
+    id: 'jnln-rain-jacket',
+    name: 'JNLN Lightweight Rain Jacket',
+    category: 'Accessories',
+    // AliExpress SuperDeals price of A$11.79 recorded on 2026-09-21.
+    price: 12,
+    weightGrams: 150,
+    carriedWeightGrams: 150,
+    weightStatus: 'seller-claim',
+    weightBasis: 'Seller-listed jacket weight',
+    summary:
+      'A very light, low-cost hooded jacket for light rain, rated water repellent by the seller.',
+    goodFor: 'Optional rain add-on',
+    reviewSlug: 'jnln-lightweight-rain-jacket',
+  },
 ];
 
 export const productById = Object.fromEntries(
