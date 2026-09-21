@@ -17,11 +17,11 @@ export type ComparisonRow = {
 
 export const comparisonCheckedOn = '2026-09-17';
 /**
- * The shelter row was re-priced against its Amazon listing after the rest of
- * the comparison was checked, so it carries its own date. Both dates are
- * shown publicly alongside the comparison.
+ * The shelter and pack rows were re-priced against their Amazon listings
+ * after the rest of the comparison was checked, so they carry their own date.
+ * Both dates are shown publicly alongside the comparison.
  */
-export const bushGumsShelterCheckedOn = '2026-09-21';
+export const bushGumsRepricedOn = '2026-09-21';
 
 /** Row-level data for the Value-kit category comparison. */
 export const comparisonRows: ComparisonRow[] = [
@@ -36,7 +36,7 @@ export const comparisonRows: ComparisonRow[] = [
       'Seller-listed minimum package weight, estimated carried figure',
     weightStatus: 'seller-claim',
     sourceUrl: '/gear/naturehike-cloud-up-tent/',
-    checkedOn: bushGumsShelterCheckedOn,
+    checkedOn: bushGumsRepricedOn,
     note: 'Price recorded from the Amazon Australia 20D nylon listing on 21 September 2026; other colour options of the same tent were dearer that day. The 1,230 g listing figure excludes accessories. The comparison uses the approved 1,390 g carried estimate, and neither figure has been independently measured.',
   },
   {
@@ -70,14 +70,14 @@ export const comparisonRows: ComparisonRow[] = [
     category: 'Pack',
     side: 'Bush Gums',
     productName: 'Naturehike Rock 60+5L Pack, standard version',
-    priceAud: 69,
+    priceAud: 119,
     priceType: 'Price recorded',
     weightGrams: 1160,
     weightBasis: 'Manufacturer-listed pack weight',
     weightStatus: 'manufacturer',
     sourceUrl: '/gear/naturehike-rock-60-5/',
-    checkedOn: comparisonCheckedOn,
-    note: 'The standard-version listing weight includes the stated rain cover.',
+    checkedOn: bushGumsRepricedOn,
+    note: 'Price recorded from the Amazon Australia 60+5L listing on 21 September 2026. The standard-version listing weight includes the stated rain cover.',
   },
   {
     category: 'Shelter',

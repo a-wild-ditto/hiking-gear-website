@@ -188,6 +188,15 @@ const pageSchema = {
           <p class="lead">{p.summary}</p>
           <p class="product-price">~A${p.pricePaidAud.toFixed(2)}</p>
           {
+            p.pricedFrom && (
+              <p class="product-price-source">
+                Recorded {p.pricedFrom} price,{' '}
+                <time datetime={p.pricedOn}>{pricedOnDate}</time>. The buy link
+                below may show a different current price.
+              </p>
+            )
+          }
+          {
             offer && (
               <OfferChoice
                 offers={primaryOffers}
@@ -488,9 +497,7 @@ const pageSchema = {
                       <strong>Worth knowing about timing.</strong> AliExpress
                       runs site-wide sale events through the year. Prices can be
                       lower during one, so if you are not in a hurry it is worth
-                      checking whether the next sale is close. Sellers choose
-                      whether to take part and set their own sale pricing, so a
-                      discount is never guaranteed and the size of it varies.
+                      checking whether the next sale is close.
                     </p>
                   )}
                 </div>

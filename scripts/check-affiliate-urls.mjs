@@ -241,16 +241,28 @@ for (const url of ['', 'not a url', '/dp/B0G3P2ZNSV', 'javascript:alert(1)']) {
   assert.ok(aliClick.trackingKey.startsWith('bg1_'));
 }
 
-// 12b. The Rock 60+5L must not carry an Amazon offer: ASIN B0G3P2ZNSV
-// resolves to the 45 L variant, which is not the product we recommend.
+// 12b. The Rock 60+5L Amazon offer must be the 60+5L ASIN. B0G3P2ZNSV looks
+// right from its listing title but resolves to the 45 L variant, so it is
+// pinned out here.
 {
   const rockOffers = offers.filter(
     (o) => o.productSlug === 'naturehike-rock-60-5',
   );
   assert.ok(rockOffers.length > 0, 'Rock 60+5 still has an offer');
   assert.ok(
-    rockOffers.every((o) => !isAmazonUrl(o.url)),
-    'Rock 60+5 must not link to the 45 L Amazon variant',
+    rockOffers.every((o) => !o.url.includes('B0G3P2ZNSV')),
+    'Rock 60+5 must never link to the 45 L variant B0G3P2ZNSV',
+  );
+  const rockAmazon = rockOffers.filter((o) => isAmazonUrl(o.url));
+  assert.equal(rockAmazon.length, 1, 'Rock 60+5 has one Amazon offer');
+  assert.equal(
+    extractAmazonAsin(rockAmazon[0].url),
+    'B08PV3XF4H',
+    'Rock 60+5 links to the 60+5L ASIN',
+  );
+  assert.ok(
+    rockOffers.some((o) => !isAmazonUrl(o.url)),
+    'Rock 60+5 keeps its AliExpress alternative',
   );
 }
 

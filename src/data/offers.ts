@@ -120,12 +120,18 @@ export const offers: Offer[] = [
     affiliate: true,
     checkedOn: '2026-09-16',
   },
-  // No Amazon offer for this pack yet. ASIN B0G3P2ZNSV sits under parent
-  // B08D97RCYM and resolves to the "45l/Black/Rock 1.0" variant, checked on
-  // 2026-09-21. The listing title says "ROCK Series 60+5L", but the only
-  // purchasable variant under that ASIN is the 45 L pack, which is not the
-  // product we recommend. Do not add an Amazon link here until a listing for
-  // the 60+5 L pack has been confirmed.
+  // ASIN B08PV3XF4H is the Grey 60+5L variant under parent B0GWHG65BL, with
+  // manufacturer reference NH19BP095, which matches the model code on the
+  // product page. Checked 2026-09-21. Do not use B0G3P2ZNSV: despite a
+  // listing title that says "ROCK Series 60+5L", that ASIN resolves to the
+  // 45 L pack.
+  {
+    productSlug: 'naturehike-rock-60-5',
+    merchant: 'Amazon Australia',
+    url: 'https://www.amazon.com.au/dp/B08PV3XF4H',
+    affiliate: true,
+    checkedOn: '2026-09-21',
+  },
   {
     productSlug: 'naturehike-rock-60-5',
     merchant: 'AliExpress',
