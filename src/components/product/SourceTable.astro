@@ -1,0 +1,73 @@
+---
+import type { Source } from '../../data/product-pages/types';
+const { sources, numbers } = Astro.props as {
+  sources: Source[];
+  numbers: Record<string, number>;
+};
+const kindLabels: Record<Source['kind'], string> = {
+  'written-review': 'Written review',
+  forum: 'Forum',
+  video: 'Video',
+  blog: 'Blog',
+  listing: 'Marketplace listing',
+  retailer: 'Retailer',
+  manufacturer: 'Manufacturer / brand',
+};
+---
+
+<table class="source-table">
+  <thead>
+    <tr>
+      <th scope="col"><span class="sr-only">Reference</span></th>
+      <th scope="col">Source</th>
+      <th scope="col">What it says</th>
+    </tr>
+  </thead>
+  <tbody>
+    {
+      sources.map((source) => (
+        <tr id={`source-${source.id}`}>
+          <td class="source-number">[{numbers[source.id]}]</td>
+          <th scope="row">
+            {source.url ? (
+              <a
+                href={source.url}
+                class="source-title"
+                lang={source.lang}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {source.title}
+                <span class="sr-only"> (opens in a new tab)</span>
+              </a>
+            ) : (
+              <span class="source-title" lang={source.lang}>
+                {source.title}
+              </span>
+            )}
+            <span class="source-meta">
+              {source.publisher}, {kindLabels[source.kind].toLowerCase()}
+              {!source.url && ' (no public link)'}
+            </span>
+          </th>
+          <td>
+            <p>{source.summary}</p>
+            {source.quote && (
+              <blockquote>
+                <span lang={source.lang}>“{source.quote}”</span>
+                {source.quoteTranslation && (
+                  <span class="source-translation">
+                    <cite>
+                      Our translation from {source.language ?? source.lang}
+                    </cite>
+                    {source.quoteTranslation}
+                  </span>
+                )}
+              </blockquote>
+            )}
+          </td>
+        </tr>
+      ))
+    }
+  </tbody>
+</table>

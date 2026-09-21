@@ -9,6 +9,7 @@ const page: ProductPage = {
   category: 'Shelter',
   tags: ['Value shelter candidate'],
   pricePaidAud: 99.8,
+  pricedOn: '2026-09-16',
   summary:
     'A roomy $100 freestanding tent. It weighs only ~2 kg and can handle mild rain.',
   metaDescription:
@@ -19,16 +20,10 @@ const page: ProductPage = {
     'For a first overnight, a conventional freestanding design is easy to set up: two crossing poles, a separate fly, two doors and two vestibules. It also provides plenty of space for casual hikes while still remaining lightweight. That gives this tent a practical starting point at a low price. Check the listing variant before buying.',
     'OutdoorGearLab bought and tested a 190T polyester version, the same fly fabric specified by our listing. They found useful ventilation and reasonable value, but the fly eventually wetted out in heavy rain. However, as a budget choice for casual hikers who probably aren’t hiking in storm conditions, this tent is as good as it gets.',
   ],
-  keyFindings: [
-    {
-      text: 'OutdoorGearLab found the fly of the 190T polyester version eventually wetted out in heavy rain, and seam stitching let water seep through pinholes.',
-      sourceId: 'ogl',
-    },
-    {
-      text: 'OutdoorGearLab weighed the polyester version at just under 2.3 kg, heavier than the 2.16 kg listed.',
-      sourceId: 'ogl',
-    },
-  ],
+  externalReview: {
+    videoId: 'H9fNNlvJDdk',
+    title: 'Bisinna 2 Man Tent Review | What’s in the Bag + First Pitch',
+  },
   specs: [
     {
       label: 'Design',

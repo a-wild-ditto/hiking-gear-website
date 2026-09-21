@@ -9,6 +9,7 @@ const page: ProductPage = {
   category: 'Packs',
   tags: ['Value backpack candidate'],
   pricePaidAud: 68.73,
+  pricedOn: '2026-09-16',
   summary:
     'A framed ~1.16 kg pack with hip belt and rain cover for about A$70. Owners rate it highly for value.',
   metaDescription:
@@ -19,12 +20,10 @@ const page: ProductPage = {
     'The Rock gives you the features that usually cost several times more: an aluminium frame, a padded hip belt and an included rain cover, at a low listed weight and a price well under A$100. Buyers of the exact black 60 L listing repeatedly describe it as good value, light for its size and roomy enough for backpacking.',
     'An independent test of the matching design measured about 46 L in the main compartment plus 10 L in pockets, so it is smaller than the 60+5 L label suggests. That is still plenty for a compact multi-day kit, and reports of a fixed, fairly long back length mainly matter for shorter hikers, who should check the fit first.',
   ],
-  keyFindings: [
-    {
-      text: 'An independent test of this design measured about 46 L in the main compartment plus about 10 L in pockets, short of the 60+5 L label.',
-      sourceId: 'stoker',
-    },
-  ],
+  externalReview: {
+    videoId: 'y1cHph875_I',
+    title: 'NatureHike Rock 60+5L Backpack | Cold Weather Wild Camping Test',
+  },
   specs: [
     {
       label: 'Model code',
@@ -163,7 +162,7 @@ const page: ProductPage = {
       kind: 'video',
       relation: 'exact-model',
       summary:
-        'A first-look video. We haven’t reviewed its contents in detail.',
+        'A first-look video.',
     },
     {
       id: 'yt-follow-up',
@@ -173,7 +172,7 @@ const page: ProductPage = {
       kind: 'video',
       relation: 'exact-model',
       summary:
-        'Described as a follow-up after use, which makes it potentially more useful than an unboxing. We haven’t reviewed its contents in detail.',
+        'Described as a follow-up after use, which makes it potentially more useful than an unboxing.',
     },
   ],
   positives: [

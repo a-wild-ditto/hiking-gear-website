@@ -17,6 +17,7 @@ const page: ProductPage = {
   tags: ['Value shelter candidate', 'Variant comparison'],
   pricePaidAud: 204.88,
   seoTitle: 'Naturehike Cloud Up Pro Variants and Older Cloud Up 2 Evidence',
+  pricedOn: '2026-09-16',
   summary:
     'The listing offers Cloud Up Pro 1P, 2P and 3P tents. Most hands-on reviews cover older Cloud Up 2 variants.',
   metaDescription:
@@ -27,6 +28,11 @@ const page: ProductPage = {
     'The Cloud Up family uses a familiar double-wall structure, aluminium poles and a front vestibule. Reviews of older Cloud Up 2 tents describe straightforward pitching and useful casual performance, but they do not establish how the current Pro variants behave.',
     'Older reviewers found the Cloud Up 2 interior tight for two adults. The current marketplace listing offers Pro 1P, 2P and 3P options, yet gives incomplete capacity-specific specifications. Check the exact option and included components before comparing weights or space.',
   ],
+  externalReview: {
+    videoId: 'zU3ZJg01nIM',
+    title: 'Naturehike Cloud Up Tent — 7-Year Long-Term Review',
+    note: 'Note: this review covers the original Cloud Up rather than the upgraded Cloud Up Pro variant listed here.',
+  },
   specs: [
     {
       label: 'Variants in the listing',

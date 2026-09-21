@@ -84,11 +84,11 @@ export const offers: Offer[] = [
     checkedOn: '2026-09-16',
   },
   {
-    productSlug: 'memory-foam-camping-pillow',
-    merchant: 'AliExpress',
-    url: 'https://s.click.aliexpress.com/e/_c4kxPWhR',
-    affiliate: true,
-    checkedOn: '2026-09-16',
+    productSlug: 'trekology-aluft-2-0-pillow',
+    merchant: 'Amazon Australia',
+    url: 'https://www.amazon.com.au/Trekology-Ultralight-Inflating-Camping-Travel/dp/B07MG5YCHJ',
+    affiliate: false,
+    checkedOn: '2026-09-21',
   },
   {
     productSlug: 'nyxia-35l-rain-cover',

@@ -821,58 +821,101 @@ p {
   margin: 0 0 24px;
   color: var(--ink-muted);
 }
-.source-grid {
-  display: grid;
-  gap: 14px;
+/* Product review: sources as a compact reference table */
+.source-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.94rem;
 }
-.source-card {
-  min-width: 0;
-  padding: 20px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
+.source-table thead th {
+  padding: 0 12px 8px;
+  border-bottom: 1px solid var(--line-strong);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  text-align: left;
 }
-.source-card-head {
-  margin-bottom: 10px;
+.source-table tbody tr {
+  border-bottom: 1px solid var(--line);
 }
-.source-number {
+.source-table td,
+.source-table tbody th {
+  padding: 14px 12px;
+  vertical-align: top;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.source-table tbody th {
+  width: 26%;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.source-table .source-number {
+  width: 1%;
+  white-space: nowrap;
   font: 0.82rem var(--font-mono);
   color: var(--ink-muted);
-}
-.source-card h3 {
-  font-size: 1.1rem;
-  line-height: 1.25;
-  overflow-wrap: anywhere;
 }
 .source-title {
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
 }
-.source-card p {
-  margin-top: 10px;
-  overflow-wrap: anywhere;
-}
-.source-meta,
-.source-card blockquote cite {
-  font-size: 0.86rem;
+.source-meta {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.84rem;
+  font-weight: 400;
   color: var(--ink-muted);
 }
-.source-card blockquote {
-  margin: 16px 0 0;
-  padding-left: 14px;
+.source-table td p {
+  margin: 0;
+}
+.source-table blockquote {
+  margin: 12px 0 0;
+  padding-left: 12px;
   border-left: 2px solid var(--line-strong);
   font-style: italic;
 }
-.source-card blockquote cite {
+.source-table blockquote cite {
   display: block;
   margin-top: 6px;
+  font-size: 0.86rem;
   font-style: normal;
+  color: var(--ink-muted);
 }
 .source-translation {
   display: block;
   margin-top: 10px;
   font-style: normal;
   color: var(--ink-muted);
+}
+/* Stack each reference on narrow screens, where three columns cannot fit */
+@media (max-width: 700px) {
+  .source-table,
+  .source-table tbody,
+  .source-table tbody tr,
+  .source-table td,
+  .source-table tbody th {
+    display: block;
+    width: auto;
+  }
+  .source-table thead {
+    display: none;
+  }
+  .source-table tbody tr {
+    padding: 16px 0;
+  }
+  .source-table td,
+  .source-table tbody th {
+    padding: 0;
+  }
+  .source-table tbody th {
+    margin-top: 2px;
+  }
+  .source-table tbody td:last-child {
+    margin-top: 10px;
+  }
 }
 .where-to-buy > div {
   display: grid;
@@ -892,8 +935,7 @@ p {
     gap: clamp(32px, 6vw, 88px);
   }
   .finding-grid,
-  .split-lists,
-  .source-grid {
+  .split-lists {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -3360,25 +3402,6 @@ p {
   font-weight: 500;
   color: var(--ink-muted);
 }
-.key-findings {
-  margin-top: 28px;
-  display: grid;
-  gap: 10px;
-}
-.key-findings h3 {
-  font-size: 1.1rem;
-}
-.key-findings ul {
-  margin: 0;
-  padding-left: 20px;
-  display: grid;
-  gap: 8px;
-}
-.key-findings a {
-  font-weight: 600;
-  text-underline-offset: 3px;
-}
-
 /* Guide figures: key takeaways, data tables and step cards */
 .prose .takeaways {
   margin: 28px 0 36px;
@@ -3448,4 +3471,24 @@ p {
   margin-top: 8px;
   font-size: 0.8rem;
   color: var(--ink-muted);
+}
+
+/* Product review: embedded independent video review */
+.external-review-note {
+  margin: 0 0 18px;
+  color: var(--ink-muted);
+}
+.video-embed {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }

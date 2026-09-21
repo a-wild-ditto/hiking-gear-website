@@ -9,6 +9,7 @@ const page: ProductPage = {
   category: 'Sleep',
   tags: ['Starter sleep-pad candidate'],
   pricePaidAud: 17.35,
+  pricedOn: '2026-09-16',
   summary:
     'A folding foam pad for under $20. Nothing to inflate, nothing to puncture.',
   metaDescription:
@@ -18,12 +19,6 @@ const page: ProductPage = {
   whyWeChoseIt: [
     'Inflatable mats are comfortable and pack small, but good ones are expensive and cheap ones can go flat at 2 am. A folding foam pad avoids that entirely: unfold it and you are done, and nothing can puncture it. For a beginner on a mild-weather first trip, that reliability is worth a lot.',
     'The seller’s R 2.5 claim looks optimistic next to the Therm-a-Rest Z Lite Sol, a comparable 2 cm egg-crate pad rated R 2.0. Even so, pads of this design have years of positive owner reports, and at a fraction of the name-brand price it is an easy, dependable pick for mild nights. It also works well under an inflatable mat for extra warmth later on.',
-  ],
-  keyFindings: [
-    {
-      text: 'The claimed R 2.5 looks optimistic: the Therm-a-Rest Z Lite Sol, a comparable 2 cm egg-crate pad, is rated R 2.0 under the ASTM F3340 standard.',
-      sourceId: 'zlite',
-    },
   ],
   specs: [
     {

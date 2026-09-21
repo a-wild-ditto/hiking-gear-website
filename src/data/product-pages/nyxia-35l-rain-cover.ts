@@ -10,6 +10,7 @@ const page: ProductPage = {
   tags: ['Starter accessory'],
   pricePaidAud: 3.42,
   seoTitle: 'Backpack Rain Cover vs Pack Liner: NYXIA 35L',
+  pricedOn: '2026-09-16',
   summary:
     'A low-cost 35 L pack cover with limited rain evidence. Protect essential contents with a liner or dry bags too.',
   metaDescription:

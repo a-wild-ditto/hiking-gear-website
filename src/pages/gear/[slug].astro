@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Photo from '../../components/Photo.astro';
 import SpecList from '../../components/product/SpecList.astro';
-import SourceCard from '../../components/product/SourceCard.astro';
+import SourceTable from '../../components/product/SourceTable.astro';
 import { productPages, productPath } from '../../data/product-pages';
 import { offersFor } from '../../data/offers';
 import { buildTrackedMerchantUrl } from '../../lib/affiliate-tracking';
@@ -51,6 +51,14 @@ const date = new Date(`${p.researchedOn}T00:00:00`).toLocaleDateString(
   'en-AU',
   { day: 'numeric', month: 'long', year: 'numeric' },
 );
+const pricedOnDate = new Date(
+  `${p.pricedOn}T00:00:00`,
+).toLocaleDateString('en-AU', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+const datesMatch = p.pricedOn === p.researchedOn;
 const pageUrl = new URL(productPath(p.slug), site.url).toString();
 const breadcrumbSchema = {
   '@type': 'BreadcrumbList',
@@ -191,6 +199,9 @@ const pageSchema = {
           <nav class="rail-nav">
             <p>On this page</p>
             <a href="#shortlist">Why we chose it</a>
+            {p.externalReview && (
+              <a href="#external-review">Independent external review</a>
+            )}
             <a href="#specs">Technical specifications</a>
             <a href="#owners">What owners say</a>
             {
@@ -215,29 +226,30 @@ const pageSchema = {
             </div>
           </section>
 
+          {
+            p.externalReview && (
+              <section class="product-section" id="external-review">
+                <h2>Independent external review</h2>
+                {p.externalReview.note && (
+                  <p class="external-review-note">{p.externalReview.note}</p>
+                )}
+                <div class="video-embed">
+                  <iframe
+                    src={`https://www.youtube-nocookie.com/embed/${p.externalReview.videoId}`}
+                    title={p.externalReview.title}
+                    loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  />
+                </div>
+              </section>
+            )
+          }
+
           <section class="product-section" id="specs">
             <h2>Technical specifications</h2>
             <SpecList specs={p.specs} />
-            {
-              p.keyFindings && p.keyFindings.length > 0 && (
-                <div class="key-findings">
-                  <h3>Key findings</h3>
-                  <ul>
-                    {p.keyFindings.map((finding) => (
-                      <li>
-                        {finding.text}{' '}
-                        <a
-                          href={`#source-${finding.sourceId}`}
-                          aria-label={`Source ${sourceNumbers[finding.sourceId]}`}
-                        >
-                          [{sourceNumbers[finding.sourceId]}]
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )
-            }
           </section>
 
           <section
@@ -352,16 +364,24 @@ const pageSchema = {
             <div class="purchase-record">
               {p.identityNote && <p>{p.identityNote}</p>}
               <p>
-                Recorded price A${p.pricePaidAud.toFixed(2)}. This is historical
-                context, not a live offer. Research was last checked <time
-                  datetime={p.researchedOn}>{date}</time
-                >.
+                {datesMatch ? (
+                  <>
+                    Recorded price A${p.pricePaidAud.toFixed(2)}, checked{' '}
+                    <time datetime={p.pricedOn}>{pricedOnDate}</time>.
+                  </>
+                ) : (
+                  <>
+                    Recorded price A${p.pricePaidAud.toFixed(2)} on{' '}
+                    <time datetime={p.pricedOn}>{pricedOnDate}</time>. Research
+                    was last checked <time datetime={p.researchedOn}>{date}</time>.
+                  </>
+                )}
               </p>
               {
                 p.listingRating && (
                   <p>
                     The listing showed {p.listingRating.stars} out of 5 from{' '}
-                    {p.listingRating.reviews} reviews on{' '}
+                    {p.listingRating.reviews.toLocaleString('en-AU')} reviews on{' '}
                     {p.listingRating.merchant} when checked on{' '}
                     {p.listingRating.checkedOn}. Read the individual buyer
                     comments for useful detail beyond the star rating.
@@ -369,16 +389,7 @@ const pageSchema = {
                 )
               }
             </div>
-            <div class="source-grid">
-              {
-                p.sources.map((source) => (
-                  <SourceCard
-                    source={source}
-                    number={sourceNumbers[source.id]}
-                  />
-                ))
-              }
-            </div>
+            <SourceTable sources={p.sources} numbers={sourceNumbers} />
           </section>
 
           <section class="product-section where-to-buy" id="buy">

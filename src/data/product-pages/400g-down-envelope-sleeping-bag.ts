@@ -16,6 +16,7 @@ const page: ProductPage = {
   category: 'Sleep',
   tags: ['Value sleep-system experiment'],
   pricePaidAud: 85.61,
+  pricedOn: '2026-09-16',
   summary:
     'A down bag for under A$90. About 800 g packed, a fraction of the price of name-brand down.',
   metaDescription:

@@ -16,6 +16,7 @@ const page: ProductPage = {
     merchant: 'Marketplace listing',
     checkedOn: '2026-09-16',
   },
+  pricedOn: '2026-09-16',
   summary:
     'Everything you need for hot meals in one nested kit: pot, cup, stove and cutlery for A$56.',
   metaDescription:

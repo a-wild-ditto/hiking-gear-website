@@ -17,6 +17,7 @@ const page: ProductPage = {
   category: 'Sleep',
   tags: ['Value insulated-mat candidate'],
   pricePaidAud: 85.99,
+  pricedOn: '2026-09-16',
   summary:
     'The listing claims 440 g and R 3.5; Naturehike’s similar TuYe mummy mat is listed around 490 g. Exact model identity remains open.',
   metaDescription:

@@ -16,6 +16,7 @@ const page: ProductPage = {
   category: 'Sleep',
   tags: ['Value synthetic sleeping-bag candidate'],
   pricePaidAud: 53.12,
+  pricedOn: '2026-09-16',
   summary:
     'A roomy, easy-care synthetic bag for about A$53. A low-cost way to get started on mild nights.',
   metaDescription:

@@ -300,18 +300,18 @@ export const products: Product[] = [
     },
   },
   {
-    id: 'memory-foam-pillow',
-    name: 'Memory-foam camping pillow',
+    id: 'trekology-aluft-pillow',
+    name: 'Trekology Aluft 2.0 Pillow',
     category: 'Accessories',
-    price: 19,
-    weightGrams: 500,
-    carriedWeightGrams: 500,
-    weightStatus: 'seller-claim',
-    weightBasis: 'Same-design review estimate',
+    price: 27,
+    weightGrams: 110,
+    carriedWeightGrams: 110,
+    weightStatus: 'manufacturer',
+    weightBasis: 'Brand figure; independent testers measured 105-108 g',
     summary:
-      'A compressible foam pillow for hikers prioritising sleep comfort.',
+      'An inflatable pillow that packs smaller than a soda can, for hikers prioritising sleep comfort.',
     goodFor: 'Optional comfort add-on',
-    reviewSlug: 'memory-foam-camping-pillow',
+    reviewSlug: 'trekology-aluft-2-0-pillow',
   },
 ];
 

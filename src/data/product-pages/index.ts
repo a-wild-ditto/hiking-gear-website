@@ -5,7 +5,7 @@ import bisinnaPack from './bisinna-25-10-backpack';
 import downBag from './400g-down-envelope-sleeping-bag';
 import nyxiaCover from './nyxia-35l-rain-cover';
 import foamPad from './foil-egg-crate-foam-pad';
-import foamPillow from './memory-foam-camping-pillow';
+import aluftPillow from './trekology-aluft-2-0-pillow';
 import bisinnaSleepingBag from './bisinna-1-8kg-sleeping-bag';
 import cloudUpTent from './naturehike-cloud-up-tent';
 import tuyeMat from './naturehike-tuye-r3-5';
@@ -19,7 +19,7 @@ export const productPages: ProductPage[] = [
   naturehikeRock,
   bisinnaPack,
   nyxiaCover,
-  foamPillow,
+  aluftPillow,
   bisinnaSleepingBag,
   cloudUpTent,
   tuyeMat,

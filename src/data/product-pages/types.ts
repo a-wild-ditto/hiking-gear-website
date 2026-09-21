@@ -90,6 +90,8 @@ export type ProductPage = {
   /** Flexible role labels, e.g. "Value shelter candidate". Not kit tiers. */
   tags: string[];
   pricePaidAud: number;
+  /** ISO date the recorded price was current. */
+  pricedOn: string;
   /** Rating on the marketplace listing we bought from. Context, not evidence. */
   listingRating?: {
     stars: number;
@@ -106,9 +108,16 @@ export type ProductPage = {
   /** Key question the page and our testing are built around. */
   question: string;
   whyWeChoseIt: string[];
+  /** An independently produced video review, embedded below "Why we chose it". */
+  externalReview?: {
+    /** YouTube video id, embedded via youtube-nocookie.com. */
+    videoId: string;
+    /** Used as the iframe title for screen readers; the embed shows its own. */
+    title: string;
+    /** Shown above the video only where the match to our unit needs a caveat. */
+    note?: string;
+  };
   specs: SpecEntry[];
-  /** Significant findings shown under the spec table, each citing one source. */
-  keyFindings?: { text: string; sourceId: string }[];
   coverage: Coverage;
   coverageNote: string;
   sources: Source[];

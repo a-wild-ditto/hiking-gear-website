@@ -9,6 +9,7 @@ const page: ProductPage = {
   category: 'Packs',
   tags: ['Starter lightweight pack candidate'],
   pricePaidAud: 47.99,
+  pricedOn: '2026-09-16',
   summary:
     'A ~580 g roll-top pack for under $50. Ultralight carrying without the ultralight price.',
   metaDescription:
@@ -19,6 +20,10 @@ const page: ProductPage = {
     'Well-known ultralight packs cost many times more than this, and a beginner doesn’t need to spend that to find out whether a lighter style of hiking suits them. The BISINNA is a simple roll-top with about 35 L of space and a claimed weight of around 580 g, and it is one of the few cheap packs with detailed owner write-ups.',
     'Those owners broadly agree that it is well made for the price. With thin shoulder straps and no frame, comfort depends on keeping the load light and packing it carefully, which is exactly what a compact overnight kit allows.',
   ],
+  externalReview: {
+    videoId: 'rvU7OV_PG-0',
+    title: 'Lightest Ultralight backpack on AliExpress',
+  },
   specs: [
     {
       label: 'Capacity',

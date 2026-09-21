@@ -23,7 +23,7 @@ const kitData: Omit<Kit, 'price'>[] = [
     advantage: 'Lowest outlay for a core shelter, sleep and pack setup.',
     productIds: [
       'bisinna-2p',
-      'bisinna-bag-18',
+      'down-bag-400',
       'foil-foam-pad',
       'bisinna-pack-35',
     ],
@@ -58,4 +58,4 @@ export const getKitWeight = (kit: Kit) => {
   }
   return verifiedWeights.reduce((sum, weight) => sum + weight, 0);
 };
-export const optionalAddonIds = ['cookware-aluminium', 'memory-foam-pillow'];
+export const optionalAddonIds = ['cookware-aluminium', 'trekology-aluft-pillow'];
