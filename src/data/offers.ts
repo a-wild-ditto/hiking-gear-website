@@ -4,6 +4,16 @@
  *
  * Only add `affiliate: true` once a real affiliate relationship exists; the
  * page then shows the affiliate disclosure next to the link.
+ *
+ * Declaration order is significant: `offersFor` preserves it, and the first
+ * applicable offer becomes the primary buy link. Put the preferred merchant
+ * first and any alternative below it.
+ *
+ * Amazon URLs are stored as clean canonical product URLs
+ * (https://www.amazon.com.au/dp/<ASIN>) with no `tag`. The Associates
+ * tracking ID is added at render time by `buildAffiliateUrl` in
+ * ../lib/affiliate-tracking.ts, which picks the ID for the surface the link
+ * appears on. Never hard-code a `tag` here.
  */
 export type AffiliateTracking =
   { mode: 'none' } | { mode: 'query-param'; param: string };
@@ -14,6 +24,21 @@ export type Offer = {
   url: string;
   affiliate: boolean;
   tracking?: AffiliateTracking;
+  /**
+   * Restricts this offer to the catalog product ids it may serve as a buy
+   * link. Undefined means every catalog item pointing at this product page.
+   * An empty list means the offer appears only on the review page, which is
+   * what we want when a kit row's displayed price and weight were recorded
+   * from a different merchant's listing.
+   */
+  catalogIds?: string[];
+  /**
+   * Short label for a buyer-selectable variant of the same listing family,
+   * for example tent capacity. When a product page has more than one offer
+   * carrying a label, the page renders a choice between them and defaults to
+   * the first one listed. Leave undefined for a product with a single offer.
+   */
+  variantLabel?: string;
   /** Human-readable price note; never presented as a live price. */
   priceNote?: string;
   checkedOn?: string;
@@ -48,6 +73,33 @@ export const offers: Offer[] = [
     affiliate: true,
     checkedOn: '2026-09-16',
   },
+  // The Cloud Up review page covers several capacities, so it carries one
+  // Amazon offer per capacity. The two-person listing is first, which makes it
+  // the default choice on the review page. Each is scoped to its catalog id so
+  // a kit row only ever links to the capacity that kit recommends.
+  {
+    productSlug: 'naturehike-cloud-up-tent',
+    merchant: 'Amazon Australia',
+    url: 'https://www.amazon.com.au/dp/B0DPFK6LPJ',
+    affiliate: true,
+    catalogIds: ['cloud-up-2p'],
+    variantLabel: '2 person',
+    checkedOn: '2026-09-21',
+  },
+  {
+    productSlug: 'naturehike-cloud-up-tent',
+    merchant: 'Amazon Australia',
+    url: 'https://www.amazon.com.au/dp/B0FXGHX1PL',
+    affiliate: true,
+    // Review page only. The Value kit row shows the price and estimated
+    // carried weight recorded from the AliExpress Cloud Up Pro 1P listing,
+    // and the Amazon listing quotes different figures. Until those figures
+    // are re-recorded against Amazon, that row must keep linking to the
+    // listing its displayed numbers came from.
+    catalogIds: [],
+    variantLabel: '1 person',
+    checkedOn: '2026-09-21',
+  },
   {
     productSlug: 'naturehike-cloud-up-tent',
     merchant: 'AliExpress',
@@ -71,6 +123,13 @@ export const offers: Offer[] = [
   },
   {
     productSlug: 'naturehike-rock-60-5',
+    merchant: 'Amazon Australia',
+    url: 'https://www.amazon.com.au/dp/B0G3P2ZNSV',
+    affiliate: true,
+    checkedOn: '2026-09-21',
+  },
+  {
+    productSlug: 'naturehike-rock-60-5',
     merchant: 'AliExpress',
     url: 'https://s.click.aliexpress.com/e/_c4V1qZBr',
     affiliate: true,
@@ -86,8 +145,8 @@ export const offers: Offer[] = [
   {
     productSlug: 'trekology-aluft-2-0-pillow',
     merchant: 'Amazon Australia',
-    url: 'https://www.amazon.com.au/Trekology-Ultralight-Inflating-Camping-Travel/dp/B07MG5YCHJ',
-    affiliate: false,
+    url: 'https://www.amazon.com.au/dp/B07MG5YCHJ',
+    affiliate: true,
     checkedOn: '2026-09-21',
   },
   {
@@ -99,5 +158,16 @@ export const offers: Offer[] = [
   },
 ];
 
+/** Every offer for a product page, preferred merchant first. */
 export const offersFor = (slug: string) =>
   offers.filter((o) => o.productSlug === slug);
+
+/**
+ * Offers usable for one catalog item. Variant-scoped offers are excluded
+ * unless they name this catalog id, so a kit row never links to a variant we
+ * did not recommend there.
+ */
+export const offersForCatalogItem = (slug: string, catalogId: string) =>
+  offersFor(slug).filter(
+    (o) => !o.catalogIds || o.catalogIds.includes(catalogId),
+  );

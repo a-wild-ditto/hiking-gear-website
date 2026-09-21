@@ -161,6 +161,73 @@ p {
 .demo-note {
   margin-top: 16px;
 }
+/* Product buy CTA, with an optional variant picker above it. */
+.offer-choice {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+.offer-variants {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.offer-variants legend {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+}
+.offer-variant {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.offer-variant label {
+  font-size: 0.9375rem;
+  cursor: pointer;
+}
+.offer-variant input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--accent);
+}
+.offer-choice-link {
+  max-width: 100%;
+}
+/*
+ * A variant button carries the capacity in its label, which is too long for
+ * one line on a narrow phone. Let these buttons wrap instead of overflowing.
+ */
+.offer-choice-link.has-variant {
+  white-space: normal;
+  padding-block: 10px;
+  line-height: 1.3;
+  text-align: center;
+}
+.offer-choice-link[hidden] {
+  display: none;
+}
+
+/* Secondary merchant link under a primary buy button. */
+.buy-alt {
+  margin: 8px 0 0;
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+}
+.buy-alt a {
+  color: var(--ink-muted);
+  text-underline-offset: 3px;
+}
 .mono {
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
@@ -3318,9 +3385,18 @@ p {
 /* Homepage: kit tables with merchant buttons */
 .kit-item-actions {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 16px;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 6px;
+}
+/* Secondary merchant link: deliberately quieter than the primary button. */
+.kit-item-buy-alt {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  text-underline-offset: 3px;
+  white-space: nowrap;
 }
 .kit-item-details {
   font-size: 0.85rem;
@@ -3361,7 +3437,7 @@ p {
   }
   .kit-details .kit-item-actions {
     grid-column: 1 / -1;
-    justify-content: space-between;
+    align-items: flex-start;
     margin-top: 8px;
   }
 }

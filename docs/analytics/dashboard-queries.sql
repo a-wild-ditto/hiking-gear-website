@@ -45,12 +45,33 @@ FROM (
 GROUP BY product_slug
 ORDER BY merchant_click_sessions DESC, product_view_sessions DESC;
 
--- Merchant placement clicks
-SELECT blob10 AS product_slug, blob15 AS merchant, blob12 AS placement,
-  blob18 AS tracking_key, sum(_sample_interval) AS clicks
+-- Merchant placement clicks.
+-- blob2 is the product category. It previously held a constant '1' schema
+-- marker, so rows written before that change carry '1' and must be read as
+-- "unknown category"; nullIf() below does that. blob18 is the attribution key
+-- written into the outbound URL: for Amazon it is the Associates tracking ID
+-- itself (bushgums-kit-22 or bushgums-gear-22); for other merchants it is the
+-- bg1_ sub-id. See docs/affiliate-links.md.
+SELECT blob10 AS product_slug, nullIf(blob2, '1') AS product_category,
+  blob15 AS merchant,
+  blob12 AS placement, blob11 AS kit_tier, blob18 AS tracking_key,
+  sum(_sample_interval) AS clicks
 FROM bush_gums_events_v1
 WHERE timestamp >= now() - INTERVAL '30' DAY AND blob1 = 'merchant_click'
-GROUP BY product_slug, merchant, placement, tracking_key
+GROUP BY product_slug, product_category, merchant, placement, kit_tier, tracking_key
+ORDER BY clicks DESC;
+
+-- Amazon clicks per Associates tracking ID, to reconcile against the
+-- Amazon Associates tracking-ID report.
+SELECT blob18 AS amazon_tracking_id, blob3 AS page_path, blob10 AS product_slug,
+  blob12 AS placement, blob5 AS utm_source, blob6 AS utm_medium,
+  blob7 AS utm_campaign, blob8 AS utm_content,
+  sum(_sample_interval) AS clicks
+FROM bush_gums_events_v1
+WHERE timestamp >= now() - INTERVAL '30' DAY AND blob1 = 'merchant_click'
+  AND blob18 LIKE 'bushgums-%-22'
+GROUP BY amazon_tracking_id, page_path, product_slug, placement,
+  utm_source, utm_medium, utm_campaign, utm_content
 ORDER BY clicks DESC;
 
 -- Completed-answer distribution (change blob19 to another question key).

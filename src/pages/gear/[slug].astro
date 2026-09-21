@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Photo from '../../components/Photo.astro';
 import SpecList from '../../components/product/SpecList.astro';
 import SourceTable from '../../components/product/SourceTable.astro';
+import OfferChoice from '../../components/product/OfferChoice.astro';
 import { productPages, productPath } from '../../data/product-pages';
 import { offersFor } from '../../data/offers';
 import { buildTrackedMerchantUrl } from '../../lib/affiliate-tracking';
@@ -25,14 +26,35 @@ const categoryAnchor =
   p.category === 'Cooking' || p.category === 'Accessories'
     ? 'cooking-accessories'
     : p.category.toLowerCase();
-const offer = offersFor(p.slug)[0];
-const trackedOffer = offer
-  ? buildTrackedMerchantUrl(offer, {
-      productSlug: p.slug,
-      sourceSurface: 'gear',
-      placement: 'product_buy_primary',
-    })
-  : undefined;
+const productOffers = offersFor(p.slug);
+// A product page may carry several offers for the same listing family in
+// different sizes. Those become a buyer-selectable choice, defaulting to the
+// first one. Everything else is a single primary offer plus one alternative
+// merchant shown quietly underneath.
+const variantOffers = productOffers.filter((o) => o.variantLabel);
+const primaryOffers =
+  variantOffers.length > 1 ? variantOffers : productOffers.slice(0, 1);
+const offer = primaryOffers[0];
+const secondaryOffer = productOffers.find((o) => !primaryOffers.includes(o));
+// The hero CTA and the "Where to buy" CTA are separate links, so each gets
+// its own placement. The value is the single source of truth: it is both the
+// non-Amazon sub-id in the outbound URL and the `placement` recorded on the
+// click, so the two can never drift apart. Primary CTAs are built inside
+// OfferChoice; these are the quieter alternative-merchant links.
+const trackSecondary = (placement: string) =>
+  secondaryOffer
+    ? buildTrackedMerchantUrl(secondaryOffer, {
+        productSlug: p.slug,
+        sourceSurface: 'gear',
+        placement,
+        // Gear detail / review links carry the gear Associates tracking ID.
+        amazonContext: 'gear-detail',
+      })
+    : undefined;
+const trackedSecondaryOffer = trackSecondary('product_buy_secondary');
+const trackedBuySecondaryOffer = trackSecondary(
+  'product_buy_where_to_buy_secondary',
+);
 const productPhoto = getProductPhoto(p.imageId);
 const sourceNumbers = Object.fromEntries(
   p.sources.map((source, index) => [source.id, index + 1]),
@@ -51,13 +73,14 @@ const date = new Date(`${p.researchedOn}T00:00:00`).toLocaleDateString(
   'en-AU',
   { day: 'numeric', month: 'long', year: 'numeric' },
 );
-const pricedOnDate = new Date(
-  `${p.pricedOn}T00:00:00`,
-).toLocaleDateString('en-AU', {
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
-});
+const pricedOnDate = new Date(`${p.pricedOn}T00:00:00`).toLocaleDateString(
+  'en-AU',
+  {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  },
+);
 const datesMatch = p.pricedOn === p.researchedOn;
 const pageUrl = new URL(productPath(p.slug), site.url).toString();
 const breadcrumbSchema = {
@@ -163,25 +186,40 @@ const pageSchema = {
           <p class="product-price">~A${p.pricePaidAud.toFixed(2)}</p>
           {
             offer && (
-              <a
-                class="button"
-                href={trackedOffer?.url}
-                target="_blank"
-                rel={
-                  offer.affiliate
-                    ? 'sponsored noopener noreferrer'
-                    : 'noopener noreferrer'
-                }
-                data-analytics-event="merchant_click"
-                data-product-slug={p.slug}
-                data-merchant={offer.merchant}
-                data-affiliate={String(offer.affiliate)}
-                data-affiliate-tracking-key={trackedOffer?.trackingKey}
-                data-placement="product_buy_primary"
-              >
-                Check current price on {offer.merchant}
-                <span class="sr-only"> (opens in a new tab)</span>
-              </a>
+              <OfferChoice
+                offers={primaryOffers}
+                productSlug={p.slug}
+                productCategory={p.category}
+                placement="product_buy_primary"
+                groupId="buy-hero"
+              />
+            )
+          }
+          {
+            secondaryOffer && (
+              <p class="buy-alt">
+                <a
+                  href={trackedSecondaryOffer?.url}
+                  target="_blank"
+                  rel={
+                    secondaryOffer.affiliate
+                      ? 'sponsored noopener noreferrer'
+                      : 'noopener noreferrer'
+                  }
+                  data-analytics-event="merchant_click"
+                  data-product-slug={p.slug}
+                  data-product-category={p.category}
+                  data-merchant={secondaryOffer.merchant}
+                  data-affiliate={String(secondaryOffer.affiliate)}
+                  data-affiliate-tracking-key={
+                    trackedSecondaryOffer?.trackingKey
+                  }
+                  data-placement="product_buy_secondary"
+                >
+                  Also available on {secondaryOffer.merchant}
+                  <span class="sr-only"> (opens in a new tab)</span>
+                </a>
+              </p>
             )
           }
           {
@@ -199,9 +237,11 @@ const pageSchema = {
           <nav class="rail-nav">
             <p>On this page</p>
             <a href="#shortlist">Why we chose it</a>
-            {p.externalReview && (
-              <a href="#external-review">Independent external review</a>
-            )}
+            {
+              p.externalReview && (
+                <a href="#external-review">Independent external review</a>
+              )
+            }
             <a href="#specs">Technical specifications</a>
             <a href="#owners">What owners say</a>
             {
@@ -364,18 +404,21 @@ const pageSchema = {
             <div class="purchase-record">
               {p.identityNote && <p>{p.identityNote}</p>}
               <p>
-                {datesMatch ? (
-                  <>
-                    Recorded price A${p.pricePaidAud.toFixed(2)}, checked{' '}
-                    <time datetime={p.pricedOn}>{pricedOnDate}</time>.
-                  </>
-                ) : (
-                  <>
-                    Recorded price A${p.pricePaidAud.toFixed(2)} on{' '}
-                    <time datetime={p.pricedOn}>{pricedOnDate}</time>. Research
-                    was last checked <time datetime={p.researchedOn}>{date}</time>.
-                  </>
-                )}
+                {
+                  datesMatch ? (
+                    <>
+                      Recorded price A${p.pricePaidAud.toFixed(2)}, checked{' '}
+                      <time datetime={p.pricedOn}>{pricedOnDate}</time>.
+                    </>
+                  ) : (
+                    <>
+                      Recorded price A${p.pricePaidAud.toFixed(2)} on{' '}
+                      <time datetime={p.pricedOn}>{pricedOnDate}</time>.
+                      Research was last checked{' '}
+                      <time datetime={p.researchedOn}>{date}</time>.
+                    </>
+                  )
+                }
               </p>
               {
                 p.listingRating && (
@@ -397,25 +440,38 @@ const pageSchema = {
             {
               offer ? (
                 <div>
-                  <a
-                    class="button"
-                    href={trackedOffer?.url}
-                    target="_blank"
-                    rel={
-                      offer.affiliate
-                        ? 'sponsored noopener noreferrer'
-                        : 'noopener noreferrer'
-                    }
-                    data-analytics-event="merchant_click"
-                    data-product-slug={p.slug}
-                    data-merchant={offer.merchant}
-                    data-affiliate={String(offer.affiliate)}
-                    data-affiliate-tracking-key={trackedOffer?.trackingKey}
-                    data-placement="product_buy_primary"
-                  >
-                    Check current price on {offer.merchant}
-                    <span class="sr-only"> (opens in a new tab)</span>
-                  </a>
+                  <OfferChoice
+                    offers={primaryOffers}
+                    productSlug={p.slug}
+                    productCategory={p.category}
+                    placement="product_buy_where_to_buy"
+                    groupId="buy-where"
+                  />
+                  {secondaryOffer && (
+                    <p class="buy-alt">
+                      <a
+                        href={trackedBuySecondaryOffer?.url}
+                        target="_blank"
+                        rel={
+                          secondaryOffer.affiliate
+                            ? 'sponsored noopener noreferrer'
+                            : 'noopener noreferrer'
+                        }
+                        data-analytics-event="merchant_click"
+                        data-product-slug={p.slug}
+                        data-product-category={p.category}
+                        data-merchant={secondaryOffer.merchant}
+                        data-affiliate={String(secondaryOffer.affiliate)}
+                        data-affiliate-tracking-key={
+                          trackedBuySecondaryOffer?.trackingKey
+                        }
+                        data-placement="product_buy_where_to_buy_secondary"
+                      >
+                        Also available on {secondaryOffer.merchant}
+                        <span class="sr-only"> (opens in a new tab)</span>
+                      </a>
+                    </p>
+                  )}
                   {offer.affiliate && (
                     <p class="small-print">
                       Affiliate link. We may earn a commission at no extra cost

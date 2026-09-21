@@ -52,15 +52,27 @@ not block the site, questionnaire or merchant navigation.
 
 ## Physical schema
 
-`index1` is session ID. Blobs 1-20 are event, schema version, page path,
+`index1` is session ID. Blobs 1-20 are event, product category, page path,
 landing path, source, medium, campaign, content, referrer domain, product slug,
 kit ID, placement, source surface, source ID, merchant, builder result, country,
 affiliate tracking key, question key and answer value. Doubles 1-5 are event
 count, builder step, affiliate flag, event sequence and builder attempt.
 
+Blob 2 previously held a constant `1` schema-version marker and now holds the
+product category. Analytics Engine allows at most 20 blobs and all 20 are in
+use; the request `version` field is still validated by the Worker. Rows
+written before the change still contain `1` in blob 2, so queries that read a
+product category must treat `1` as unknown, for example with
+`nullIf(blob2, '1')`. `dashboard-queries.sql` already does this. Expect mixed
+meanings in blob 2 for any window that spans the deployment of this change.
+
 Merchant placement keys are deterministic and contain no session, UTM or
-questionnaire data. Existing AliExpress URLs use tracking mode `none` and remain
-unchanged; network-side query parameters require separate owner verification.
+questionnaire data. Blob 18 holds the attribution key written into the outbound
+URL: for an Amazon link it is the Amazon Associates tracking ID itself
+(`bushgums-kit-22` or `bushgums-gear-22`), and for every other merchant it is
+the Bush Gums `bg1_` sub-id. See `../affiliate-links.md`. Existing AliExpress
+URLs use tracking mode `none` and remain unchanged; network-side query
+parameters require separate owner verification.
 
 ## Querying
 

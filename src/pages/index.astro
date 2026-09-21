@@ -8,7 +8,7 @@ import {
   type Kit,
 } from '../data/kits';
 import { productById, formatWeight } from '../data/catalog';
-import { offersFor } from '../data/offers';
+import { offersForCatalogItem, type Offer } from '../data/offers';
 import { buildTrackedMerchantUrl } from '../lib/affiliate-tracking';
 import { productPageBySlug, productPath } from '../data/product-pages';
 import {
@@ -105,22 +105,40 @@ const problems = [
   },
 ];
 
+const trackKitOffer = (offer: Offer, slug: string, placement: string) =>
+  buildTrackedMerchantUrl(offer, {
+    productSlug: slug,
+    sourceSurface: 'home',
+    sourceId: 'kit-table',
+    placement,
+    // Landing page kit links carry the kit Amazon Associates tracking ID.
+    amazonContext: 'kit',
+  });
+
 const itemFor = (id: string) => {
   const product = productById[id];
   const page = product.reviewSlug
     ? productPageBySlug[product.reviewSlug]
     : undefined;
-  const offer = page ? offersFor(page.slug)[0] : undefined;
+  const itemOffers = page ? offersForCatalogItem(page.slug, id) : [];
+  const offer = itemOffers[0];
+  const secondaryOffer = itemOffers[1];
   const trackedOffer =
     page && offer
-      ? buildTrackedMerchantUrl(offer, {
-          productSlug: page.slug,
-          sourceSurface: 'home',
-          sourceId: 'kit-table',
-          placement: 'home_buy_inline',
-        })
+      ? trackKitOffer(offer, page.slug, 'home_buy_inline')
       : undefined;
-  return { product, page, offer, trackedOffer };
+  const trackedSecondaryOffer =
+    page && secondaryOffer
+      ? trackKitOffer(secondaryOffer, page.slug, 'home_buy_secondary')
+      : undefined;
+  return {
+    product,
+    page,
+    offer,
+    trackedOffer,
+    secondaryOffer,
+    trackedSecondaryOffer,
+  };
 };
 // Short homepage table descriptions, keyed by catalog product id.
 const tableNotes: Record<string, string> = {
@@ -405,8 +423,14 @@ const tableSections = [
             </div>
             <ul class="kit-items">
               {productIds.map((productId) => {
-                const { product, page, offer, trackedOffer } =
-                  itemFor(productId);
+                const {
+                  product,
+                  page,
+                  offer,
+                  trackedOffer,
+                  secondaryOffer,
+                  trackedSecondaryOffer,
+                } = itemFor(productId);
                 return (
                   <li>
                     <div class="kit-item-static">
@@ -469,9 +493,14 @@ const tableSections = [
                             class="button button-small kit-item-buy"
                             href={trackedOffer?.url}
                             target="_blank"
-                            rel="sponsored noopener noreferrer"
+                            rel={
+                              offer.affiliate
+                                ? 'sponsored noopener noreferrer'
+                                : 'noopener noreferrer'
+                            }
                             data-analytics-event="merchant_click"
                             data-product-slug={page?.slug}
+                            data-product-category={product.category}
                             data-merchant={offer.merchant}
                             data-affiliate={String(offer.affiliate)}
                             data-affiliate-tracking-key={
@@ -487,6 +516,40 @@ const tableSections = [
                             data-placement="home_buy_inline"
                           >
                             Check current price
+                            <span class="sr-only">
+                              {' '}
+                              for {product.name} (opens in a new tab)
+                            </span>
+                          </a>
+                        )}
+                        {secondaryOffer && (
+                          <a
+                            class="kit-item-buy-alt"
+                            href={trackedSecondaryOffer?.url}
+                            target="_blank"
+                            rel={
+                              secondaryOffer.affiliate
+                                ? 'sponsored noopener noreferrer'
+                                : 'noopener noreferrer'
+                            }
+                            data-analytics-event="merchant_click"
+                            data-product-slug={page?.slug}
+                            data-product-category={product.category}
+                            data-merchant={secondaryOffer.merchant}
+                            data-affiliate={String(secondaryOffer.affiliate)}
+                            data-affiliate-tracking-key={
+                              trackedSecondaryOffer?.trackingKey
+                            }
+                            data-kit-id={
+                              id === 'starter' || id === 'value'
+                                ? id
+                                : undefined
+                            }
+                            data-source-surface="kit"
+                            data-source-id={id}
+                            data-placement="home_buy_secondary"
+                          >
+                            Also on {secondaryOffer.merchant}
                             <span class="sr-only">
                               {' '}
                               for {product.name} (opens in a new tab)

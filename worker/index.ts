@@ -64,6 +64,7 @@ const allowedKeys = new Set([
   'merchant',
   'affiliate',
   'affiliateTrackingKey',
+  'productCategory',
   'builderResult',
   'questionKey',
   'answerValue',
@@ -222,7 +223,10 @@ async function analytics(request: Request, env: Env) {
     indexes: [text(body.sessionId, 96)],
     blobs: [
       text(body.event),
-      '1',
+      // blob2 carries the product category for merchant and product clicks.
+      // It replaced a constant schema-version marker; the request `version`
+      // field is still validated above.
+      text(body.productCategory, 40),
       text(body.path, 500),
       text(body.landingPath, 500),
       text(body.source),

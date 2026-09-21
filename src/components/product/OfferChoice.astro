@@ -1,0 +1,154 @@
+---
+/*
+ * Primary buy CTA for a product page.
+ *
+ * With one offer it renders a single button, exactly as before. With several
+ * variant offers (a listing family sold in more than one size) it renders one
+ * button per variant and lets the visitor pick; the first offer is the
+ * default.
+ *
+ * Progressive enhancement: the server renders every variant button visible
+ * and the radio picker hidden. Without JavaScript the visitor still sees each
+ * labelled option and every link works. The script then reveals the picker
+ * and shows one button at a time.
+ */
+import type { Offer } from '../../data/offers';
+import { buildTrackedMerchantUrl } from '../../lib/affiliate-tracking';
+
+type Props = {
+  offers: Offer[];
+  productSlug: string;
+  productCategory: string;
+  /** Base placement; a variant appends its own suffix. */
+  placement: string;
+  /** Unique within the page, so two pickers never share a radio group. */
+  groupId: string;
+};
+
+const { offers, productSlug, productCategory, placement, groupId } =
+  Astro.props;
+
+const slugPart = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+const choices = offers.map((offer, index) => {
+  // The placement is the single source of truth: it is both the non-Amazon
+  // sub-id in the outbound URL and the placement recorded on the click.
+  const variantPlacement = offer.variantLabel
+    ? `${placement}_${slugPart(offer.variantLabel)}`
+    : placement;
+  const tracked = buildTrackedMerchantUrl(offer, {
+    productSlug,
+    sourceSurface: 'gear',
+    placement: variantPlacement,
+    amazonContext: 'gear-detail',
+  });
+  return {
+    offer,
+    tracked,
+    variantPlacement,
+    // One text run, so a long label wraps as a sentence rather than breaking
+    // into separate flex items.
+    label: offer.variantLabel
+      ? `Check current price on ${offer.merchant} (${offer.variantLabel})`
+      : `Check current price on ${offer.merchant}`,
+    id: `${groupId}-${index}`,
+    isDefault: index === 0,
+  };
+});
+
+const hasChoice = choices.length > 1;
+---
+
+<div class="offer-choice" data-offer-choice={hasChoice ? groupId : undefined}>
+  {
+    hasChoice && (
+      <fieldset class="offer-variants" hidden data-offer-variants>
+        <legend>Choose a size</legend>
+        {choices.map((choice) => (
+          <span class="offer-variant">
+            <input
+              type="radio"
+              name={groupId}
+              id={`${choice.id}-radio`}
+              value={choice.id}
+              checked={choice.isDefault}
+            />
+            <label for={`${choice.id}-radio`}>
+              {choice.offer.variantLabel}
+            </label>
+          </span>
+        ))}
+      </fieldset>
+    )
+  }
+  {
+    choices.map((choice) => (
+      <a
+        class:list={[
+          'button',
+          'offer-choice-link',
+          { 'has-variant': Boolean(choice.offer.variantLabel) },
+        ]}
+        data-offer-target={hasChoice ? choice.id : undefined}
+        href={choice.tracked.url}
+        target="_blank"
+        rel={
+          choice.offer.affiliate
+            ? 'sponsored noopener noreferrer'
+            : 'noopener noreferrer'
+        }
+        data-analytics-event="merchant_click"
+        data-product-slug={productSlug}
+        data-product-category={productCategory}
+        data-merchant={choice.offer.merchant}
+        data-affiliate={String(choice.offer.affiliate)}
+        data-affiliate-tracking-key={choice.tracked.trackingKey}
+        data-placement={choice.variantPlacement}
+      >
+        <span>{choice.label}</span>
+        <span class="sr-only"> (opens in a new tab)</span>
+      </a>
+    ))
+  }
+</div>
+
+<script>
+  // Reveal the picker only once scripting is confirmed, so a visitor without
+  // JavaScript never sees a control that would do nothing.
+  for (const group of document.querySelectorAll<HTMLElement>(
+    '[data-offer-choice]',
+  )) {
+    const fieldset = group.querySelector<HTMLFieldSetElement>(
+      '[data-offer-variants]',
+    );
+    const links = Array.from(
+      group.querySelectorAll<HTMLAnchorElement>('[data-offer-target]'),
+    );
+    if (!fieldset || links.length < 2) continue;
+
+    const show = (id: string) => {
+      for (const link of links) {
+        link.hidden = link.dataset.offerTarget !== id;
+      }
+    };
+
+    const radios = Array.from(
+      fieldset.querySelectorAll<HTMLInputElement>('input[type="radio"]'),
+    );
+    for (const radio of radios) {
+      radio.addEventListener('change', () => {
+        if (radio.checked) show(radio.value);
+      });
+    }
+    const checked = radios.find((radio) => radio.checked) ?? radios[0];
+    if (checked) {
+      checked.checked = true;
+      show(checked.value);
+    }
+    fieldset.hidden = false;
+  }
+</script>

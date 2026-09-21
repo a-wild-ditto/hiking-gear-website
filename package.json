@@ -12,6 +12,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "test:analytics": "node scripts/check-analytics.mjs",
+    "test:affiliate": "node scripts/check-affiliate-urls.mjs",
     "seo:check": "node scripts/check-seo.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check ."

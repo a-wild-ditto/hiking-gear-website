@@ -23,7 +23,13 @@ export type AnalyticsContext = {
   sourceId?: string;
   merchant?: string;
   affiliate?: boolean;
+  /**
+   * Attribution identifier written into the outbound URL. For Amazon links
+   * this is the exact Amazon Associates tracking ID (for example
+   * bushgums-kit-22); for other merchants it is the Bush Gums bg1_ sub-id.
+   */
   affiliateTrackingKey?: string;
+  productCategory?: string;
   builderResult?: 'starter' | 'value' | 'no_match';
   questionKey?:
     'location' | 'season' | 'people' | 'budget' | 'priority' | 'experience';
@@ -348,6 +354,9 @@ const registerClickTracking = () =>
         : {}),
       ...(target.dataset.affiliateTrackingKey
         ? { affiliateTrackingKey: target.dataset.affiliateTrackingKey }
+        : {}),
+      ...(target.dataset.productCategory
+        ? { productCategory: target.dataset.productCategory }
         : {}),
       ...(target.dataset.builderResult
         ? {
