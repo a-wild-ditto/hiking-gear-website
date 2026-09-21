@@ -7,7 +7,7 @@ import {
   extractAmazonAsin,
   isAmazonUrl,
 } from '../src/lib/affiliate-tracking.ts';
-import { offers, offersForCatalogItem } from '../src/data/offers.ts';
+import { offers, offersFor, offersForCatalogItem } from '../src/data/offers.ts';
 
 const CANONICAL = 'https://www.amazon.com.au/dp/B0G3P2ZNSV';
 const LONG_SEARCH_URL =
@@ -276,24 +276,39 @@ for (const url of ['', 'not a url', '/dp/B0G3P2ZNSV', 'javascript:alert(1)']) {
   assert.equal(rockAmazon[0].recordedPriceAud, 119);
 }
 
-// 12b2. The Cloud Up kit row also leads with AliExpress, with the Amazon 1P
-// listing beneath it and the 2P listing kept off the 1P row.
+// 12b2. The Cloud Up kit row leads with the cheaper Amazon 1P listing, with
+// AliExpress beneath it and the 2P listing kept off the 1P row.
 {
   const kitRow = offersForCatalogItem(
     'naturehike-cloud-up-tent',
     'cloud-up-1p',
   );
   assert.equal(
-    kitRow[0].merchant,
-    'AliExpress',
-    'Cloud Up kit row leads with AliExpress',
-  );
-  assert.equal(kitRow.length, 2, 'Cloud Up kit row has one alternative');
-  assert.equal(
-    extractAmazonAsin(kitRow[1].url),
+    extractAmazonAsin(kitRow[0].url),
     'B0FXGHX1PL',
-    'alternative is the 1P',
+    'Cloud Up kit row leads with Amazon 1P',
   );
+  assert.equal(kitRow[1].merchant, 'AliExpress', 'AliExpress beneath it');
+  assert.equal(kitRow.length, 2, 'Cloud Up kit row has one alternative');
+}
+
+// 12b3. Cheapest first, everywhere: every product's offers are ordered by
+// ascending recorded price, and a product with several offers prices them all.
+for (const slug of new Set(offers.map((o) => o.productSlug))) {
+  const list = offersFor(slug);
+  if (list.length < 2) continue;
+  for (const o of list) {
+    assert.ok(
+      o.recordedPriceAud !== undefined,
+      `${slug}: ${o.merchant} needs a recorded price`,
+    );
+  }
+  for (let i = 1; i < list.length; i++) {
+    assert.ok(
+      list[i - 1].recordedPriceAud <= list[i].recordedPriceAud,
+      `${slug}: offers not cheapest first`,
+    );
+  }
 }
 
 // 12c. Every Amazon offer shown as an alternative carries a recorded price

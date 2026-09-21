@@ -5,9 +5,12 @@
  * Only add `affiliate: true` once a real affiliate relationship exists; the
  * page then shows the affiliate disclosure next to the link.
  *
- * Declaration order is significant: `offersFor` preserves it, and the first
- * applicable offer becomes the primary buy link. Put the preferred merchant
- * first and any alternative below it.
+ * Offers are ordered cheapest first by `recordedPriceAud`, and the first
+ * applicable offer becomes the primary buy link, with dearer ones listed
+ * beneath it. Record a price on every offer for a product that has more than
+ * one, so the ordering is decided by price rather than by position here.
+ * Offers without a recorded price sort after priced ones, keeping their
+ * declaration order.
  *
  * Amazon URLs are stored as clean canonical product URLs
  * (https://www.amazon.com.au/dp/<ASIN>) with no `tag`. The Associates
@@ -79,15 +82,18 @@ export const offers: Offer[] = [
     affiliate: true,
     checkedOn: '2026-09-16',
   },
-  // AliExpress is listed first: the Value kit price was recorded from it, so
-  // the kit row leads with it. The Amazon offers follow, one per capacity,
-  // each scoped to its catalog id so a kit row only offers the capacity that
-  // kit recommends.
+  // One Amazon offer per capacity, each scoped to its catalog id so a kit row
+  // only offers the capacity that kit recommends. Ordering is by price.
   {
     productSlug: 'naturehike-cloud-up-tent',
     merchant: 'AliExpress',
     url: 'https://s.click.aliexpress.com/e/_c3nDPKip',
     affiliate: true,
+    recordedPriceAud: 204.88,
+    // The recorded price is for the Pro 1P, so the offer is labelled and
+    // scoped as the 1 person option.
+    catalogIds: ['cloud-up-1p'],
+    variantLabel: '1 person',
     checkedOn: '2026-09-16',
   },
   {
@@ -106,8 +112,7 @@ export const offers: Offer[] = [
     url: 'https://www.amazon.com.au/dp/B0FXGHX1PL',
     affiliate: true,
     recordedPriceAud: 149,
-    // Forest Green, 20D nylon. Offered beneath AliExpress on the Value kit
-    // row and on the review page.
+    // Forest Green, 20D nylon.
     catalogIds: ['cloud-up-1p'],
     variantLabel: '1 person',
     checkedOn: '2026-09-21',
@@ -126,13 +131,12 @@ export const offers: Offer[] = [
     affiliate: true,
     checkedOn: '2026-09-16',
   },
-  // AliExpress is listed first: it is the cheaper listing and the one the
-  // kit price was recorded from, so the kit row leads with it.
   {
     productSlug: 'naturehike-rock-60-5',
     merchant: 'AliExpress',
     url: 'https://s.click.aliexpress.com/e/_c4V1qZBr',
     affiliate: true,
+    recordedPriceAud: 68.73,
     checkedOn: '2026-09-16',
   },
   // ASIN B08PV3XF4H is the Grey 60+5L variant under parent B0GWHG65BL, with
@@ -171,9 +175,15 @@ export const offers: Offer[] = [
   },
 ];
 
-/** Every offer for a product page, preferred merchant first. */
+const byRecordedPrice = (a: Offer, b: Offer) =>
+  (a.recordedPriceAud ?? Infinity) - (b.recordedPriceAud ?? Infinity);
+
+/**
+ * Every offer for a product page, cheapest recorded price first. The sort is
+ * stable, so offers with equal or missing prices keep declaration order.
+ */
 export const offersFor = (slug: string) =>
-  offers.filter((o) => o.productSlug === slug);
+  offers.filter((o) => o.productSlug === slug).sort(byRecordedPrice);
 
 /**
  * Offers usable for one catalog item. Variant-scoped offers are excluded

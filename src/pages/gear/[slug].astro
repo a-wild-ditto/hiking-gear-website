@@ -27,12 +27,9 @@ const categoryAnchor =
     ? 'cooking-accessories'
     : p.category.toLowerCase();
 const productOffers = offersFor(p.slug);
-// On gear detail pages the primary button goes to AliExpress whenever the
-// product has an AliExpress offer; every other merchant, such as Amazon, is
-// listed beneath it with its recorded price. Products without an AliExpress
-// offer use their first listed offer.
-const offer =
-  productOffers.find((o) => o.merchant === 'AliExpress') ?? productOffers[0];
+// Offers arrive cheapest first. The cheapest is the primary button and every
+// dearer offer is listed beneath it with its recorded price.
+const offer = productOffers[0];
 const primaryOffers = offer ? [offer] : [];
 const alternativeOffers = productOffers.filter((o) => o !== offer);
 const hasAliExpressOffer = productOffers.some(
@@ -167,6 +164,15 @@ const pageSchema = {
           <h1 id="product-title">{p.name}</h1>
           <p class="lead">{p.summary}</p>
           <p class="product-price">~A${p.pricePaidAud.toFixed(2)}</p>
+          {
+            p.pricedFrom && (
+              <p class="product-price-source">
+                Recorded {p.pricedFrom} price,{' '}
+                <time datetime={p.pricedOn}>{pricedOnDate}</time>. The buy link
+                below may show a different current price.
+              </p>
+            )
+          }
           {
             offer && (
               <OfferChoice

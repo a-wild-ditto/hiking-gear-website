@@ -161,6 +161,13 @@ p {
 .demo-note {
   margin-top: 16px;
 }
+/* Source label under a headline price recorded from another merchant. */
+.product-price-source {
+  margin: -8px 0 16px;
+  font-size: 0.8125rem;
+  color: var(--ink-muted);
+}
+
 /* Product buy CTA, with an optional variant picker above it. */
 .offer-choice {
   display: flex;

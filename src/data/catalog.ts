@@ -146,10 +146,10 @@ export const products: Product[] = [
     id: 'cloud-up-1p',
     name: 'Naturehike Cloud Up Pro 1P',
     category: 'Shelter',
-    // Recorded from the AliExpress listing the kit links to. The Amazon
-    // Australia 1P listing (ASIN B0FXGHX1PL) was A$149 on 2026-09-21 and is
-    // offered beneath it.
-    price: 205,
+    // Recorded from the Amazon Australia 1P listing (ASIN B0FXGHX1PL, Forest
+    // Green, 20D nylon) on 2026-09-21. It is the cheapest listing, so the kit
+    // links to it first, with AliExpress (A$204.88 on 2026-09-16) beneath.
+    price: 149,
     weightGrams: 1230,
     carriedWeightGrams: 1390,
     weightStatus: 'seller-claim',

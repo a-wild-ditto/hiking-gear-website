@@ -92,6 +92,13 @@ export type ProductPage = {
   pricePaidAud: number;
   /** ISO date the recorded price was current. */
   pricedOn: string;
+  /**
+   * Merchant the recorded price came from. Set it when the page's primary
+   * (cheapest) buy link goes to a different merchant, so the headline price
+   * is labelled with its source instead of reading as the price behind the
+   * button.
+   */
+  pricedFrom?: string;
   /** Rating on the marketplace listing we bought from. Context, not evidence. */
   listingRating?: {
     stars: number;
