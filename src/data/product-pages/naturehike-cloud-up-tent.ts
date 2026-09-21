@@ -25,8 +25,8 @@ const page: ProductPage = {
   question:
     'Which Cloud Up variant makes the most sense for a beginner once complete weight, usable room, condensation and wet-weather behaviour are checked?',
   whyWeChoseIt: [
-    'The Cloud Up family uses a familiar double-wall structure, aluminium poles and a front vestibule. Reviews of older Cloud Up 2 tents describe straightforward pitching and useful casual performance, but they do not establish how the current Pro variants behave.',
-    'Older reviewers found the Cloud Up 2 interior tight for two adults. The current marketplace listing offers Pro 1P, 2P and 3P options, yet gives incomplete capacity-specific specifications. Check the exact option and included components before comparing weights or space.',
+    'The Cloud Up family uses a familiar double-wall structure, aluminium poles and a front vestibule. Reviews of older Cloud Up 2 tents describe straightforward pitching and useful casual performance.',
+    'It is ultralight and well reviewed, yet still much more affordable than other ultralight tent options.',
   ],
   externalReview: {
     videoId: 'zU3ZJg01nIM',
@@ -79,7 +79,7 @@ const page: ProductPage = {
     {
       label: 'Materials',
       value:
-        'Pro 1 listing: 20D nylon and PU 3000 mm; Pro 2 official page: 20D silicone-coated nylon fly and 210T polyester floor claimed',
+        'Sold in 20D nylon and 210T polyester variants, with a 15D nylon option on the 2P. Pro 1 listing: 20D nylon and PU 3000 mm; Pro 2 official page: 20D silicone-coated nylon fly and 210T polyester floor claimed',
       status: 'seller-claim',
       note: 'The official pages contain some inconsistent table and description text; confirm the delivered fabric labels.',
       sourceIds: ['naturehike-base-1', 'naturehike-pro-2'],

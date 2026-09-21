@@ -276,6 +276,26 @@ for (const url of ['', 'not a url', '/dp/B0G3P2ZNSV', 'javascript:alert(1)']) {
   assert.equal(rockAmazon[0].recordedPriceAud, 119);
 }
 
+// 12b2. The Cloud Up kit row also leads with AliExpress, with the Amazon 1P
+// listing beneath it and the 2P listing kept off the 1P row.
+{
+  const kitRow = offersForCatalogItem(
+    'naturehike-cloud-up-tent',
+    'cloud-up-1p',
+  );
+  assert.equal(
+    kitRow[0].merchant,
+    'AliExpress',
+    'Cloud Up kit row leads with AliExpress',
+  );
+  assert.equal(kitRow.length, 2, 'Cloud Up kit row has one alternative');
+  assert.equal(
+    extractAmazonAsin(kitRow[1].url),
+    'B0FXGHX1PL',
+    'alternative is the 1P',
+  );
+}
+
 // 12c. Every Amazon offer shown as an alternative carries a recorded price
 // and a check date, so the gear page can show both.
 for (const offer of offers) {

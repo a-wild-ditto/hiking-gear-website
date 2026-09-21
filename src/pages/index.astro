@@ -13,7 +13,6 @@ import { buildTrackedMerchantUrl } from '../lib/affiliate-tracking';
 import { productPageBySlug, productPath } from '../data/product-pages';
 import {
   anacondaRows,
-  bushGumsRepricedOn,
   comparisonCheckedOn,
   comparison,
   formatAud,
@@ -338,10 +337,9 @@ const tableSections = [
           <sup>*</sup> Compared with a category-matched setup from a traditional outdoor
           retailer ({formatAud(traditional.priceAud)}, {
             formatKg(traditional.weightGrams, 1)
-          }), advertised prices checked {formatDate(comparisonCheckedOn)}. On
-          our side the tent price was updated {formatDate(bushGumsRepricedOn)};
-          the other prices were checked {formatDate(comparisonCheckedOn)}.
-          Prices exclude delivery and can change.
+          }). Prices on both sides were checked {
+            formatDate(comparisonCheckedOn)
+          }, exclude delivery and can change.
         </p>
         <details data-retailer-comparison>
           <summary>Traditional retailer comparison</summary>

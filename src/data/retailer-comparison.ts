@@ -16,12 +16,6 @@ export type ComparisonRow = {
 };
 
 export const comparisonCheckedOn = '2026-09-17';
-/**
- * The shelter row was re-priced against its Amazon listing after the rest of
- * the comparison was checked, so it carries its own date. Both dates are
- * shown publicly alongside the comparison.
- */
-export const bushGumsRepricedOn = '2026-09-21';
 
 /** Row-level data for the Value-kit category comparison. */
 export const comparisonRows: ComparisonRow[] = [
@@ -29,15 +23,15 @@ export const comparisonRows: ComparisonRow[] = [
     category: 'Shelter',
     side: 'Bush Gums',
     productName: 'Naturehike Cloud Up Pro 1P',
-    priceAud: 149,
+    priceAud: 205,
     priceType: 'Price recorded',
     weightGrams: 1390,
     weightBasis:
       'Seller-listed minimum package weight, estimated carried figure',
     weightStatus: 'seller-claim',
     sourceUrl: '/gear/naturehike-cloud-up-tent/',
-    checkedOn: bushGumsRepricedOn,
-    note: 'Price recorded from the Amazon Australia 20D nylon listing on 21 September 2026; other colour options of the same tent were dearer that day. The 1,230 g listing figure excludes accessories. The comparison uses the approved 1,390 g carried estimate, and neither figure has been independently measured.',
+    checkedOn: comparisonCheckedOn,
+    note: 'The 1,230 g listing figure excludes accessories. The comparison uses the approved 1,390 g carried estimate, and neither figure has been independently measured.',
   },
   {
     category: 'Sleeping bag',

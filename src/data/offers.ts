@@ -79,10 +79,17 @@ export const offers: Offer[] = [
     affiliate: true,
     checkedOn: '2026-09-16',
   },
-  // The Cloud Up review page covers several capacities, so it carries one
-  // Amazon offer per capacity. The two-person listing is first, which makes it
-  // the default choice on the review page. Each is scoped to its catalog id so
-  // a kit row only ever links to the capacity that kit recommends.
+  // AliExpress is listed first: the Value kit price was recorded from it, so
+  // the kit row leads with it. The Amazon offers follow, one per capacity,
+  // each scoped to its catalog id so a kit row only offers the capacity that
+  // kit recommends.
+  {
+    productSlug: 'naturehike-cloud-up-tent',
+    merchant: 'AliExpress',
+    url: 'https://s.click.aliexpress.com/e/_c3nDPKip',
+    affiliate: true,
+    checkedOn: '2026-09-16',
+  },
   {
     productSlug: 'naturehike-cloud-up-tent',
     merchant: 'Amazon Australia',
@@ -99,20 +106,11 @@ export const offers: Offer[] = [
     url: 'https://www.amazon.com.au/dp/B0FXGHX1PL',
     affiliate: true,
     recordedPriceAud: 149,
-    // The Value kit row displays the price recorded from this exact listing
-    // (Forest Green, 20D nylon), so the row links here. Its carried weight is
-    // still the AliExpress-sourced estimate; see the weightBasis note on
-    // cloud-up-1p in ../catalog.ts for why the Amazon item weight is not used.
+    // Forest Green, 20D nylon. Offered beneath AliExpress on the Value kit
+    // row and on the review page.
     catalogIds: ['cloud-up-1p'],
     variantLabel: '1 person',
     checkedOn: '2026-09-21',
-  },
-  {
-    productSlug: 'naturehike-cloud-up-tent',
-    merchant: 'AliExpress',
-    url: 'https://s.click.aliexpress.com/e/_c3nDPKip',
-    affiliate: true,
-    checkedOn: '2026-09-16',
   },
   {
     productSlug: '400g-down-envelope-sleeping-bag',
