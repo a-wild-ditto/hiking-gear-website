@@ -139,6 +139,11 @@ export type ProductPage = {
   buyerContext?: { heading: string; paragraphs: string[] };
   testPlan: string[];
   review: ReviewStatus;
+  /**
+   * Keep the research in the repository but do not publish it: no gear
+   * page is built, and it is left out of the gear index and the sitemap.
+   */
+  hidden?: boolean;
   /** ISO date the research was last checked. */
   researchedOn: string;
 };

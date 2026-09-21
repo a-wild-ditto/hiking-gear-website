@@ -138,6 +138,8 @@ const page: ProductPage = {
     'Begin overnight testing in mild conditions and do not assign a temperature rating from informal use.',
   ],
   review: { state: 'ordered' },
+  // Removed from the shortlist; kept for possible reinstatement.
+  hidden: true,
   researchedOn: '2026-09-16',
 };
 

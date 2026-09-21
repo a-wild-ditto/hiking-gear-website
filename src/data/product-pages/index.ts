@@ -12,8 +12,11 @@ import tuyeMat from './naturehike-tuye-r3-5';
 import aluminiumCookwareSet from './aluminium-cookware-set';
 import jnlnRainJacket from './jnln-lightweight-rain-jacket';
 
-/** Real products with detail pages, in catalogue display order. */
-export const productPages: ProductPage[] = [
+/**
+ * Every researched product in the repository, including hidden ones, in
+ * catalogue display order.
+ */
+export const allProductPages: ProductPage[] = [
   bisinnaTent,
   downBag,
   foamPad,
@@ -27,6 +30,13 @@ export const productPages: ProductPage[] = [
   aluminiumCookwareSet,
   jnlnRainJacket,
 ];
+
+/**
+ * Published products only. Everything public (gear pages, the gear index,
+ * the sitemap and kit links) reads from this list, so a hidden product has
+ * no public page.
+ */
+export const productPages = allProductPages.filter((p) => !p.hidden);
 
 export const productPageBySlug = Object.fromEntries(
   productPages.map((p) => [p.slug, p]),
