@@ -97,7 +97,7 @@ export const products: Product[] = [
     carriedWeightGrams: 330,
     weightStatus: 'seller-claim',
     weightBasis: 'Listing weight',
-    summary: 'A simple folding mat that cannot puncture or deflate.',
+    summary: 'An ultralight folding mat that cannot puncture or deflate.',
     goodFor: 'Reliable, low-cost first trips',
     reviewSlug: 'foil-egg-crate-foam-pad',
     kitDetail: {

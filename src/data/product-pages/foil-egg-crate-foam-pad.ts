@@ -11,7 +11,7 @@ const page: ProductPage = {
   pricePaidAud: 17.35,
   pricedOn: '2026-09-16',
   summary:
-    'A folding foam pad for under $20. Nothing to inflate, nothing to puncture.',
+    'An ultralight folding foam pad for under $20. Nothing to inflate, nothing to puncture.',
   metaDescription:
     'Foil-faced folding foam pad for under A$20: puncture-proof, instant to set up and a great extra layer under an inflatable. Owner reports on similar pads.',
   question:
