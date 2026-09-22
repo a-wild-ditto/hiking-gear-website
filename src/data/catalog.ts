@@ -124,14 +124,14 @@ export const products: Product[] = [
     carriedWeightGrams: 580,
     weightStatus: 'seller-claim',
     weightBasis: 'Listing weight',
-    summary: 'A very light frameless roll-top for an already compact kit.',
-    goodFor: 'Carefully packed lighter loads',
+    summary: 'A very light frameless roll-top with plenty of external attachment points.',
+    goodFor: 'Light overnight kits, with bulky gear strapped outside',
     reviewSlug: 'bisinna-25-10-backpack',
     kitDetail: {
-      headline: 'A very light pack for a genuinely light kit',
+      headline: 'A very light pack with room to strap gear outside',
       paragraphs: [
         'This frameless roll-top combines a 25 L body with a claimed 10 L extension and weighs about 580 g.',
-        'It suits a compact kit where every major item is already small and light.',
+        'It is made from 40D ripstop nylon, and its attachment points let a foam mat or other bulky items ride on the outside.',
       ],
       specs: [
         '25 L + 10 L extension',

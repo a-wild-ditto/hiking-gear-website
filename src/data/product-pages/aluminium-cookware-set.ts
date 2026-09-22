@@ -27,6 +27,11 @@ const page: ProductPage = {
     'The set covers everything a beginner needs for hot meals and drinks in one nested kit: a 1.3 L pot, a 440 ml cup, a folding gas stove, a pot bracket and cutlery, at a seller-listed 557 g.',
     'It is kept outside the core kits because cookware is optional: some hikers already own suitable gear, while others are happy with cold food on a first overnight.',
   ],
+  externalReview: {
+    videoId: 'KWa_BXN7rG0',
+    title: 'I Found the BEST Budget Camping Cooker System! // WIDESEA WSJC-002',
+    note: 'Note: this review covers the same pots and stove as this set, sold without the cutlery.',
+  },
   specs: [
     {
       label: 'Selected option',
@@ -72,8 +77,22 @@ const page: ProductPage = {
       summary:
         'Marketplace listing showing the Widesea WSCS-1051 option at A$56.39, a 4.9-star rating from 40 reviews and 222 sold. It describes an eight-piece set with a 1.3 L pot, 440 ml cup/pot, orange folding handles, burner bracket and utensils; gas tank not included.',
     },
+    {
+      id: 'yt-wsjc002',
+      title: 'I Found the BEST Budget Camping Cooker System! // WIDESEA WSJC-002',
+      publisher: 'JEL Reviews (YouTube)',
+      url: 'https://www.youtube.com/watch?v=KWa_BXN7rG0',
+      kind: 'video',
+      relation: 'same-design',
+      summary:
+        'An independent video review of the Widesea WSJC-002, the same pots and stove as this set without the cutlery. In the reviewer’s test it boils water faster than a Jetboil that costs hundreds of dollars more.',
+    },
   ],
   positives: [
+    {
+      text: 'In a side-by-side video test, the same pot and stove boiled water faster than a Jetboil costing hundreds of dollars more.',
+      sourceIds: ['yt-wsjc002'],
+    },
     {
       text: 'The nested shape appears useful for reducing loose cookware in a beginner pack.',
       sourceIds: ['marketplace-listing'],

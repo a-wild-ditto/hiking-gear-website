@@ -13,12 +13,12 @@ const page: ProductPage = {
   summary:
     'A ~580 g roll-top pack for under $50. Ultralight carrying without the ultralight price.',
   metaDescription:
-    'What we know about the BISINNA 25+10L backpack: claimed specs, owner reviews on comfort and load limits, and why we chose it.',
+    'What we know about the BISINNA 25+10L backpack: claimed specs, owner reviews on comfort and build, and why we chose it.',
   question:
     'At what total carried weight does this very cheap, very light pack stop being comfortable enough for a beginner?',
   whyWeChoseIt: [
     'Well-known ultralight packs cost many times more than this, and a beginner doesn’t need to spend that to find out whether a lighter style of hiking suits them. The BISINNA is a simple roll-top with about 35 L of space and a claimed weight of around 580 g, and it is one of the few cheap packs with detailed owner write-ups.',
-    'Those owners broadly agree that it is well made for the price. With thin shoulder straps and no frame, comfort depends on keeping the load light and packing it carefully, which is exactly what a compact overnight kit allows.',
+    'Those owners broadly agree that it is well made for the price. It is made from 40D ripstop nylon and has plenty of attachment points, so bulky items like a foam mat can ride outside. The shoulder straps are thin and there is no frame, so pack it carefully.',
   ],
   externalReview: {
     videoId: 'rvU7OV_PG-0',
@@ -162,11 +162,10 @@ const page: ProductPage = {
     },
   ],
   thingsToKnow: [
-    'Best with a light, compact kit. Keep the total load modest for comfort, as there is no frame to transfer weight to your hips.',
+    'Use the external attachment points for bulky items like a foam mat or wet tent fly.',
     'Pack soft items against your back so nothing hard presses through.',
   ],
   watching: [
-    'Comfort likely falls off somewhere around 8-10 kg total. That is an owner-report estimate, not a measured limit.',
     'Whether a complete beginner overnight kit actually fits in about 35 L.',
     'Durability of the 40D fabric and external mesh over time.',
     'How water-resistant the fabric and roll-top really are.',

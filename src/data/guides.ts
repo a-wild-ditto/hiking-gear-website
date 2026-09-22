@@ -6,7 +6,7 @@ export const guides = [
     eyebrow: 'Start here',
     description:
       'An overnight hiking checklist for Australian beginners, with what to skip.',
-    readTime: '10 min read',
+    readTime: '12 min read',
   },
   {
     title: 'Sleeping bag temperature ratings: comfort vs limit',
@@ -15,7 +15,7 @@ export const guides = [
     eyebrow: 'Sleep system',
     description:
       'ISO and EN ratings decoded, what temperature you need, and down vs synthetic.',
-    readTime: '9 min read',
+    readTime: '10 min read',
   },
   {
     title: 'Sleeping mat R-value: what do you need?',
@@ -24,7 +24,7 @@ export const guides = [
     eyebrow: 'Sleep system',
     description:
       'An R-value chart by season, ASTM testing, and foam vs inflatable mats.',
-    readTime: '8 min read',
+    readTime: '9 min read',
   },
   {
     title: '2 person hiking tent guide',
@@ -33,7 +33,7 @@ export const guides = [
     eyebrow: 'Shelter',
     description:
       'Weight bands, freestanding vs trekking-pole, and single vs double wall.',
-    readTime: '9 min read',
+    readTime: '12 min read',
   },
   {
     title: 'Hiking stove guide: canister vs alcohol vs solid fuel',
@@ -42,7 +42,7 @@ export const guides = [
     eyebrow: 'Cooking',
     description:
       'Stove types, weight, fuel you can buy in Australia and fire ban rules.',
-    readTime: '9 min read',
+    readTime: '10 min read',
   },
   {
     title: 'Multi-day hikes in Australia: where to start',
@@ -51,7 +51,7 @@ export const guides = [
     eyebrow: 'Where to go',
     description:
       'A state-by-state starting point for your first multi-day walk.',
-    readTime: '10 min read',
+    readTime: '11 min read',
   },
   {
     title: 'Overnight hikes in Victoria',
@@ -60,7 +60,7 @@ export const guides = [
     eyebrow: 'Where to go',
     description:
       'Beginner routes near Melbourne, Parks Victoria bookings and permits.',
-    readTime: '9 min read',
+    readTime: '10 min read',
   },
   {
     title: 'Overnight hikes in the Blue Mountains',
@@ -69,7 +69,7 @@ export const guides = [
     eyebrow: 'Where to go',
     description:
       'Walk-in campsites, NPWS bookings and fire season limits near Sydney.',
-    readTime: '9 min read',
+    readTime: '11 min read',
   },
   {
     title: 'Multi-day hikes in NSW',
@@ -87,6 +87,6 @@ export const guides = [
     eyebrow: 'Where to go',
     description:
       'Overland Track, Three Capes and Freycinet compared, plus passes and weather.',
-    readTime: '10 min read',
+    readTime: '12 min read',
   },
 ] as const;
