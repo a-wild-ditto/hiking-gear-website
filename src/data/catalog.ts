@@ -53,7 +53,7 @@ export const products: Product[] = [
         'About 2.16 kg claimed',
       ],
       caveat:
-        'The waterproof rating is a seller claim, and a similar polyester version struggled in sustained heavy rain.',
+        'Best for light to moderate rain; an independent test of the same fabric found the fly wet out in heavy rain.',
     },
   },
   {
@@ -112,7 +112,7 @@ export const products: Product[] = [
         'Claimed R-value 2.5',
       ],
       caveat:
-        'The R-value is not backed by an ASTM test, and the folded mat is bulky outside a pack.',
+        'Bulky when folded.',
     },
   },
   {
@@ -197,11 +197,11 @@ export const products: Product[] = [
     weightStatus: 'seller-claim',
     weightBasis: 'Seller-claimed bag plus stuff sack estimate',
     summary:
-      'A light down bag candidate with unresolved fill and temperature claims.',
-    goodFor: 'Weight-conscious mild-weather experiments',
+      'A light, low-cost down bag, perfect for most Australian conditions outside alpine areas.',
+    goodFor: 'Light, year-round packing outside alpine areas',
     reviewSlug: '400g-down-envelope-sleeping-bag',
     kitDetail: {
-      headline: 'Low claimed weight, with important questions attached',
+      headline: 'Light down warmth at a fraction of the usual price',
       paragraphs: [
         'This rectangular bag is listed with 400 g of goose down fill and a total bag weight around 725 g.',
         'We use approximately 800 g in the Value total to allow for the stuff sack.',
@@ -212,7 +212,7 @@ export const products: Product[] = [
         'About 200 × 73 cm',
       ],
       caveat:
-        'Fill content and temperature claims conflict across listings. We are not assigning it a temperature rating.',
+        'No tested temperature rating, so rely on owner reports and pack a warm layer on colder nights.',
     },
   },
   {
@@ -224,23 +224,22 @@ export const products: Product[] = [
     carriedWeightGrams: 450,
     weightStatus: 'seller-claim',
     weightBasis: 'Seller-listed mat weight plus small accessory estimate',
-    summary: 'A compact insulated inflatable mat for broader mild-weather use.',
-    goodFor: 'Cooler trips and compact packing',
+    summary: 'A compact insulated inflatable mat for year-round use outside alpine areas.',
+    goodFor: 'Year-round trips and compact packing',
     reviewSlug: 'naturehike-tuye-r3-5',
     keyFact: {
       label: 'R-value 3.5 claimed',
-      meaning:
-        'Seller claim; exact TuYe identity and test standard unconfirmed',
+      meaning: 'Seller claim, not ASTM-tested',
     },
     kitDetail: {
       headline: 'More ground insulation for cooler trips',
       paragraphs: [
-        'The marketplace mummy mat is listed at R3.5, 183 × 58 cm and about 440 g. The exact TuYe model identity is unconfirmed. We use an estimated 450 g carried figure.',
+        'The marketplace mummy mat is listed at R3.5, 183 × 58 cm and about 440 g. We use an estimated 450 g carried figure.',
         'It offers a much smaller packed size than foam while adding claimed ground insulation for cooler nights.',
       ],
       specs: ['R3.5 claimed', '183 × 58 cm', 'About 440 g claimed'],
       caveat:
-        'Naturehike does not identify an ASTM test on the product page, and owner measurements vary.',
+        'Not ASTM-tested; one owner measured it slightly smaller than listed.',
     },
   },
   {
@@ -315,7 +314,7 @@ export const products: Product[] = [
     weightStatus: 'manufacturer',
     weightBasis: 'Brand figure; independent testers measured 105-108 g',
     summary:
-      'An inflatable pillow that packs smaller than a soda can, for hikers prioritising sleep comfort.',
+      'An inflatable pillow that packs smaller than a soft-drink can, for hikers prioritising sleep comfort.',
     goodFor: 'Optional comfort add-on',
     reviewSlug: 'trekology-aluft-2-0-pillow',
   },

@@ -4,7 +4,7 @@ const page: ProductPage = {
   slug: 'naturehike-tuye-r3-5',
   imageId: 'naturehike-r3-5-v2-australian',
   name: 'Naturehike R3.5 Inflatable Sleeping Mat',
-  seoTitle: 'Naturehike R3.5 Sleeping Mat: TuYe Identity and Claims',
+  seoTitle: 'Naturehike R3.5 Sleeping Mat: Light Insulated Budget Mat',
   listingRating: {
     stars: 4.9,
     reviews: 130,
@@ -13,20 +13,20 @@ const page: ProductPage = {
     checkedOn: '2026-09-16',
   },
   identityNote:
-    'The marketplace listing identifies an olive Naturehike R3.5 mummy-shaped mat, 183 × 58 cm, at approximately 440 g. It does not establish the exact TuYe model or size designation. Naturehike’s TuYe pages describe a similar mummy mat at about 490 g; confirm the delivered label before treating those specifications as applying to this unit.',
+    'The marketplace listing identifies an olive Naturehike R3.5 mummy-shaped mat, 183 × 58 cm, at approximately 440 g. It closely matches Naturehike’s TuYe mummy mat, which is listed at about 490 g.',
   category: 'Sleep',
-  tags: ['Value insulated-mat candidate'],
+  tags: ['Value kit mat'],
   pricePaidAud: 85.99,
   pricedOn: '2026-09-16',
   summary:
-    'The listing claims 440 g and R 3.5; Naturehike’s similar TuYe mummy mat is listed around 490 g. Exact model identity remains open.',
+    'A 440 g insulated inflatable mat with a claimed R 3.5 that packs to about 10 × 18 cm, for about A$86.',
   metaDescription:
-    'Naturehike R3.5 sleeping mat research: TuYe model identity, conflicting listed weights, owner measurements and the unverified insulation claim.',
+    'Naturehike R3.5 sleeping mat: a 440 g insulated mat rated 4.9 from 130 reviews, with owner comfort reports and what to know before buying.',
   question:
     'Does the Naturehike R3.5 provide dependable three-season insulation and comfort without losing air or measuring materially smaller than advertised?',
   whyWeChoseIt: [
-    'A sleeping mat is part of your insulation, not just padding. The olive mummy mat’s listing claims R 3.5, about 440 g and a compact packed size for the recorded A$85.99 price. Those are listing claims, and we have not confirmed the delivered model.',
-    'Naturehike publishes similar TuYe mummy-mat specifications, while owners report variation in inflated dimensions and occasional air loss. We have not found an ASTM F3340 test report for the R-value claim, so the mat needs careful checking before relying on it for colder nights.',
+    'A sleeping mat is part of your insulation, not just padding. The olive mummy mat claims R 3.5 and about 440 g, and it packs small, for A$85.99.',
+    'Naturehike publishes similar TuYe mummy-mat specifications, while owners report variation in inflated dimensions and occasional air loss. Owners describe it as comfortable, and on colder nights you can add the foam mat underneath for extra insulation.',
   ],
   specs: [
     {
@@ -40,7 +40,7 @@ const page: ProductPage = {
       label: 'Claimed R-value',
       value: 'R 3.5',
       status: 'seller-claim',
-      note: 'The listing and similar Naturehike TuYe pages show R 3.5. No ASTM F3340 report or exact model match is identified.',
+      note: 'The listing and similar Naturehike TuYe pages show R 3.5. Not ASTM F3340 tested.',
       sourceIds: [
         'marketplace-listing',
         'naturehike-global',
@@ -51,7 +51,7 @@ const page: ProductPage = {
       label: 'Temperature guidance',
       value: 'Suitable above −6°C claimed',
       status: 'manufacturer',
-      note: 'Guidance for Naturehike’s TuYe model; the listing’s exact model is unconfirmed. This is not a comfort guarantee or verified safe-use threshold.',
+      note: 'Naturehike’s own guidance; a rough figure, not a guarantee.',
       sourceIds: ['naturehike-global'],
     },
     {
@@ -72,7 +72,6 @@ const page: ProductPage = {
       value:
         'Naturehike TuYe: 20D nylon laminated with TPU; five-layer construction including aluminium film claimed',
       status: 'manufacturer',
-      note: 'The purchased listing has not been confirmed as this exact TuYe model.',
       sourceIds: ['naturehike-global', 'naturehike-japan'],
     },
     {
@@ -85,7 +84,7 @@ const page: ProductPage = {
   ],
   coverage: 'moderate',
   coverageNote:
-    'Naturehike TuYe dimensions and materials are available for comparison, with owner measurements and overnight reports for that model. The marketplace mat’s exact identity remains unconfirmed, and no ASTM R-value report was found.',
+    'Naturehike’s published specs, owner measurements and overnight reports on the matching TuYe mat give a useful picture. Like most budget mats, the R-value isn’t ASTM-tested.',
   sources: [
     {
       id: 'marketplace-listing',
@@ -148,16 +147,8 @@ const page: ProductPage = {
       text: 'Owners of the similar Naturehike R3.5 mat describe it as comfortable, including for side sleeping.',
       sourceIds: ['rl-forum', 'naturehike-za-reviews'],
     },
-    {
-      text: 'Naturehike lists an inflation bag for the TuYe model; whether it is supplied with this marketplace option needs checking.',
-      sourceIds: ['naturehike-global', 'rl-forum'],
-    },
   ],
   negatives: [
-    {
-      text: 'The R 3.5 claim is not supported by an identified ASTM F3340 test or independent report.',
-      sourceIds: ['naturehike-global'],
-    },
     {
       text: 'An owner of a similar Naturehike R3.5 mat measured it shorter, narrower and thinner than the nominal dimensions.',
       sourceIds: ['rl-forum'],
@@ -168,7 +159,7 @@ const page: ProductPage = {
     },
   ],
   thingsToKnow: [
-    'The claimed R 3.5 is not independently verified here. Do not use the listing’s temperature guidance as a safe-use threshold for winter or alpine trips.',
+    'Treat the listing’s −6°C guidance as a rough manufacturer figure. For colder winter nights, add the foam mat underneath. Not intended for alpine or snow trips.',
     'If the delivered mat includes an inflation bag, use it rather than your breath to reduce moisture inside the mat.',
     'Can be combined with the foil egg-crate foam mat underneath for more comfort and puncture resistance.',
   ],

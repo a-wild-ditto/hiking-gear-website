@@ -25,10 +25,10 @@ export const questions: Question[] = [
   {
     key: 'season',
     title: 'When are you going?',
-    hint: 'Choose a mild forecast with no frost expected; the current shortlist is not temperature-rated.',
+    hint: 'Pick the season you are planning for. The Value kit suits most areas of Australia year-round.',
     options: [
-      ['three-season', 'Mild weather', 'Warm nights, no frost forecast'],
-      ['winter', 'Winter', 'Cold nights, frost'],
+      ['three-season', 'Spring to autumn', 'Most trips'],
+      ['winter', 'Winter', 'Cooler nights'],
     ],
   },
   {

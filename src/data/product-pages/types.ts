@@ -89,7 +89,7 @@ export type ProductPage = {
   /** Short, honest identity caveat, e.g. unbranded marketplace listing. */
   identityNote?: string;
   category: Category;
-  /** Flexible role labels, e.g. "Value shelter candidate". Not kit tiers. */
+  /** Flexible role labels, e.g. "Value kit tent". Not kit tiers. */
   tags: string[];
   pricePaidAud: number;
   /** ISO date the recorded price was current. */

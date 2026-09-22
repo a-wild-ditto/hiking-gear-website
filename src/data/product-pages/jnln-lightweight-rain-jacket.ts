@@ -21,14 +21,14 @@ const page: ProductPage = {
   },
   seoTitle: 'JNLN Lightweight Rain Jacket: A Budget Way to Stay Dry',
   summary:
-    'A very light, low-cost hooded jacket. When combined with a garbage bag liner and a zip lock bag for electronics, this forms an affordable setup for mild rain conditions.',
+    'A very light, low-cost hooded jacket. When combined with a bin liner and a zip-lock bag for electronics, this forms an affordable setup for mild rain conditions.',
   metaDescription:
-    'The JNLN lightweight rain jacket: a low-cost, 150 g hooded jacket that pairs with a garbage bag pack liner and a zip lock bag for an affordable beginner rain setup.',
+    'The JNLN lightweight rain jacket: a low-cost, 150 g hooded jacket that pairs with a bin liner and a zip-lock bag for an affordable beginner rain setup.',
   question:
-    'Can a $12 packable jacket, paired with a garbage bag liner and a zip lock bag, keep a beginner dry enough on a rainy overnight?',
+    'Can a $12 packable jacket, paired with a bin liner and a zip-lock bag, keep a beginner dry enough on a rainy overnight?',
   whyWeChoseIt: [
-    'When combined with a garbage bag liner and a zip lock bag for electronics, this forms an affordable setup for mild rain conditions. The jacket helps with light or short rain, the liner keeps your sleeping bag and spare clothes dry inside the pack, and the zip lock bag protects your phone.',
-    'The listing’s own specification table rates it water repellent rather than waterproof, even though the title says waterproof. Treat it as protection for light or short rain, not suitable for prolonged hikes in stormy conditions.',
+    'When combined with a bin liner and a zip-lock bag for electronics, this forms an affordable setup for mild rain conditions. The jacket helps with light or short rain, the liner keeps your sleeping bag and spare clothes dry inside the pack, and the zip-lock bag protects your phone.',
+    'The listing’s own specification table rates it water repellent rather than waterproof, even though the title says waterproof. Treat it as protection for light or short rain rather than all-day storms.',
   ],
   specs: [
     {
@@ -99,7 +99,7 @@ const page: ProductPage = {
   buyerContext: {
     heading: 'A budget setup for staying dry',
     paragraphs: [
-      'Staying dry is about more than the jacket. Line the inside of your pack with an ordinary garbage bag so your sleeping bag and spare clothes stay dry even if rain soaks the pack, and keep your phone and other electronics in a zip lock bag.',
+      'Staying dry is about more than the jacket. Line the inside of your pack with a heavy-duty bin bag so your sleeping bag and spare clothes stay dry even if rain soaks the pack, and keep your phone and other electronics in a zip-lock bag.',
       'A water-repellent jacket like this suits light or short rain. For sustained or cold rain, a waterproof shell gives a much bigger safety margin, because staying dry matters for staying warm.',
     ],
   },

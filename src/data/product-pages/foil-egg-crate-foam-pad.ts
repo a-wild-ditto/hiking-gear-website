@@ -7,18 +7,18 @@ const page: ProductPage = {
   identityNote:
     'Unbranded AliExpress pad, ordered in green and black at 186 × 56 × 2 cm. Many factories make this folding design, so reviews of other pads can only be a rough guide.',
   category: 'Sleep',
-  tags: ['Starter sleep-pad candidate'],
+  tags: ['Starter kit mat'],
   pricePaidAud: 17.35,
   pricedOn: '2026-09-16',
   summary:
     'A folding foam pad for under $20. Nothing to inflate, nothing to puncture.',
   metaDescription:
-    'Foil-faced foam sleeping pad research: unverified R-value claim, reports on similar folding pads and what to check before a mild-weather trip.',
+    'Foil-faced folding foam pad for under A$20: puncture-proof, instant to set up and a great extra layer under an inflatable. Owner reports on similar pads.',
   question:
     'Is a $17 folding foam pad comfortable and warm enough for a mild first overnight trip?',
   whyWeChoseIt: [
     'Inflatable mats are comfortable and pack small, but good ones are expensive and cheap ones can go flat at 2 am. A folding foam pad avoids that entirely: unfold it and you are done, and nothing can puncture it. For a beginner on a mild-weather first trip, that reliability is worth a lot.',
-    'The seller’s R 2.5 claim looks optimistic next to the Therm-a-Rest Z Lite Sol, a comparable 2 cm egg-crate pad rated R 2.0. Even so, pads of this design have years of positive owner reports, and at a fraction of the name-brand price it is an easy, dependable pick for mild nights. It also works well under an inflatable mat for extra warmth later on.',
+    'Pads of this design have years of positive owner reports, and at a fraction of the name-brand price it is an easy, dependable pick. The seller claims R 2.5; the comparable Therm-a-Rest Z Lite Sol, a 2 cm egg-crate pad, is rated R 2.0. It also works well under an inflatable mat for extra warmth.',
   ],
   specs: [
     {
@@ -49,7 +49,7 @@ const page: ProductPage = {
     },
     {
       label: 'R-value',
-      value: '2.5 claimed, not verified',
+      value: '2.5 claimed',
       status: 'to-verify',
       note: 'No ASTM F3340 test cited. For comparison, the Therm-a-Rest Z Lite Sol, a 2 cm egg-crate pad, is rated R 2.0 under that standard.',
       sourceIds: ['reseller', 'zlite'],
@@ -147,7 +147,7 @@ const page: ProductPage = {
     },
   ],
   thingsToKnow: [
-    'This gear is suitable for 3 season use but would not be recommended for winter hikes or hiking in alpine regions.',
+    'On its own, best for spring to autumn. In winter, put it under an inflatable mat for extra warmth. Not intended for alpine areas or snow.',
     'Bulky when folded, so it is usually strapped to the outside of the pack.',
     'Can be combined with the Naturehike R3.5 mat for more comfort and puncture resistance.',
   ],

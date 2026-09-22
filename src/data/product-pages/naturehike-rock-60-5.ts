@@ -7,13 +7,13 @@ const page: ProductPage = {
   identityNote:
     'We ordered the black 60 L version from the Naturehike Outdoor Gear Store on AliExpress. That listing quotes about 1.16 kg, which matches the Standard version rather than the heavier Upgraded one.',
   category: 'Packs',
-  tags: ['Value backpack candidate'],
+  tags: ['Value kit pack'],
   pricePaidAud: 68.73,
   pricedOn: '2026-09-16',
   summary:
     'A framed ~1.16 kg pack with hip belt and rain cover for about A$70. Owners rate it highly for value.',
   metaDescription:
-    'Research on the Naturehike Rock 60+5L (NH19BP095): owner and reviewer experience, measured capacity, fit concerns and why we chose it.',
+    'Naturehike Rock 60+5L: a framed 1.16 kg pack with hip belt and rain cover for about A$70. Owner reviews, measured capacity and fit tips.',
   question:
     'Can this low-cost framed pack carry a beginner overnight load comfortably, and how much usable space does it really provide?',
   whyWeChoseIt: [
@@ -107,7 +107,7 @@ const page: ProductPage = {
       kind: 'listing',
       relation: 'exact-product',
       summary:
-        'Reviews of the black 60 L version we ordered. The overall tone is very positive on value, low weight, capacity and the included rain cover, and several buyers praise the stitching and back padding. Treat them with the usual caution: marketplace reviews skew positive, many say little beyond “great value”, and almost none describe long-term use. The most useful are a buyer who replaced one after the frame broke, a 184 cm buyer on fit, and one repeating the 14 kg limit.',
+        'Reviews of the black 60 L version we ordered. The overall tone is very positive on value, low weight, capacity and the included rain cover, and several buyers praise the stitching and back padding. Most say little beyond “great value” and few describe long-term use. The most useful are a buyer who replaced one after the frame broke, a 184 cm buyer on fit, and one repeating the 14 kg limit.',
       quote:
         'The frame of the same product I was using previously broke. I repurchased it.',
     },
@@ -194,7 +194,7 @@ const page: ProductPage = {
   ],
   negatives: [
     {
-      text: 'Usable space may be well short of 60+5 L. One test measured about 56 L in total.',
+      text: 'One test measured about 56 L in total, less than the 60+5 L label.',
       sourceIds: ['stoker'],
     },
     {
@@ -210,7 +210,7 @@ const page: ProductPage = {
       sourceIds: ['stoker'],
     },
     {
-      text: 'One buyer replaced their pack after the frame broke, and wished the frame could be bought separately. A single report, but worth watching.',
+      text: 'One buyer replaced their pack after the frame broke, and wished the frame could be bought separately. It is a single report.',
       sourceIds: ['ali-reviews'],
     },
   ],

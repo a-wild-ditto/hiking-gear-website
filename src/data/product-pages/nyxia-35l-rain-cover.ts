@@ -12,14 +12,14 @@ const page: ProductPage = {
   seoTitle: 'Backpack Rain Cover vs Pack Liner: NYXIA 35L',
   pricedOn: '2026-09-16',
   summary:
-    'A low-cost 35 L pack cover with limited rain evidence. Protect essential contents with a liner or dry bags too.',
+    'A A$3 pack cover that buyers say fits well and keeps rain off. Pair it with a liner for essentials.',
   metaDescription:
     'NYXIA 35L backpack rain cover research: listing claims, brief buyer reports and how a pack cover differs from a liner in wet weather.',
   question:
     'Does a $3 pack cover stay on the pack and keep meaningful rain off, or is it false economy?',
   whyWeChoseIt: [
-    'The low recorded price makes this cover worth checking as a simple way to shield the outside of a pack. Buyer comments report good fit and some rain protection, but do not describe prolonged rain or windy conditions.',
-    'We’re also using it to make a point: a pack cover on its own won’t keep a pack dry. Water gets in through the side against your back. Sleeping bags, spare clothes and electronics should also go inside a waterproof liner or dry bag. We want to show how much a cover helps, not suggest it’s enough.',
+    'The low recorded price makes this cover a simple, cheap way to shield the outside of a pack. Buyer comments report good fit and some rain protection, but do not describe prolonged rain or windy conditions.',
+    'A cover works best alongside a liner. Water can get in through the side against your back, so sleeping bags, spare clothes and electronics should also go inside a waterproof liner or dry bag.',
   ],
   specs: [
     {

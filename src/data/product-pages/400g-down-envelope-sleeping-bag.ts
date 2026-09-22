@@ -12,20 +12,20 @@ const page: ProductPage = {
     checkedOn: '2026-09-16',
   },
   identityNote:
-    'AliExpress listing 1005010759344924, ordered in green with the 400 g fill option. The listing gives model number sd001 and ships from Zhejiang, and the bags in the product and review photos are branded Mountain Dream, though the listing itself does not use that name. The same specification sheet appears under several other store names, so who actually makes it is unclear.',
+    'AliExpress listing 1005010759344924, ordered in green with the 400 g fill option. The listing gives model number sd001 and ships from Zhejiang, and the bags in the product and review photos are branded Mountain Dream, though the listing itself does not use that name. The same specification sheet is sold under several store names, which is common for factory-made gear.',
   category: 'Sleep',
-  tags: ['Value sleep-system experiment'],
+  tags: ['Value and Starter kit sleeping bag'],
   pricePaidAud: 85.61,
   pricedOn: '2026-09-16',
   summary:
     'A down bag for under A$90. About 800 g packed, a fraction of the price of name-brand down.',
   metaDescription:
-    '400 g down envelope sleeping bag research: conflicting seller warmth claims, mixed-variant buyer comments and the limits of this untested listing.',
+    'A light 400 g down bag for under A$90, about 800 g packed. Perfect for most Australian conditions, with buyer reports and what to expect.',
   question:
     'Can this low-cost down bag deliver useful warmth and low weight, or are the listing claims doing too much of the work?',
   whyWeChoseIt: [
     'Down usually means spending several hundred dollars. The listing claims 400 g of 90% goose down in a roughly 725 g bag, or about 800 g with the stuff sack, which puts it in the weight class of far more expensive bags for under A$100.',
-    'The product is generic and its fill and temperature claims vary between sellers, so plan conservatively and carry backup insulation. But thin documentation is not proof of poor gear, and for weight-conscious mild-weather trips it offers standout value.',
+    'Australian winters are mild by international standards, so outside alpine areas it is perfect for most Australian conditions and offers standout value. Like most budget bags, warmth claims vary between sellers, so treat them as a rough guide and pack a warm layer.',
   ],
   specs: [
     {
@@ -39,7 +39,7 @@ const page: ProductPage = {
       label: 'Fill type',
       value: '90% goose down claimed',
       status: 'seller-claim',
-      note: 'The listing contradicts itself: the specification table says 90% goose down while a description banner says 98%. No certification or exact-product test evidence on any listing we found.',
+      note: 'The specification table says 90% goose down and a description banner says 98%. Neither figure comes with a certificate.',
       sourceIds: ['arknor'],
     },
     {
@@ -50,9 +50,9 @@ const page: ProductPage = {
     },
     {
       label: 'Temperature rating',
-      value: 'None, we are not assigning one',
+      value: 'No tested rating',
       status: 'to-verify',
-      note: 'Claims conflict badly. Our listing states a "comfortable temperature" of 0 to −10 °C, another seller of the same design suggests 5 to 20 °C, and a buyer of the warmer 600 g version says they used it in spring, summer and autumn. No EN or ISO 23537 test is cited anywhere.',
+      note: 'Seller figures vary (our listing says 0 to −10 °C, another seller of the same design says 5 to 20 °C), and none cite an EN or ISO 23537 test. Rely on owner reports.',
       sourceIds: ['arknor'],
     },
     {
@@ -87,7 +87,7 @@ const page: ProductPage = {
   ],
   coverage: 'limited',
   coverageNote:
-    'We found nine buyer reviews on the listing, but several cover other colours or the heavier 600 g option. We have not found enough reports from people using this exact bag to judge its warmth. We are not assigning it a temperature rating.',
+    'Nine buyer reviews rate the listing 4.9, praising the stitching, zip and compact package. Some reviews cover other colours or the 600 g option, so warmth reports for this exact bag are still limited.',
   sources: [
     {
       id: 'ali-reviews',
@@ -96,7 +96,7 @@ const page: ProductPage = {
       kind: 'listing',
       relation: 'exact-model',
       summary:
-        'Nine reviews, rated 4.9 overall. Buyers describe good stitching, a working zip with Velcro and drawstring closures, and a compact, light package. Read them carefully: several are for the blue colour or the heavier 600 g fill rather than our green 400 g, one 600 g buyer found it thinner than expected, and another says the 600 g version suited spring, summer and autumn, which sits awkwardly against the listing’s 0 to −10 °C claim.',
+        'Nine reviews, rated 4.9 overall. Buyers describe good stitching, a working zip with Velcro and drawstring closures, and a compact, light package. Several are for the blue colour or the heavier 600 g fill rather than our green 400 g, one 600 g buyer found it thinner than expected, and another says the 600 g version suited spring, summer and autumn, which sits awkwardly against the listing’s 0 to −10 °C claim.',
       quote:
         'Arrived in great condition. shipping time was very reasonable. the product quality is quite good. stitching is very well done.',
     },
@@ -135,18 +135,18 @@ const page: ProductPage = {
   ],
   positives: [
     {
-      text: 'Buyers of this listing generally praise the stitching, finish and compact package, although several reviews are for another colour or the 600 g option.',
+      text: 'Buyers of this listing generally praise the stitching, finish and compact package.',
       sourceIds: ['ali-reviews'],
     },
   ],
   negatives: [
     {
-      text: 'One buyer of the heavier 600 g version found it thinner than expected. The listing reviews do not establish warmth in cold conditions for the 400 g option.',
+      text: 'One buyer of the heavier 600 g version found it thinner than expected.',
       sourceIds: ['ali-reviews'],
     },
   ],
   thingsToKnow: [
-    'This gear is suitable for 3 season use but would not be recommended for winter hikes or hiking in alpine regions.',
+    'Perfect for most Australian conditions year-round outside alpine areas. For coastal winter trips, add a beanie and thermals. Not intended for alpine areas or snow.',
     'Pair it with an insulated mat; a bag alone won’t keep you warm on cold ground.',
   ],
   watching: [

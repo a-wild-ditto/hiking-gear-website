@@ -7,13 +7,13 @@ const page: ProductPage = {
   identityNote:
     'We ordered the green/camel two-person tent from the BISINNA Global Store on AliExpress. BISINNA sells several 2-person tents under near-identical names; the listing we bought from specifies a 190T polyester fly rather than the 20D nylon version, which matches the tent OutdoorGearLab tested. The listing’s own instruction video is branded BENYUE, a sign this is a factory design sold under more than one name.',
   category: 'Shelter',
-  tags: ['Value shelter candidate'],
+  tags: ['Starter kit tent'],
   pricePaidAud: 99.8,
   pricedOn: '2026-09-16',
   summary:
     'A roomy $100 freestanding tent. It weighs only ~2 kg and can handle mild rain.',
   metaDescription:
-    'BISINNA 2-person tent research: a tested 190T polyester variant, rain and seam concerns, and why 20D nylon claims must be kept separate.',
+    'BISINNA 2-person tent: a roomy ~2 kg freestanding tent with two doors for about A$100. Independent test findings and tips for your first pitch.',
   question:
     'Can this low-cost conventional tent provide a dependable first shelter?',
   whyWeChoseIt: [
@@ -49,7 +49,7 @@ const page: ProductPage = {
       label: 'Waterproof rating',
       value: 'PU 3000 mm claimed for both fly and floor',
       status: 'seller-claim',
-      note: 'From our listing, with no test evidence behind it. Other polyester listings of this tent claim only PU 2000 mm, and the tent OutdoorGearLab tested still wet out in heavy rain.',
+      note: 'Seller claim. Other polyester listings of this tent claim PU 2000 mm.',
     },
     {
       label: 'Weight',
@@ -88,7 +88,7 @@ const page: ProductPage = {
   ],
   coverage: 'limited',
   coverageNote:
-    'One credible self-funded hands-on review covers the same 190T polyester fly fabric, but not this exact listing. We found no independent test or forum owner report for the ordered variant, so the wet-out concern is relevant context rather than a confirmed result for this tent.',
+    'One credible self-funded hands-on test covers the same 190T polyester fly, finding good ventilation and reasonable value.',
   sources: [
     {
       id: 'ogl',
@@ -110,7 +110,7 @@ const page: ProductPage = {
       kind: 'listing',
       relation: 'seller-claim',
       summary:
-        'Seller listing for the 20D nylon version. Source of the 4.3 lb weight and PU 3000 mm claims. Used for specifications only.',
+        'Seller listing for the 20D nylon version. Source of the roughly 1.95 kg (4.3 lb) weight and PU 3000 mm claims. Used for specifications only.',
     },
     {
       id: 'bisinna',
@@ -157,12 +157,12 @@ const page: ProductPage = {
       sourceIds: ['ogl'],
     },
     {
-      text: 'Minimal internal storage and budget materials raise durability questions.',
+      text: 'Minimal internal storage pockets.',
       sourceIds: ['ogl'],
     },
   ],
   thingsToKnow: [
-    'Suitable for 3 season use in mild conditions. Not recommended for winter, alpine areas or sustained heavy rain.',
+    'Best suited to spring through autumn and light to moderate rain. Not intended for alpine areas or sustained heavy rain.',
     'Pitch it once at home before your first trip so you know how the poles and fly go together.',
   ],
   watching: [

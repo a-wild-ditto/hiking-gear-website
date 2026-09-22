@@ -22,7 +22,7 @@ const page: ProductPage = {
   question:
     'Does a 110 g inflatable pillow give a beginner a genuinely better night, or is it 110 g better spent elsewhere?',
   whyWeChoseIt: [
-    'A beginner who barely sleeps can have a miserable first overnight, and a bad night is often what puts people off going again. The Aluft 2.0 addresses that for 110 g and A$27: it packs down smaller than a soda can, inflates in five to eight breaths, and has anti-slip dots and a latch strap so it stays on the mat instead of migrating into the corner of the tent.',
+    'A beginner who barely sleeps can have a miserable first overnight, and a bad night is often what puts people off going again. The Aluft 2.0 addresses that for 110 g and A$27: it packs down smaller than a soft-drink can, inflates in five to eight breaths, and has anti-slip dots and a latch strap so it stays on the mat instead of migrating into the corner of the tent.',
     'It also has far more independent testing behind it than most budget hiking gear. OutdoorGearLab buys what it tests and rates it a strong value pick, and separate testers measured it at 105-108 g against a 110 g claim, which is the rare case of a seller claim being slightly pessimistic.',
   ],
   specs: [
@@ -35,9 +35,9 @@ const page: ProductPage = {
     },
     {
       label: 'Inflated size',
-      value: '41 × 30 × 10 cm (16 × 12 × 4 in)',
+      value: '41 × 30 × 10 cm',
       status: 'manufacturer',
-      note: 'OutdoorGearLab describes it as 17 × 12 in, marginally larger than the brand figure.',
+      note: 'OutdoorGearLab describes it as about 43 × 30 cm, marginally larger than the brand figure.',
       sourceIds: ['trekology', 'ogl'],
     },
     {
@@ -91,7 +91,7 @@ const page: ProductPage = {
       kind: 'written-review',
       relation: 'exact-model',
       summary:
-        'Hands-on test of the exact model, weighed at 108 g and measured at 17 × 12 × 4 in. Praises the click-button valve, anti-slip dots and pad strap, and rates it a strong value pick. Marks it down for static support, a footprint too large for streamlined mummy bags, and noise. OutdoorGearLab states it buys all the products it tests.',
+        'Hands-on test of the exact model, weighed at 108 g and measured at about 43 × 30 × 10 cm. Praises the click-button valve, anti-slip dots and pad strap, and rates it a strong value pick. Marks it down for static support, a footprint too large for streamlined mummy bags, and noise. OutdoorGearLab states it buys all the products it tests.',
       quote:
         'We love this pillow because it offers innovative features most backpacking inflatables don’t have, all at a great price.',
     },

@@ -5,15 +5,15 @@ const page: ProductPage = {
   imageId: 'bisinna-25-10-backpack-australian',
   name: 'BISINNA 25+10L Ultralight Backpack',
   identityNote:
-    'We ordered the grey version from the BISINNA Global Store on AliExpress. Owner reviews describe the same 25+10L roll-top model, but we couldn’t confirm our listing is identical, including whether it comes with the removable foam back pad.',
+    'We ordered the grey version from the BISINNA Global Store on AliExpress. Owner reviews describe the same 25+10L roll-top model; check whether your listing includes the removable foam back pad.',
   category: 'Packs',
-  tags: ['Starter lightweight pack candidate'],
+  tags: ['Starter kit pack'],
   pricePaidAud: 47.99,
   pricedOn: '2026-09-16',
   summary:
     'A ~580 g roll-top pack for under $50. Ultralight carrying without the ultralight price.',
   metaDescription:
-    'What we know about the BISINNA 25+10L backpack: claimed specs, owner reviews on comfort and build, and why we chose it.',
+    'BISINNA 25+10L: a ~580 g roll-top pack for under A$50, with owner reviews on comfort and build.',
   question:
     'At what total carried weight does this very cheap, very light pack stop being comfortable enough for a beginner?',
   whyWeChoseIt: [
@@ -35,7 +35,7 @@ const page: ProductPage = {
       label: 'Weight',
       value: 'About 580 g',
       status: 'seller-claim',
-      note: 'Widely repeated but we found no independent weigh-in.',
+      note: 'Seller figure.',
       sourceIds: ['maxcamp', 'akari'],
     },
     {

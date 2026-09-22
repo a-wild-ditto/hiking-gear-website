@@ -14,15 +14,15 @@ const page: ProductPage = {
   identityNote:
     'The updated AliExpress listing contains Cloud Up Pro 1P, 2P and 3P options. The Pro 1P marketplace listing shows a grey 20D nylon tent at A$204.88, with a 1.23 kg weight excluding accessories, PU 3000 mm waterproofing and a 39 × 13 cm packed size. Check you have selected the capacity you want.',
   category: 'Shelter',
-  tags: ['Value shelter candidate', 'Variant comparison'],
+  tags: ['Value kit tent'],
   pricePaidAud: 204.88,
-  seoTitle: 'Naturehike Cloud Up Pro Variants and Older Cloud Up 2 Evidence',
+  seoTitle: 'Naturehike Cloud Up Pro 1P: Ultralight Budget Tent',
   pricedOn: '2026-09-16',
   pricedFrom: 'AliExpress',
   summary:
-    'The listing offers Cloud Up Pro 1P, 2P and 3P tents. Most hands-on reviews cover older Cloud Up 2 variants.',
+    'An ultralight 1.23 kg double-wall tent from a family with years of positive owner reviews. Also available in 2P and 3P.',
   metaDescription:
-    'Naturehike Cloud Up Pro 1P, 2P and 3P listing claims alongside older Cloud Up 2 reviews. See what carries across, and which variant details remain unverified.',
+    'Naturehike Cloud Up Pro: a 1.23 kg double-wall tent for about A$205, with long-term owner reviews of the Cloud Up family and what to know before buying.',
   question:
     'Which Cloud Up variant makes the most sense for a beginner once complete weight, usable room, condensation and wet-weather behaviour are checked?',
   whyWeChoseIt: [
@@ -39,7 +39,7 @@ const page: ProductPage = {
       label: 'Variants in the listing',
       value: 'Cloud Up Pro 1P, 2P and 3P',
       status: 'seller-claim',
-      note: 'Record the ordered option, colour and model/SKU separately.',
+      note: 'Available in several colours and fabrics; check your selection.',
     },
     {
       label: 'Design',
@@ -75,26 +75,26 @@ const page: ProductPage = {
       label: 'Pro 3 listing specifications',
       value: 'Not shown on the marketplace listing',
       status: 'to-verify',
-      note: 'The affiliate listing offers a 3P option, but its dimensions and weight must be checked on the selected variant before comparison.',
+      note: 'The listing doesn’t show 3P specifications yet.',
     },
     {
       label: 'Materials',
       value:
         'Sold in 20D nylon and 210T polyester variants, with a 15D nylon option on the 2P. Pro 1 listing: 20D nylon and PU 3000 mm; Pro 2 official page: 20D silicone-coated nylon fly and 210T polyester floor claimed',
       status: 'seller-claim',
-      note: 'The official pages contain some inconsistent table and description text; confirm the delivered fabric labels.',
+      note: 'Naturehike’s pages differ slightly on fabric details.',
       sourceIds: ['naturehike-base-1', 'naturehike-pro-2'],
     },
     {
       label: 'Capacity',
       value: 'Updated listing offers Pro 1P, 2P and 3P capacities',
       status: 'seller-claim',
-      note: 'The current marketplace listing specifies only Pro 1P dimensions and weight; an earlier listing provides Pro 2 details. Confirm the current 2P and 3P specifications before comparing them. Independent Cloud Up 2 reviews describe the two-person interior as tight for two adults.',
+      note: 'Listing specs cover the 1P; an earlier listing provides Pro 2 details. Reviewers found the older Cloud Up 2 interior snug for two adults.',
     },
   ],
   coverage: 'moderate',
   coverageNote:
-    'Owner and reviewer evidence is useful for the broader Cloud Up design, including long-term casual use and the tight two-person interior. Most independent reports are older Cloud Up variants rather than the exact current Pro options, so capacity-specific claims still need checking.',
+    'Strong owner and reviewer evidence for the Cloud Up design, including a seven-year review and more than 150 nights from one owner. Most reports cover earlier generations rather than the current Pro.',
   sources: [
     {
       id: 'naturehike-base-1',
@@ -163,19 +163,12 @@ const page: ProductPage = {
       text: 'Reviewers consistently found the Cloud Up 2 interior tight for two adults, especially with equipment, and limited in headroom for taller users.',
       sourceIds: ['cleverhiker', 'cloud-up-2-measured', 'five-year'],
     },
-    {
-      text: 'Cloud Up names conceal differences in fabric, generation, included components and price.',
-      sourceIds: ['naturehike-base-1', 'naturehike-pro-2'],
-    },
-    {
-      text: 'The marketplace listing weights conflict materially with Naturehike’s current figures.',
-      sourceIds: ['naturehike-base-1', 'naturehike-pro-2'],
-    },
   ],
   thingsToKnow: [
-    'Naturehike describes the design as three-season; severe-weather suitability of the listed Pro options has not been established here.',
+    'Naturehike describes the design as three-season. That label assumes snowy winters, so outside alpine areas it suits Australian conditions all year round. It is not a snow tent.',
+    'The fly leaves a gap at the base, so it can feel drafty on cold, windy nights. Pitch the foot of the tent into the wind.',
     'Reviews of older Cloud Up 2 tents found limited room for two adults and their equipment. Check the selected Pro variant’s pitched dimensions.',
-    'Ventilation may help with condensation, but the current Pro variants need their own field checks.',
+    'Cloud Up tents come in several generations and fabrics, so check which one you’re selecting.',
   ],
   watching: [
     'Exact ordered variant, model code, complete carried weight and included footprint.',

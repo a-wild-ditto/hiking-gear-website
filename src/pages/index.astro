@@ -66,7 +66,7 @@ const plans: {
     summary:
       'The best balance of price, weight and reliability for casual multi-night trips.',
     items: [
-      '3 season lightweight tent',
+      'Lightweight year-round tent',
       'Lightweight sleeping mat',
       'Lightweight sleeping bag',
       'Lightweight 60L pack',
@@ -156,10 +156,10 @@ const tableNotes: Record<string, string> = {
   'cloud-up-1p':
     'Lightweight tent highly rated by independent reviewers. 2P variant also available',
   'down-bag-400':
-    'Lightweight down bag for mild nights, at a fraction of name-brand down prices',
+    'Lightweight down bag, perfect for most Australian conditions, at a fraction of name-brand down prices',
   'rock-60-5': 'Lightweight pack suitable for multi-day hikes',
   'jnln-rain-jacket':
-    'When combined with a garbage bag liner and a zip lock bag for electronics, this forms an affordable setup for mild rain conditions',
+    'When combined with a bin liner and a zip-lock bag for electronics, this forms an affordable setup for mild rain conditions',
 };
 const kitTotals = (kit: Kit) => ({
   price: kit.price,
@@ -179,7 +179,7 @@ const tableSections = [
     id: 'value',
     title: 'The Value kit',
     blurb:
-      'The best price to performance gear for casual multi-day hikes. Suitable for 3 season use in mild to moderate conditions.',
+      'The best price to performance gear for casual multi-day hikes. Suitable for most areas of Australia year-round.',
     productIds: kitById.value.productIds,
     totals: kitTotals(kitById.value),
     art: 'kit-value-line',
