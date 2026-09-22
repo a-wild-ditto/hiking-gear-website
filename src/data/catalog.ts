@@ -124,7 +124,7 @@ export const products: Product[] = [
     carriedWeightGrams: 580,
     weightStatus: 'seller-claim',
     weightBasis: 'Listing weight',
-    summary: 'A very light frameless roll-top with plenty of external attachment points.',
+    summary: 'An ultralight frameless roll-top with plenty of external attachment points.',
     goodFor: 'Light overnight kits, with bulky gear strapped outside',
     reviewSlug: 'bisinna-25-10-backpack',
     kitDetail: {
@@ -197,7 +197,7 @@ export const products: Product[] = [
     weightStatus: 'seller-claim',
     weightBasis: 'Seller-claimed bag plus stuff sack estimate',
     summary:
-      'A light, low-cost down bag, perfect for most Australian conditions outside alpine areas.',
+      'A near-ultralight, low-cost down bag, perfect for most Australian conditions outside alpine areas.',
     goodFor: 'Light, year-round packing outside alpine areas',
     reviewSlug: '400g-down-envelope-sleeping-bag',
     kitDetail: {
@@ -224,7 +224,7 @@ export const products: Product[] = [
     carriedWeightGrams: 450,
     weightStatus: 'seller-claim',
     weightBasis: 'Seller-listed mat weight plus small accessory estimate',
-    summary: 'A compact insulated inflatable mat for year-round use outside alpine areas.',
+    summary: 'A near-ultralight insulated inflatable mat for year-round use outside alpine areas.',
     goodFor: 'Year-round trips and compact packing',
     reviewSlug: 'naturehike-tuye-r3-5',
     keyFact: {

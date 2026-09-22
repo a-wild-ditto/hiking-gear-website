@@ -19,7 +19,7 @@ const page: ProductPage = {
   pricePaidAud: 85.99,
   pricedOn: '2026-09-16',
   summary:
-    'A 440 g insulated inflatable mat with a claimed R 3.5 that packs to about 10 × 18 cm, for about A$86.',
+    'A near-ultralight 440 g insulated inflatable mat with a claimed R 3.5 that packs to about 10 × 18 cm, for about A$86.',
   metaDescription:
     'Naturehike R3.5 sleeping mat: a 440 g insulated mat rated 4.9 from 130 reviews, with owner comfort reports and what to know before buying.',
   question:

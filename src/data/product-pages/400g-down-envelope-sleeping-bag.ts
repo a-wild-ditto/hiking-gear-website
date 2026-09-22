@@ -18,7 +18,7 @@ const page: ProductPage = {
   pricePaidAud: 85.61,
   pricedOn: '2026-09-16',
   summary:
-    'A down bag for under A$90. About 800 g packed, a fraction of the price of name-brand down.',
+    'A near-ultralight down bag for under A$90. About 800 g packed, a fraction of the price of name-brand down.',
   metaDescription:
     'A light 400 g down bag for under A$90, about 800 g packed. Perfect for most Australian conditions, with buyer reports and what to expect.',
   question:
