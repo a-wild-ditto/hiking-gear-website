@@ -25,7 +25,7 @@ export const questions: Question[] = [
   {
     key: 'season',
     title: 'When are you going?',
-    hint: 'Pick the season you are planning for. The Value kit suits most areas of Australia year-round.',
+    hint: 'Pick the season you are planning for. The Value kit suits most areas of Australia from spring to autumn, and mild coastal winters.',
     options: [
       ['three-season', 'Spring to autumn', 'Most trips'],
       ['winter', 'Winter', 'Cooler nights'],

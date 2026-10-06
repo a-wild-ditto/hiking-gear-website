@@ -165,7 +165,7 @@ const page: ProductPage = {
     },
   ],
   thingsToKnow: [
-    'Naturehike describes the design as three-season. That label assumes snowy winters, so outside alpine areas it suits Australian conditions all year round. It is not a snow tent.',
+    'Naturehike describes the design as three-season. That label assumes snowy winters, so outside mountain and highland regions it suits Australian winters. It is not a snow tent.',
     'The fly leaves a gap at the base, so it can feel drafty on cold, windy nights. Pitch the foot of the tent into the wind.',
     'Reviews of older Cloud Up 2 tents found limited room for two adults and their equipment. Check the selected Pro variant’s pitched dimensions.',
     'Cloud Up tents come in several generations and fabrics, so check which one you’re selecting.',

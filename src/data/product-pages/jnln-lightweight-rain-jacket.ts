@@ -25,7 +25,7 @@ const page: ProductPage = {
   metaDescription:
     'The JNLN lightweight rain jacket: a low-cost, 150 g hooded jacket that pairs with a bin liner and a zip-lock bag for an affordable beginner rain setup.',
   question:
-    'Can a $12 packable jacket, paired with a bin liner and a zip-lock bag, keep a beginner dry enough on a rainy overnight?',
+    'Can a $12 packable jacket, paired with a bin liner and a zip-lock bag, work as a rainy setup for a beginner?',
   whyWeChoseIt: [
     'When combined with a bin liner and a zip-lock bag for electronics, this forms an affordable setup for mild rain conditions. The jacket helps with light or short rain, the liner keeps your sleeping bag and spare clothes dry inside the pack, and the zip-lock bag protects your phone.',
     'The listing’s own specification table rates it water repellent rather than waterproof, even though the title says waterproof. Treat it as protection for light or short rain rather than all-day storms.',

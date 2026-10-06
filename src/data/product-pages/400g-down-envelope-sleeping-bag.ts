@@ -20,12 +20,12 @@ const page: ProductPage = {
   summary:
     'A near-ultralight down bag for under A$90. About 800 g packed, a fraction of the price of name-brand down.',
   metaDescription:
-    'A light 400 g down bag for under A$90, about 800 g packed. Perfect for most Australian conditions, with buyer reports and what to expect.',
+    'A light 400 g down bag for under A$90, about 800 g packed. Suited to nights of about 5 to 10°C, with buyer reports and what to expect.',
   question:
     'Can this low-cost down bag deliver useful warmth and low weight, or are the listing claims doing too much of the work?',
   whyWeChoseIt: [
     'Down usually means spending several hundred dollars. The listing claims 400 g of 90% goose down in a roughly 725 g bag, or about 800 g with the stuff sack, which puts it in the weight class of far more expensive bags for under A$100.',
-    'Australian winters are mild by international standards, so outside alpine areas it is perfect for most Australian conditions and offers standout value. Like most budget bags, warmth claims vary between sellers, so treat them as a rough guide and pack a warm layer.',
+    'We would treat it as suitable for nights of about 5 to 10°C, which covers most spring, summer and autumn trips and mild coastal and lowland winter nights, and it offers standout value. It has no tested rating and warmth claims vary between sellers, so treat that range as a rough guide. At the colder end, a sleeping bag liner and a beanie will help if you still feel cold.',
   ],
   specs: [
     {
@@ -146,7 +146,7 @@ const page: ProductPage = {
     },
   ],
   thingsToKnow: [
-    'Perfect for most Australian conditions year-round outside alpine areas. For coastal winter trips, add a beanie and thermals. Not intended for alpine areas or snow.',
+    'Suitable for nights of about 5 to 10°C. At the colder end, a sleeping bag liner and a beanie will help if you still feel cold. Not intended for mountain and highland winters or snow.',
     'Pair it with an insulated mat; a bag alone won’t keep you warm on cold ground.',
   ],
   watching: [

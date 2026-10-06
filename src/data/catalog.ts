@@ -197,8 +197,8 @@ export const products: Product[] = [
     weightStatus: 'seller-claim',
     weightBasis: 'Seller-claimed bag plus stuff sack estimate',
     summary:
-      'A near-ultralight, low-cost down bag, perfect for most Australian conditions outside alpine areas.',
-    goodFor: 'Light, year-round packing outside alpine areas',
+      'A near-ultralight, low-cost down bag suited to nights of about 5 to 10°C.',
+    goodFor: 'Light packing for nights of about 5 to 10°C',
     reviewSlug: '400g-down-envelope-sleeping-bag',
     kitDetail: {
       headline: 'Light down warmth at a fraction of the usual price',

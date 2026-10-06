@@ -33,7 +33,7 @@ const kitData: Omit<Kit, 'price'>[] = [
     name: 'Value',
     label: 'Our balanced starting point',
     summary:
-      'The best balance of price, weight and packability in our current shortlist. Suitable for most areas of Australia year-round.',
+      'The best balance of price, weight and packability in our current shortlist. Suitable for most areas of Australia from spring to autumn, and mild coastal winters.',
     bestFor: 'Hikers prioritising a lighter, more compact setup',
     advantage:
       'Stronger value across the main shelter, sleep and carry decisions.',
